@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>16AF0EF3-77AA-4057-98B1-32CE70DD8D96</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Pyonkee</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>111D742F-C2DA-4904-9F05-1321D1AE3344</key>
+		<string>https://bitbucket.org/softumeya/scratchonipad.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Pyonkee.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>111D742F-C2DA-4904-9F05-1321D1AE3344</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://bitbucket.org/softumeya/scratchonipad.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>111D742F-C2DA-4904-9F05-1321D1AE3344</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>111D742F-C2DA-4904-9F05-1321D1AE3344</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Pyonkee</string>
+		</dict>
+	</array>
+</dict>
+</plist>

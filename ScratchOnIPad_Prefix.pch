@@ -1,0 +1,15 @@
+#if !defined(NS_BLOCK_ASSERTIONS) //DEBUG on
+#define	SUY_DEBUG	1
+#endif
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+    #import <UIKit/UIKit.h>
+    #import "SUYMacro.h"
+#endif
+
+
+
+
+
+

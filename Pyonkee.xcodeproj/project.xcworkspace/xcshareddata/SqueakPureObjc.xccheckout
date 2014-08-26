@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>480AD16E-93C9-4085-9099-0195D0C900D1</string>
+	<key>IDESourceControlProjectName</key>
+	<string>SqueakPureObjc</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>BD3B88C4-94E4-4C95-9B2A-E46A33262842</key>
+		<string>https://github.com/johnmci/Scratch.app.for.iOS</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>SqueakPureObjc.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>BD3B88C4-94E4-4C95-9B2A-E46A33262842</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/johnmci/Scratch.app.for.iOS</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>BD3B88C4-94E4-4C95-9B2A-E46A33262842</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>BD3B88C4-94E4-4C95-9B2A-E46A33262842</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Scratch.app.for.iOS</string>
+		</dict>
+	</array>
+</dict>
+</plist>

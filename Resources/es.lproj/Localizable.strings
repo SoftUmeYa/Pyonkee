@@ -1,0 +1,40 @@
+/*
+ Localizable.strings
+ 
+ Created by Masashi Umezawa.
+ */
+
+"SqueakSelectImagePanePrompt" = "Seleccionar un archivo de imagen de Squeak para abrir";
+"Ok" = "Ok";
+"Yes" = "Sí";
+"No" = "No";
+"Cancel" = "Cancelar";
+"Cough" = "* Tos *";
+"Massive" = "Massive HairBall Crash";
+"Reset" = "Restablecer";
+"Wait" = "Espera";
+"Email" = "Email";
+"Kilogram" = "10 Kilogramo gato, demasiado grande !!!";
+"Saved" = "Guardado";
+"SavedMsg" = "El mensaje ha sido guardado.";
+"Failed" = "Fracasado";
+"FailedMsg" = "El envío ha fallado. El mensaje no ha sido enviado.";
+"helpEmailAddress" = "info@softumeya.com";
+"helpSubject" = "Pyonkee tosió una bola de pelo";
+"helpMessage" = "Vaya algo sucedió y nos gustaría enviar alguna información a los programadores para ver si podemos arreglarlo";
+
+"play" = "Vamos a jugar";
+"create" = "crear";
+"Login" = "Login";
+
+/*Pyonkee*/
+
+"Loading..." = "Cargando...";
+"Play!" = "Juega!";
+"Menu" = "Menú";
+"projectSendMailSubject" = "[Proyecto de Scratch]";
+"projectSendMailMessage" = "El envío de un proyecto de Scratch.";
+"Cleaning up memory..." = "La limpieza de la memoria ...";
+"Done!" = "¡Hecho!";
+
+

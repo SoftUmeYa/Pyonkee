@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none">
+    <dependencies>
+        <deployment defaultVersion="1552" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ScratchIPhonePresentationSpace">
+            <connections>
+                <outlet property="commandButton" destination="ZdR-vi-ukD" id="Tpd-AX-6MT"/>
+                <outlet property="fontScaleButton" destination="24" id="ThV-Xn-oNJ"/>
+                <outlet property="landscapeToolBar" destination="61" id="62"/>
+                <outlet property="landscapeToolBar2" destination="63" id="74"/>
+                <outlet property="padLockButton" destination="77" id="80"/>
+                <outlet property="presentationExitButton" destination="ZTb-6b-wCE" id="2fV-D1-O1x"/>
+                <outlet property="radioButtonSetController" destination="h4S-8z-pJD" id="Ujk-zr-ML1"/>
+                <outlet property="scrollView" destination="4" id="14"/>
+                <outlet property="shiftButton" destination="g8x-gu-BpO" id="sK4-zb-FxO"/>
+                <outlet property="shoutGoLandscapeButton" destination="35" id="59"/>
+                <outlet property="softKeyboardField" destination="jsf-Lj-cQP" id="241-6F-siE"/>
+                <outlet property="softKeyboardOnButton" destination="2Er-PB-Agr" id="M4v-iz-swG"/>
+                <outlet property="stopAllLandscapeButton" destination="36" id="60"/>
+                <outlet property="textField" destination="9" id="28"/>
+                <outlet property="view" destination="1" id="3"/>
+                <outlet property="viewModeBar" destination="fbL-S6-5qG" id="EGc-aw-v0Q"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <customObject id="h4S-8z-pJD" customClass="GSRadioButtonSetController">
+            <connections>
+                <outlet property="delegate" destination="-1" id="BKd-zK-Lwq"/>
+                <outletCollection property="buttons" destination="EWv-YW-BN5" id="V40-lB-3tH"/>
+                <outletCollection property="buttons" destination="Ehv-c5-hHl" id="2pX-Ex-73X"/>
+                <outletCollection property="buttons" destination="umY-R9-7M0" id="RSH-4c-HDa"/>
+            </connections>
+        </customObject>
+        <viewController id="19" customClass="SqueakUIController">
+            <extendedEdge key="edgesForExtendedLayout"/>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+            <nil key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="view" destination="4" id="20"/>
+            </connections>
+        </viewController>
+        <view contentMode="scaleToFill" id="1">
+            <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" clearsContextBeforeDrawing="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" canCancelContentTouches="NO" minimumZoomScale="0.5" maximumZoomScale="8" id="4">
+                    <rect key="frame" x="0.0" y="4" width="1024" height="768"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="21"/>
+                    </connections>
+                </scrollView>
+                <view autoresizesSubviews="NO" opaque="NO" clearsContextBeforeDrawing="NO" alpha="0.69999999999999973" contentMode="center" id="63" userLabel="left landscape toolbar">
+                    <rect key="frame" x="0.0" y="224" width="30" height="320"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <subviews>
+                        <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="32" userLabel="down button">
+                            <rect key="frame" x="-2" y="0.0" width="34" height="80"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
+                            <color key="backgroundColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
+                            <state key="normal" image="downArrow.png">
+                                <color key="titleColor" red="0.19607843" green="0.30980393000000001" blue="0.52156866000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="highlighted">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="keyDownArrow:" destination="-1" eventType="touchDown" id="46"/>
+                                <action selector="keyTouchUp:" destination="-1" eventType="touchUpInside" id="47"/>
+                                <action selector="keyTouchUp:" destination="-1" eventType="touchUpOutside" id="48"/>
+                                <action selector="keyTouchUp:" destination="-1" eventType="touchCancel" id="56"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="33" userLabel="left button">
+                            <rect key="frame" x="-2" y="80" width="34" height="80"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
+                            <color key="backgroundColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
+                            <state key="normal" image="leftArrow.png">
+                                <color key="titleColor" red="0.19607843" green="0.30980393000000001" blue="0.52156866000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="highlighted">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="keyLeftArrow:" destination="-1" eventType="touchDown" id="49"/>
+                                <action selector="keyTouchUp:" destination="-1" eventType="touchUpOutside" id="50"/>
+                                <action selector="keyTouchUp:" destination="-1" eventType="touchUpInside" id="51"/>
+                                <action selector="keyTouchUp:" destination="-1" eventType="touchCancel" id="57"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="64" userLabel="space button">
+                            <rect key="frame" x="-2" y="160" width="34" height="80"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
+                            <color key="backgroundColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
+                            <state key="normal" image="flat-space.png">
+                                <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="highlighted">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="keySpace:" destination="-1" eventType="touchDown" id="88"/>
+                                <action selector="keyTouchUp:" destination="-1" eventType="touchUpInside" id="85"/>
+                                <action selector="keyTouchUp:" destination="-1" eventType="touchUpOutside" id="86"/>
+                                <action selector="keyTouchUp:" destination="-1" eventType="touchCancel" id="87"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="35" userLabel="start button">
+                            <rect key="frame" x="-2" y="240" width="34" height="80"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
+                            <color key="backgroundColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
+                            <state key="normal" image="greenFlag.png">
+                                <color key="titleColor" red="0.1960784314" green="0.30980392159999998" blue="0.52156862749999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="selected" image="greenFlagLight.png"/>
+                            <state key="highlighted">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="shoutGo:" destination="-1" eventType="touchUpInside" id="41"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                </view>
+                <view autoresizesSubviews="NO" opaque="NO" clearsContextBeforeDrawing="NO" alpha="0.69999999999999973" contentMode="center" id="61" userLabel="right landscape toolbar">
+                    <rect key="frame" x="994" y="224" width="30" height="320"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <subviews>
+                        <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="31" userLabel="up button">
+                            <rect key="frame" x="-2" y="0.0" width="34" height="80"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
+                            <color key="backgroundColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
+                            <state key="normal" image="upArrow.png">
+                                <color key="titleColor" red="0.19607843" green="0.30980393000000001" blue="0.52156866000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="highlighted">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="keyTouchUp:" destination="-1" eventType="touchUpInside" id="44"/>
+                                <action selector="keyTouchUp:" destination="-1" eventType="touchUpOutside" id="45"/>
+                                <action selector="keyTouchUp:" destination="-1" eventType="touchCancel" id="55"/>
+                                <action selector="keyUpArrow:" destination="-1" eventType="touchDown" id="43"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="34" userLabel="right button">
+                            <rect key="frame" x="-2" y="80" width="34" height="80"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
+                            <color key="backgroundColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
+                            <state key="normal" image="rightArrow.png">
+                                <color key="titleColor" red="0.19607843" green="0.30980393000000001" blue="0.52156866000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="highlighted">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="keyRightArrow:" destination="-1" eventType="touchDown" id="52"/>
+                                <action selector="keyTouchUp:" destination="-1" eventType="touchUpInside" id="53"/>
+                                <action selector="keyTouchUp:" destination="-1" eventType="touchUpOutside" id="54"/>
+                                <action selector="keyTouchUp:" destination="-1" eventType="touchCancel" id="58"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="69" userLabel="space button">
+                            <rect key="frame" x="-2" y="160" width="34" height="80"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
+                            <color key="backgroundColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
+                            <state key="normal" image="flat-space.png">
+                                <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="highlighted">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="keySpace:" destination="-1" eventType="touchDown" id="84"/>
+                                <action selector="keyTouchUp:" destination="-1" eventType="touchCancel" id="81"/>
+                                <action selector="keyTouchUp:" destination="-1" eventType="touchUpInside" id="82"/>
+                                <action selector="keyTouchUp:" destination="-1" eventType="touchUpOutside" id="83"/>
+                            </connections>
+                        </button>
+                        <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="36" userLabel="stop button">
+                            <rect key="frame" x="-2" y="240" width="34" height="80"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
+                            <color key="backgroundColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
+                            <state key="normal" image="RedFlag.png">
+                                <color key="titleColor" red="0.1960784314" green="0.30980392159999998" blue="0.52156862749999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <state key="selected" image="RedFlagLight.png"/>
+                            <state key="highlighted">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="stopAll:" destination="-1" eventType="touchUpInside" id="42"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                </view>
+                <button opaque="NO" clearsContextBeforeDrawing="NO" alpha="0.79999999999999982" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="77" userLabel="toggle pinch button">
+                    <rect key="frame" x="0.0" y="732" width="32" height="32"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
+                    <state key="normal" image="pinchIn.png">
+                        <color key="titleColor" red="0.19607843" green="0.30980393000000001" blue="0.52156866000000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" image="pinchIn-active.png"/>
+                    <state key="highlighted" image="pinchIn-active.png">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="operatePadLock:" destination="-1" eventType="touchUpInside" id="79"/>
+                    </connections>
+                </button>
+                <button opaque="NO" clearsContextBeforeDrawing="NO" alpha="0.79999999999999982" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="24" userLabel="font scale button">
+                    <rect key="frame" x="992" y="732" width="32" height="32"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                    <state key="normal" image="fontScale.png"/>
+                    <state key="selected" image="fontScale-active.png"/>
+                    <state key="highlighted" image="fontScale-active.png"/>
+                    <connections>
+                        <action selector="openFontResizer:" destination="-1" eventType="touchUpInside" id="96u-fJ-Bfa"/>
+                    </connections>
+                </button>
+                <button opaque="NO" alpha="0.79999999999999982" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="g8x-gu-BpO" userLabel="right modifier">
+                    <rect key="frame" x="577" y="732" width="32" height="32"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                    <state key="normal" image="flat-shift.png"/>
+                    <state key="selected" image="flat-shift-active1.png"/>
+                    <state key="highlighted" image="flat-shift-active1.png"/>
+                    <connections>
+                        <action selector="shiftButtonDown:" destination="-1" eventType="touchDown" id="rqG-m2-Wpe"/>
+                        <action selector="shiftButtonUp:" destination="-1" eventType="touchUpInside" id="9fj-Mw-AhW"/>
+                    </connections>
+                </button>
+                <button opaque="NO" alpha="0.79999999999999982" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="ZdR-vi-ukD" userLabel="left modifier">
+                    <rect key="frame" x="413" y="732" width="32" height="32"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <state key="normal" image="flat-cmd.png">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" image="flat-cmd-active1.png"/>
+                    <state key="highlighted" image="flat-cmd-active1.png"/>
+                    <connections>
+                        <action selector="commandButtonDown:" destination="-1" eventType="touchDown" id="1Kf-Jq-Otb"/>
+                        <action selector="commandButtonUp:" destination="-1" eventType="touchUpInside" id="Oht-YR-gwI"/>
+                    </connections>
+                </button>
+                <textField opaque="NO" clipsSubviews="YES" alpha="0.59999999999999964" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="32" clearButtonMode="always" id="jsf-Lj-cQP" userLabel="softkey text field">
+                    <rect key="frame" x="292" y="324" width="440" height="32"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                    <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="c4p-yY-h8N"/>
+                    </connections>
+                </textField>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ZTb-6b-wCE" userLabel="presen exit button">
+                    <rect key="frame" x="32" y="5" width="32" height="32"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" image="back.png">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="exitPresentation:" destination="-1" eventType="touchUpInside" id="Bwz-r1-j2s"/>
+                    </connections>
+                </button>
+                <view autoresizesSubviews="NO" opaque="NO" alpha="0.80000000000000016" contentMode="scaleAspectFit" id="nBf-mh-npM" userLabel="keyboardButtons">
+                    <rect key="frame" x="469" y="732" width="84" height="32"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES"/>
+                    <subviews>
+                        <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="2Er-PB-Agr" userLabel="softkey activate button">
+                            <rect key="frame" x="62" y="0.0" width="24" height="32"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
+                            <state key="normal" image="kbd-right.png">
+                                <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="softKeyboardActivate:" destination="-1" eventType="touchUpInside" id="IZx-eM-EO9"/>
+                            </connections>
+                        </button>
+                        <textField clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="" textAlignment="center" minimumFontSize="8" background="kbd-left.png" id="9" userLabel="keyboard Text Field" customClass="ScratchPresentationUITextField">
+                            <rect key="frame" x="0.0" y="0.0" width="60" height="32"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="16"/>
+                            <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="done"/>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="23"/>
+                            </connections>
+                        </textField>
+                    </subviews>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                </view>
+                <view opaque="NO" contentMode="scaleToFill" id="fbL-S6-5qG" userLabel="mode bar">
+                    <rect key="frame" x="867" y="10" width="150" height="34"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="EWv-YW-BN5" userLabel="quarterModeButton">
+                            <rect key="frame" x="2" y="2" width="40" height="32"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" image="quarterMode.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="selected" image="quarterMode-on.png"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Ehv-c5-hHl" userLabel="normalModeButton">
+                            <rect key="frame" x="55" y="2" width="40" height="32"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" image="normalMode.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="selected" image="normalMode-on.png"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="umY-R9-7M0" userLabel="presentationModeButton">
+                            <rect key="frame" x="108" y="2" width="40" height="32"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" image="presentationMode.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="selected" image="presentationMode-on.png"/>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.75294117647058822" green="0.76470588235294112" blue="0.77647058823529413" alpha="1" colorSpace="calibratedRGB"/>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.75294117647058822" green="0.76470588235294112" blue="0.77647058823529413" alpha="1" colorSpace="deviceRGB"/>
+            <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="RedFlag.png" width="28" height="23"/>
+        <image name="RedFlagLight.png" width="28" height="23"/>
+        <image name="back.png" width="32" height="32"/>
+        <image name="downArrow.png" width="44" height="15"/>
+        <image name="flat-cmd-active1.png" width="32" height="32"/>
+        <image name="flat-cmd.png" width="32" height="32"/>
+        <image name="flat-shift-active1.png" width="32" height="32"/>
+        <image name="flat-shift.png" width="32" height="32"/>
+        <image name="flat-space.png" width="20" height="10"/>
+        <image name="fontScale-active.png" width="32" height="32"/>
+        <image name="fontScale.png" width="32" height="32"/>
+        <image name="greenFlag.png" width="29" height="25"/>
+        <image name="greenFlagLight.png" width="29" height="25"/>
+        <image name="kbd-left.png" width="60" height="32"/>
+        <image name="kbd-right.png" width="24" height="32"/>
+        <image name="leftArrow.png" width="15" height="44"/>
+        <image name="normalMode-on.png" width="42" height="32"/>
+        <image name="normalMode.png" width="42" height="32"/>
+        <image name="pinchIn-active.png" width="32" height="32"/>
+        <image name="pinchIn.png" width="32" height="32"/>
+        <image name="presentationMode-on.png" width="42" height="32"/>
+        <image name="presentationMode.png" width="42" height="32"/>
+        <image name="quarterMode-on.png" width="42" height="32"/>
+        <image name="quarterMode.png" width="42" height="32"/>
+        <image name="rightArrow.png" width="15" height="44"/>
+        <image name="upArrow.png" width="44" height="15"/>
+    </resources>
+</document>

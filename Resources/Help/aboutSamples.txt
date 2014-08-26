@@ -1,0 +1,5 @@
+About samples\
+
+All sample projects are licensed under CC-BY-SA 2.0.
+http://wiki.scratch.mit.edu/wiki/Scratch_Project_License
+

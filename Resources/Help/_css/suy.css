@@ -1,0 +1,17 @@
+h1 {
+	font-family:Verdana, Geneva, Arial, Helvetica, sans-serif;
+	color:#F89406;
+}
+
+.site-header {
+	background-color: #E1E1E8
+}
+
+.helpScreenCell{margin-top: 10px; margin-left: 10px; margin-right: 10px}
+/*.helpScreenCell{margin-left: -100px; margin-right: -100px}*/
+.helpScreenImg{
+	width: 100%;
+}
+
+
+.centered{text-align:center;}

@@ -1,0 +1,22 @@
+.DS_Store
+/build/
+/Scratch Projects/
+xcuserdata
+*.swp
+*~.nib
+*.*~
+
+UserInterfaceState.xcuserstate
+
+*.pbxuser
+*.perspective
+*.perspectivev3
+*.xcuserdatad
+*.xcbkptlist
+
+*.mode1v3
+*.mode2v3
+
+SqueakDebug.log
+scratchthumbs.db
+Breakpoints*

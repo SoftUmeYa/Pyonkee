@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>C12D52D9-A918-4DE5-8A5A-4101E5FFC6FF</string>
+	<key>IDESourceControlProjectName</key>
+	<string>ScratchOnIPad</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>0DEDF27C-7FAF-4FE6-A654-5F68F616A3B9</key>
+		<string>https://github.com/johnmci/Scratch.app.for.iOS</string>
+		<key>DDF7D259-BB38-4BC5-BAE7-D3C6291EE9EF</key>
+		<string>https://bitbucket.org/softumeya/scratchonipad.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>ScratchOnIPad.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>0DEDF27C-7FAF-4FE6-A654-5F68F616A3B9</key>
+		<string>../../../Scratch.app.for.iOS</string>
+		<key>DDF7D259-BB38-4BC5-BAE7-D3C6291EE9EF</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://bitbucket.org/softumeya/scratchonipad.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>DDF7D259-BB38-4BC5-BAE7-D3C6291EE9EF</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>0DEDF27C-7FAF-4FE6-A654-5F68F616A3B9</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Scratch.app.for.iOS</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>DDF7D259-BB38-4BC5-BAE7-D3C6291EE9EF</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ScratchOnIPad</string>
+		</dict>
+	</array>
+</dict>
+</plist>
