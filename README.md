@@ -16,8 +16,8 @@ Pyonkee was originally started as a fork of [John M McIntosh](https://www.smallt
  - Embedded camera support
  - IME support
  - Auto-saving editing project
- - Project import/export through iTunes
- - Sending projects via e-mail 
+ - Sending projects via e-mail
+ - Project import/export through iTunes (currently disabled)
 
 ##License
 Pyonkee is a derivative work of open-sourced Scratch 1.4 and licensed under the GPL v2. See the included gpl-2.0.txt for details. 
