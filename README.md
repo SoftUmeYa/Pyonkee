@@ -8,14 +8,14 @@ Pyonkee has been developed from [the open-source code of "Scratch 1.4"](http://w
 Pyonkee's user interface is optimized for touch interfaces. We do not need a cumbersome typing, even a mouse. Just program wherever you like. Pyonkee nicely supports pinch-in/out display, font scaling for small devices. Moreover, sound recorder and camera are provided for importing your sounds and pictures into the projects. We can mix various media on Pyonkee and program them. 
 
 ## History
-Pyonkee was originally started as a fork of [John M McIntosh](https://www.smalltalkconsulting.com)'s Scratch Viewer - [Scratch.app.for.iOS](https://github.com/johnmci/Scratch.app.for.iOS). While Scratch Viewer just works as a viewer of the existing Scratch projects, Pyonkee supports creation/edittings projects.
+Pyonkee was originally started as a fork of [John M McIntosh](https://www.smalltalkconsulting.com)'s Scratch Viewer - [Scratch.app.for.iOS](https://github.com/johnmci/Scratch.app.for.iOS). While Scratch Viewer just works as a viewer of the existing Scratch projects, Pyonkee supports creation/edit of projects.
 
 ### Other major modifications from the viewer:
  - User interfaces are optimized for iPad (Viewer supports both iPhone and iPad)
  - Native font support
  - Embedded camera support
  - IME support
- - Auto-saving editing project
+ - Auto-saving project
  - Sending projects via e-mail
  - Project import/export through iTunes (currently disabled)
 
