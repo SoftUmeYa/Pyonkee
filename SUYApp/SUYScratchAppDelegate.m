@@ -235,6 +235,12 @@ BOOL isRestarting = NO;
     }
 }
 
+- (void) flushInputString: (NSString *)inputString {
+    if(squeakProxy){
+        [squeakProxy flushInputString: inputString];
+    }
+}
+
 #pragma mark -
 #pragma mark Actions
 

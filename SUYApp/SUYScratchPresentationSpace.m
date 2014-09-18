@@ -365,6 +365,9 @@ uint memoryWarningCount;
 -(void)flushInputString:(NSString*) processedString {
     if(useIme == NO) {return;}
     LgInfo(@"!!! flushInputString %@", processedString);
+    if(self.viewModeIndex==2){
+        [[self appDelegate] flushInputString: processedString];
+    }
     [gDelegateApp.mainView recordCharEvent: processedString];
 }
 

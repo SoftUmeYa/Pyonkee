@@ -37,8 +37,9 @@
 - (void) setViewModeIndex:(int)mode;
 - (void) setFontScaleIndex: (int)idx;
 - (int)  getFontScaleIndex;
-- (BOOL)  scriptsAreRunning;
+- (BOOL) scriptsAreRunning;
 - (void) pickPhoto: (NSString *)filePath;
+- (void) flushInputString: (NSString *)inputString;
 - (void) restartVm;
 
 - (void) enterRestart;

@@ -4268,6 +4268,8 @@ register struct foo * foo = &fum;
 	/* ensure that the result has the same sign as the integerArg */
 
 	integerResult = integerRcvr % integerArg;
+
+    
 	if (integerArg < 0) {
 		if (integerResult > 0) {
 			integerResult += integerArg;
@@ -9813,7 +9815,7 @@ sqInt interpret(void) {
 					rcvr = (rcvr >> 1);
 					arg = (arg >> 1);
 					result = rcvr * arg;
-					if (((arg == 0) || ((result / arg) == rcvr)) && (
+					if (((arg == 0) || (((int64_t)result / (int64_t)arg) == rcvr)) && (
 # ifdef SQ_HOST32  // cast to int for 64 bit image on 32 bit host
 	(((((int) result)) ^ ((((int) result)) << 1)) >= 0)
 # else
@@ -17914,7 +17916,7 @@ l2:	/* end checkedIntegerValueOf: */;
 		/* check for C overflow by seeing if computation is reversible */
 
 		integerResult = integerRcvr * integerArg;
-		if ((integerArg == 0) || ((integerResult / integerArg) == integerRcvr)) {
+		if ((integerArg == 0) || (((uint64_t)integerResult / (uint64_t)integerArg) == integerRcvr)) {
 			/* begin pop2AndPushIntegerIfOK: */
 			if (foo->successFlag) {
 				if (

@@ -71,7 +71,7 @@ msgid "%f of %n"
 msgstr "%n の %f"
 
 msgid "%n mod %n"
-msgstr "%n2 を %n1 で割った余り"
+msgstr "%n を %n で割った余り"
 
 msgid "add %s to %L"
 msgstr "%s を %L に追加する"
