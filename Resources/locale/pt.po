@@ -1980,6 +1980,12 @@ msgstr "Sobre Pyonkee"
 msgid "About samples"
 msgstr "Sobre amostras"
 
+msgid "Video Tutorial"
+msgstr "Vídeo o Tutorial"
+
+msgid "About media"
+msgstr "Sobre meios de comunicação social"
+
 msgid "New folder name:"
 msgstr "Nome da nova pasta:"
 

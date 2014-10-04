@@ -1,4 +1,4 @@
-﻿msgid ""
+msgid ""
 msgstr ""
 "Project-Id-Version: Scratch\n"
 "Report-Msgid-Bugs-To: Evelyn Eastmond <evelyn@media.mit.edu>\n"
@@ -1969,6 +1969,12 @@ msgstr "Sobre Pyonkee"
 
 msgid "About samples"
 msgstr "Sobre amostras"
+
+msgid "Video Tutorial"
+msgstr "Vídeo o Tutorial"
+
+msgid "About media"
+msgstr "Sobre meios de comunicação social"
 
 msgid "New folder name:"
 msgstr "Nome da nova pasta:"

@@ -2028,6 +2028,12 @@ msgstr "Acerca Pyonkee"
 msgid "About samples"
 msgstr "Acerca de las muestras"
 
+msgid "Video Tutorial"
+msgstr "Tutorial video"
+
+msgid "About media"
+msgstr "Acerca de los medios de comunicación"
+
 msgid "New folder name:"
 msgstr "Nuevo nombre de la carpeta:"
 

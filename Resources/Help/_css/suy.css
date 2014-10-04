@@ -13,5 +13,14 @@ h1 {
 	width: 100%;
 }
 
+.videoCell{margin-top: 32px; margin-left:0px; margin-right: 0px}
+.videoPlayer{
+	width: 100%;
+	height: 637px;
+}
+
+.dialog-width-full {
+    width: 960px!important;
+ }
 
 .centered{text-align:center;}

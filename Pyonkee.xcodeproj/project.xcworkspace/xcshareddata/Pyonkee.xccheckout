@@ -10,29 +10,29 @@
 	<string>Pyonkee</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>81D22CD6-015E-4EAF-BE87-8F22DCCAB9D1</key>
+		<key>6925FEFC71DADEC403E5157BF17043CBC8D94B4B</key>
 		<string>https://github.com/SoftUmeYa/Pyonkee</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Pyonkee.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>81D22CD6-015E-4EAF-BE87-8F22DCCAB9D1</key>
+		<key>6925FEFC71DADEC403E5157BF17043CBC8D94B4B</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/SoftUmeYa/Pyonkee</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>81D22CD6-015E-4EAF-BE87-8F22DCCAB9D1</string>
+	<string>6925FEFC71DADEC403E5157BF17043CBC8D94B4B</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>81D22CD6-015E-4EAF-BE87-8F22DCCAB9D1</string>
+			<string>6925FEFC71DADEC403E5157BF17043CBC8D94B4B</string>
 			<key>IDESourceControlWCCName</key>
 			<string>Pyonkee</string>
 		</dict>

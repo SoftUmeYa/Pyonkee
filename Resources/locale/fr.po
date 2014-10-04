@@ -1965,8 +1965,14 @@ msgstr "costume2"
 msgid "About Pyonkee"
 msgstr "À propos de Pyonkee"
 
+msgid "Video Tutorial"
+msgstr "Vidéo d'instructions"
+
 msgid "About samples"
 msgstr "A propos des échantillons"
+
+msgid "About media"
+msgstr "Au sujet de moyens"
 
 msgid "New folder name:"
 msgstr "Nouveau nom de dossier:"

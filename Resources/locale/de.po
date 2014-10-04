@@ -2022,8 +2022,14 @@ msgstr "Kostüm2"
 msgid "About Pyonkee"
 msgstr "Über Pyonkee"
 
+msgid "Video Tutorial"
+msgstr "Tutorenkursvideo"
+
 msgid "About samples"
 msgstr "Über Proben"
+
+msgid "About media"
+msgstr "Über Medien"
 
 msgid "New folder name:"
 msgstr "Neuen Ordnernamen:"

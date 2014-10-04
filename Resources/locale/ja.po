@@ -1952,8 +1952,14 @@ msgstr "コスチューム2"
 msgid "About Pyonkee"
 msgstr "ピョンキーについて"
 
+msgid "Video Tutorial"
+msgstr "入門ビデオ"
+
 msgid "About samples"
 msgstr "作品例について"
+
+msgid "About media"
+msgstr "メディアについて"
 
 msgid "New folder name:"
 msgstr "フォルダ名:"
@@ -2054,4 +2060,47 @@ msgstr "音楽のループ"
 
 msgid "Vocals"
 msgstr "ボーカル"
+
+msgid "PeKay"
+msgstr "ピッケ"
+
+############################################
+# PeKay folders
+############################################
+
+msgid "bear"
+msgstr "クマ"
+
+msgid "chipmunk"
+msgstr "リス"
+
+msgid "duck"
+msgstr "アヒル"
+
+msgid "frog"
+msgstr "カエル"
+
+msgid "item"
+msgstr "アイテム"
+
+msgid "monkey"
+msgstr "サル"
+
+msgid "pekay_piggy"
+msgstr "ピッケ"
+
+msgid "rabbit"
+msgstr "ウサギ"
+
+msgid "turtle"
+msgstr "カメ"
+
+msgid "mori"
+msgstr "森"
+
+msgid "outi"
+msgstr "おうち"
+
+msgid "sora"
+msgstr "空"
 

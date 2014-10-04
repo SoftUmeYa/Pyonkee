@@ -30,10 +30,9 @@ extern usqInt	gMaxHeapSize;
 
 - (void) doMemorySetup {
 	gMaxHeapSize =  [(sqSqueakIPhoneInfoPlistInterface*) self.infoPlistInterfaceLogic memorySize];
-	if (gDelegateApp.sizeOfMemoryIsTooLowForLargeImages)
+	if (gDelegateApp.sizeOfMemoryIsTooLowForLargeImages){
 		gMaxHeapSize =  50*1024*1024;
-	else
-		gMaxHeapSize =  [(sqSqueakIPhoneInfoPlistInterface*) self.infoPlistInterfaceLogic memorySize];
+    }
     LgInfo(@"doMemorySetup gMaxHeapSize %d", gMaxHeapSize);
 }
 

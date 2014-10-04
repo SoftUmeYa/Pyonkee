@@ -31,6 +31,7 @@
     [super viewDidLoad];
     webView.delegate = self;
     webView.scalesPageToFit = YES;
+    webView.allowsInlineMediaPlayback = YES;
     LgInfo(@"LOCAL URL is %@", initialUrl);
     [self loadUrl];
 }
@@ -38,12 +39,7 @@
 - (void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    //Code for dissmissing this viewController by clicking outside it
-    gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapBehind:)];
-    [gestureRecognizer setNumberOfTapsRequired:1];
-    gestureRecognizer.cancelsTouchesInView = NO; //So the user can still interact with controls in the modal view
-    [self.view.window addGestureRecognizer:gestureRecognizer];
-    
+    [self addGestureRecognizer];
 }
 
 - (void)viewWillLayoutSubviews {
@@ -58,6 +54,15 @@
     NSURL *url = [NSURL fileURLWithPath: initialUrl];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [webView loadRequest:request];
+}
+
+- (void)addGestureRecognizer
+{
+    if(gestureRecognizer != nil){ return; }
+    gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapBehind:)];
+    [gestureRecognizer setNumberOfTapsRequired:1];
+    gestureRecognizer.cancelsTouchesInView = NO; //So the user can still interact with controls in the modal view
+    [self.view.window addGestureRecognizer:gestureRecognizer];
 }
 
 - (void)handleTapBehind:(UITapGestureRecognizer *)sender
@@ -91,6 +96,7 @@
 {
     [self.view.window removeGestureRecognizer:gestureRecognizer];
     [self dismissViewControllerAnimated:YES completion:nil];
+    gestureRecognizer = nil;
 }
 
 - (void)didReceiveMemoryWarning

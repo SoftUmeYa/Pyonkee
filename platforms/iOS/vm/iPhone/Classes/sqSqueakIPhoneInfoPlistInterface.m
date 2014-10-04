@@ -54,9 +54,11 @@ NSString * kspaceRepeats_preferenceKey = @"spaceRepeats_preference";
 
 	[super parseInfoPlist];
 	
-	self.SqueakUseFileMappedMMAP = YES;
-	gSqueakUseFileMappedMMAP = 1;
-	
+//	self.SqueakUseFileMappedMMAP = YES;
+//	gSqueakUseFileMappedMMAP = 1;
+
+    self.SqueakUseFileMappedMMAP = gSqueakUseFileMappedMMAP;
+        
 	NSString *testValue = [defaults stringForKey: kwriteable_preferenceKey];
 	
 	if (testValue == nil) {

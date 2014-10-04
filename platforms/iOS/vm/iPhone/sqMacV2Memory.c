@@ -44,13 +44,16 @@
  */
 //
 
-
- #include "sq.h" 
- #include "sqMacV2Memory.h"
- #include <sys/mman.h>
+#include "sq.h"
+#include "sqMacV2Memory.h"
+#include <sys/mman.h>
 #include <errno.h>
 #include <sys/stat.h>
 #include <unistd.h>
+#include <mach/vm_map.h>
+#include <mach/mach.h>
+
+#include <assert.h>
 
  extern usqInt  gMaxHeapSize;
  extern int gSqueakUseFileMappedMMAP;
@@ -72,8 +75,15 @@ extern usqInt memory;
 usqInt	memory;
 #endif 
 
+usqInt	sqGetAvailableMemory() {
+#if COGVM
+    return gMaxHeapSize - 25*1024*1024;
+#else
+    return gMaxHeapSize;
+#endif
+}
 
-// For Scratch on iPad
+// { For Scratch on iPad
 usqInt	sqTotalRequestedHeapSize() {
     if(totalRequestedHeapSize == 0){
         totalRequestedHeapSize = gHeapSize;
@@ -86,20 +96,12 @@ usqInt sqAvailableHeapSize() {
     if(val < 0) {val = 0;}
 	return val;
 }
-// For Scratch on iPad
-
- usqInt	sqGetAvailableMemory() {
-#if COGVM
-	 return gMaxHeapSize - 25*1024*1024;
-#else
-	 return gMaxHeapSize;
-#endif
- }
+// For Scratch on iPad }
  
 static size_t pageSize;
 static size_t pageMask;
 
- usqInt sqAllocateMemoryMac(usqInt desiredHeapSize, sqInt minHeapSize, FILE * f,usqInt headersize) {
+ usqInt sqAllocateMemoryMMapMac(usqInt desiredHeapSize, sqInt minHeapSize, FILE * f,usqInt headersize) {
 	 void  *possibleLocation,*startOfAnonymousMemory;
 	 off_t fileSize;
 	 struct stat sb;
@@ -167,7 +169,104 @@ static size_t pageMask;
 #endif
 	}
  }
- 
+
+size_t pageAlignedSize(size_t size){
+    int pSize = getpagesize();
+    int rem = size % pSize;
+    size_t fixedSize = rem == 0 ? size : size - rem ;
+    return fixedSize;
+}
+
+void* allocateVirtualMemory(size_t size)
+{
+    void*          data;
+    kern_return_t   err;
+
+    size_t fixedSize = pageAlignedSize(size);
+    
+    assert((fixedSize % getpagesize()) == 0);
+    
+    // Allocate directly from VM
+    err = vm_allocate(  (vm_map_t) mach_task_self(),
+                      (vm_address_t*) &data,
+                      fixedSize,
+                      VM_FLAGS_ANYWHERE);
+    
+    // Check errors
+    assert(err == KERN_SUCCESS);
+    if(err != KERN_SUCCESS)
+    {
+        data = NULL;
+    }
+    
+    return data;
+}
+
+int deallocateVirtualMemory(void* base)
+{
+    kern_return_t   ret;
+	ret = vm_deallocate(mach_task_self(), (vm_address_t)base, pageAlignedSize(gMaxHeapSize));
+	if (ret == KERN_SUCCESS) {
+    //printf("deallocated! %d\n", gMaxHeapSize);
+	} else {
+        fprintf(stderr, "errno %d\n", errno);
+        perror("deallocateVirtualMemory failed");
+    }
+	return 0;
+}
+
+
+usqInt sqAllocateMemoryMallocMac(usqInt desiredHeapSize, sqInt minHeapSize, FILE * f,usqInt headersize) {
+    void* mem;
+    
+    totalRequestedHeapSize = 0; //reset
+    
+    gHeapSize = gMaxHeapSize;
+    if (desiredHeapSize > gHeapSize){ return 0;}
+    
+    mem = malloc(desiredHeapSize * sizeof(char));
+    //mem = allocateVirtualMemory(desiredHeapSize);
+    if(mem == 0) {
+        fprintf(stderr, "errno %d\n", errno);
+        perror("malloc failed");
+        exit(42);
+    }
+    memory = (usqInt)mem;
+
+    //printf("--- memory --- %d\n", desiredHeapSize);
+    return memory;
+}
+
+usqInt sqAllocateMemoryMac(usqInt desiredHeapSize, sqInt minHeapSize, FILE * f,usqInt headersize) {
+    if(gSqueakUseFileMappedMMAP == 0){
+        return sqAllocateMemoryMallocMac(desiredHeapSize, minHeapSize, f,headersize);
+    } else {
+        return sqAllocateMemoryMMapMac(desiredHeapSize, minHeapSize, f,headersize);
+    }
+}
+
+usqInt sqLoadImageFileMac(void * buf, size_t elemSize, size_t count, FILE * f ) {
+    size_t bytesRead = 0;
+    size_t allRead = 0;
+    size_t rest = count;
+    do{
+        bytesRead = fread(buf,elemSize,rest,f);
+        rest -= bytesRead;
+        allRead += bytesRead;
+        if(bytesRead == 0){
+            if(feof(f)){
+                //printf("sqLoadImageFileMac: image EOF\n");
+                break;
+            } else{
+                fprintf(stderr, "errno %d\n", errno);
+                perror("sqLoadImageFileMac: fread failed");
+                break;
+            }
+        }
+    } while(rest != 0);
+    return allRead;
+}
+
 sqInt sqGrowMemoryBy(sqInt memoryLimit, sqInt delta) {
 	if ((usqInt) memoryLimit + (usqInt) delta - (usqInt) memory > gMaxHeapSize)
 			return memoryLimit;
@@ -190,11 +289,17 @@ sqInt sqMemoryExtraBytesLeft(sqInt includingSwap) {
 }
 
 void sqMacMemoryFree() {
-	if (gSqueakUseFileMappedMMAP) {
-		munmap(startOfmmapForImageFile,fileRoundedUpToPageSize);
+	if (gSqueakUseFileMappedMMAP == 0) {
+        if ((void*)memory == NULL){return;}
+        free((void*)memory);
+        //deallocateVirtualMemory((void*)memory);
+        memory = NULL;
+    } else {
+        munmap(startOfmmapForImageFile,fileRoundedUpToPageSize);
 		munmap(startOfmmapForANONMemory,freeSpaceRoundedUpToPageSize);
-	}
+    }
 }
+
 
 #ifdef BUILD_FOR_OSX
 size_t sqImageFileReadEntireImage(void *ptr, size_t elementSize, size_t count, sqImageFile f) {

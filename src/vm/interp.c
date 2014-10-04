@@ -12,6 +12,8 @@
 
 #include "sqMemoryAccess.h"
 
+extern int gSqueakUseFileMappedMMAP;
+
 sqInt printCallStack(void);
 void error(char *s);
 void error(char *s) {
@@ -22553,6 +22555,13 @@ register struct foo * foo = &fum;
 	foo->endOfMemory = memStart + dataSize;
 	sqImageFileSeek(f, headerStart + headerSize);
 	/* begin sqImage:read:size:length: */
+	
+	if(gSqueakUseFileMappedMMAP == 0){
+        bytesRead = sqImageFileRead(memStart, sizeof(unsigned char), dataSize, f);
+        if (bytesRead != dataSize) {
+            unableToReadImageError();
+        }
+	}
 
 	foo->headerTypeBytes[0] = (BytesPerWord * 2);
 	foo->headerTypeBytes[1] = BytesPerWord;
