@@ -84,6 +84,11 @@ BOOL isRestarting = NO;
     LgInfo(@"!! applicationDidEnterBackground !!");
 }
 
+- (void) applicationDidBecomeActive:(UIApplication *)application{
+    [self becomeActive];
+    LgInfo(@"!! applicationDidBecomeActive !!");
+}
+
 
 #pragma mark Accessing
 
@@ -201,6 +206,12 @@ BOOL isRestarting = NO;
 
 - (int)  getViewModeIndex{
     return [squeakProxy getViewModeIndex];
+}
+
+- (int)  becomeActive{
+    if(squeakVMIsReady){
+        return [squeakProxy becomeActive];
+    }
 }
 
 - (void) restartVm {

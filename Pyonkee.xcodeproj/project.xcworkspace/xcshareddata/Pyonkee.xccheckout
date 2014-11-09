@@ -14,7 +14,7 @@
 		<string>https://github.com/SoftUmeYa/Pyonkee</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Pyonkee.xcodeproj/project.xcworkspace</string>
+	<string>Pyonkee.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>6925FEFC71DADEC403E5157BF17043CBC8D94B4B</key>

@@ -2080,7 +2080,7 @@ msgstr "アヒル"
 msgid "frog"
 msgstr "カエル"
 
-msgid "item"
+msgid "items"
 msgstr "アイテム"
 
 msgid "monkey"
@@ -2095,12 +2095,17 @@ msgstr "ウサギ"
 msgid "turtle"
 msgstr "カメ"
 
-msgid "mori"
+msgid "food"
+msgstr "食べ物"
+
+msgid "forest"
 msgstr "森"
 
-msgid "outi"
-msgstr "おうち"
+msgid "house"
+msgstr "家"
 
-msgid "sora"
+msgid "sky"
 msgstr "空"
 
+msgid "toy"
+msgstr "おもちゃ"
