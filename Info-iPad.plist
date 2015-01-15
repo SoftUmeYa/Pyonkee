@@ -27,7 +27,7 @@
 	<key>NSMainNibFile~ipad</key>
 	<string>MainWindowiPad</string>
 	<key>UIFileSharingEnabled</key>
-	<false/>
+	<true/>
 	<key>UIInterfaceOrientation</key>
 	<string>UIInterfaceOrientationLandscapeLeft</string>
 	<key>UIPrerenderedIcon</key>
