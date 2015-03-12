@@ -49,6 +49,14 @@
     return [UIImage imageWithCGImage:origImage.CGImage scale:1.0 orientation:UIImageOrientationDown];
 }
 
++ (UIImage *)rotateRightImage:(UIImage*)origImage{
+    return [UIImage imageWithCGImage:origImage.CGImage scale:1.0 orientation:UIImageOrientationRight];
+}
+
++ (UIImage *)rotateLeftImage:(UIImage*)origImage{
+    return [UIImage imageWithCGImage:origImage.CGImage scale:1.0 orientation:UIImageOrientationLeft];
+}
+
 #pragma mark Defaults
 
 + (Class) squeakUIViewClass{
@@ -60,9 +68,9 @@
     return [SqueakUIViewOpenGL class];
 }
 
-+ (CGRect) scratchScreenSize
++ (CGSize) scratchScreenSize
 {
-    return CGRectMake(0,0,1024,768);
+    return CGSizeMake(1024,768);
 }
 
 + (float) scratchScreenZoomScale;

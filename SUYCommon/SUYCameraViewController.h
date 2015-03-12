@@ -9,10 +9,11 @@
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
 
-@interface SUYCameraViewController : UIViewController
+#import "SUYPhotoViewController.h"
+
+@interface SUYCameraViewController : SUYPhotoViewController
 
 @property (nonatomic, retain)   IBOutlet           UIImageView                  *previewView;
-@property (nonatomic, retain)   IBOutlet           UIButton                *takePictureButton;
 
 @property (nonatomic, retain)						AVCaptureSession			*session;
 @property (nonatomic, retain)						AVCaptureVideoPreviewLayer *previewLayer;
@@ -20,10 +21,11 @@
 @property (nonatomic, retain)                       AVCaptureDeviceInput        *videoInput;
 @property (nonatomic, retain)						AVCaptureStillImageOutput	*stillImageOutput;
 
-@property (nonatomic, retain)                       NSString*        clientMode;
+
 
 - (IBAction)takePicture:  (UIButton *)sender;
 - (IBAction)close:(UIButton *)sender;
 - (IBAction)toggleCamera:(UIButton *)sender;
+- (IBAction)lauchPicker:(id)sender;
 
 @end

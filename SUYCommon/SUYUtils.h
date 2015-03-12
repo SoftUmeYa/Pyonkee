@@ -14,7 +14,9 @@
 + (BOOL) isRetina;
 + (BOOL) canSendMail;
 + (UIImage *)upsideDownImage:(UIImage*)origImage;
-+ (CGRect) scratchScreenSize;
++ (UIImage *)rotateRightImage:(UIImage*)origImage;
++ (UIImage *)rotateLeftImage:(UIImage*)origImage;
++ (CGSize) scratchScreenSize;
 + (float) scratchScreenZoomScale;
 + (Class) squeakUIViewClass;
 + (NSString *)applicationSupportDirectory;

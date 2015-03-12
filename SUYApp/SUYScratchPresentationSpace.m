@@ -18,6 +18,7 @@
 #import "SUYUtils.h"
 #import "SUYFontResizeViewController.h"
 #import "SUYCameraViewController.h"
+#import "SUYPhotoPickViewController.h"
 #import "SUYWebViewController.h"
 
 #import <QuartzCore/QuartzCore.h>
@@ -26,7 +27,13 @@ extern ScratchIPhoneAppDelegate *gDelegateApp;
 static const int kCommandAutoUpSeconds = 2;
 static const int kShiftAutoUpSeconds = 20;
 
-@implementation ScratchIPhonePresentationSpace
+@implementation ScratchIPhonePresentationSpace{
+    CGFloat _originalScrollerScale;
+    UIColor* _originalBackgroundColor;
+    NSInteger _originalEditModeIndex;
+    BOOL _useIme;
+}
+
 @synthesize scrollView,scrollViewController,fontScaleButton, radioButtonSetController,
 	textField,pathToProjectFile,repeatKeyDict,
     softKeyboardField, softKeyboardOnButton,
@@ -34,8 +41,6 @@ static const int kShiftAutoUpSeconds = 20;
     commandButton, shiftButton,
 	indicatorView, popUpInfoViewController, viewModeBar, presentationExitButton;
 
-BOOL useIme = NO;
-int originalEditModeIndex = 1;
 
 uint warningMinHeapThreshold;
 uint memoryWarningCount;
@@ -54,6 +59,8 @@ uint memoryWarningCount;
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    _useIme = NO;
 
 	self.textField.keyboardAppearance = UIKeyboardAppearanceAlert;
     self.softKeyboardField.hidden = YES;
@@ -64,12 +71,14 @@ uint memoryWarningCount;
     self.viewModeBar.layer.cornerRadius = 5;
     self.viewModeBar.layer.masksToBounds = YES;
     
-    [self.scrollView setZoomScale: [SUYUtils scratchScreenZoomScale] animated: NO];
+    _originalScrollerScale = [SUYUtils scratchScreenZoomScale];
+    [self.scrollView setZoomScale: _originalScrollerScale animated: NO];
     self.scrollView.minimumZoomScale = [SUYUtils scratchScreenZoomScale];
     self.scrollView.maximumZoomScale = 8;
     [self.scrollView flashScrollIndicators];
     
-    //originalEditModeIndex = 1;
+    _originalBackgroundColor = self.view.backgroundColor;
+    _originalEditModeIndex = 1;
     
     warningMinHeapThreshold = [gDelegateApp squeakMaxHeapSize] * 0.70;
     memoryWarningCount = 0;
@@ -81,7 +90,7 @@ uint memoryWarningCount;
 	[gDelegateApp.viewController setNavigationBarHidden: YES animated: YES];
 	
 	self.scrollView.delaysContentTouches = self.padLockButton.selected;
-    self.radioButtonSetController.selectedIndex = originalEditModeIndex;
+    self.radioButtonSetController.selectedIndex = _originalEditModeIndex;
     [self keyboardDidChange:nil];
     [self listenNotifications];
     
@@ -148,13 +157,44 @@ uint memoryWarningCount;
 
 #pragma mark Rotation
 - (BOOL)shouldAutorotate {
-	return YES;
+    return YES;
 }
 
 - (NSUInteger)supportedInterfaceOrientations{
+    if([self isInPresentationMode]){
+        return UIInterfaceOrientationMaskAll;
+    }
     return UIInterfaceOrientationMaskLandscape;
 }
 
+//- (UIInterfaceOrientation) preferredInterfaceOrientationForPresentation
+//{
+//    return UIInterfaceOrientationLandscapeLeft;
+//}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation{
+    if([self isInPresentationMode]){
+        CGFloat ratio = 1.0f;
+        CGPoint offsetPoint = self.scrollView.contentOffset;
+        CGSize sz = [SUYUtils scratchScreenSize];
+        if(UIInterfaceOrientationIsLandscape(fromInterfaceOrientation)){
+            ratio = sz.height/sz.width;
+            _originalScrollerScale = _originalScrollerScale * ratio;
+            self.scrollView.minimumZoomScale = ratio;
+            [self.scrollView setZoomScale: _originalScrollerScale animated:YES];
+            self.scrollView.contentOffset = CGPointMake(offsetPoint.x*ratio, offsetPoint.y*ratio);
+            self.presentationExitButton.hidden = YES;
+            
+        } else {
+            ratio = sz.width/sz.height;
+            _originalScrollerScale = _originalScrollerScale * ratio;
+            self.scrollView.minimumZoomScale = 1.0f;
+            [self.scrollView setZoomScale: _originalScrollerScale animated:YES];
+            self.scrollView.contentOffset = CGPointMake(offsetPoint.x*ratio, offsetPoint.y*ratio);
+            self.presentationExitButton.hidden = NO;
+        }
+    }
+}
 
 #pragma mark Actions
 
@@ -163,14 +203,24 @@ uint memoryWarningCount;
 	self.popUpInfoViewController = nil;
 }
 
-- (IBAction) openCamera:(id)sender clientMode:(NSString *)clientMode{
+- (IBAction) openCamera:(NSString *)clientMode{
     SUYCameraViewController *viewController = [[SUYCameraViewController alloc] initWithNibName:@"SUYCameraViewController" bundle:nil];
     viewController.modalPresentationStyle = UIModalPresentationFormSheet;
     viewController.clientMode = clientMode;
     [self presentViewController:viewController animated:YES completion:NULL];
 }
 
-- (IBAction) openHelp:(id)sender url:(NSString *)url {
+- (IBAction) openPhotoLibraryPicker:(NSString *)clientMode{
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"SUYPhotoPicker" bundle:[NSBundle mainBundle]];
+    SUYPhotoPickViewController *viewController = (SUYPhotoPickViewController*)[storyboard instantiateInitialViewController];
+    
+    viewController.modalPresentationStyle = UIModalPresentationFormSheet;
+    viewController.clientMode = clientMode;
+    [self presentViewController:viewController animated:YES completion:NULL];
+}
+
+- (IBAction) openHelp:(NSString *)url {
     SUYWebViewController *viewController = [[SUYWebViewController alloc] initWithNibName:@"SUYWebViewController" bundle:nil];
     viewController.modalPresentationStyle = UIModalPresentationPageSheet;
     viewController.initialUrl = url;
@@ -240,9 +290,10 @@ uint memoryWarningCount;
 }
 
 - (IBAction) exitPresentation:(id)sender{
-    self.radioButtonSetController.selectedIndex = originalEditModeIndex;
+    self.radioButtonSetController.selectedIndex = _originalEditModeIndex;
     self.presentationExitButton.hidden = YES;
     self.viewModeBar.hidden = NO;
+    self.view.backgroundColor = _originalBackgroundColor;
     dispatch_async (
          dispatch_get_main_queue(),
          ^{
@@ -303,13 +354,19 @@ uint memoryWarningCount;
     return self.radioButtonSetController.selectedIndex;
 }
 
-- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
-{
-	return gDelegateApp.mainView;
-}
-
 - (ScratchIPhoneAppDelegate*) appDelegate{
     return (ScratchIPhoneAppDelegate*) gDelegateApp;
+}
+
+#pragma mark Scrolling
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
+{
+    return gDelegateApp.mainView;
+}
+
+- (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(CGFloat)scale
+{
+    _originalScrollerScale = scale;
 }
 
 #pragma mark TextEdit
@@ -325,12 +382,12 @@ uint memoryWarningCount;
         LgInfo(@"ime mode = %@", primLang);
         self.softKeyboardField.autocorrectionType = UITextAutocorrectionTypeDefault;
         self.softKeyboardField.frame = CGRectMake(292, 324, 440, 32);
-        useIme = YES;
+        _useIme = YES;
     } else {
         LgInfo(@"non ime = %@", primLang);
         self.softKeyboardField.autocorrectionType = UITextAutocorrectionTypeNo;
         self.softKeyboardField.frame = CGRectMake(292, 366, 380, 40);
-        useIme = NO;
+        _useIme = NO;
     }
  }
 
@@ -363,7 +420,7 @@ uint memoryWarningCount;
 }
 
 -(void)flushInputString:(NSString*) processedString {
-    if(useIme == NO) {return;}
+    if(_useIme == NO) {return;}
     LgInfo(@"!!! flushInputString %@", processedString);
     if(self.viewModeIndex==2){
         [[self appDelegate] flushInputString: processedString];
@@ -376,7 +433,7 @@ uint memoryWarningCount;
         return [self nonImeTextField:aTextField shouldChangeCharactersInRange:range replacementString:rstr];
     }
     if(aTextField == self.softKeyboardField){
-        if(useIme == NO){
+        if(_useIme == NO){
             [self nonImeTextField:aTextField shouldChangeCharactersInRange:range replacementString:rstr];
         }
         return YES;
@@ -505,10 +562,14 @@ uint memoryWarningCount;
 - (void)changedViewModeIndex:(NSUInteger)selectedIndex
 {
     if(selectedIndex <= 1){
-        originalEditModeIndex = selectedIndex;
+        _originalEditModeIndex = selectedIndex;
+        self.scrollView.backgroundColor = _originalBackgroundColor;
+        self.view.backgroundColor = _originalBackgroundColor;
     } else {
         self.presentationExitButton.hidden = NO;
         self.viewModeBar.hidden = YES;
+        self.scrollView.backgroundColor = [UIColor blackColor];
+        self.view.backgroundColor = [UIColor blackColor];
     }
 }
 
@@ -527,6 +588,11 @@ uint memoryWarningCount;
             }
     );
     
+}
+
+- (BOOL) isInPresentationMode
+{
+    return self.viewModeBar.hidden;
 }
 
 #pragma mark Callback from Scratch

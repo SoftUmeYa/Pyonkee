@@ -6,32 +6,41 @@
 //
 //
 
+
 #import "SUYUtils.h"
 
 #import "UIImage+Resize.h"
-#import "SUYCameraViewController.h"
 #import "SUYScratchAppDelegate.h"
+#import "SUYCameraViewController.h"
 
 @interface SUYCameraViewController ()
 
 @end
 
-@implementation SUYCameraViewController
+@implementation SUYCameraViewController{
+    BOOL isAuthorized;
+    NSInteger shutterCount;
+    BOOL avoidMirror;
+}
 
-
-bool isAuthorized = NO;
-int shutterCount = 0;
-
-@synthesize previewView, takePictureButton, session, previewLayer, videoInput, stillImageOutput, clientMode;
+@synthesize previewView, session, previewLayer, videoInput, stillImageOutput, clientMode;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        [self setup];
     }
     return self;
+}
+
+- (void)setup
+{
+    isAuthorized = NO;
+    shutterCount = 0;
+    avoidMirror = NO;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didRotate:) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
 }
 
 - (void)viewDidLoad
@@ -39,27 +48,20 @@ int shutterCount = 0;
     [super viewDidLoad];
     if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         
-        UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                              message:@"Device has no camera"
+        UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error",nil)
+                                                              message:NSLocalizedString(@"Device has no camera",nil)
                                                              delegate:nil
-                                                    cancelButtonTitle:@"OK"
+                                                    cancelButtonTitle:NSLocalizedString(@"OK",nil)
                                                     otherButtonTitles: nil];
         [myAlertView show];
     }
     
     self.previewView.contentMode = UIViewContentModeCenter;
-    
     [self.view addSubview: self.previewView];
     
     [self checkVideoCapturePermission];
     [self setupAVCapture];
 
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    [self close: nil];
 }
 
 // Re-enable capture session if not currently running
@@ -84,35 +86,30 @@ int shutterCount = 0;
 - (void)startSession {
 	if(self.session == nil) {return;}
 	if (![self.session isRunning]) {
-        //LgInfo(@"startSession ");
-		[self.session startRunning];
+        [self.session startRunning];
 	}
 }
 
 - (void)stopSession {
 	if(self.session == nil) {return;}
 	if ([self.session isRunning]) {
-        //LgInfo(@"stopSession ");
-		[self.session stopRunning];
+        [self.session stopRunning];
 	}
 }
 
 #pragma mark Rotation
-- (BOOL)shouldAutorotate {
-	return YES;
+-(void) didRotate: (NSNotification *)notification
+{
+    UIInterfaceOrientation orient = [notification.userInfo[UIApplicationStatusBarOrientationUserInfoKey] integerValue];
+    if(UIInterfaceOrientationIsLandscape(orient)){
+        [self refreshVideoOrientation];
+    }
 }
-
-- (NSUInteger)supportedInterfaceOrientations{
-    return UIInterfaceOrientationMaskLandscape;
-}
-
 
 #pragma mark Initialization
 
 - (void)setupAVCapture
 {
-    LgInfo(@"setupAVCapture");
-    
     NSError *error = nil;
     
     self.session = [[AVCaptureSession alloc] init];
@@ -124,7 +121,6 @@ int shutterCount = 0;
     }
     
     AVCaptureDevice *camera = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-    
     self.videoInput = [[AVCaptureDeviceInput alloc] initWithDevice:camera error:&error];
     if(error){
         LgInfo(@"No video input");
@@ -137,7 +133,7 @@ int shutterCount = 0;
     
     self.previewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:self.session];
     previewLayer.frame = self.previewView.bounds;
-    [[previewLayer connection] setVideoOrientation:[self currentVideoOrientation]];
+    previewLayer.connection.videoOrientation =[self currentVideoOrientationByUI];
     previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
     
     CALayer *viewLayer = self.previewView.layer;
@@ -161,10 +157,10 @@ int shutterCount = 0;
         {
             //Not granted access to mediaType
             dispatch_async(dispatch_get_main_queue(), ^{
-                [[[UIAlertView alloc] initWithTitle:@"AVCam!"
-                                            message:@"AVCam doesn't have permission to use Camera, please change privacy settings"
+                [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Warning",nil)
+                                            message:NSLocalizedString(@"No permission to use Camera, please change privacy settings",nil)
                                            delegate:self
-                                  cancelButtonTitle:@"OK"
+                                  cancelButtonTitle:NSLocalizedString(@"OK",nil)
                                   otherButtonTitles:nil] show];
                 isAuthorized = NO;
             });
@@ -174,18 +170,41 @@ int shutterCount = 0;
 
 #pragma mark - Handle Video Orientation
 
-- (AVCaptureVideoOrientation)currentVideoOrientation {
+- (AVCaptureVideoOrientation)currentVideoOrientationByUI {
+    UIInterfaceOrientation uiOrientation = [[UIApplication sharedApplication] statusBarOrientation];
+    if (uiOrientation == UIInterfaceOrientationLandscapeRight) {
+        return AVCaptureVideoOrientationLandscapeRight;
+    }
+    if (uiOrientation == UIInterfaceOrientationLandscapeLeft){
+        return AVCaptureVideoOrientationLandscapeLeft;
+    }
+    if(uiOrientation == UIInterfaceOrientationPortrait){
+        return AVCaptureVideoOrientationPortrait;
+    }
+    if(uiOrientation == UIInterfaceOrientationPortraitUpsideDown){
+        return AVCaptureVideoOrientationPortraitUpsideDown;
+    }
+    return AVCaptureVideoOrientationLandscapeLeft;
+}
+
+- (AVCaptureVideoOrientation)currentVideoOrientationByDevice {
 	UIDeviceOrientation deviceOrientation = [[UIDevice currentDevice] orientation];
 	if (deviceOrientation == UIDeviceOrientationLandscapeLeft) {
 		return AVCaptureVideoOrientationLandscapeRight;
-	} else {
+	}
+    if (deviceOrientation == UIDeviceOrientationLandscapeRight){
 		return AVCaptureVideoOrientationLandscapeLeft;
 	}
+    if(deviceOrientation == UIDeviceOrientationPortrait){
+        return AVCaptureVideoOrientationPortrait;
+    }
+    if(deviceOrientation == UIDeviceOrientationPortraitUpsideDown){
+        return AVCaptureVideoOrientationPortraitUpsideDown;
+    }
+    //return AVCaptureVideoOrientationLandscapeLeft;
+    return [self currentVideoOrientationByUI];
 }
 
-- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-	[[self.previewLayer connection] setVideoOrientation:[self currentVideoOrientation]];
-}
 
 #pragma mark - Actions
 
@@ -198,15 +217,10 @@ int shutterCount = 0;
         return;
     }
     AVCaptureConnection *videoConnection = [self.stillImageOutput connectionWithMediaType:AVMediaTypeVideo];
-    
     if (videoConnection == nil) {
         return;
     }
-    
-    UIDeviceOrientation deviceOrientation = [[UIDevice currentDevice] orientation];
-    
-    [videoConnection setVideoOrientation: [self currentVideoOrientation]];
-    
+    videoConnection.videoOrientation = [self currentVideoOrientationByDevice];
     
     [self.stillImageOutput
      captureStillImageAsynchronouslyFromConnection:videoConnection
@@ -219,27 +233,36 @@ int shutterCount = 0;
          UIImage *image = [[UIImage alloc] initWithData:imageData];
          
          ScratchIPhoneAppDelegate *appDele = (ScratchIPhoneAppDelegate*)[[UIApplication sharedApplication] delegate];
-         
          dispatch_async(appDele.defaultSerialQueue, ^(void) {
-             [self processTakenPictureImage:image deviceOrientation: deviceOrientation];
+             [self processTakenPictureImage:image deviceOrientation: videoConnection.videoOrientation];
          });
          
      }];
 }
 
-- (void)processTakenPictureImage:(UIImage *)image deviceOrientation: (UIDeviceOrientation) orient
+- (void)processTakenPictureImage:(UIImage *)image deviceOrientation: (AVCaptureVideoOrientation) orient
 {
-    UIImage *savingImage;
+    UIImage *savingImage = image;
+    CGSize outSize = [self outImageSize];
     AVCaptureDevicePosition position = [[self.videoInput device] position];
     if ((orient == AVCaptureVideoOrientationLandscapeRight && position == AVCaptureDevicePositionFront)
-            || (orient == AVCaptureVideoOrientationLandscapeLeft && position == AVCaptureDevicePositionBack)) {
+        || (orient == AVCaptureVideoOrientationLandscapeLeft && position == AVCaptureDevicePositionBack))
+    {
         LgInfo(@"**Upside down the image** %d", orient);
         savingImage = [SUYUtils upsideDownImage: image];
-    } else {
-        savingImage = image;
+    }
+    if (UIDeviceOrientationIsPortrait(orient))
+    {
+        LgInfo(@"**Rotate the image** %d", orient);
+        if(orient == AVCaptureVideoOrientationPortraitUpsideDown){
+            savingImage = [SUYUtils rotateLeftImage: image];
+        } else {
+            savingImage = [SUYUtils rotateRightImage: image];
+        }
+        outSize = CGSizeMake(outSize.height, outSize.width);
     }
     
-    savingImage = [savingImage resizedImage: [self outImageSize] interpolationQuality:(kCGInterpolationDefault)];
+    savingImage = [savingImage resizedImage: outSize interpolationQuality:(kCGInterpolationDefault)];
     //LgInfo(@"savingImage %@", savingImage);
     //UIImageWriteToSavedPhotosAlbum(savingImage, self, @selector(savingToPhotosAlbumFinished:didFinishSavingWithError:contextInfo:), nil);
     NSString *filePath = [self saveImage:savingImage];
@@ -256,18 +279,22 @@ int shutterCount = 0;
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+
 - (IBAction)toggleCamera:(id)sender
 {
     NSError *error;
 	AVCaptureDevicePosition position = [[self.videoInput device] position];
     
 	AVCaptureDeviceInput *vidInput;
+    UIDeviceOrientation orient = [[UIDevice currentDevice] orientation];
+    
+    self.previewLayer.transform = CATransform3DIdentity;
+    
 	if (position == AVCaptureDevicePositionBack) {
 		vidInput = [[AVCaptureDeviceInput alloc] initWithDevice:[self cameraPositioned:AVCaptureDevicePositionFront] error:&error];
-		self.previewLayer.transform = CATransform3DMakeRotation(M_PI, 0.0f, 1.0f, 0.0f);
-	} else {
+        if(avoidMirror==YES){[self mirrorToNormalBy:orient];}
+    } else {
 		vidInput = [[AVCaptureDeviceInput alloc] initWithDevice:[self cameraPositioned:AVCaptureDevicePositionBack] error:&error];
-		self.previewLayer.transform = CATransform3DIdentity;
 	}
     
 	if (vidInput) {
@@ -281,28 +308,16 @@ int shutterCount = 0;
 	}
 }
 
-
-
-- (NSString *)saveImage:(id)image{
-    //NSData *bmpData = UIImageJPEGRepresentation(image, 0.85);
-    NSData *bmpData = UIImagePNGRepresentation(image);
-    NSString *filePath = [self targetPathForFileName:[self newFileName]]; //Add the file name
-    [bmpData writeToFile:filePath atomically:YES];
-    //LgInfo(@"saveImage %@", filePath);
-    return filePath;
+- (IBAction)lauchPicker:(id)sender
+{
+    NSString* origClientMode = self.clientMode;
+    [self close: nil];
+    ScratchIPhoneAppDelegate *appDele = (ScratchIPhoneAppDelegate*)[[UIApplication sharedApplication] delegate];
+    [appDele openPhotoLibraryPicker: origClientMode];
 }
-
 
 
 #pragma mark - Private
-
-- (NSString *)targetPathForFileName:(NSString *)name
-{
-    //NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES); //NSCachesDirectory
-    //NSString *documentsPath = [paths objectAtIndex:0];
-    NSString *path = [SUYUtils tempDirectory];
-    return [path stringByAppendingPathComponent:name];
-}
 
 - (NSString *)newFileName
 {
@@ -313,13 +328,14 @@ int shutterCount = 0;
     return strNow;
 }
 
-
-- (void)viewWillLayoutSubviews{
-    [super viewWillLayoutSubviews];
-    self.view.superview.bounds = CGRectMake(0, 0, 380, 300);
-    self.view.superview.alpha = 0.95;
+- (void)mirrorToNormalBy:(UIDeviceOrientation)orient
+{
+    if(UIDeviceOrientationIsLandscape(orient)){
+        self.previewLayer.transform = CATransform3DMakeRotation(M_PI, 0.0f, 1.0f, 0.0f);
+    } else {
+        self.previewLayer.transform = CATransform3DMakeRotation(M_PI, 1.0f, 0.0f, 0.0f);
+    }
 }
-
 - (AVCaptureDevice *)cameraPositioned:(AVCaptureDevicePosition)position {
 	NSArray *devices = [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo];
 	for (AVCaptureDevice *device in devices) {
@@ -328,6 +344,12 @@ int shutterCount = 0;
 		}
 	}
 	return nil;
+}
+
+
+-(void) refreshVideoOrientation
+{
+    self.previewLayer.connection.videoOrientation =[self currentVideoOrientationByUI];
 }
 
 - (void)savingToPhotosAlbumFinished:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo: (void *) contextInfo
@@ -339,13 +361,23 @@ int shutterCount = 0;
     LgInfo(@"Photo roll saved");
 }
 
-- (CGSize)outImageSize{
-    if([clientMode isEqualToString: @"stage"]){
-        return CGSizeMake(480, 360);
-    } else{
-        return CGSizeMake(320, 240);
-    }
+#pragma mark - Layouting
+- (void)viewWillLayoutSubviews{
+    [super viewWillLayoutSubviews];
+    self.view.superview.bounds = CGRectMake(0, 0, 380, 300);
+    self.view.superview.alpha = 0.95;
 }
 
+#pragma mark - Releasing
+-(void) dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    [self close: nil];
+}
 
 @end

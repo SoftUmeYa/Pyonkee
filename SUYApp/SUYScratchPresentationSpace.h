@@ -52,8 +52,9 @@
 - (IBAction) exitPresentation:(id)sender;
 
 - (IBAction) openFontResizer:(id)sender;
-- (IBAction) openCamera:(id)sender clientMode: (NSString*)stageOrNot;
-- (IBAction) openHelp:(id)sender url:(NSString *)url;
+- (IBAction) openCamera: (NSString*)stageOrNot;
+- (IBAction) openPhotoLibraryPicker:(NSString*)stageOrNot;
+- (IBAction) openHelp:(NSString *)url;
 
 - (IBAction) textMorphFocused: (BOOL)status;
 - (IBAction) showWaitIndicator;

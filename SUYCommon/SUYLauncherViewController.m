@@ -12,7 +12,7 @@
 
 extern ScratchIPhoneAppDelegate *gDelegateApp;
 
-@implementation LauncherViewController
+@implementation SUYLauncherViewController
 
 bool isEnabled = NO;
 
@@ -63,6 +63,21 @@ bool isEnabled = NO;
 - (BOOL)isDataSourceAvailable {
 	return YES;
 }
+
+#pragma mark Rotation
+- (UIInterfaceOrientation) preferredInterfaceOrientationForPresentation
+{
+    return UIInterfaceOrientationLandscapeLeft;
+}
+
+- (NSUInteger)supportedInterfaceOrientations{
+    return UIInterfaceOrientationMaskLandscape;
+}
+
+- (BOOL)shouldAutorotate{
+    return YES;
+}
+
 
 #pragma mark -
 #pragma mark Actions

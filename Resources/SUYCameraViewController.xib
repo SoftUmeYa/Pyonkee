@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="5053" systemVersion="13E28" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment defaultVersion="1552" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SUYCameraViewController">
             <connections>
                 <outlet property="previewView" destination="TLz-Ug-Oue" id="0O0-JE-D80"/>
-                <outlet property="takePictureButton" destination="FJV-zU-u3R" id="9IR-Au-5RK"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -17,13 +16,19 @@
             <rect key="frame" x="0.0" y="0.0" width="380" height="300"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TLz-Ug-Oue">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TLz-Ug-Oue">
                     <rect key="frame" x="30" y="20" width="320" height="240"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="240" id="8Xl-Jb-ry0"/>
+                        <constraint firstAttribute="width" constant="320" id="jk1-Ho-Lba"/>
+                    </constraints>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FJV-zU-u3R" userLabel="takePictureButton">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FJV-zU-u3R" userLabel="takePictureButton">
                     <rect key="frame" x="310" y="260" width="40" height="40"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="40" id="NYp-l5-De5"/>
+                        <constraint firstAttribute="height" constant="40" id="TSP-Ss-7Ob"/>
+                    </constraints>
                     <state key="normal" image="flat-camera.png">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -33,7 +38,6 @@
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pO8-Q5-7Pk" userLabel="closeButton">
                     <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" image="flat-close.png">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -41,9 +45,12 @@
                         <action selector="close:" destination="-1" eventType="touchUpInside" id="u34-Lp-h7P"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jNe-23-24Q" userLabel="toggleCameraButton">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jNe-23-24Q" userLabel="toggleCameraButton">
                     <rect key="frame" x="30" y="258" width="40" height="40"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="2at-Qa-GxO"/>
+                        <constraint firstAttribute="width" constant="40" id="pM2-c5-sNF"/>
+                    </constraints>
                     <state key="normal" image="change-camera.png">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -51,8 +58,32 @@
                         <action selector="toggleCamera:" destination="-1" eventType="touchUpInside" id="QKd-8U-uYM"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P1A-yU-he4" userLabel="imagePickerButton">
+                    <rect key="frame" x="170" y="260" width="40" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="0LX-8A-V2O"/>
+                        <constraint firstAttribute="width" constant="40" id="SKS-k5-Lxx"/>
+                    </constraints>
+                    <state key="normal" image="flat-folder-open.png">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="lauchPicker:" destination="-1" eventType="touchUpInside" id="rcV-1Z-JQU"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="centerX" secondItem="P1A-yU-he4" secondAttribute="centerX" id="9YP-lc-jK2"/>
+                <constraint firstAttribute="bottom" secondItem="P1A-yU-he4" secondAttribute="bottom" id="DLT-Me-cWN"/>
+                <constraint firstItem="jNe-23-24Q" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="H0s-Jc-o1E"/>
+                <constraint firstAttribute="bottom" secondItem="jNe-23-24Q" secondAttribute="bottom" constant="2" id="JdA-vc-Xqy"/>
+                <constraint firstAttribute="centerX" secondItem="TLz-Ug-Oue" secondAttribute="centerX" id="LlY-dt-DD9"/>
+                <constraint firstItem="TLz-Ug-Oue" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="UIc-RD-gNQ"/>
+                <constraint firstAttribute="bottom" secondItem="FJV-zU-u3R" secondAttribute="bottom" id="jj6-nw-hH6"/>
+                <constraint firstAttribute="trailing" secondItem="FJV-zU-u3R" secondAttribute="trailing" constant="30" id="pvV-MY-uxq"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
             <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
@@ -61,5 +92,11 @@
         <image name="change-camera.png" width="64" height="64"/>
         <image name="flat-camera.png" width="64" height="64"/>
         <image name="flat-close.png" width="32" height="32"/>
+        <image name="flat-folder-open.png" width="64" height="64"/>
     </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination"/>
+    </simulatedMetricsContainer>
 </document>

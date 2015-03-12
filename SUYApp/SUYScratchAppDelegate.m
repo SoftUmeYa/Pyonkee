@@ -11,6 +11,7 @@
 //
 
 #import "SUYScratchAppDelegate.h"
+#import "SUYNavigationController.h"
 #import "SUYLauncherViewController.h"
 #import "sqSqueakIPhoneInfoPlistInterface.h"
 #import "SUYScratchPresentationSpace.h"
@@ -32,9 +33,8 @@ BOOL isRestarting = NO;
 	//This is fired via a cross thread message send from logic that checks to see if the window exists in the squeak thread.
 	// Set up content view
     
-	CGRect mainScreenSize = [SUYUtils scratchScreenSize];
-	CGRect fakeScreenSize = mainScreenSize;
-	mainView = [[[self whatRenderCanWeUse] alloc] initWithFrame: fakeScreenSize];
+	CGSize mainScreenSize = [SUYUtils scratchScreenSize];
+	mainView = [[[self whatRenderCanWeUse] alloc] initWithFrame: CGRectMake(0,0,mainScreenSize.width,mainScreenSize.height)];
 	self.mainView.clearsContextBeforeDrawing = NO;
 	self.mainView.autoresizesSubviews= NO;
     
@@ -55,15 +55,15 @@ BOOL isRestarting = NO;
 	[self listenNotifications];
 	[super application: application didFinishLaunchingWithOptions: launchOptions];
     
-	LauncherViewController *launcherViewController;
+	SUYLauncherViewController *launcherViewController;
 	if( UIUserInterfaceIdiomPad == UI_USER_INTERFACE_IDIOM() ) {
-		Class loginViewControlleriPadClass = NSClassFromString(@"LauncherViewController");
+		Class loginViewControlleriPadClass = NSClassFromString(@"SUYLauncherViewController");
 		launcherViewController = [[loginViewControlleriPadClass alloc] initWithNibName:@"LauncherViewController" bundle:[NSBundle mainBundle]];
 	} else {
 		LgWarn(@"iPad only!");
         return NO;
 	}
-	viewController = [[UINavigationController alloc] initWithRootViewController: launcherViewController];
+	viewController = [[SUYNavigationController alloc] initWithRootViewController: launcherViewController];
 	[launcherViewController release];
 	
 	self.viewController.navigationBarHidden = YES;
@@ -208,9 +208,9 @@ BOOL isRestarting = NO;
     return [squeakProxy getViewModeIndex];
 }
 
-- (int)  becomeActive{
+- (void)  becomeActive{
     if(squeakVMIsReady){
-        return [squeakProxy becomeActive];
+        [squeakProxy becomeActive];
     }
 }
 
@@ -253,23 +253,25 @@ BOOL isRestarting = NO;
 }
 
 #pragma mark -
+#pragma mark Rotation
+- (NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window{
+    return UIInterfaceOrientationMaskAll;
+}
+
+
+#pragma mark -
 #pragma mark Actions
 
 - (void)openCamera:(NSString *)clientMode {
-    [self performSelectorOnMainThread:@selector(basicOpenCamera:) withObject: clientMode waitUntilDone: NO];
+    [self.presentationSpace performSelectorOnMainThread:@selector(openCamera:) withObject: clientMode waitUntilDone: NO];
 }
 
-- (void)basicOpenCamera:(NSString *)clientMode {
-    [self.presentationSpace openCamera: self clientMode: clientMode];
+- (void)openPhotoLibraryPicker:(NSString *)clientMode {
+    [self.presentationSpace performSelectorOnMainThread:@selector(openPhotoLibraryPicker:) withObject: clientMode waitUntilDone: NO];
 }
-
 
 - (void)openHelp:(NSString *)url {
-    [self performSelectorOnMainThread:@selector(basicOpenHelp:) withObject: url waitUntilDone: NO];
-}
-
-- (void)basicOpenHelp:(NSString *)url {
-    [self.presentationSpace openHelp: self url: url];
+    [self.presentationSpace performSelectorOnMainThread:@selector(openHelp:) withObject: url waitUntilDone: NO];
 }
 
 - (void)showWaitIndicator{

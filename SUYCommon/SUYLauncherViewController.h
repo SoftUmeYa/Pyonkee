@@ -6,7 +6,7 @@
 //
 //
 
-@interface LauncherViewController : UIViewController {
+@interface SUYLauncherViewController : UIViewController {
 	
 	BOOL	squeakVMIsReady;
 	BOOL	uiThinksLoginButtonCouldBeEnabled;

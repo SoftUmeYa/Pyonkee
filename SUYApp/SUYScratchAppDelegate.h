@@ -45,6 +45,7 @@
 - (void) enterRestart;
 - (void) restartAfterDelay;
 - (void) openCamera: (NSString *)clientMode;
+- (void) openPhotoLibraryPicker: (NSString *)clientMode;
 - (void) openHelp:(NSString *)url;
 
 - (void) showWaitIndicator;
