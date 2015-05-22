@@ -1,17 +1,18 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Scratch\n"
-"Report-Msgid-Bugs-To: Evelyn Eastmond <evelyn@media.mit.edu>\n"
-"POT-Creation-Date: 2008-01-08\n"
-"PO-Revision-Date: 2009-06-26 06:35-0400\n"
-"Last-Translator: Matt <maths1996@hotmail.com>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: zh_CN\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2009-06-29 23:15-0400\n"
+"Last-Translator: smith yang <ccg.ysm@gmail.com>\n"
+"Language-Team: \n"
+"Language: zh_TW\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 1.2.0\n"
+"X-Poedit-SourceCharset: utf-8\n"
 
 ############################################
 # FORMATTING
@@ -20,7 +21,7 @@ msgstr ""
 # Language name as you'd like it to appear in the Languages menu
 # (Required)
 msgid "Language-Name"
-msgstr "简体中文"
+msgstr "正體中文"
 
 # Directionality of language
 # LTR = Left to Right
@@ -36,11 +37,11 @@ msgstr "1.2"
 # Set to 'true' or 'false'
 # Use this if you do not want any of the text to be bolded, for legibility
 msgid "Suppress-Bold"
-msgstr "true"
+msgstr "false"
 
 # Font to use on a Windows system
 msgid "Win-Font"
-msgstr "SimHei"
+msgstr "MingLiu"
 
 # Font to use on a Mac system
 msgid "Mac-Font"
@@ -55,7 +56,7 @@ msgstr "uming"
 ############################################
 
 msgid "%H sensor value"
-msgstr "%H 传感器的值"
+msgstr "%H 的偵測值"
 
 msgid "%L contains %s"
 msgstr "%L 包含 %s"
@@ -70,217 +71,217 @@ msgid "%b or %b"
 msgstr "%b 或 %b"
 
 msgid "%f of %n"
-msgstr "%n 的 %f"
+msgstr "%n 的 %f 值"
 
 msgid "%n mod %n"
-msgstr "%n 除以 %n 的余数"
+msgstr "%n 除以 %n 的餘數"
 
 msgid "add %s to %L"
-msgstr "将 %s 加入链表 %L"
+msgstr "將 %s 加到 %L"
 
 msgid "answer"
-msgstr "回答"
+msgstr "答案"
 
 msgid "ask %s and wait"
-msgstr "询问 %s 并等待"
+msgstr "提問 %s 並等待"
 
 msgid "background #"
-msgstr "背景编号"
+msgstr "背景編號"
 
 msgid "broadcast %e"
-msgstr "广播 %e"
+msgstr "廣播 %e"
 
 msgid "broadcast %e and wait"
-msgstr "广播 %e 并等待"
+msgstr "廣播 %e 並等待"
 
 msgid "change %g effect by %n"
-msgstr "将 %g 特效增加 %n"
+msgstr "將 %g 特效增加 %n"
 
 msgid "change %v by %n"
-msgstr "将变量 %v 的值增加 %n"
+msgstr "將變數 %v 的值增加 %n"
 
 msgid "change pen color by %n"
-msgstr "将画笔的颜色值增加 %n"
+msgstr "將畫筆的顏色值增加 %n"
 
 msgid "change pen shade by %n"
-msgstr "将画笔的色度增加 %n"
+msgstr "將畫筆的亮度增加 %n"
 
 msgid "change pen size by %n"
-msgstr "将画笔的大小增加 %n"
+msgstr "將畫筆的大小增加 %n"
 
 msgid "change size by %n"
-msgstr "将角色的大小增加 %n"
+msgstr "將大小增加 %n ％"
 
 msgid "change tempo by %n"
-msgstr "将节奏加快 %n"
+msgstr "將節奏加快 %n"
 
 msgid "change volume by %n"
-msgstr "将音量增加 %n"
+msgstr "將音量增加 %n"
 
 msgid "change x by %n"
-msgstr "将x坐标增加 %n"
+msgstr "將x座標增加 %n"
 
 msgid "change y by %n"
-msgstr "将y坐标增加 %n"
+msgstr "將y座標增加 %n"
 
 msgid "clear"
-msgstr "清除所有画笔"
+msgstr "清除所有筆跡"
 
 msgid "clear graphic effects"
-msgstr "清除所有图形特效"
+msgstr "清除所有圖形特效"
 
 msgid "color %C is touching %C?"
-msgstr "颜色 %C 碰到了 颜色 %C?"
+msgstr "顏色 %C 碰到 顏色 %C"
 
 msgid "control"
 msgstr "控制"
 
 msgid "costume #"
-msgstr "造型编号"
+msgstr "造型編號"
 
 msgid "delete %y of %L"
-msgstr "删除链表%L的第 %y 项"
+msgstr "將第 %y 項從 %L 中移除"
 
 msgid "direction"
 msgstr "方向"
 
 msgid "distance to %m"
-msgstr "到 %m 的距离"
+msgstr "到 %m 的距離"
 
 msgid "else"
-msgstr "否则"
+msgstr "否則"
 
 msgid "forever"
-msgstr "重复执行"
+msgstr "重複執行"
 
 msgid "forever if %b"
-msgstr "如果 %b 就重复执行"
+msgstr "如果 %b就重複執行"
 
 msgid "glide %n secs to x:%n y:%n"
-msgstr "在 %n 秒内，平滑移动到 x:%n y:%n"
+msgstr "在 %n 秒內，滑行到 x:%n y:%n"
 
 msgid "go back %n layers"
-msgstr "下移 %n 层"
+msgstr "下移 %n 層"
 
 msgid "go to %m"
 msgstr "移到 %m"
 
 msgid "go to front"
-msgstr "移至最上层"
+msgstr "移至最上層"
 
 msgid "go to x:%n y:%n"
 msgstr "移到 x:%n y:%n"
 
 msgid "hide"
-msgstr "隐藏"
+msgstr "隱藏"
 
 msgid "hide variable %v"
-msgstr "隐藏变量 %v"
+msgstr "隱藏變數 %v"
 
 msgid "if %b"
 msgstr "如果 %b"
 
 msgid "if on edge, bounce"
-msgstr "碰到边缘就反弹"
+msgstr "碰到邊緣就反彈"
 
 msgid "insert %s at %i of %L"
-msgstr "将 %s 插入到链表%L的 %i 位置"
+msgstr "將 %s 加到 %L 的第 %i 項"
 
 msgid "item %i of %L"
-msgstr "链表%L的第%i 项"
+msgstr "%L 的第 %i 項"
 
 msgid "join %s %s"
-msgstr "将 %s 加入到 %s 的后面"
+msgstr "合併 %s 和 %s"
 
 msgid "key %k pressed?"
-msgstr "按键 %k 是否按下？"
+msgstr "按下 %k 鍵"
 
 msgid "length of %L"
-msgstr "链表 %L 的长度"
+msgstr "%L 的長度"
 
 msgid "length of %s"
-msgstr "%s 的长度"
+msgstr "%s 的長度"
 
 msgid "letter %n of %s"
-msgstr "%s 的第 %n 个字符"
+msgstr "字串 %s 的第 %n 個字"
 
 msgid "list"
-msgstr "链表"
+msgstr "列表"
 
 msgid "looks"
-msgstr "外观"
+msgstr "外觀"
 
 msgid "loud?"
-msgstr "声音响亮？"
+msgstr "有聲音"
 
 msgid "loudness"
 msgstr "音量值"
 
 msgid "motion"
-msgstr "动作"
+msgstr "動作"
 
 msgid "motor direction %W"
-msgstr "马达方向 %W"
+msgstr "馬達運轉方向 %W"
 
 msgid "motor off"
-msgstr "关闭马达"
+msgstr "關閉馬達"
 
 msgid "motor on"
-msgstr "打开马达"
+msgstr "開啟馬達"
 
 msgid "motor on for %n secs"
-msgstr "打开马达 %n 秒"
+msgstr "開啟馬達運轉 %n 秒"
 
 msgid "motor power %n"
-msgstr "将马达能量设定为 %n"
+msgstr "馬達動力 %n"
 
 msgid "mouse down?"
-msgstr "按下鼠标?"
+msgstr "按下滑鼠"
 
 msgid "mouse x"
-msgstr "鼠标的x坐标"
+msgstr "滑鼠的x座標"
 
 msgid "mouse y"
-msgstr "鼠标的y坐标"
+msgstr "滑鼠的y座標"
 
 msgid "move %n steps"
-msgstr "移动 %n 步"
+msgstr "移動 %n 步"
 
 msgid "next background"
-msgstr "下一个背景"
+msgstr "下一個背景"
 
 msgid "next costume"
-msgstr "下一个造型"
+msgstr "下一個造型"
 
 msgid "not %b"
 msgstr "%b 不成立"
 
 msgid "operators"
-msgstr "数字和逻辑运算"
+msgstr "運算"
 
 msgid "pen"
-msgstr "画笔"
+msgstr "畫筆"
 
 msgid "pen down"
-msgstr "落笔"
+msgstr "下筆"
 
 msgid "pen up"
-msgstr "停笔"
+msgstr "停筆"
 
 msgid "pick random %n to %n"
-msgstr "在 %n 到 %n 间随机选一个数"
+msgstr "在 %n 到 %n 間隨機選一個數"
 
 msgid "play drum %D for %n beats"
-msgstr "弹奏鼓声 %D %n 拍"
+msgstr "彈奏鼓聲 %D %n 拍"
 
 msgid "play note %N for %n beats"
-msgstr "弹奏音符 %N %n 拍"
+msgstr "彈奏音符 %N %n 拍"
 
 msgid "play sound %S"
-msgstr "播放声音 %S"
+msgstr "播放聲音 %S"
 
 msgid "play sound %S until done"
-msgstr "播放声音 %S 直到播放完毕"
+msgstr "播放聲音 %S 直到播放完畢"
 
 msgid "point in direction %d"
 msgstr "面向 %d 方向"
@@ -289,124 +290,124 @@ msgid "point towards %m"
 msgstr "面向 %m"
 
 msgid "repeat %n"
-msgstr "重复执行 %n 次"
+msgstr "重複執行 %n 次"
 
 msgid "repeat until %b"
-msgstr "重复执行直到 %b"
+msgstr "重複執行直到 %b"
 
 msgid "replace item %i of %L with %s"
-msgstr "把链表 %L 的第 %i 项替换为 %s"
+msgstr "將 %L 的第 %i 項替換為 %s"
 
 msgid "reset timer"
-msgstr "计时器归零"
+msgstr "計時器歸零"
 
 msgid "rest for %n beats"
-msgstr "停止 %n 拍"
+msgstr "休息 %n 拍"
 
 msgid "round %n"
-msgstr "将 %n 四舍五入"
+msgstr "將 %n 四捨五入"
 
 msgid "say %s"
-msgstr "说 %s"
+msgstr "說 %s"
 
 msgid "say %s for %n secs"
-msgstr "说 %s %n 秒"
+msgstr "說 %s %n 秒"
 
 msgid "sensing"
-msgstr "侦测"
+msgstr "偵測"
 
 msgid "sensor %h?"
-msgstr "传感器 %h"
+msgstr "偵測器 %h"
 
 msgid "set %g effect to %n"
-msgstr "将 %g 特效设定为 %n"
+msgstr "將 %g 特效設定為 %n"
 
 msgid "set %v to %n"
-msgstr "将变量 %v 的值设定为 %n"
+msgstr "將變數 %v 的值設為 %n"
 
 msgid "set instrument to %I"
-msgstr "设定乐器为 %I"
+msgstr "設定樂器為 %I"
 
 msgid "set pen color to %c"
-msgstr "将画笔的颜色设定为 %c"
+msgstr "將畫筆顏色設定為 %c"
 
 msgid "set pen color to %n"
-msgstr "将画笔的颜色值设定为 %n"
+msgstr "將畫筆顏色值定設為 %n"
 
 msgid "set pen shade to %n"
-msgstr "将画笔的色度设定为 %n"
+msgstr "將畫筆亮度設為 %n"
 
 msgid "set pen size to %n"
-msgstr "将画笔的大小设定为 %n"
+msgstr "將畫筆大小設為 %n"
 
 msgid "set size to %n%"
-msgstr "将角色的大小设定为 %n"
+msgstr "將大小設定為 %n ％"
 
 msgid "set tempo to %n bpm"
-msgstr "将节奏设定为 %n bpm"
+msgstr "將節奏設定為 %n 拍/分鐘"
 
 msgid "set volume to %n%"
-msgstr "将音量设定为 %n"
+msgstr "將音量設定為 %n"
 
 msgid "set x to %n"
-msgstr "将x坐标设定为 %n"
+msgstr "將x座標設定為 %n"
 
 msgid "set y to %n"
-msgstr "将y坐标设定为 %n"
+msgstr "將y座標設定為 %n"
 
 msgid "show"
-msgstr "显示"
+msgstr "顯示"
 
 msgid "show variable %v"
-msgstr "显示变量 %v"
+msgstr "顯示變數 %v"
 
 msgid "size"
 msgstr "大小"
 
 msgid "sound"
-msgstr "声音"
+msgstr "聲音"
 
 msgid "stamp"
-msgstr "图章"
+msgstr "蓋章"
 
 msgid "stop all"
 msgstr "全部停止"
 
 msgid "stop all sounds"
-msgstr "停止所有声音"
+msgstr "停止所有聲音"
 
 msgid "stop script"
-msgstr "停止执行这个脚本"
+msgstr "停止執行此程式"
 
 msgid "switch to background %l"
-msgstr "切换到背景 %l"
+msgstr "切換到背景 %l"
 
 msgid "switch to costume %l"
-msgstr "切换到造型 %l"
+msgstr "切換到造型 %l"
 
 msgid "tempo"
-msgstr "节奏"
+msgstr "節奏"
 
 msgid "think %s"
-msgstr "思考 %s"
+msgstr "想著 %s"
 
 msgid "think %s for %n secs"
-msgstr "思考 %s %n 秒"
+msgstr "想著 %s %n 秒"
 
 msgid "timer"
-msgstr "计时器"
+msgstr "計時器"
 
 msgid "touching %m?"
 msgstr "碰到 %m"
 
 msgid "touching color %C?"
-msgstr "碰到颜色 %C"
+msgstr "碰到顏色 %C"
 
 msgid "turn %n degrees"
-msgstr "旋转 %n 度"
+msgstr "旋轉 %n 度"
 
 msgid "variables"
-msgstr "变量"
+msgstr "變數"
 
 msgid "volume"
 msgstr "音量"
@@ -418,86 +419,86 @@ msgid "wait until %b"
 msgstr "直到 %b 前都等待著"
 
 msgid "when %k key pressed"
-msgstr "当按下 %k"
+msgstr "當按下 %k 鍵"
 
 msgid "when %m clicked"
-msgstr "当 %m 被点击"
+msgstr "當 %m 被點一下"
 
 msgid "when I receive %e"
-msgstr "当接收到 %e"
+msgstr "當接收到 %e"
 
 msgid "x position"
-msgstr "x座标"
+msgstr "x座標"
 
 msgid "y position"
-msgstr "y座标"
+msgstr "y座標"
 
 ############################################
 # USER INTERFACE
 ############################################
 
 msgid "(empty)"
-msgstr "（空）"
+msgstr "(空白)"
 
 msgid "1 script"
-msgstr "1段脚本"
+msgstr "1段程式"
 
 msgid "About Scratch"
-msgstr "关于Scratch"
+msgstr "關於Scratch"
 
 msgid "About this project:"
-msgstr "关于这个作品："
+msgstr "關於這個作品："
 
 msgid "abs"
-msgstr "绝对值"
+msgstr "絕對值"
 
 msgid "add comment"
-msgstr "添加注释"
+msgstr "增加註解"
 
 msgid "add comment here"
-msgstr "在这里添加注释"
+msgstr "由此加入註解"
 
 msgid "all"
-msgstr "全部"
+msgstr "所有的"
 
 msgid "and"
 msgstr "和"
 
 msgid "Animation"
-msgstr "动画"
+msgstr "動畫"
 
 msgid "any"
-msgstr "任意"
+msgstr "任何的"
 
 msgid "Art"
-msgstr "艺术"
+msgstr "藝術"
 
 msgid "background"
 msgstr "背景"
 
 msgid "backgrounds"
-msgstr "多个背景"
+msgstr "背景"
 
 msgid "Backgrounds"
-msgstr "多个背景"
+msgstr "背景"
 
 msgid "brightness"
 msgstr "亮度"
 
 msgid "Brush size: "
-msgstr "笔刷的大小"
+msgstr "筆刷大小"
 
 msgid "button"
-msgstr "按钮"
+msgstr "按鈕"
 
 msgid "button pressed"
-msgstr "按下按钮"
+msgstr "按下按鈕"
 
 msgid "Camera"
-msgstr "照相"
+msgstr "照相機"
 
 msgid "can rotate"
-msgstr "允许旋转"
+msgstr "允許旋轉"
 
 msgid "cancel"
 msgstr "取消"
@@ -506,58 +507,58 @@ msgid "Cancel"
 msgstr "取消"
 
 msgid "Choose a folder"
-msgstr "选择文件夹"
+msgstr "選擇資料夾"
 
 msgid "Choose new sprite from file"
-msgstr "从文件夹中选择新的角色"
+msgstr "開啟角色檔案"
 
 msgid "clean up"
-msgstr "整理"
+msgstr "自動排列"
 
 msgid "Clear"
-msgstr "清除"
+msgstr "清除畫面"
 
 msgid "Clear canvas"
-msgstr "清除画布"
+msgstr "清除畫板"
 
 msgid "Close and continue"
-msgstr "关闭重新开始"
+msgstr "關閉和繼續"
 
 msgid "Close dialog?"
-msgstr "关闭对话框？"
+msgstr "關閉對話盒？"
 
 msgid "Close paint editor?"
-msgstr "关闭绘图编辑器？"
+msgstr "結束繪圖編輯？"
 
 msgid "close port"
-msgstr "关闭端口"
+msgstr "關閉連接埠"
 
 msgid "Close sound recorder?"
-msgstr "关闭录音机？"
+msgstr "結束錄音程式？"
 
 msgid "color"
-msgstr "颜色"
+msgstr "顏色"
 
 msgid "Compress Images"
-msgstr "压缩图像"
+msgstr "壓縮影像"
 
 msgid "Compress Sounds"
-msgstr "压缩声音"
+msgstr "壓縮聲音"
 
 msgid "Compress sounds and images"
-msgstr "压缩图像及声音"
+msgstr "壓縮影像及聲音"
 
 msgid "Computer"
-msgstr "我的电脑"
+msgstr "我的電腦"
 
 msgid "connected"
-msgstr "已连接"
+msgstr "已連接"
 
 msgid "Connecting to "
-msgstr "正连接到"
+msgstr "連接到"
 
 msgid "Copy"
-msgstr "复制"
+msgstr "複製"
 
 msgid "costume"
 msgstr "造型"
@@ -569,217 +570,217 @@ msgid "Costumes"
 msgstr "造型"
 
 msgid "Could not read"
-msgstr "无法读取"
+msgstr "無法讀取"
 
 msgid "Could not read project; file may be damaged"
-msgstr "无法读取作品：文件可能已损坏"
+msgstr "無法讀取作品，檔案可能毀損"
 
 msgid "Could not write file"
-msgstr "无法写入文件"
+msgstr "無法寫入檔案"
 
 msgid "Create account"
-msgstr "创建帐号"
+msgstr "申請帳號"
 
 msgid "Create an empty project"
-msgstr "创建一个新作品"
+msgstr "新增一個作品"
 
 msgid "Data sent. Waiting for response..."
-msgstr "资料已送出，等待回应中..."
+msgstr "資料已送出，等待回應中..."
 
 msgid "delete"
-msgstr "删除"
+msgstr "刪除"
 
 msgid "Delete"
-msgstr "删除"
+msgstr "刪除"
 
 msgid "Delete a list"
-msgstr "删除一个链表"
+msgstr "刪除一個列表"
 
 msgid "Delete a variable"
-msgstr "删除变量"
+msgstr "刪除一個變數"
 
 msgid "Delete this background"
-msgstr "删除这个背景"
+msgstr "刪除此背景"
 
 msgid "Delete this costume"
-msgstr "删除这个造型"
+msgstr "刪除此造型"
 
 msgid "Delete this sound"
-msgstr "删除这个声音"
+msgstr "刪除此聲音"
 
 msgid "Delete this sprite"
-msgstr "删除这个子画面"
+msgstr "刪除此角色"
 
 msgid "Desktop"
 msgstr "桌面"
 
 msgid "disable remote sensor connections"
-msgstr "断开传感器连接"
+msgstr "關閉遠端感應器"
 
 msgid "distance"
-msgstr "距离"
+msgstr "距離"
 
 msgid "Documents"
-msgstr "我的文件夹"
+msgstr "我的文件夾"
 
 msgid "don't rotate"
-msgstr "不允许旋转"
+msgstr "不允許旋轉"
 
 msgid "Don't Save"
-msgstr "不保存"
+msgstr "不要儲存"
 
 msgid "Done"
-msgstr "完成"
+msgstr "確定"
 
 msgid "down"
 msgstr "下"
 
 msgid "down arrow"
-msgstr "下移键"
+msgstr "下移鍵"
 
 msgid "drag to resize"
-msgstr "拖拉改变大小"
+msgstr "拖曳調整"
 
 msgid "drag to rotate"
-msgstr "拖拉物件旋转"
+msgstr "拖曳旋轉"
 
 msgid "draggable on website?"
-msgstr "可以在网站上拖曳?"
+msgstr "可以在網站上拖曳?"
 
 msgid "duplicate"
-msgstr "复制"
+msgstr "複製"
 
 msgid "Duplicate"
-msgstr "复制"
+msgstr "複製"
 
 msgid "edge"
-msgstr "边缘"
+msgstr "邊緣"
 
 msgid "Edit"
-msgstr "编辑"
+msgstr "編輯"
 
 msgid "Ellipse tool (draw outlined or filled ellipse or circle)"
-msgstr "椭圆工具（可绘制空心或实心的椭圆形）"
+msgstr "橢圓工具（可繪製空心或實心的橢圓形）"
 
 msgid "enable remote sensor connections"
-msgstr "允许远程传感器连接"
+msgstr "啟動遠端感應器"
 
 msgid "Enter presentation mode"
-msgstr "进入演示模式"
+msgstr "全螢幕模式"
 
 msgid "Eraser"
 msgstr "橡皮擦"
 
 msgid "Eraser size"
-msgstr "橡皮擦的大小"
+msgstr "橡皮擦大小"
 
 msgid "Error!"
-msgstr "错误！"
+msgstr "錯誤!"
 
 msgid "Examples"
-msgstr "例子"
+msgstr "範例"
 
 msgid "Exit presentation"
-msgstr "返回"
+msgstr "離開全螢幕"
 
 msgid "Exit presentation mode"
-msgstr "离开演示模式"
+msgstr "離開全螢幕"
 
 msgid "export"
-msgstr "输出"
+msgstr "匯出"
 
 msgid "Export Background"
-msgstr "输出背景"
+msgstr "匯出背景"
 
 msgid "Export Costume"
-msgstr "输出造型"
+msgstr "匯出造型"
 
 msgid "Export failed"
-msgstr "输出失败"
+msgstr "匯出失敗"
 
 msgid "Export Sound"
-msgstr "输出声音"
+msgstr "匯出聲音"
 
 msgid "Export Sprite"
-msgstr "输出角色"
+msgstr "匯出角色"
 
 msgid "export this costume"
-msgstr "输出这个装饰"
+msgstr "匯出此造型"
 
 msgid "export this sound"
-msgstr "输出这个声音"
+msgstr "輸出聲音"
 
 msgid "export this sprite"
-msgstr "输出这个角色"
+msgstr "匯出此角色"
 
 msgid "Extras menu"
-msgstr "额外功能选单"
+msgstr "額外功能選單"
 
 msgid "Eyedropper tool (select a color)"
-msgstr "色彩选取工具"
+msgstr "色彩選取工具"
 
 msgid "Failed:"
-msgstr "失败："
+msgstr "失敗："
 
 msgid "false"
 msgstr "不成立"
 
 msgid "File"
-msgstr "文件"
+msgstr "檔案"
 
 msgid "File not found"
-msgstr "找不到文件"
+msgstr "找不到檔案"
 
 msgid "Fill tool (fill areas with color or gradient)"
-msgstr "填色工具（用单色或渐变色填满一个区域）"
+msgstr "填色工具（用單色或漸層色填滿一個區域）"
 
 msgid "first"
-msgstr "第一"
+msgstr "第一個"
 
 msgid "fisheye"
-msgstr "超广角镜头"
+msgstr "魚眼"
 
 msgid "Flash blocks (fast)"
-msgstr "积木闪动速度（快）"
+msgstr "積木閃動速度（快）"
 
 msgid "Flash blocks (slow)"
-msgstr "积木闪动速度（慢）"
+msgstr "積木閃動速度（慢）"
 
 msgid "Flip horizontally"
-msgstr "左右翻转"
+msgstr "左右翻轉"
 
 msgid "Flip vertically"
-msgstr "上下翻转"
+msgstr "上下翻轉"
 
 msgid "For all sprites"
-msgstr "适用所有角色"
+msgstr "適用所有角色"
 
 msgid "For this sprite only"
-msgstr "只适用于这个角色"
+msgstr "只適用此角色"
 
 msgid "Game"
-msgstr "游戏"
+msgstr "遊戲"
 
 msgid "Get surprise sprite"
-msgstr "来个令人惊喜的角色吧"
+msgstr "來個令人驚喜的角色吧"
 
 msgid "Get the last thing deleted"
-msgstr "撤销最近的一次删除操作"
+msgstr "復原"
 
 msgid "Getting Started"
-msgstr "开始"
+msgstr "快速入門"
 
 msgid "ghost"
-msgstr "虚像"
+msgstr "鬼"
 
 msgid "Go To Scratch Website"
-msgstr "去Scratch网站"
+msgstr "前往Scratch網站"
 
 msgid "grab screen region for new costume"
-msgstr "截取部分屏幕区域成为新造型"
+msgstr "擷取部分區域成為新造型"
 
 msgid "grab screen region for new sprite"
-msgstr "截取部分屏幕区域成为新角色"
+msgstr "擷取部分區域成為新角色"
 
 msgid "Grow"
 msgstr "放大"
@@ -788,25 +789,25 @@ msgid "Grow sprite"
 msgstr "放大角色"
 
 msgid "hello "
-msgstr "你好_"
+msgstr "你好"
 
 msgid "Hello!"
 msgstr "你好！"
 
 msgid "help"
-msgstr "帮助"
+msgstr "幫助"
 
 msgid "Help"
-msgstr "帮助"
+msgstr "幫助"
 
 msgid "Help Page"
-msgstr "帮助页面"
+msgstr "幫助頁"
 
 msgid "Help Screens"
-msgstr "帮助界面"
+msgstr "幫助畫面"
 
 msgid "Hide Motor Blocks"
-msgstr "隐藏马达模块"
+msgstr "隱藏馬達積木"
 
 msgid "High (biggest)"
 msgstr "最高"
@@ -815,91 +816,91 @@ msgid "Hmm..."
 msgstr "嗯..."
 
 msgid "Home"
-msgstr "主目录"
+msgstr "我的家"
 
 msgid "Images compressed"
-msgstr "图像已压缩"
+msgstr "影像已壓縮"
 
 msgid "import"
-msgstr "导入"
+msgstr "匯入"
 
 msgid "Import"
-msgstr "导入"
+msgstr "匯入"
 
 msgid "Import an image on top of your current canvas"
-msgstr "在现有的画布上导入图像"
+msgstr "在現有的畫面上匯入影像"
 
 msgid "Import Background"
-msgstr "导入背景"
+msgstr "匯入背景"
 
 msgid "Import Costume"
-msgstr "导入造型"
+msgstr "匯入造型"
 
 msgid "Import Image"
-msgstr "导入图像"
+msgstr "匯入影像"
 
 msgid "Import List"
-msgstr "导入链表"
+msgstr "匯入列表"
 
 msgid "Import Project"
-msgstr "导入作品"
+msgstr "匯入作品"
 
 msgid "import project"
-msgstr "导入作品"
+msgstr "匯入作品"
 
 msgid "Import Sound"
-msgstr "导入声音"
+msgstr "匯入聲音"
 
 msgid "Incompatible Scratch file format"
-msgstr "不兼容的文件格式"
+msgstr "不相容的檔案格式"
 
 msgid "Is the folder read-only?"
-msgstr "这个文件夹是只读的吗？"
+msgstr "此資料夾是唯讀的嗎？"
 
 msgid "JPEG Quality (10-100)?"
-msgstr "JPEG压缩品质（10-100）"
+msgstr "JPEG壓縮品質（10-100）"
 
 msgid "kbytes"
-msgstr "千字节"
+msgstr "kb"
 
 msgid "Language"
-msgstr "语言"
+msgstr "語言"
 
 msgid "large readout"
-msgstr "大型读出器"
+msgstr "大型讀數"
 
 msgid "last"
-msgstr "末尾"
+msgstr "最後的"
 
 msgid "left"
 msgstr "左"
 
 msgid "left arrow"
-msgstr "左移键"
+msgstr "左移鍵"
 
 msgid "length"
-msgstr "长度"
+msgstr "長度"
 
 msgid "light"
-msgstr "光线"
+msgstr "光線"
 
 msgid "Line tool (draw lines)"
-msgstr "线条工具（绘制线条）"
+msgstr "線段工具（繪製線段）"
 
 msgid "List name?"
-msgstr "链表名称？"
+msgstr "列表名稱？"
 
 msgid "Low"
 msgstr "低"
 
 msgid "Lowest (smallest)"
-msgstr "最低（最小）"
+msgstr "最低"
 
 msgid "Make a list"
-msgstr "新建一个链表"
+msgstr "產生一個列表"
 
 msgid "Make a variable"
-msgstr "新建一个变量"
+msgstr "產生一個變數"
 
 msgid "Max:"
 msgstr "最大值："
@@ -908,46 +909,46 @@ msgid "meow"
 msgstr "喵"
 
 msgid "Message name:"
-msgstr "消息名称："
+msgstr "訊息名稱："
 
 msgid "Min:"
 msgstr "最小值："
 
 msgid "mod"
-msgstr "取余数"
+msgstr "餘數"
 
 msgid "more"
 msgstr "更多"
 
 msgid "More tags:"
-msgstr "其它标签："
+msgstr "其它類別："
 
 msgid "mosaic"
-msgstr "马赛克"
+msgstr "馬賽克"
 
 msgid "mouse x:"
-msgstr "鼠标的x坐标"
+msgstr "滑鼠的x座標"
 
 msgid "mouse y:"
-msgstr "鼠标的y坐标"
+msgstr "滑鼠的y座標"
 
 msgid "mouse-pointer"
-msgstr "鼠标指针"
+msgstr "滑鼠游標"
 
 msgid "Move"
-msgstr "移动"
+msgstr "移動"
 
 msgid "Music"
-msgstr "音乐"
+msgstr "音樂"
 
 msgid "My Projects"
-msgstr "我的文件"
+msgstr "我的專案"
 
 msgid "new"
-msgstr "新建"
+msgstr "開新檔案"
 
 msgid "New"
-msgstr "新建"
+msgstr "開新檔案"
 
 msgid "New background:"
 msgstr "新增背景"
@@ -959,10 +960,10 @@ msgid "New file name?"
 msgstr ""
 
 msgid "New Filename:"
-msgstr "新文件名"
+msgstr "新增檔案"
 
 msgid "New sound:"
-msgstr "新增声音"
+msgstr "新增聲音"
 
 msgid "New Sprite"
 msgstr "新增角色"
@@ -971,280 +972,280 @@ msgid "New sprite:"
 msgstr "新增角色"
 
 msgid "No"
-msgstr "无"
+msgstr "否"
 
 msgid "No MIDI ports currently available."
-msgstr "找不到可用的MIDI接口"
+msgstr "找不到可用的MIDI連接埠"
 
 msgid "No motion blocks"
-msgstr "无动作积木"
+msgstr "無動作積木"
 
 msgid "no scripts"
-msgstr "没有角色"
+msgstr "無程式"
 
 msgid "No serial ports found"
-msgstr "找不到序列接口"
+msgstr "找不到序列埠"
 
 msgid "No variables."
-msgstr "无变量"
+msgstr "無變數"
 
 msgid "Normal"
 msgstr "一般"
 
 msgid "normal readout"
-msgstr "一般读出器"
+msgstr "一般讀數"
 
 msgid "Off"
-msgstr "关"
+msgstr "關"
 
 msgid "OK"
-msgstr "确定"
+msgstr "確定"
 
 msgid "On"
-msgstr "开"
+msgstr "開"
 
 msgid "only face left-right"
-msgstr "只允许左、右翻转"
+msgstr "只允許左、右翻轉"
 
 msgid "Open"
-msgstr "打开"
+msgstr "開啟舊檔"
 
 msgid "Open a Scratch project"
-msgstr "打开一个Scratch作品"
+msgstr "開啟一個Scratch作品"
 
 msgid "Open Project"
-msgstr "打开作品"
+msgstr "開啟作品"
 
 msgid "or"
 msgstr "或"
 
 msgid "Paint"
-msgstr "绘图"
+msgstr "繪製"
 
 msgid "Paint Editor"
-msgstr "绘图编辑器"
+msgstr "繪圖編輯器"
 
 msgid "Paint new sprite"
-msgstr "绘制新角色"
+msgstr "繪製新角色"
 
 msgid "Paintbrush"
-msgstr "笔刷工具"
+msgstr "筆刷工具"
 
 msgid "Password:"
-msgstr "密码:"
+msgstr "密碼"
 
 msgid "Percent? (100 gives original size)"
-msgstr "百分比？（100代表原始大小）"
+msgstr "百分比（100代表原始大小）"
 
 msgid "Pictures"
-msgstr "图片"
+msgstr "圖片"
 
 msgid "pixelate"
-msgstr "像素滤镜"
+msgstr "像素濾鏡"
 
 msgid "play"
 msgstr "播放"
 
 msgid "Please enter a number"
-msgstr "请输入一个数值"
+msgstr "請輸入一個數值"
 
 msgid "pop"
-msgstr "pop音效"
+msgstr "pop聲"
 
 msgid "Position the cross-hair to set the rotation center"
-msgstr "移动十字标来设定旋转中心"
+msgstr "移動十字游標以設定旋轉中心"
 
 msgid "Preparing project..."
-msgstr "作品准备中..."
+msgstr "作品準備中..."
 
 msgid "Project author:"
 msgstr "作者："
 
 msgid "Project name"
-msgstr "作品名称"
+msgstr "作品名稱"
 
 msgid "Project Notes"
-msgstr "作品注解"
+msgstr "作品註解"
 
 msgid "Project notes"
-msgstr "作品注解"
+msgstr "作品註解"
 
 msgid "Project uploaded."
-msgstr "作品已上传"
+msgstr "作品已上傳"
 
 msgid "Projects"
 msgstr "作品"
 
 msgid "Quit"
-msgstr "退出"
+msgstr "離開"
 
 msgid "Quit Scratch"
-msgstr "退出Scratch"
+msgstr "離開Scratch"
 
 msgid "Reading"
-msgstr "正在读数"
+msgstr "讀取中"
 
 msgid "record"
-msgstr "录音"
+msgstr "錄音"
 
 msgid "Record"
-msgstr "录音"
+msgstr "錄音"
 
 msgid "recording"
-msgstr "录音中"
+msgstr "錄音中"
 
 msgid "Rectangle tool (draw outlined or filled rectangle or square)"
-msgstr "方形工具（绘制空心或实心方形）"
+msgstr "方形工具（繪製空心或實心方形）"
 
 msgid "Redo"
 msgstr "重做"
 
 msgid "Reference Guide"
-msgstr "参考指导"
+msgstr "參考指南"
 
 msgid "Remote sensor connections enabled"
-msgstr "连接上传感器"
+msgstr "遠端感應器連接已啟動"
 
 msgid "Remove viewer from stage"
-msgstr "不显示在舞台上"
+msgstr "不顯示在舞台上"
 
 msgid "resistance"
-msgstr "阻力"
+msgstr "電阻"
 
 msgid "resize this sprite"
-msgstr "调整角色大小"
+msgstr "縮放角色"
 
 msgid "reverse"
-msgstr "反转"
+msgstr "反轉"
 
 msgid "right"
 msgstr "右"
 
 msgid "right arrow"
-msgstr "右移键"
+msgstr "右移鍵"
 
 msgid "Rotate clock-wise"
-msgstr "顺时针旋转"
+msgstr "順時針旋轉"
 
 msgid "Rotate counter-clock-wise"
-msgstr "逆时针旋转"
+msgstr "逆時針旋轉"
 
 msgid "rotate this sprite"
-msgstr "转动这个角色"
+msgstr "旋轉角色"
 
 msgid "Rotation degrees?"
-msgstr "旋转角度"
+msgstr "旋轉角度"
 
 msgid "Save"
-msgstr "存档"
+msgstr "存檔"
 
 msgid "Save a copy of the current project"
-msgstr "将这个作品另存一个副本"
+msgstr "將此作品另存一個檔"
 
 msgid "Save As"
-msgstr "另存为"
+msgstr "另存新檔"
 
 msgid "Save changes before quitting?"
-msgstr "退出前保存更改吗？"
+msgstr "保存更改退出"
 
 msgid "Save failed"
-msgstr "保存失败"
+msgstr "存檔失敗"
 
 msgid "save picture of scripts"
-msgstr "将脚本存成图片"
+msgstr "將程式存成圖片"
 
 msgid "save picture of stage..."
-msgstr "将舞台存成图片"
+msgstr "將舞台存成圖片"
 
 msgid "Save Project"
-msgstr "保存作品"
+msgstr "儲存作品"
 
 msgid "Save Scripts Snapshot"
-msgstr "保存脚本的快照"
+msgstr "儲存程式的照片"
 
 msgid "Save Stage Shot"
-msgstr "保存舞台的照片"
+msgstr "儲存舞台的照片"
 
 msgid "Save the current project"
-msgstr "保存这个作品"
+msgstr "儲存此作品"
 
 msgid "Save the current project?"
-msgstr "保存这个作品?"
+msgstr "儲存此作品?"
 
 msgid "Save this project"
-msgstr "保存作品"
+msgstr "儲存作品"
 
 msgid "Scripts"
-msgstr "脚本"
+msgstr "程式"
 
 msgid "select serial/USB port"
-msgstr "选择序列号或USB接口"
+msgstr "選擇序列埠或USB埠"
 
 msgid "Select tool (move, modify, or delete selection)"
-msgstr "选择工具（移动、修改或删除）"
+msgstr "挑選工具（移動、修改或刪除）"
 
 msgid "Set costume center"
-msgstr "设定旋转范围"
+msgstr "設定造型中心"
 
 msgid "Set language"
-msgstr "设定语言"
+msgstr "設定語言"
 
 msgid "Set rotation center"
-msgstr "设定旋转中心"
+msgstr "設定旋轉中心"
 
 msgid "Set Single Stepping"
-msgstr "设定单步执行程式"
+msgstr "設定單步執行程式"
 
 msgid "set slider min and max"
-msgstr "设定滑杆的最小值与最大值"
+msgstr "設定滑桿的最小值與最大值"
 
 msgid "Share"
 msgstr "分享"
 
 msgid "Share this project"
-msgstr "分享这个作品"
+msgstr "分享此作品"
 
 msgid "Share This Project Online"
-msgstr "将此作品在网络上分享"
+msgstr "將此作品分享在網路上"
 
 msgid "Show Motor Blocks"
-msgstr "显示马达模块"
+msgstr "顯示馬達積木"
 
 msgid "show ScratchBoard watcher"
-msgstr "显示ScratchBoard监视器"
+msgstr "顯示ScratchBoard監視器"
 
 msgid "Shrink"
-msgstr "缩小"
+msgstr "縮小"
 
 msgid "Shrink sprite"
-msgstr "缩小角色"
+msgstr "縮小角色"
 
 msgid "Simulation"
-msgstr "模拟"
+msgstr "模擬"
 
 msgid "Single-step speed?"
-msgstr "单步执行模式的执行速度"
+msgstr "單步執行模式的執行速度"
 
 msgid "slider"
-msgstr "滑杆"
+msgstr "滑桿"
 
 msgid "Slider range:"
-msgstr "滑杆的范围："
+msgstr "滑桿的範圍："
 
 msgid "Sound quality:"
-msgstr "音质"
+msgstr "音質"
 
 msgid "Sound Recorder"
-msgstr "录音机"
+msgstr "錄音機"
 
 msgid "Sounds"
-msgstr "声音"
+msgstr "聲音"
 
 msgid "Sounds compressed"
-msgstr "声音已压缩"
+msgstr "聲音已壓縮"
 
 msgid "space"
-msgstr "空格键"
+msgstr "空白鍵"
 
 msgid "Sprite"
 msgstr "角色"
@@ -1259,16 +1260,16 @@ msgid "Stage"
 msgstr "舞台"
 
 msgid "Stage selected:"
-msgstr "选择的舞台"
+msgstr "選擇的舞台"
 
 msgid "Stamp tool (select area, then stamp copies of it)"
-msgstr "图章工具（将选择的范围当成图章使用）"
+msgstr "蓋章工具（將選擇的範圍當成圖章使用）"
 
 msgid "Start green flag scripts"
-msgstr "开始执行绿旗控制的脚本"
+msgstr "開始執行綠旗控制的程式"
 
 msgid "Start Single Stepping"
-msgstr "开始单步执行"
+msgstr "開始單步執行"
 
 msgid "stop"
 msgstr "停止"
@@ -1277,157 +1278,156 @@ msgid "Stop everything"
 msgstr "全部停止"
 
 msgid "Stop Single Stepping"
-msgstr "停止单步执行"
+msgstr "停止單步執行"
 
 msgid "Story"
 msgstr "故事"
 
-#, fuzzy
 msgid "Support Site"
-msgstr "支持网站"
+msgstr "支援中心"
 
 msgid "Switch colors"
-msgstr "交换颜色"
+msgstr "顏色交換"
 
 msgid "Switch to full stage"
-msgstr "转换成完整舞台"
+msgstr "切換為大舞台"
 
 msgid "Switch to presentation mode"
-msgstr "转换成演示模式"
+msgstr "切換為全螢幕"
 
+# Not sure~~waiting for better translation~
 msgid "Switch to small stage"
-msgstr "转换成小舞台"
+msgstr "切換為小舞台"
 
 msgid "Tags:"
-msgstr "标签："
+msgstr "標籤："
 
 msgid "Text tool (edit text layer)"
-msgstr "文字输入工具"
+msgstr "文字輸入工具"
 
 msgid "That variable name is already in use"
-msgstr "变量名称已被使用"
+msgstr "此變數已被使用"
 
 msgid "that way"
-msgstr "逆时针"
+msgstr "逆時針"
 
 msgid "The file name already exists. Overwrite existing file?"
-msgstr "文件名已经存在。覆盖已存在的文件？"
+msgstr "檔案名稱已存在，要覆蓋現有檔案嗎？"
 
-#, fuzzy
 msgid "thing"
-msgstr "东西"
+msgstr "物品"
 
 msgid "this way"
-msgstr "顺时针"
+msgstr "順時針"
 
 msgid "tilt"
-msgstr "倾斜"
+msgstr "傾斜"
 
 msgid "true"
 msgstr "成立"
 
 msgid "Turbo speed"
-msgstr "超速模式"
+msgstr "加速模式"
 
 msgid "turn into new sprite"
-msgstr "转换成新角色"
+msgstr "轉換成新角色"
 
 msgid "Undelete"
-msgstr "恢复"
+msgstr "復原刪除"
 
 msgid "Undo"
-msgstr "撤销"
+msgstr "復原"
 
 msgid "up"
 msgstr "上"
 
 msgid "up arrow"
-msgstr "上移键"
+msgstr "上移鍵"
 
 msgid "Updating thumbnails"
-msgstr "正在更新缩略图"
+msgstr "更新縮圖"
 
 msgid "Upload succeeded!"
-msgstr "上传成功"
+msgstr "上傳成功"
 
 msgid "Upload to Scratch Server"
-msgstr "上传至Scratch服务器"
+msgstr "上傳至Scratch伺服器"
 
 msgid "Uploading"
-msgstr "上传中"
+msgstr "上傳中"
 
 msgid "Variable name?"
-msgstr "变量名称?"
+msgstr "變數名稱?"
 
 msgid "View on stage"
-msgstr "舞台上的视图"
+msgstr "顯示在舞台上"
 
 msgid "What's your name?"
-msgstr "你的名字？"
+msgstr "你叫什麼名字?"
 
 msgid "whirl"
-msgstr "旋转"
+msgstr "旋轉"
 
 msgid "world"
-msgstr "世界"
+msgstr "文字"
 
 msgid "Write Multiple Project Summaries"
-msgstr "撰写多个作品的摘要"
+msgstr "撰寫多個作品的摘要"
 
 msgid "Write Project Summary"
-msgstr "撰写作品摘要"
+msgstr "撰寫作品摘要"
 
 msgid "Yes"
 msgstr "是的"
 
 msgid "Your project is now online at"
-msgstr "你的作品在网上的地址为"
+msgstr "你的作品已經上網"
 
 msgid "Your Scratch website login name:"
-msgstr "你的Scratch网站帐号："
+msgstr "你的Scratch網站帳號："
 
 msgid "Zoom in"
-msgstr "放大"
+msgstr "拉近"
 
 msgid "Zoom out"
-msgstr "缩小"
+msgstr "拉遠"
 
 ############################################
 # MIDI INSTRUMENTS
 ############################################
 
 msgid "Accordion"
-msgstr "手风琴"
+msgstr "手風琴"
 
 msgid "Acoustic Bass"
-msgstr "原音贝斯"
+msgstr "原音貝斯"
 
 msgid "Acoustic Bass Drum"
-msgstr "低音合成鼓"
+msgstr "低音大鼓"
 
 msgid "Acoustic Grand"
-msgstr "钢琴 "
+msgstr "平臺鋼琴"
 
 msgid "Acoustic Snare"
-msgstr "合成蛇鼓"
+msgstr "小鼓"
 
 msgid "Agogo"
-msgstr "阿果果"
+msgstr "阿哥哥"
 
 msgid "Alto Sax"
-msgstr "中音萨克斯"
+msgstr "中音薩克斯"
 
 msgid "Applause"
-msgstr "掌声"
+msgstr "掌聲"
 
 msgid "Bagpipe"
-msgstr "风笛"
+msgstr "風笛"
 
 msgid "Banjo"
-msgstr "班卓琴"
+msgstr "斑鳩琴"
 
 msgid "Baritone Sax"
-msgstr "上低音萨克斯"
+msgstr "上低音薩克斯"
 
 msgid "Bass Drum 1"
 msgstr "低音鼓1"
@@ -1436,121 +1436,121 @@ msgid "Bassoon"
 msgstr "低音管"
 
 msgid "Bird Tweet"
-msgstr "鸟鸣"
+msgstr "鳥鳴"
 
 msgid "Blown Bottle"
-msgstr "吹瓶声"
+msgstr "吹瓶聲"
 
 msgid "Brass Section"
-msgstr "铜管合奏"
+msgstr "銅管合奏"
 
 msgid "Breath Noise"
-msgstr "呼吸声"
+msgstr "呼吸聲"
 
 msgid "Bright Acoustic"
-msgstr "亮音钢琴"
+msgstr "亮音鋼琴"
 
 msgid "Cabasa"
 msgstr "抓筒"
 
 msgid "Celesta"
-msgstr "钢片琴"
+msgstr "鋼片琴"
 
 msgid "Cello"
 msgstr "大提琴 "
 
 msgid "Chinese Cymbal"
-msgstr "中国铜钹"
+msgstr "中國銅鈸"
 
 msgid "Choir Aahs"
-msgstr "唱诗歌(啊)"
+msgstr "唱詩歌(啊)"
 
 msgid "Church Organ"
-msgstr "教堂风琴"
+msgstr "教堂風琴"
 
 msgid "Clarinet"
-msgstr "单簧管"
+msgstr "單簧管"
 
 msgid "Claves"
-msgstr "古钢琴"
+msgstr "古鋼琴"
 
 msgid "Clavinet"
-msgstr "响棒"
+msgstr "響棒"
 
 msgid "Closed Hi-Hat"
-msgstr "闭合双面拔"
+msgstr "閉合雙面拔"
 
 msgid "Contrabass"
 msgstr "低音提琴"
 
 msgid "Cowbell"
-msgstr "牛铃"
+msgstr "牛鈴"
 
 msgid "Crash Cymbal 1"
-msgstr "铜钹1"
+msgstr "銅鈸1"
 
 msgid "Crash Cymbal 2"
-msgstr "铜钹2"
+msgstr "銅鈸2"
 
 msgid "Distortion Guitar"
-msgstr "电吉他(变音)"
+msgstr "電吉他(變音)"
 
 msgid "Drawbar Organ"
-msgstr "电风琴"
+msgstr "電風琴"
 
 msgid "Dulcimer"
-msgstr "大扬琴"
+msgstr "大揚琴"
 
 msgid "Electric Bass (finger)"
-msgstr "电贝斯吉他（指拨式）"
+msgstr "電貝斯吉他（指撥式）"
 
 msgid "Electric Bass (pick)"
-msgstr "电贝斯吉他（拨片式）"
+msgstr "電貝斯吉他（撥片式）"
 
 msgid "Electric Clean Guitar"
-msgstr "电吉他（干净音）"
+msgstr "電吉他（乾淨音）"
 
 msgid "Electric Grand"
-msgstr "电平台钢琴"
+msgstr "電鋼琴"
 
 msgid "Electric Jazz Guitar"
-msgstr "电吉他（爵士）"
+msgstr "電吉他（爵士）"
 
 msgid "Electric Muted Guitar"
-msgstr "电吉他（闷音）"
+msgstr "電吉他（悶音）"
 
 msgid "Electric Piano 1"
-msgstr "电钢琴1"
+msgstr "電鋼琴1"
 
 msgid "Electric Piano 2"
-msgstr "电钢琴2"
+msgstr "電鋼琴2"
 
 msgid "Electric Snare"
-msgstr "电子小鼓"
+msgstr "電子小鼓"
 
 msgid "English Horn"
-msgstr "英国管"
+msgstr "英國管"
 
 msgid "FX 1 (rain)"
-msgstr "特效1（雨声）"
+msgstr "特效1（雨聲）"
 
 msgid "FX 2 (soundtrack)"
-msgstr "特校2（电影音效）"
+msgstr "特校2（電影音效）"
 
 msgid "FX 3 (crystal)"
 msgstr "特效3（水晶）"
 
 msgid "FX 4 (atmosphere)"
-msgstr "特效4（大气）"
+msgstr "特效4（大氣）"
 
 msgid "FX 5 (brightness)"
 msgstr "特效5（明亮）"
 
 msgid "FX 6 (goblins)"
-msgstr "特效6（小妖）"
+msgstr "特效6（小妖精）"
 
 msgid "FX 7 (echoes)"
-msgstr "特效7（回声）"
+msgstr "特效7（迴音）"
 
 msgid "FX 8 (sci-fi)"
 msgstr "特效8（合成科幻）"
@@ -1559,25 +1559,25 @@ msgid "Fiddle"
 msgstr "古提琴"
 
 msgid "Flute"
-msgstr "长笛"
+msgstr "長笛"
 
 msgid "French Horn"
-msgstr "法国号"
+msgstr "法國號"
 
 msgid "Fretless Bass"
-msgstr "无格贝斯"
+msgstr "無格貝斯"
 
 msgid "Glockenspiel"
-msgstr "铁琴"
+msgstr "鐵琴"
 
 msgid "Guitar Fret Noise"
-msgstr "吉他磨弦声"
+msgstr "吉他磨弦聲"
 
 msgid "Guitar Harmonics"
 msgstr "合音吉他"
 
 msgid "Gunshot"
-msgstr "枪声"
+msgstr "槍聲"
 
 msgid "Hand Clap"
 msgstr "拍掌"
@@ -1586,16 +1586,16 @@ msgid "Harmonica"
 msgstr "口琴"
 
 msgid "Harpsichord"
-msgstr "大键琴"
+msgstr "大鍵琴"
 
 msgid "Helicopter"
-msgstr "直升机"
+msgstr "直昇機"
 
 msgid "Hi Bongo"
 msgstr "南美小鼓-高音"
 
 msgid "Hi Wood Block"
-msgstr "高音木鱼"
+msgstr "高音木魚"
 
 msgid "Hi-Mid Tom"
 msgstr "中音鼓-中高音"
@@ -1613,31 +1613,31 @@ msgid "High Tom"
 msgstr "高音鼓"
 
 msgid "Honky-Tonk"
-msgstr "美国西钢琴"
+msgstr "美國西鋼琴"
 
 msgid "Kalimba"
 msgstr "非洲拇指琴"
 
 msgid "Koto"
-msgstr "十叁弦古筝"
+msgstr "十三弦古箏"
 
 msgid "Lead 1 (square)"
 msgstr "合成主音1（方波）"
 
 msgid "Lead 2 (sawtooth)"
-msgstr "合成主音2（锯齿波）"
+msgstr "合成主音2（鋸齒波）"
 
 msgid "Lead 3 (calliope)"
-msgstr "合成主音3（诗歌）"
+msgstr "合成主音3（詩歌）"
 
 msgid "Lead 4 (chiff)"
 msgstr "合成主音4（合成吹管）"
 
 msgid "Lead 5 (charang)"
-msgstr "合成主音5（合成电吉他）"
+msgstr "合成主音5（合成電吉他）"
 
 msgid "Lead 6 (voice)"
-msgstr "合成主音6（人声键盘）"
+msgstr "合成主音6（人聲鍵盤）"
 
 msgid "Lead 7 (fifths)"
 msgstr "合成主音7（五度音）"
@@ -1646,10 +1646,10 @@ msgid "Lead 8 (bass+lead)"
 msgstr "合成主音8（低音+主音）"
 
 msgid "Long Guiro"
-msgstr "长梗笛"
+msgstr "長梗笛"
 
 msgid "Long Whistle"
-msgstr "长口哨"
+msgstr "長口哨"
 
 msgid "Low Agogo"
 msgstr "低音阿哥哥"
@@ -1670,13 +1670,13 @@ msgid "Low Tom"
 msgstr "中音鼓-低音"
 
 msgid "Low Wood Block"
-msgstr "低音木鱼"
+msgstr "低音木魚"
 
 msgid "Low-Mid Tom"
 msgstr "中音鼓-中低音"
 
 msgid "Maracas"
-msgstr "响葫芦"
+msgstr "響葫蘆"
 
 msgid "Marimba"
 msgstr "立奏木琴"
@@ -1685,121 +1685,121 @@ msgid "Melodic Tom"
 msgstr "古式高音鼓"
 
 msgid "Music Box"
-msgstr "音乐盒"
+msgstr "音樂盒"
 
 msgid "Mute Cuica"
-msgstr "库加鼓-闷音"
+msgstr "庫加鼓-悶音"
 
 msgid "Mute Hi Conga"
-msgstr "康加鼓-闷音"
+msgstr "康加鼓-悶音"
 
 msgid "Mute Triangle"
-msgstr "叁角铁-闷音"
+msgstr "三角鐵-悶音"
 
 msgid "Muted Trumpet"
-msgstr "闷音小号"
+msgstr "悶音小號"
 
 msgid "Nylon String Guitar"
 msgstr "古典吉他"
 
 msgid "Oboe"
-msgstr "双簧管"
+msgstr "雙簧管"
 
 msgid "Ocarina"
 msgstr "陶笛"
 
 msgid "Open Cuica"
-msgstr "库加鼓-开音"
+msgstr "庫加鼓-開音"
 
 msgid "Open Hi Conga"
-msgstr "康加鼓-开高音"
+msgstr "康加鼓-開高音"
 
 msgid "Open Hi-Hat"
-msgstr "开放双面钹"
+msgstr "開放雙面鈸"
 
 msgid "Open Triangle"
-msgstr "叁角铁-开音"
+msgstr "三角鐵-開音"
 
 msgid "Orchestra Hit"
 msgstr "管弦合奏"
 
 msgid "Orchestral Strings"
-msgstr "交响弦乐"
+msgstr "交響弦樂"
 
 msgid "Overdriven Guitar"
-msgstr "电吉他(浊音)"
+msgstr "電吉他(濁音)"
 
 msgid "Pad 1 (new age)"
-msgstr "合成音色1（新世纪）"
+msgstr "合成音色1（新世紀）"
 
 msgid "Pad 2 (warm)"
-msgstr "合成音色2（温暖）"
+msgstr "合成音色2（溫暖）"
 
 msgid "Pad 3 (polysynth)"
 msgstr "合成音色3（多重合音）"
 
 msgid "Pad 4 (choir)"
-msgstr "合成音色4（人声合唱）"
+msgstr "合成音色4（人聲合唱）"
 
 msgid "Pad 5 (bowed)"
 msgstr "合成音色5（玻璃）"
 
 msgid "Pad 6 (metallic)"
-msgstr "合成音色6（金属）"
+msgstr "合成音色6（金屬）"
 
 msgid "Pad 7 (halo)"
-msgstr "合成音色7（光华）"
+msgstr "合成音色7（光華）"
 
 msgid "Pad 8 (sweep)"
-msgstr "合成音色8（扫掠）"
+msgstr "合成音色8（掃掠）"
 
 msgid "Pan Flute"
 msgstr "排笛"
 
 msgid "Pedal Hi-Hat"
-msgstr "踏板双面钹"
+msgstr "踏板雙面鈸"
 
 msgid "Percussive Organ"
-msgstr "敲击风琴"
+msgstr "敲擊風琴"
 
 msgid "Piccolo"
 msgstr "短笛"
 
 msgid "Pizzicato Strings"
-msgstr "弦乐拨奏"
+msgstr "弦樂撥奏"
 
 msgid "Recorder"
 msgstr "木笛"
 
 msgid "Reed Organ"
-msgstr "簧片风琴"
+msgstr "簧片風琴"
 
 msgid "Reverse Cymbal"
-msgstr "音钹"
+msgstr "音鈸"
 
 msgid "Ride Bell"
-msgstr "悬掛钟"
+msgstr "懸掛鐘"
 
 msgid "Ride Cymbal 1"
-msgstr "高架钹1"
+msgstr "高架鈸1"
 
 msgid "Ride Cymbal 2"
-msgstr "高架钹2"
+msgstr "高架鈸2"
 
 msgid "Rock Organ"
-msgstr "摇滚风琴"
+msgstr "搖滾風琴"
 
 msgid "Seashore"
-msgstr "海浪声"
+msgstr "海浪聲"
 
 msgid "Shakuhachi"
-msgstr "尺八箫"
+msgstr "尺八簫"
 
 msgid "Shamisen"
-msgstr "叁味线"
+msgstr "三味線"
 
 msgid "Shanai"
-msgstr "唢呐"
+msgstr "嗩吶"
 
 msgid "Short Guiro"
 msgstr "短梗笛"
@@ -1808,100 +1808,100 @@ msgid "Short Whistle"
 msgstr "短口哨"
 
 msgid "Side Stick"
-msgstr "鼓边敲击"
+msgstr "鼓邊敲擊"
 
 msgid "Sitar"
 msgstr "西塔琴"
 
 msgid "Slap Bass 1"
-msgstr "重贝斯1"
+msgstr "重貝斯1"
 
 msgid "Slap Bass 2"
-msgstr "重贝斯2"
+msgstr "重貝斯2"
 
 msgid "Soprano Sax"
-msgstr "高音萨克斯"
+msgstr "高音薩克斯"
 
 msgid "Splash Cymbal"
-msgstr "溅开钹声"
+msgstr "濺開鈸聲"
 
 msgid "Steel Drums"
-msgstr "钢鼓"
+msgstr "鋼鼓"
 
 msgid "Steel String Guitar"
-msgstr "民谣吉他"
+msgstr "民謠吉他"
 
 msgid "String Ensemble 1"
-msgstr "弦乐合奏-1"
+msgstr "弦樂合奏-1"
 
 msgid "String Ensemble 2"
-msgstr "弦乐合奏-2"
+msgstr "弦樂合奏-2"
 
 msgid "Synth Bass 1"
-msgstr "电子合成贝斯-1"
+msgstr "電子合成貝斯-1"
 
 msgid "Synth Bass 2"
-msgstr "电子合成贝斯-2"
+msgstr "電子合成貝斯-2"
 
 msgid "Synth Drum"
-msgstr "电子合成鼓"
+msgstr "電子合成鼓"
 
 msgid "Synth Voice"
-msgstr "合成人声"
+msgstr "合成人聲"
 
 msgid "SynthBrass 1"
-msgstr "合成铜管1"
+msgstr "合成銅管1"
 
 msgid "SynthBrass 2"
-msgstr "合成铜管2"
+msgstr "合成銅管2"
 
 msgid "SynthStrings 1"
-msgstr "合成弦乐-1"
+msgstr "合成弦樂-1"
 
 msgid "SynthStrings 2"
-msgstr "合成弦乐-2"
+msgstr "合成弦樂-2"
 
 msgid "Taiko Drum"
 msgstr "太鼓"
 
 msgid "Tambourine"
-msgstr "铃鼓"
+msgstr "鈴鼓"
 
 msgid "Tango Accordion"
-msgstr "探戈手风琴"
+msgstr "探戈手風琴"
 
 msgid "Telephone Ring"
-msgstr "电话铃声"
+msgstr "電話鈴聲"
 
 msgid "Tenor Sax"
-msgstr "次中音萨克斯"
+msgstr "次中音薩克斯"
 
 msgid "Timpani"
 msgstr "定音鼓"
 
 msgid "Tinkle Bell"
-msgstr "叮噹声"
+msgstr "叮噹聲"
 
 msgid "Tremolo Strings"
-msgstr "弦乐颤音"
+msgstr "弦樂顫音"
 
 msgid "Trombone"
-msgstr "长号"
+msgstr "長號"
 
 msgid "Trumpet"
-msgstr "小号"
+msgstr "小號"
 
 msgid "Tuba"
-msgstr "低音号"
+msgstr "低音號"
 
 msgid "Tubular Bells"
-msgstr "管钟"
+msgstr "管鐘"
 
 msgid "Vibraphone"
 msgstr "抖音琴"
 
 msgid "Vibraslap"
-msgstr "颤击"
+msgstr "顫擊"
 
 msgid "Viola"
 msgstr "中提琴"
@@ -1910,14 +1910,78 @@ msgid "Violin"
 msgstr "小提琴"
 
 msgid "Voice Oohs"
-msgstr "唱诗歌(喔)"
+msgstr "唱詩歌(喔)"
 
 msgid "Whistle"
-msgstr "口哨声"
+msgstr "口哨聲"
 
 msgid "Woodblock"
-msgstr "木鱼"
+msgstr "木魚"
 
 msgid "Xylophone"
 msgstr "木琴"
+
+############################################
+# Pyonkee
+############################################
+
+msgid "Before mail the project, save it?"
+msgstr "郵件作品之前，保存呢？"
+
+msgid "Before share the project, save it?"
+msgstr "共享作品之前，保存呢？"
+
+msgid "Create a mail for sending this project"
+msgstr "創建一個郵件發送此作品"
+
+msgid "Share this project with AirDrop"
+msgstr "使用AirDrop分享此作品"
+
+msgid "Exceeded recording time limit"
+msgstr "超過錄製時間限制"
+
+msgid "Failed saving the project"
+msgstr "無法保存作品"
+
+msgid "To record, you need to stop sound level sensing. Stop now?"
+msgstr "要記錄，你需要停止聲級檢測。現在停下來？"
+
+msgid "Please save the project first"
+msgstr "請先保存作品"
+
+msgid "costume1"
+msgstr "造型1"
+
+msgid "costume2"
+msgstr "造型2"
+
+msgid "About Pyonkee"
+msgstr "關於Pyonkee"
+
+msgid "Video Tutorial"
+msgstr "視頻教程"
+
+msgid "About samples"
+msgstr "關於例子"
+
+msgid "About media"
+msgstr "關於媒體"
+
+msgid "New folder name:"
+msgstr "新的文件夾名稱:"
+
+msgid "Could not create folder."
+msgstr "無法創建文件夾。"
+
+msgid "Remove"
+msgstr "拆除"
+
+msgid "Really remove?"
+msgstr "確實要拆除？"
+
+msgid "Rename"
+msgstr "重命名"
+
+msgid "New name:"
+msgstr "新名稱:"
 

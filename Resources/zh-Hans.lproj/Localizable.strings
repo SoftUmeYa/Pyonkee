@@ -1,0 +1,40 @@
+/* 
+   Localizable.strings
+   Created by Masashi Umezawa.
+ */
+
+"SqueakSelectImagePanePrompt" = "选择佳乐图像文件打开";
+"Ok" = "确定";
+"Yes" = "是的";
+"No" = "无";
+"Cancel" = "取消";
+"Cough" = "* 咳嗽 *";
+"Massive" = "大规模的毛团崩溃";
+"Reset" = "重置";
+"Wait" = "等待";
+"Email" = "电子邮件";
+
+"Saved" = "保存";
+"SavedMsg" = "消息已保存。";
+"Failed" = "失败";
+"FailedMsg" = "提交失败。该消息尚未发送。";
+"helpEmailAddress" = "info@softumeya.com";
+"helpSubject" = "Pyonkee是随地吐痰避孕药";
+"helpMessage" = "哎呀发生什么事，我们想送一些信息给程序员，看看我们是否能够解决它";
+
+"play" = "玩";
+"create" = "创建";
+"Login" = "注册";
+
+/*Pyonkee*/
+
+"Loading..." = "加载中...";
+"Play!" = "玩!";
+"Menu" = "菜单";
+"projectSendMailSubject" = "[Scratch 作品]";
+"projectSendMailMessage" = "发送Scratch作品";
+"Cleaning up memory..." = "清理内存...";
+"Done!" = "完成!";
+"OK" = "确定";
+"New entry in Inbox" = "作品已进入收件箱";
+

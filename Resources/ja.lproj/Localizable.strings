@@ -52,4 +52,5 @@
 "projectSendMailMessage" = "Scratchプロジェクトを送ります。";
 "Cleaning up memory..." = "メモリ掃除中...";
 "Done!" = "完了!";
-
+"OK" = "OK";
+"New entry in Inbox" = "Inboxにプロジェクトが入りました";

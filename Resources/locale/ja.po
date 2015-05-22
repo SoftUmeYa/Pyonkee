@@ -1928,8 +1928,14 @@ msgstr "シロホン"
 msgid "Before mail the project, save it?"
 msgstr "プロジェクトをメールで送る前に保存しますか?"
 
+msgid "Before share the project, save it?"
+msgstr "プロジェクトを共有する前に保存しますか?"
+
 msgid "Create a mail for sending this project"
 msgstr "プロジェクトをメールで送信"
+
+msgid "Share this project with AirDrop"
+msgstr "プロジェクトをAirDropで共有"
 
 msgid "Exceeded recording time limit"
 msgstr "録音時間が長すぎます"
@@ -1966,6 +1972,18 @@ msgstr "フォルダ名:"
 
 msgid "Could not create folder."
 msgstr "フォルダを作成できません"
+
+msgid "Remove"
+msgstr "削除"
+
+msgid "Really remove?"
+msgstr "本当に削除しますか?"
+
+msgid "Rename"
+msgstr "名前の変更"
+
+msgid "New name:"
+msgstr "新たな名前:"
 
 ############################################
 # Pyonkee resource folders

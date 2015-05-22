@@ -50,5 +50,6 @@
 "projectSendMailMessage" = "Sending a Scratch project.";
 "Cleaning up memory..." = "Cleaning up memory...";
 "Done!" = "Done!";
-
+"OK" = "OK";
+"New entry in Inbox" = "New entry in Inbox";
 

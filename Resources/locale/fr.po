@@ -1941,8 +1941,14 @@ msgstr "Xylophone"
 msgid "Before mail the project, save it?"
 msgstr "Avant électronique du projet, l'enregistrer?"
 
+msgid "Before share the project, save it?"
+msgstr "Avant de partager le projet, le sauver?"
+
 msgid "Create a mail for sending this project"
 msgstr "Créer un mail pour l'envoi de ce projet"
+
+msgid "Share this project with AirDrop"
+msgstr "Partager ce projet avec AirDrop"
 
 msgid "Exceeded recording time limit"
 msgstr "Dépassé enregistrement délai"
@@ -1980,3 +1986,14 @@ msgstr "Nouveau nom de dossier:"
 msgid "Could not create folder."
 msgstr "Impossible de créer le dossier."
 
+msgid "Remove"
+msgstr "Supprimer"
+
+msgid "Really remove?"
+msgstr "Vraiment supprimer?"
+
+msgid "Rename"
+msgstr "Rebaptiser"
+
+msgid "New name:"
+msgstr "Nouveau nom:"

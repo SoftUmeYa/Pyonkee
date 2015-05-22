@@ -1953,8 +1953,14 @@ msgstr "Xilofone"
 msgid "Before mail the project, save it?"
 msgstr "Antes de correio do projeto, salvá-lo?"
 
+msgid "Before share the project, save it?"
+msgstr "Antes de compartilhar o projeto, salvá-lo?"
+
 msgid "Create a mail for sending this project"
 msgstr "Criar um e-mail para o envio desse projeto"
+
+msgid "Share this project with AirDrop"
+msgstr "Compartilhe este projeto com AirDrop"
 
 msgid "Exceeded recording time limit"
 msgstr "Excedeu o limite de tempo de gravação"
@@ -1992,4 +1998,14 @@ msgstr "Nome da nova pasta:"
 msgid "Could not create folder."
 msgstr "Não foi possível criar a pasta."
 
+msgid "Remove"
+msgstr "Remover"
 
+msgid "Really remove?"
+msgstr "Realmente remover?"
+
+msgid "Rename"
+msgstr "Rebatizar"
+
+msgid "New name:"
+msgstr "Novo nome:"

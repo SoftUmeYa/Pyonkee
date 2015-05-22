@@ -1998,8 +1998,14 @@ msgstr "Xylophon"
 msgid "Before mail the project, save it?"
 msgstr "Bevor Mail das Projekt, speichern Sie es?"
 
+msgid "Before share the project, save it?"
+msgstr "Antes de compartir el proyecto, guardarlo?"
+
 msgid "Create a mail for sending this project"
 msgstr "Erstellen Sie eine E-Mail für die Zusendung dieses Projekt"
+
+msgid "Share this project with AirDrop"
+msgstr "Teilen Sie dieses Projekt mit AirDrop"
 
 msgid "Exceeded recording time limit"
 msgstr "Überschritten Aufnahme Frist"
@@ -2037,4 +2043,14 @@ msgstr "Neuen Ordnernamen:"
 msgid "Could not create folder."
 msgstr "Ordner konnte nicht erstellt werden."
 
+msgid "Remove"
+msgstr "Löschen"
 
+msgid "Really remove?"
+msgstr "Wirklich löschen?"
+
+msgid "Rename"
+msgstr "Umbenennen"
+
+msgid "New name:"
+msgstr "Neuer Name:"

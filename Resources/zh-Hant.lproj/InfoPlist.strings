@@ -1,0 +1,10 @@
+/* 
+  InfoPlist.strings
+  ScratchOnIPad
+
+  Created by Masashi UMEZAWA on 2015/05/10.
+
+*/
+
+CFBundleName = "Pyonkee";
+CFBundleDisplayName = "Pyonkee";

@@ -36,5 +36,6 @@
 "projectSendMailMessage" = "El envío de un proyecto de Scratch.";
 "Cleaning up memory..." = "La limpieza de la memoria ...";
 "Done!" = "¡Hecho!";
-
+"OK" = "OK";
+"New entry in Inbox" = "Nueva entrada en la Bandeja de entrada";
 

@@ -2001,8 +2001,14 @@ msgstr "Xilófono"
 msgid "Before mail the project, save it?"
 msgstr "Antes de correo del proyecto, guardarlo?"
 
+msgid "Before share the project, save it?"
+msgstr "Antes de compartir el proyecto, guardarlo?"
+
 msgid "Create a mail for sending this project"
 msgstr "Crear un correo electrónico para el envío de este proyecto"
+
+msgid "Share this project with AirDrop"
+msgstr "Comparte este proyecto con AirDrop"
 
 msgid "Exceeded recording time limit"
 msgstr "Límite de tiempo de grabación Superó"
@@ -2040,6 +2046,14 @@ msgstr "Nuevo nombre de la carpeta:"
 msgid "Could not create folder."
 msgstr "No se pudo crear la carpeta."
 
+msgid "Remove"
+msgstr "Quitar"
 
+msgid "Really remove?"
+msgstr "Realmente quitar?"
 
+msgid "Rename"
+msgstr "Rebautizar"
 
+msgid "New name:"
+msgstr "Nuevo nombre:"

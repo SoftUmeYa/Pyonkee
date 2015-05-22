@@ -48,8 +48,52 @@
 			<key>MaximumValue</key>
 			<integer>104857600</integer>
 		</dict>
-		<dict/>
-		<dict/>
+        <dict>
+            <key>Type</key>
+            <string>PSGroupSpecifier</string>
+            <key>Title</key>
+            <string>Inbox max items: 100 to 1000</string>
+        </dict>
+        <dict>
+            <key>Type</key>
+            <string>PSSliderSpecifier</string>
+            <key>Title</key>
+            <string>Max number of items in Inbox</string>
+            <key>Key</key>
+            <string>inboxMaxNumOfItems_preference</string>
+            <key>DefaultValue</key>
+            <integer>100</integer>
+            <key>MinimumValue</key>
+            <integer>100</integer>
+            <key>MaximumValue</key>
+            <integer>1000</integer>
+        </dict>
+        <dict>
+            <key>Type</key>
+            <string>PSGroupSpecifier</string>
+            <key>Title</key>
+            <string>Information</string>
+        </dict>
+        <dict>
+            <key>Type</key>
+            <string>PSTitleValueSpecifier</string>
+            <key>DefaultValue</key>
+            <string>1.9</string>
+            <key>Title</key>
+            <string>Version</string>
+            <key>Key</key>
+            <string>sbVersion</string>
+        </dict>
+        <dict>
+            <key>Type</key>
+            <string>PSTitleValueSpecifier</string>
+            <key>DefaultValue</key>
+            <string>7</string>
+            <key>Title</key>
+            <string>Build</string>
+            <key>Key</key>
+            <string>sbBuild</string>
+        </dict>
 	</array>
 </dict>
 </plist>

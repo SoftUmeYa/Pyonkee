@@ -1928,8 +1928,14 @@ msgstr "シロホン"
 msgid "Before mail the project, save it?"
 msgstr "プロジェクトをメールでおくるまえにほぞんしますか?"
 
+msgid "Before share the project, save it?"
+msgstr "プロジェクトをきょうゆうするまえにほぞんしますか?"
+
 msgid "Create a mail for sending this project"
 msgstr "プロジェクトをメールでそうしん"
+
+msgid "Share this project with AirDrop"
+msgstr "プロジェクトをAirDropできょうゆう"
 
 msgid "Exceeded recording time limit"
 msgstr "ろくおんじかんがながすぎます"
@@ -1969,6 +1975,18 @@ msgstr "フォルダのなまえ:"
 
 msgid "Could not create folder."
 msgstr "フォルダをつくれません"
+
+msgid "Remove"
+msgstr "けす"
+
+msgid "Really remove?"
+msgstr "ほんとうにけしますか?"
+
+msgid "Rename"
+msgstr "なまえをかえる"
+
+msgid "New name:"
+msgstr "あたらしいなまえ:"
 
 ############################################
 # Pyonkee resource folders

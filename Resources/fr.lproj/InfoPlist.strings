@@ -5,3 +5,6 @@
   Created by Masashi UMEZAWA on 2014/08/05.
 
 */
+
+CFBundleName = "Pyonkee";
+CFBundleDisplayName = "Pyonkee";
