@@ -41,6 +41,8 @@
 #import "sqMacV2Memory.h"
 #import "sqSqueakIPhoneInfoPlistInterface.h"
 
+#import "sqSqueakVmAndImagePathAPI.h"
+
 @implementation sqSqueakIPhoneApplication (imageReadWrite) 
 
 - (void) findImageViaBundleOrPreferences {
@@ -64,8 +66,9 @@
 	 Apple syncs the iphone data to via iTunes yet */
 	
 	const char	*imageNameCharactersInDocumentPath = [dfm fileSystemRepresentationWithPath: documentsImagePath];
-	imageNamePutLength((sqInt) imageNameCharactersInDocumentPath, strlen(imageNameCharactersInDocumentPath)); 
-	
+    
+    applyImageNamePutLength(imageNameCharactersInDocumentPath, (sqInt)strlen(imageNameCharactersInDocumentPath));
+    
 	NSString * likelySourceFilePath = [dfm destinationOfSymbolicLinkAtPath: documentsSourcesPath error: &error];
 
 	if (likelySourceFilePath) {
@@ -112,9 +115,19 @@
 			copyOk = [dfm copyItemAtPath: bundleChangesPath toPath: documentsChangesPath error: &error];
 		} else {
 			const char	*imageNameCharacters = [dfm fileSystemRepresentationWithPath: bundleImagePath];
-			imageNamePutLength((sqInt) imageNameCharacters, strlen(imageNameCharacters));
+			applyImageNamePutLength(imageNameCharacters, strlen(imageNameCharacters));
 		}
 	}
 	[pool drain];
 }
+
+int applyImageNamePutLength(const char* name, size_t length){
+#if __LP64__
+    return imageNameConstPutLength(name, length);
+#else
+    return imageNamePutLength((sqInt)name, (sqInt)length);
+#endif
+}
+
+
 @end

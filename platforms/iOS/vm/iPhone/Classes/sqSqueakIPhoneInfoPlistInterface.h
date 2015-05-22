@@ -46,4 +46,5 @@ Sept-02-08  1.03b1  setup useScrollingView
 - (NSInteger) memorySize;
 - (CGFloat) timeOut;
 - (BOOL) spaceRepeats;
+- (NSInteger) inboxMaxNumOfItems;
 @end

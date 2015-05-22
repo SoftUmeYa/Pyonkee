@@ -60,14 +60,29 @@ sqInt imageNameGetLength(sqInt sqImageNameIndex, sqInt length){
 }
 
 sqInt imageNamePutLength(sqInt sqImageNameIndex, sqInt length){
+    size_t sLength = (size_t) length;
+    usqInt nmIndex = (usqInt)sqImageNameIndex;
+        
+    char * cp = gSqMemoryBase + ((usqInt)nmIndex);
+    
 	if (length > 0 && (length < PATH_MAX)) {
-		strncpy(imageName,pointerForOop((usqInt)sqImageNameIndex),(size_t) length); //This does not need to be strlcpy since the data is not null terminated
+		strncpy(imageName,cp,sLength); //This does not need to be strlcpy since the data is not null terminated
 		imageName[length] = 0x00;		//Ensure we nil terminate the image name string
 		[gDelegateApp.squeakApplication imageNamePut:imageName];
 
 	}
 	return 0;
-}	
+}
+
+int imageNameConstPutLength(const char* sqImageName, size_t length)
+{
+    if (length > 0 && (length < PATH_MAX)) {
+        strncpy(imageName,sqImageName,length); //This does not need to be strlcpy since the data is not null terminated
+        imageName[length] = 0x00;		//Ensure we nil terminate the image name string
+        [gDelegateApp.squeakApplication imageNamePut:imageName];
+    }
+    return 0;
+}
 
 //getVMPath returns without a trailing '/', so increment by one
 

@@ -45,6 +45,7 @@ NSString * kscrollableView_preferenceKey = @"scrollableView_preference";
 NSString * kmemorySize_preferenceKey = @"memorySize_preference";
 NSString * ktimeOut_preferenceKey = @"timeOut_preference";
 NSString * kspaceRepeats_preferenceKey = @"spaceRepeats_preference";
+NSString * kinboxMaxNumOfItems_preferenceKey = @"inboxMaxNumOfItems_preference";
 
  extern int gSqueakUseFileMappedMMAP;
 
@@ -77,6 +78,8 @@ NSString * kspaceRepeats_preferenceKey = @"spaceRepeats_preference";
 		NSString	*memorySize_preferenceDefault=@"78643200";
 		NSString	*timeOut_preferenceDefault=@"30";
 		NSString	*spaceRepeats_preferenceDefault=@"NO";
+        NSString	*inboxMaxNumOfItems_preferenceDefault=@"10";
+        
 		for (prefItem in prefSpecifierArray)	{
 			NSString *keyValueStr = [prefItem objectForKey:@"Key"];
 			id defaultValue = [prefItem objectForKey:@"DefaultValue"];
@@ -100,6 +103,10 @@ NSString * kspaceRepeats_preferenceKey = @"spaceRepeats_preference";
 			if ([keyValueStr isEqualToString: kspaceRepeats_preferenceKey]) {
 				spaceRepeats_preferenceDefault = defaultValue;
 			}
+            
+            if ([keyValueStr isEqualToString: kinboxMaxNumOfItems_preferenceKey]) {
+                inboxMaxNumOfItems_preferenceDefault = defaultValue;
+            }
 		}
 		
         // since no default values have been set (i.e. no preferences file created), create it here
@@ -108,6 +115,7 @@ NSString * kspaceRepeats_preferenceKey = @"spaceRepeats_preference";
 									  memorySize_preferenceDefault,  kmemorySize_preferenceKey,
 									  timeOut_preferenceDefault,  ktimeOut_preferenceKey,
 									  spaceRepeats_preferenceDefault,  kspaceRepeats_preferenceKey,
+                                      inboxMaxNumOfItems_preferenceDefault,  kinboxMaxNumOfItems_preferenceKey,
 									  nil];
         
         [[NSUserDefaults standardUserDefaults] registerDefaults: appDefaults];
@@ -135,6 +143,10 @@ NSString * kspaceRepeats_preferenceKey = @"spaceRepeats_preference";
 
 - (BOOL) spaceRepeats {
 	return [defaults boolForKey: kspaceRepeats_preferenceKey];
+}
+
+- (NSInteger) inboxMaxNumOfItems {
+    return [defaults integerForKey: kinboxMaxNumOfItems_preferenceKey];
 }
 
 @end

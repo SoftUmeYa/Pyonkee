@@ -12,17 +12,14 @@
 #import <Foundation/Foundation.h>
 
 
-@interface SUYAlertDialog : NSObject <UIAlertViewDelegate> {
-	NSInteger yesIndex;
-	NSInteger noIndex;
-	NSInteger okIndex;
-	NSInteger buttonPicked;
-	NSInteger semaIndex;
-}
+@interface SUYAlertDialog : NSObject <UIAlertViewDelegate, UITextFieldDelegate>
 
-@property (nonatomic,assign) NSInteger buttonPicked;
-@property (nonatomic,retain) UIAlertView* alertView;
+@property (nonatomic, readonly) NSInteger buttonPicked;
+@property (nonatomic, readonly) NSString* answerString;
 
-- (SUYAlertDialog *) initTitle: (NSString *) title message: (NSString *) message yes: (BOOL) yesFlag no: (BOOL) noFlag 
+- (instancetype) initTitle: (NSString *) title message: (NSString *) message yes: (BOOL) yesFlag no: (BOOL) noFlag
 						  okay: (BOOL) okFlag cancel: (BOOL) cancelFlag semaIndex: (NSInteger) semaIndex;
+
+- (instancetype) initForRequestWithTitle: (NSString *) title message: (NSString *) message initialAnswer: (NSString *) initialAnswer cancel: (BOOL) cancelFlag semaIndex: (NSInteger) semaIndex;
+
 @end

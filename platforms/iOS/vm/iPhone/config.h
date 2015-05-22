@@ -125,12 +125,14 @@
 /* widths of primitive types */
 
 #define	SIZEOF_INT 4
-#define	SIZEOF_LONG 4
+
 #define	SIZEOF_LONG_LONG 8
-#ifdef __x86_64__
+#if defined(__LP64__) && __LP64__
 #define	SIZEOF_VOID_P 8
+#define	SIZEOF_LONG 8
 #else
 #define	SIZEOF_VOID_P 4
+#define	SIZEOF_LONG 4
 #endif
 /* structures */
 

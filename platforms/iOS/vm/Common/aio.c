@@ -97,7 +97,6 @@
 
 #endif
 
-
 #undef	DEBUG
 #undef	DEBUG_TICKER
 
@@ -198,6 +197,11 @@ void aioFini(void)
 
 /* answer whether i/o becomes possible within the given number of microSeconds */
 
+int ioMicroMSecs2()
+{
+    return 0;
+}
+
 int aioPoll(int microSeconds)
 {
   int	 fd, ms;
@@ -220,8 +224,8 @@ int aioPoll(int microSeconds)
 		return 0;
 #endif
 
-	ms= (int) ioMSecs();
-
+    ms= (int) ioMicroMSecs2();
+    
   for (;;)
     {
       struct timeval tv;
@@ -238,7 +242,7 @@ int aioPoll(int microSeconds)
 	 perror("select");
 	 return 0;
 	}
-      now= (int) ioMSecs();
+      now= (int) ioMicroMSecs2();
       microSeconds -= (now - ms) * 1000;
       if (microSeconds <= 0)
 		  return 0;

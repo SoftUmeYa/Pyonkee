@@ -26,8 +26,10 @@
 @property (nonatomic, retain) dispatch_queue_t defaultSerialQueue;
 @property (nonatomic, retain) SUYMailComposer *mailComposer;
 
+@property (nonatomic, copy) NSString* clickedResourcePathOnLaunch;
 
-- (void) openProject:(NSString*)projectName run:(BOOL)shouldRun;
+- (void) openDefaultProject;
+- (void) openProject:(NSString*)projectPathName;
 - (void) shoutGo;
 - (void) stopAll;
 - (void) exitPresentationMode;
@@ -51,6 +53,7 @@
 - (void) showWaitIndicator;
 - (void) hideWaitIndicator;
 - (void) mailProject: (NSString *)projectPath;
+- (void) airDropProject: (NSString *)projectPath;
 - (void) textMorphFocused: (NSString *)status;
 
 - (void) bailWeAreBroken: (NSString *) oopsText;

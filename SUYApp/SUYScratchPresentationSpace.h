@@ -38,14 +38,14 @@
 
 @property (nonatomic, retain) IBOutlet GSRadioButtonSetController *radioButtonSetController;
 
-@property (nonatomic, retain) NSString*	pathToProjectFile;
 @property (nonatomic, retain) NSMutableDictionary *repeatKeyDict;
 @property (nonatomic, retain) UIView *landscapeToolBar;
 @property (nonatomic, retain) UIView *landscapeToolBar2;
 @property (nonatomic, retain) UIView *viewModeBar;
 @property (nonatomic, retain) UIActivityIndicatorView *indicatorView;
-@property (nonatomic, retain) 	UIPopoverController *popUpInfoViewController;
+@property (nonatomic, retain) UIPopoverController *popUpInfoViewController;
 
+@property (nonatomic, readonly) UIInterfaceOrientation formerOrientation;
 
 - (IBAction) shoutGo:(id)sender;
 - (IBAction) stopAll:(id)sender;
@@ -79,6 +79,9 @@
 - (void) pushCharacter: (NSString*) string;
 - (void) startRepeatKeyProcess: (unichar) character for: (id) sender;
 - (void) startRepeatKeyAction: (NSString*) string  for: (id) sender;
-- (int) viewModeIndex;
+- (int)  viewModeIndex;
+
+- (void) airDropProject: (NSString *)projectPath;
+- (BOOL) isInPresentationMode;
 
 @end

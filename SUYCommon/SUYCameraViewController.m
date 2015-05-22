@@ -324,7 +324,7 @@
     shutterCount++;
     NSDate* now = [NSDate date];
     NSInteger intMillSec = (NSInteger) floor([now timeIntervalSinceReferenceDate]);
-    NSString* strNow = [NSString stringWithFormat:@"%ld%02d-camImage.png", (long)intMillSec, shutterCount];
+    NSString* strNow = [NSString stringWithFormat:@"%ld%02ld-camImage.png", (long)intMillSec, (long)shutterCount];
     return strNow;
 }
 

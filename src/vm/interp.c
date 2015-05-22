@@ -6449,7 +6449,7 @@ sqInt interpret(void) {
 	localHomeContext = foo->theHomeContext;
 	/* begin fetchNextBytecode */
 	currentBytecode = byteAtPointer(++localIP);
-	while (1) {
+    while (1) {
 		switch (currentBytecode) {
 		CASE(0)
 			/* pushReceiverVariableBytecode */
@@ -22557,7 +22557,8 @@ register struct foo * foo = &fum;
 	/* begin sqImage:read:size:length: */
 	
 	if(gSqueakUseFileMappedMMAP == 0){
-        bytesRead = sqImageFileRead(memStart, sizeof(unsigned char), dataSize, f);
+        memoryAddress = pointerForOop(memory);
+        bytesRead = sqImageFileRead(memoryAddress, sizeof(unsigned char), dataSize, f);
         if (bytesRead != dataSize) {
             unableToReadImageError();
         }

@@ -57,12 +57,16 @@
 
  extern usqInt  gMaxHeapSize;
  extern int gSqueakUseFileMappedMMAP;
+
  static usqInt	gHeapSize;
  static  void *startOfmmapForANONMemory,*startOfmmapForImageFile;
  static 	 size_t fileRoundedUpToPageSize,freeSpaceRoundedUpToPageSize;
-#if defined(SQ_HOST64) && defined(SQ_IMAGE32)
-__attribute__ ((visibility("default"))) char * sqMemoryBase=0;
-#endif
+
+//#if defined(__LP64__) && defined(SQ_IMAGE32)
+//__attribute__ ((visibility("default"))) char * sqMemoryBase=0;
+//#endif
+
+void *gSqMemoryBase=0;
 
 static usqInt totalRequestedHeapSize = 0;
 
@@ -96,6 +100,15 @@ usqInt sqAvailableHeapSize() {
     if(val < 0) {val = 0;}
 	return val;
 }
+
+int is64bitHost(){
+#if __LP64__
+    return 1;
+#else
+    return 0;
+#endif
+}
+
 // For Scratch on iPad }
  
 static size_t pageSize;
@@ -145,6 +158,7 @@ static size_t pageMask;
 		 perror("startOfmmapForANONMemory failed");
 		 exit(42);
 	 }
+        
 #if defined(SQ_HOST64) && defined(SQ_IMAGE32)
 		sqMemoryBase= (char*)startOfmmapForImageFile+headersize;
 		return 0;
@@ -231,10 +245,16 @@ usqInt sqAllocateMemoryMallocMac(usqInt desiredHeapSize, sqInt minHeapSize, FILE
         perror("malloc failed");
         exit(42);
     }
+    
     memory = (usqInt)mem;
-
-    //printf("--- memory --- %d\n", desiredHeapSize);
-    return memory;
+    
+    if(is64bitHost()){
+        gSqMemoryBase=mem;
+        return 0;
+    } else {
+        return memory;
+    }
+    
 }
 
 usqInt sqAllocateMemoryMac(usqInt desiredHeapSize, sqInt minHeapSize, FILE * f,usqInt headersize) {
@@ -264,6 +284,7 @@ usqInt sqLoadImageFileMac(void * buf, size_t elemSize, size_t count, FILE * f ) 
             }
         }
     } while(rest != 0);
+    
     return allRead;
 }
 
@@ -290,10 +311,17 @@ sqInt sqMemoryExtraBytesLeft(sqInt includingSwap) {
 
 void sqMacMemoryFree() {
 	if (gSqueakUseFileMappedMMAP == 0) {
-        if ((void*)memory == NULL){return;}
-        free((void*)memory);
-        //deallocateVirtualMemory((void*)memory);
-        memory = NULL;
+        if(is64bitHost()){
+            if (gSqMemoryBase == NULL){return;}
+            free(gSqMemoryBase);
+            gSqMemoryBase = NULL;
+            
+        } else {
+            if ((void*)memory == NULL){return;}
+            free((void*)memory);
+            memory = NULL;
+            //deallocateVirtualMemory((void*)memory);
+        }
     } else {
         munmap(startOfmmapForImageFile,fileRoundedUpToPageSize);
 		munmap(startOfmmapForANONMemory,freeSpaceRoundedUpToPageSize);

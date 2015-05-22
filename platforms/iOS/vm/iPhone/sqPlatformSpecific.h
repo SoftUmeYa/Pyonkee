@@ -82,6 +82,8 @@ void		sqFilenameFromString(char *buffer,sqInt fileIndex, long fileLength);
 #undef allocateMemoryMinimumImageFileHeaderSize
 #undef sqImageFileReadEntireImage
 usqInt sqAllocateMemoryMac(usqInt desiredHeapSize,sqInt minHeapSize, FILE * f,usqInt headersize);
+usqInt sqLoadImageFileMac(void * buf, size_t elemSize, size_t count, FILE * f );
+
 #define allocateMemoryMinimumImageFileHeaderSize(heapSize, minimumMemory, fileStream, headerSize) \
 sqAllocateMemoryMac(heapSize, minimumMemory, fileStream, headerSize)
 #undef sqImageFileRead

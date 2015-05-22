@@ -16,12 +16,14 @@
 + (UIImage *)upsideDownImage:(UIImage*)origImage;
 + (UIImage *)rotateRightImage:(UIImage*)origImage;
 + (UIImage *)rotateLeftImage:(UIImage*)origImage;
++ (void) trimResourcePathOnLaunch: (NSString*) resourcePath max: (int) max;
 + (CGSize) scratchScreenSize;
 + (float) scratchScreenZoomScale;
 + (Class) squeakUIViewClass;
 + (NSString *)applicationSupportDirectory;
 + (NSString *)tempDirectory;
 + (NSString *)bundleResourceDirectoryWith: (NSString*)subDir;
++ (NSString *)currentCountry;
 + (void) inform:(NSString*)message duration:(int)seconds for:(id)dele;
 + (void) printMemStats;
 

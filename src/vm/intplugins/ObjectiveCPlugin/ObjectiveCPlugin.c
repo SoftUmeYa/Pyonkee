@@ -7,6 +7,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include <dlfcn.h>
+
 #include <Foundation/Foundation.h>
  /* Default EXPORT macro that does nothing (see comment in sq.h): */
 #define EXPORT(returnType) returnType
@@ -30,6 +32,12 @@
 
 
 #include "sqMemoryAccess.h"
+
+#ifdef __LP64__
+typedef unsigned long		objcPtrIdx;
+#else
+typedef unsigned int		objcPtrIdx;
+#endif
 
 
 /*** Constants ***/
@@ -170,7 +178,7 @@ sqInt aNumber;
 		return null;
 	}
 	
-	EXPORT(sqInt) primitiveGetAddressFromEntryPointString(void) {
+EXPORT(sqInt) primitiveGetAddressFromEntryPointString(void) {
 	void * fn;
 	sqInt entryPointNameLength;
 	char entryPointName[256];
@@ -193,7 +201,7 @@ if (interpreterProxy->failed()) {
 	}
 	strlcpy(entryPointName, aEntryPointName, entryPointNameLength + 1);
 	fn = dlsym(-2, entryPointName);
-		_return_value = interpreterProxy->positive64BitIntegerFor(((usqInt) fn));
+		_return_value = interpreterProxy->positive64BitIntegerFor(((objcPtrIdx) fn));
 	if (interpreterProxy->failed()) {
 	return null;
 	}
@@ -211,7 +219,7 @@ EXPORT(sqInt) primitiveGetAutoReleasePool(void) {
 	    NS_HANDLER 
 		pool = nil;;
 	    NS_ENDHANDLER;
-	_return_value = interpreterProxy->positive64BitIntegerFor(((usqInt) pool));
+	_return_value = interpreterProxy->positive64BitIntegerFor(((objcPtrIdx) pool));
 	if (interpreterProxy->failed()) {
 		return null;
 	}
@@ -241,7 +249,7 @@ EXPORT(sqInt) primitiveGetAutoReleasePool(void) {
 	    NS_HANDLER 
 		classObject = nil;;
 			NS_ENDHANDLER;
-		_return_value = interpreterProxy->positive64BitIntegerFor(((usqInt) classObject));
+		_return_value = interpreterProxy->positive64BitIntegerFor(((objcPtrIdx) classObject));
 		if (interpreterProxy->failed()) {
 		return null;
 		}
@@ -249,7 +257,7 @@ EXPORT(sqInt) primitiveGetAutoReleasePool(void) {
 		return null;
 		}
 		
-		EXPORT(sqInt) primitiveGetDescription(void) {
+EXPORT(sqInt) primitiveGetDescription(void) {
 		id classOrInstanceObject;
 		NSString* nsStringObject;
 			const char * utf8String;
@@ -284,7 +292,7 @@ EXPORT(sqInt) primitiveGetAutoReleasePool(void) {
 			return null;
 			}
 			
-			EXPORT(sqInt) primitiveGetMethodSignatureForSelector(void) {
+EXPORT(sqInt) primitiveGetMethodSignatureForSelector(void) {
 			SEL selectorObject;
 			id classOrInstanceObject;
 			NSMethodSignature * messageSignatureObject;
@@ -298,7 +306,7 @@ EXPORT(sqInt) primitiveGetAutoReleasePool(void) {
 			return null;
 			}
 			selectorObject = ((SEL) (interpreterProxy->positive64BitValueOf(aSelectorOop)));
-classOrInstanceObject = ((id) (interpreterProxy->positive64BitValueOf(aClassOrInstanceOop)));
+            classOrInstanceObject = ((id) (interpreterProxy->positive64BitValueOf(aClassOrInstanceOop)));
 	messageSignatureObject = null;
 	if (interpreterProxy->failed()) {
 	return null;
@@ -310,7 +318,7 @@ classOrInstanceObject = ((id) (interpreterProxy->positive64BitValueOf(aClassOrIn
 	NS_HANDLER 
 	messageSignatureObject = nil;;
 	    NS_ENDHANDLER;
-	_return_value = interpreterProxy->positive64BitIntegerFor(((usqInt) messageSignatureObject));
+	_return_value = interpreterProxy->positive64BitIntegerFor(((objcPtrIdx) messageSignatureObject));
 	if (interpreterProxy->failed()) {
 	return null;
 	}
@@ -342,7 +350,7 @@ EXPORT(sqInt) primitiveGetNSStringForString(void) {
 	    NS_HANDLER 
 				aStringAsNSString = nil;;
 	    NS_ENDHANDLER;
-	_return_value = interpreterProxy->positive64BitIntegerFor(((usqInt) aStringAsNSString));
+	_return_value = interpreterProxy->positive64BitIntegerFor(((objcPtrIdx) aStringAsNSString));
 	if (interpreterProxy->failed()) {
 		return null;
 	}
@@ -350,7 +358,7 @@ EXPORT(sqInt) primitiveGetNSStringForString(void) {
 	return null;
 }
 
-	EXPORT(sqInt) primitiveGetObjCClassForString(void) {
+EXPORT(sqInt) primitiveGetObjCClassForString(void) {
 	sqInt classNameLength;
 	NSString* classNameNSString;
 	Class classObject;
@@ -371,7 +379,7 @@ return null;
 	classObject = nil;;
 	NS_ENDHANDLER;
 	[classNameNSString release];
-	_return_value = interpreterProxy->positive64BitIntegerFor(((usqInt) classObject));
+	_return_value = interpreterProxy->positive64BitIntegerFor(((objcPtrIdx) classObject));
 	if (interpreterProxy->failed()) {
 	return null;
 	}
@@ -379,7 +387,7 @@ return null;
 	return null;
 	}
 	
-	EXPORT(sqInt) primitiveGetSelectorForString(void) {
+EXPORT(sqInt) primitiveGetSelectorForString(void) {
 	sqInt selectorLength;
 	NSString * selectorNSString;
 	SEL selectorObject;
@@ -400,7 +408,7 @@ return null;
 	selectorObject = nil;;
 	NS_ENDHANDLER;
 	[selectorNSString release];
-	 _return_value = interpreterProxy->positive64BitIntegerFor(((usqInt) selectorObject));
+	 _return_value = interpreterProxy->positive64BitIntegerFor(((SEL) selectorObject));
 	if (interpreterProxy->failed()) {
 								 return null;
 								 }
@@ -408,7 +416,7 @@ return null;
 		return null;
 	}
 	
-	EXPORT(sqInt) primitiveGetSuperClass(void) {
+EXPORT(sqInt) primitiveGetSuperClass(void) {
 	id classOrInstanceObject;
 Class classObject;
 sqInt aClassOrInstanceOop;
@@ -430,7 +438,7 @@ sqInt aClassOrInstanceOop;
 	NS_HANDLER 
 	classObject = nil;;
 	NS_ENDHANDLER;
-	_return_value = interpreterProxy->positive64BitIntegerFor(((usqInt) classObject));
+	_return_value = interpreterProxy->positive64BitIntegerFor(((objcPtrIdx) classObject));
 	if (interpreterProxy->failed()) {
 	return null;
 	}
@@ -475,14 +483,14 @@ anOop1 = interpreterProxy->stackValue(1);
 		return null;
 	}
 	
-	EXPORT(sqInt) primitiveMethodSignatureGetArgumentType(void) {
+EXPORT(sqInt) primitiveMethodSignatureGetArgumentType(void) {
 	NSMethodSignature* nsMethodSignatureObject;
 	const char * string;
 	sqInt stringOop;
-sqInt aMethodSignatureOop;
-sqInt aIndexNumber;
+    sqInt aMethodSignatureOop;
+    sqInt aIndexNumber;
 
-aMethodSignatureOop = interpreterProxy->stackValue(1);
+    aMethodSignatureOop = interpreterProxy->stackValue(1);
 	aIndexNumber = interpreterProxy->stackIntegerValue(0);
 	if (interpreterProxy->failed()) {
 	return null;
@@ -510,7 +518,7 @@ aMethodSignatureOop = interpreterProxy->stackValue(1);
 	return null;
 	}
 	
-	EXPORT(sqInt) primitiveMethodSignatureGetMethodReturnLength(void) {
+EXPORT(sqInt) primitiveMethodSignatureGetMethodReturnLength(void) {
 	NSMethodSignature* nsMethodSignatureObject;
 	NSUInteger methodReturnLength;
 sqInt aMethodSignatureOop;
@@ -535,7 +543,7 @@ sqInt _return_value;
 	interpreterProxy->success(0);
 							  return null;
 							  }
-							  _return_value = interpreterProxy->positive64BitIntegerFor(((usqInt) methodReturnLength));
+							  _return_value = interpreterProxy->positive64BitIntegerFor(((objcPtrIdx) methodReturnLength));
 	if (interpreterProxy->failed()) {
 	return null;
 	}
@@ -568,7 +576,7 @@ NSUInteger numberOfArguments;
 	interpreterProxy->success(0);
 	return null;
 	}
-	_return_value = interpreterProxy->positive64BitIntegerFor(((usqInt) numberOfArguments));
+	_return_value = interpreterProxy->positive64BitIntegerFor(((objcPtrIdx) numberOfArguments));
 	if (interpreterProxy->failed()) {
 return null;
 }
@@ -619,7 +627,7 @@ if (interpreterProxy->failed()) {
 								 return null;
 								 }
 								 pointer = calloc(size,1);
-	_return_value = interpreterProxy->positive64BitIntegerFor(((usqInt) pointer));
+	_return_value = interpreterProxy->positive64BitIntegerFor(((objcPtrIdx) pointer));
 	if (interpreterProxy->failed()) {
 	return null;
 	}
@@ -718,7 +726,7 @@ sqInt bufferAddressOop;
 		}
 		;
 		data = *buffer;
-	_return_value = interpreterProxy->positive64BitIntegerFor(((usqInt) data));
+	_return_value = interpreterProxy->positive64BitIntegerFor(((objcPtrIdx) data));
 	if (interpreterProxy->failed()) {
 	return null;
 }
@@ -845,7 +853,7 @@ return null;
 	}
 	}
 	
-	EXPORT(sqInt) primitiveNSInvocationGetLongLongType(void) {
+EXPORT(sqInt) primitiveNSInvocationGetLongLongType(void) {
 	long long * buffer;
 	long long data;
 	sqInt bufferAddressOop;
@@ -882,7 +890,7 @@ interpreterProxy->popthenPush(3, _return_value);
 	}
 	}
 	
-	EXPORT(sqInt) primitiveNSInvocationGetLongType(void) {
+EXPORT(sqInt) primitiveNSInvocationGetLongType(void) {
 	long * buffer;
 	long data;
 		sqInt bufferAddressOop;
@@ -902,7 +910,7 @@ signedBoolean = interpreterProxy->booleanValueOf(interpreterProxy->stackValue(0)
 	data = 0;
 	if (signedBoolean) {
 	data = *buffer;
-		_return_value = interpreterProxy->signed64BitIntegerFor(((sqInt) data));
+		_return_value = interpreterProxy->signed64BitIntegerFor(((long) data));
 		if (interpreterProxy->failed()) {
 			return null;
 		}
@@ -910,7 +918,7 @@ signedBoolean = interpreterProxy->booleanValueOf(interpreterProxy->stackValue(0)
 		return null;
 	} else {
 		data = *buffer;
-		_return_value = interpreterProxy->positive64BitIntegerFor(((sqInt) data));
+		_return_value = interpreterProxy->positive64BitIntegerFor(((long) data));
 	if (interpreterProxy->failed()) {
 	return null;
 	}
@@ -919,7 +927,7 @@ signedBoolean = interpreterProxy->booleanValueOf(interpreterProxy->stackValue(0)
 	}
 	}
 	
-	EXPORT(sqInt) primitiveNSInvocationGetObjectType(void) {
+EXPORT(sqInt) primitiveNSInvocationGetObjectType(void) {
 	id * buffer;
 	id data;
 	sqInt bufferAddressOop;
@@ -935,7 +943,7 @@ signedBoolean = interpreterProxy->booleanValueOf(interpreterProxy->stackValue(0)
 		}
 		;
 		data = *buffer;
-	_return_value = interpreterProxy->positive64BitIntegerFor(((usqInt) data));
+	_return_value = interpreterProxy->positive64BitIntegerFor(((objcPtrIdx) data));
 		if (interpreterProxy->failed()) {
 		return null;
 		}
@@ -971,7 +979,7 @@ EXPORT(sqInt) primitiveNSInvocationGetReturnValue(void) {
 	return null;
 }
 
-		EXPORT(sqInt) primitiveNSInvocationGetSelectorType(void) {
+EXPORT(sqInt) primitiveNSInvocationGetSelectorType(void) {
 SEL * buffer;
 SEL data;
 sqInt bufferAddressOop;
@@ -987,7 +995,7 @@ sqInt _return_value;
 	}
 	;
 	data = *buffer;
-	_return_value = interpreterProxy->positive64BitIntegerFor(((usqInt) data));
+	_return_value = interpreterProxy->positive64BitIntegerFor(((SEL) data));
 	if (interpreterProxy->failed()) {
 	return null;
 	}
@@ -995,7 +1003,7 @@ sqInt _return_value;
 	return null;
 	}
 	
-	EXPORT(sqInt) primitiveNSInvocationGetShortType(void) {
+EXPORT(sqInt) primitiveNSInvocationGetShortType(void) {
 	short * buffer;
 	short data;
 	sqInt bufferAddressOop;
@@ -1032,7 +1040,7 @@ return null;
 	}
 	}
 	
-	EXPORT(sqInt) primitiveNSInvocationGetStructureType(void) {
+EXPORT(sqInt) primitiveNSInvocationGetStructureType(void) {
 	sqInt newByteArray;
 	char ** bufferPointer;
 	sqInt bufferAddressOop;
@@ -1056,7 +1064,7 @@ return null;
 	return null;
 	}
 	
-	EXPORT(sqInt) primitiveNSInvocationMalloc(void) {
+EXPORT(sqInt) primitiveNSInvocationMalloc(void) {
 	void* pointer;
 	sqInt size;
 	sqInt _return_value;
@@ -1066,7 +1074,7 @@ return null;
 		return null;
 	}
 	pointer = malloc(size);
-	_return_value = interpreterProxy->positive64BitIntegerFor(((usqInt) pointer));
+	_return_value = interpreterProxy->positive64BitIntegerFor(((objcPtrIdx) pointer));
 if (interpreterProxy->failed()) {
 	return null;
 	}
@@ -1074,7 +1082,7 @@ if (interpreterProxy->failed()) {
 	return null;
 	}
 	
-	EXPORT(sqInt) primitiveNSInvocationSetCType(void) {
+EXPORT(sqInt) primitiveNSInvocationSetCType(void) {
 	unsigned char aUnsignedValue;
 	NSInvocation* nsInvocationInstance;
 	char aValue;
@@ -1082,7 +1090,7 @@ if (interpreterProxy->failed()) {
 	sqInt aMethodSignatureOop;
 	sqInt signedBoolean;
 	sqInt index;
-		sqInt newCharacterOop;
+    sqInt newCharacterOop;
 	sqInt _return_value;
 	
 	aMethodSignatureOop = interpreterProxy->stackValue(3);
@@ -1097,7 +1105,7 @@ if (interpreterProxy->failed()) {
 		return null;
 	}
 	aValue = interpreterProxy->fetchIntegerofObject(0, newCharacterOop);
-aUnsignedValue = interpreterProxy->fetchIntegerofObject(0, newCharacterOop);
+    aUnsignedValue = interpreterProxy->fetchIntegerofObject(0, newCharacterOop);
 	if (signedBoolean) {
 	buffer = malloc(sizeof(char));
 	*(char*) buffer = (char) aValue;
@@ -1115,7 +1123,7 @@ aUnsignedValue = interpreterProxy->fetchIntegerofObject(0, newCharacterOop);
 	return null;
 	}
 	NS_ENDHANDLER;
-	_return_value = interpreterProxy->positive64BitIntegerFor(((usqInt) buffer));
+	_return_value = interpreterProxy->positive64BitIntegerFor(((objcPtrIdx) buffer));
 	if (interpreterProxy->failed()) {
 	return null;
 	}
@@ -1123,7 +1131,7 @@ aUnsignedValue = interpreterProxy->fetchIntegerofObject(0, newCharacterOop);
 	return null;
 	}
 	
-	EXPORT(sqInt) primitiveNSInvocationSetDoubleType(void) {
+EXPORT(sqInt) primitiveNSInvocationSetDoubleType(void) {
 	void * buffer;
 	NSInvocation* nsInvocationInstance;
 	sqInt aMethodSignatureOop;
@@ -1153,7 +1161,7 @@ aValue = interpreterProxy->stackFloatValue(0);
 	return null;
 	}
 	NS_ENDHANDLER;
-	_return_value = interpreterProxy->positive64BitIntegerFor(((usqInt) buffer));
+	_return_value = interpreterProxy->positive64BitIntegerFor(((objcPtrIdx) buffer));
 		if (interpreterProxy->failed()) {
 		return null;
 		}
@@ -1191,7 +1199,7 @@ NS_DURING;
 	return null;
 	}
 	NS_ENDHANDLER;
-	_return_value = interpreterProxy->positive64BitIntegerFor(((usqInt) buffer));
+	_return_value = interpreterProxy->positive64BitIntegerFor(((objcPtrIdx) buffer));
 	if (interpreterProxy->failed()) {
 	return null;
 	}
@@ -1199,7 +1207,7 @@ NS_DURING;
 	return null;
 	}
 	
-	EXPORT(sqInt) primitiveNSInvocationSetIntType(void) {
+EXPORT(sqInt) primitiveNSInvocationSetIntType(void) {
 												  NSInvocation* nsInvocationInstance;
 		int aValue;
 	void * buffer;
@@ -1245,7 +1253,7 @@ return null;
 	return null;
 	}
 	NS_ENDHANDLER;
-	_return_value = interpreterProxy->positive64BitIntegerFor(((usqInt) buffer));
+	_return_value = interpreterProxy->positive64BitIntegerFor(((objcPtrIdx) buffer));
 	if (interpreterProxy->failed()) {
 	return null;
 	}
@@ -1253,7 +1261,7 @@ return null;
 	return null;
 	}
 	
-	EXPORT(sqInt) primitiveNSInvocationSetLongLongType(void) {
+EXPORT(sqInt) primitiveNSInvocationSetLongLongType(void) {
 	NSInvocation* nsInvocationInstance;
 	long long aValue;
 		void * buffer;
@@ -1299,7 +1307,7 @@ buffer = malloc(sizeof(long long));
 	return null;
 	}
 	NS_ENDHANDLER;
-	_return_value = interpreterProxy->positive64BitIntegerFor(((usqInt) buffer));
+	_return_value = interpreterProxy->positive64BitIntegerFor(((objcPtrIdx) buffer));
 	if (interpreterProxy->failed()) {
 	return null;
 	}
@@ -1307,7 +1315,7 @@ buffer = malloc(sizeof(long long));
 	return null;
 	}
 	
-	EXPORT(sqInt) primitiveNSInvocationSetLongType(void) {
+EXPORT(sqInt) primitiveNSInvocationSetLongType(void) {
 	NSInvocation* nsInvocationInstance;
 	long aValue;
 	void * buffer;
@@ -1353,7 +1361,7 @@ signedBoolean = interpreterProxy->booleanValueOf(interpreterProxy->stackValue(2)
 	return null;
 	}
 	NS_ENDHANDLER;
-	_return_value = interpreterProxy->positive64BitIntegerFor(((usqInt) buffer));
+	_return_value = interpreterProxy->positive64BitIntegerFor(((objcPtrIdx) buffer));
 	if (interpreterProxy->failed()) {
 	return null;
 	}
@@ -1361,7 +1369,7 @@ signedBoolean = interpreterProxy->booleanValueOf(interpreterProxy->stackValue(2)
 	return null;
 	}
 	
-	EXPORT(sqInt) primitiveNSInvocationSetPointerType(void) {
+EXPORT(sqInt) primitiveNSInvocationSetPointerType(void) {
 	void * aValue;
 	void ** buffer;
 NSInvocation* nsInvocationInstance;
@@ -1393,7 +1401,7 @@ sqInt aMethodSignatureOop;
 	return null;
 	}
 	NS_ENDHANDLER;
-	_return_value = interpreterProxy->positive64BitIntegerFor(((usqInt) buffer));
+	_return_value = interpreterProxy->positive64BitIntegerFor(((objcPtrIdx) buffer));
 															  if (interpreterProxy->failed()) {
 															  return null;
 	}
@@ -1457,7 +1465,7 @@ EXPORT(sqInt) primitiveNSInvocationSetSelector(void) {
 	return null;
 }
 
-	EXPORT(sqInt) primitiveNSInvocationSetShortType(void) {
+EXPORT(sqInt) primitiveNSInvocationSetShortType(void) {
 	NSInvocation* nsInvocationInstance;
 	short aValue;
 	void * buffer;
@@ -1503,7 +1511,7 @@ aMethodSignatureOop = interpreterProxy->stackValue(3);
 	return null;
 	}
 	NS_ENDHANDLER;
-	_return_value = interpreterProxy->positive64BitIntegerFor(((usqInt) buffer));
+	_return_value = interpreterProxy->positive64BitIntegerFor(((objcPtrIdx) buffer));
 if (interpreterProxy->failed()) {
 return null;
 }
@@ -1511,7 +1519,7 @@ interpreterProxy->popthenPush(5, _return_value);
 	return null;
 	}
 	
-	EXPORT(sqInt) primitiveNSInvocationSetStringType(void) {
+EXPORT(sqInt) primitiveNSInvocationSetStringType(void) {
 	sqInt stringSize;
 	char * buffer;
 	NSInvocation* nsInvocationInstance;
@@ -1545,7 +1553,7 @@ interpreterProxy->popthenPush(5, _return_value);
 	return null;
 	}
 	NS_ENDHANDLER;
-_return_value = interpreterProxy->positive64BitIntegerFor(((usqInt) buffer));
+_return_value = interpreterProxy->positive64BitIntegerFor(((objcPtrIdx) buffer));
 	if (interpreterProxy->failed()) {
 	return null;
 	}
@@ -1587,7 +1595,7 @@ sqInt _return_value;
 		 return null;
 		 }
 		 NS_ENDHANDLER;
-		 _return_value = interpreterProxy->positive64BitIntegerFor(((usqInt) buffer));
+		 _return_value = interpreterProxy->positive64BitIntegerFor(((objcPtrIdx) buffer));
 		 if (interpreterProxy->failed()) {
 		 return null;
 		 }
@@ -1629,7 +1637,7 @@ sqInt _return_value;
 			  return null;
 			  }
 			  NS_ENDHANDLER;
-			  _return_value = interpreterProxy->positive64BitIntegerFor(((usqInt) buffer));
+			  _return_value = interpreterProxy->positive64BitIntegerFor(((objcPtrIdx) buffer));
 			  if (interpreterProxy->failed()) {
 			  return null;
 				  }
@@ -1660,7 +1668,7 @@ EXPORT(sqInt) primitiveNSInvocationWithMethodSignature(void) {
 		return null;
 	}
 	    NS_ENDHANDLER;
-	_return_value = interpreterProxy->positive64BitIntegerFor(((usqInt) nsInvocationOops));
+	_return_value = interpreterProxy->positive64BitIntegerFor(((objcPtrIdx) nsInvocationOops));
 	if (interpreterProxy->failed()) {
 		return null;
 	}
@@ -1668,7 +1676,7 @@ EXPORT(sqInt) primitiveNSInvocationWithMethodSignature(void) {
 	return null;
 }
 
-			  EXPORT(sqInt) primitiveNSLog(void) {
+EXPORT(sqInt) primitiveNSLog(void) {
 			  id oop1;
 			  sqInt aNSStringOOP;
 			
@@ -1689,7 +1697,7 @@ EXPORT(sqInt) primitiveNSInvocationWithMethodSignature(void) {
 			   return null;
 			   }
 			   
-			   EXPORT(sqInt) primitiveNSStringToUTF8(void) {
+EXPORT(sqInt) primitiveNSStringToUTF8(void) {
 			   NSString* nsStringObject;
 			   const char * utf8String;
 			   sqInt utf8StringOop;
@@ -1725,7 +1733,7 @@ EXPORT(sqInt) primitiveNSInvocationWithMethodSignature(void) {
 			  
 			  /*	- (id)performSelector:(SEL)aSelector */
 				  
-	EXPORT(sqInt) primitivePerformSelectorOnMainThreadWithWaitTilDone(void) {
+EXPORT(sqInt) primitivePerformSelectorOnMainThreadWithWaitTilDone(void) {
 	id classOrInstanceObject;
 	id object1;
 	SEL selectorObject;
@@ -1779,7 +1787,7 @@ aReturnValueAddress = interpreterProxy->stackValue(1);
 	
 	/*	- (id)performSelector:(SEL)aSelector */
 	
- EXPORT(sqInt) primitivePerformSelectorWithWith(void) {
+EXPORT(sqInt) primitivePerformSelectorWithWith(void) {
 id classOrInstanceObject;
 id object2;
 id object1;
@@ -1815,7 +1823,7 @@ returnValue = [classOrInstanceObject performSelector: selectorObject withObject:
 NS_HANDLER 
 returnValue = nil;;
 NS_ENDHANDLER;
-_return_value = interpreterProxy->positive64BitIntegerFor(((usqInt) returnValue));
+_return_value = interpreterProxy->positive64BitIntegerFor(((objcPtrIdx) returnValue));
 if (interpreterProxy->failed()) {
 return null;
 }
@@ -1857,7 +1865,7 @@ EXPORT(sqInt) primitivePerformSelectorWith(void) {
 	    NS_HANDLER 
 		returnValue = nil;;
 	    NS_ENDHANDLER;
-	_return_value = interpreterProxy->positive64BitIntegerFor(((usqInt) returnValue));
+	_return_value = interpreterProxy->positive64BitIntegerFor(((objcPtrIdx) returnValue));
 	if (interpreterProxy->failed()) {
 		return null;
 	}
@@ -1894,7 +1902,7 @@ EXPORT(sqInt) primitivePerformSelector(void) {
 	    NS_HANDLER 
 		returnValue = nil;;
 	    NS_ENDHANDLER;
-	_return_value = interpreterProxy->positive64BitIntegerFor(((usqInt) returnValue));
+	_return_value = interpreterProxy->positive64BitIntegerFor(((objcPtrIdx) returnValue));
 	if (interpreterProxy->failed()) {
 		return null;
 	}

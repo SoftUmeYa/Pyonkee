@@ -41,9 +41,10 @@
 #endif
 
 #if (SIZEOF_VOID_P == 4)
-# define SQ_HOST32 1
+# define SQ_IMAGE32 1
 #elif (SIZEOF_VOID_P == 8)
-# define SQ_HOST64 1
+# define SQ_IMAGE32 1  //*For iOS, we use 32bit image on 64bit VM.
+//# define SQ_HOST64 1 //*Not using this flag on iOS.
 #else
 # error host is neither 32- nor 64-bit?
 #endif
@@ -62,7 +63,9 @@
   typedef unsigned long long	usqInt;
 #endif
 
-#if defined(SQ_HOST64) && defined(SQ_IMAGE32)
+extern void *gSqMemoryBase;
+
+#if defined(__LP64__) && defined(SQ_IMAGE32)
   extern char *sqMemoryBase;
 # define SQ_FAKE_MEMORY_OFFSET	16 // (1*1024*1024)	/* nonzero to debug addr xlation */
 #else
@@ -82,8 +85,8 @@
   static inline sqInt longAtPointerput(char *ptr, sqInt val)	{ return (sqInt)(*((sqInt *)ptr)= (sqInt)val); }
   static inline sqInt oopAtPointer(char *ptr)			{ return (sqInt)(*((sqInt *)ptr)); }
   static inline sqInt oopAtPointerput(char *ptr, sqInt val)	{ return (sqInt)(*((sqInt *)ptr)= (sqInt)val); }
-  static inline char *pointerForOop(usqInt oop)			{ return sqMemoryBase + oop; }
-  static inline sqInt oopForPointer(char *ptr)			{ return (sqInt)(ptr - sqMemoryBase); }
+  static inline char *pointerForOop(usqInt oop)			{ return gSqMemoryBase + ((usqInt)oop); }
+  static inline sqInt oopForPointer(char *ptr)			{ return (sqInt)(ptr - (char*)gSqMemoryBase); }
   static inline sqInt byteAt(sqInt oop)				{ return byteAtPointer(pointerForOop(oop)); }
   static inline sqInt byteAtput(sqInt oop, int val)		{ return byteAtPointerput(pointerForOop(oop), val); }
   static inline sqInt shortAt(sqInt oop)			{ return shortAtPointer(pointerForOop(oop)); }

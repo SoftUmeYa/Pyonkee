@@ -32,10 +32,11 @@ static const int kShiftAutoUpSeconds = 20;
     UIColor* _originalBackgroundColor;
     NSInteger _originalEditModeIndex;
     BOOL _useIme;
+    UIInterfaceOrientation _formerOrientation;
 }
 
 @synthesize scrollView,scrollViewController,fontScaleButton, radioButtonSetController,
-	textField,pathToProjectFile,repeatKeyDict,
+	textField,repeatKeyDict,
     softKeyboardField, softKeyboardOnButton,
 	shoutGoLandscapeButton,stopAllLandscapeButton,landscapeToolBar,landscapeToolBar2,padLockButton,
     commandButton, shiftButton,
@@ -82,6 +83,8 @@ uint memoryWarningCount;
     
     warningMinHeapThreshold = [gDelegateApp squeakMaxHeapSize] * 0.70;
     memoryWarningCount = 0;
+    
+    _formerOrientation = [[UIApplication sharedApplication] statusBarOrientation];
 }
 
 - (void) viewWillAppear:(BOOL)animated {
@@ -139,12 +142,12 @@ uint memoryWarningCount;
 
 #pragma mark View Opening
 - (void) firstViewDidAppear{
-    [[self appDelegate] openProject: @"" run: NO];
+    [[self appDelegate] openDefaultProject];
 }
 
 - (void) restartedViewDidAppear{
     [SUYUtils inform:(NSLocalizedString(@"Done!",nil)) duration:400 for:self];
-    [[self appDelegate] openProject: @"" run: NO];
+    [[self appDelegate] openDefaultProject];
 }
 
 - (void) postOpen {
@@ -153,6 +156,7 @@ uint memoryWarningCount;
 
 - (void) postOpenOnMainThread {
 	[gDelegateApp terminateActivityView];
+    [self fixOrientationIfNeeded];
 }
 
 #pragma mark Rotation
@@ -172,28 +176,50 @@ uint memoryWarningCount;
 //    return UIInterfaceOrientationLandscapeLeft;
 //}
 
-- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation{
-    if([self isInPresentationMode]){
-        CGFloat ratio = 1.0f;
-        CGPoint offsetPoint = self.scrollView.contentOffset;
-        CGSize sz = [SUYUtils scratchScreenSize];
-        if(UIInterfaceOrientationIsLandscape(fromInterfaceOrientation)){
-            ratio = sz.height/sz.width;
-            _originalScrollerScale = _originalScrollerScale * ratio;
-            self.scrollView.minimumZoomScale = ratio;
-            [self.scrollView setZoomScale: _originalScrollerScale animated:YES];
-            self.scrollView.contentOffset = CGPointMake(offsetPoint.x*ratio, offsetPoint.y*ratio);
-            self.presentationExitButton.hidden = YES;
-            
-        } else {
+-(void) viewDidLayoutSubviews{
+    if([self isInPresentationMode]==NO){return;}
+    [self fixLayoutByOrientation];
+}
+
+-(void)fixLayoutByOrientation{
+    CGFloat ratio = 1.0f;
+    CGPoint offsetPoint = self.scrollView.contentOffset;
+    CGSize sz = [SUYUtils scratchScreenSize];
+    
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    if(_formerOrientation != orientation){
+        if(UIInterfaceOrientationIsLandscape(orientation)){
             ratio = sz.width/sz.height;
             _originalScrollerScale = _originalScrollerScale * ratio;
             self.scrollView.minimumZoomScale = 1.0f;
             [self.scrollView setZoomScale: _originalScrollerScale animated:YES];
             self.scrollView.contentOffset = CGPointMake(offsetPoint.x*ratio, offsetPoint.y*ratio);
             self.presentationExitButton.hidden = NO;
+        } else {
+            ratio = sz.height/sz.width;
+            _originalScrollerScale = _originalScrollerScale * ratio;
+            self.scrollView.minimumZoomScale = ratio;
+            [self.scrollView setZoomScale: _originalScrollerScale animated:YES];
+            self.scrollView.contentOffset = CGPointMake(offsetPoint.x*ratio, offsetPoint.y*ratio);
+            self.presentationExitButton.hidden = YES;
         }
+        _formerOrientation = orientation;
     }
+}
+
+-(void)fixOrientationIfNeeded{
+    //MARK: NO-OP for now - forcing orientation is not good
+    
+//    if([self isInPresentationMode]){
+//        UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+//        if(UIInterfaceOrientationIsLandscape(orientation)==NO){
+//            NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationLandscapeLeft];
+//            [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
+//            [self fixLayoutByOrientation];
+//            [self exitPresentation: self];
+//            LgInfo(@"!!! orientation changed");
+//        }
+//    }
 }
 
 #pragma mark Actions
@@ -348,6 +374,31 @@ uint memoryWarningCount;
     [[self appDelegate] shiftKeyStateChanged: NO];
 }
 
+- (void) airDropProject: (NSString *)projectPath {
+    NSURL *url = [NSURL fileURLWithPath:projectPath];
+    NSArray *objectsToShare = @[url];
+    
+    UIActivityViewController *activityVc = [[UIActivityViewController alloc] initWithActivityItems:objectsToShare applicationActivities:nil];
+    
+    // Exclude all activities except AirDrop.
+    NSArray *excludedActivities = @[UIActivityTypePostToTwitter, UIActivityTypePostToFacebook,
+                                    UIActivityTypePostToWeibo,
+                                    UIActivityTypeMessage, UIActivityTypeMail,
+                                    UIActivityTypePrint, UIActivityTypeCopyToPasteboard,
+                                    UIActivityTypeAssignToContact, UIActivityTypeSaveToCameraRoll,
+                                    UIActivityTypeAddToReadingList, UIActivityTypePostToFlickr,
+                                    UIActivityTypePostToVimeo, UIActivityTypePostToTencentWeibo];
+    
+    //activityVc.excludedActivityTypes = excludedActivities;
+    activityVc.modalPresentationStyle = UIModalPresentationFormSheet;
+    
+    Class UIPopoverControllerClass = NSClassFromString(@"UIPopoverController");
+    popUpInfoViewController  = [[UIPopoverControllerClass alloc] initWithContentViewController: activityVc];
+    self.popUpInfoViewController.delegate = self;
+    [self.popUpInfoViewController setPopoverContentSize: CGSizeMake(320.0f,320.0f) animated: YES];
+    [self.popUpInfoViewController presentPopoverFromRect: CGRectMake(self.view.center.x-136,2,10,42) inView: self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated: YES];
+    
+}
 
 #pragma mark Accessing
 - (int) viewModeIndex {

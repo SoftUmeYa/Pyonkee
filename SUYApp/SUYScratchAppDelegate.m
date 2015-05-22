@@ -75,8 +75,35 @@ BOOL isRestarting = NO;
     
    	[window makeKeyAndVisible];
     isRestarting = NO;
+    
+    NSURL *url = (NSURL *)[launchOptions valueForKey:UIApplicationLaunchOptionsURLKey];
+    
+    if (url != nil && [url isFileURL]) {
+        self.clickedResourcePathOnLaunch = url.path;
+    } else {
+        self.clickedResourcePathOnLaunch = nil;
+    }
+    
     return YES;
     
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    //TODO: Prohibit request from com.apple.mobilemail
+    if (self.clickedResourcePathOnLaunch == nil && url != nil && [url isFileURL]) {
+        
+        [self trimResourcePathOnLaunch: url.path]; //MARK: Auto removing the oldest project => better to be off?
+        
+        if([presentationSpace isInPresentationMode]){
+            [[[UIAlertView alloc] initWithTitle:@""
+                    message: [NSString stringWithFormat: @"%@: %@", NSLocalizedString(@"New entry in Inbox",nil), [url.lastPathComponent stringByDeletingPathExtension]]
+                    delegate:nil cancelButtonTitle:NSLocalizedString(@"OK",nil) otherButtonTitles:nil] show];
+        } else {
+            [self openProject:url.path];
+        }
+        
+    }
+    return YES;
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application{
@@ -89,6 +116,12 @@ BOOL isRestarting = NO;
     LgInfo(@"!! applicationDidBecomeActive !!");
 }
 
+#pragma mark Private
+-(void) trimResourcePathOnLaunch: (NSString*) resourcePath
+{
+    NSInteger maxNum = [(sqSqueakIPhoneInfoPlistInterface*) self.squeakApplication.infoPlistInterfaceLogic inboxMaxNumOfItems];
+    [[SUYUtils class] trimResourcePathOnLaunch: resourcePath max: (int)maxNum];
+}
 
 #pragma mark Accessing
 
@@ -175,8 +208,18 @@ BOOL isRestarting = NO;
 #pragma mark -
 #pragma mark ScratchAdapter
 
-- (void) openProject:(NSString*)projectName run:(BOOL)shouldRun{
-    [squeakProxy chooseThisProject: @"" runProject: 0];
+- (void) openDefaultProject{
+    if(self.clickedResourcePathOnLaunch == nil){
+        [self openProject:@""];
+    } else {
+        [self trimResourcePathOnLaunch: self.clickedResourcePathOnLaunch];
+        [self openProject: self.clickedResourcePathOnLaunch];
+        self.clickedResourcePathOnLaunch = nil;
+    }
+}
+
+- (void) openProject:(NSString*)projectPathName{
+    [squeakProxy chooseThisProject: projectPathName runProject: NO];
 }
 
 - (void) shoutGo{
@@ -324,6 +367,11 @@ BOOL isRestarting = NO;
 
 - (void)mailProject: (NSString *)projectPath {
     [mailComposer performSelectorOnMainThread:@selector(mailProject:) withObject: projectPath waitUntilDone: NO];
+}
+
+#pragma mark AirDrop
+- (void)airDropProject: (NSString *)projectPath {
+    [presentationSpace airDropProject: projectPath];
 }
 
 

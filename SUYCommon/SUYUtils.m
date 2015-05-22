@@ -57,6 +57,43 @@
     return [UIImage imageWithCGImage:origImage.CGImage scale:1.0 orientation:UIImageOrientationLeft];
 }
 
+#pragma mark Files
+
++(void) trimResourcePathOnLaunch: (NSString*) resourcePath max: (int) max
+{
+    NSFileManager* fm = [NSFileManager defaultManager];
+    
+    NSString* parentDirName = [resourcePath stringByDeletingLastPathComponent];
+    
+    NSArray *allFileNames = [fm contentsOfDirectoryAtPath:parentDirName error:nil];
+    
+    NSMutableArray* allPathNames = [NSMutableArray arrayWithCapacity: allFileNames.count];
+    
+    for (NSString *fName in allFileNames) {
+        NSString* path = [parentDirName stringByAppendingPathComponent:fName];
+        [allPathNames addObject:path];
+    }
+    NSArray*  pathNamesSorted = [allPathNames sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        NSDictionary* first_properties  = [fm attributesOfItemAtPath:obj1 error:nil];
+        NSDate*       first             = [first_properties  fileModificationDate];
+        NSDictionary* second_properties = [fm attributesOfItemAtPath:obj1 error:nil];
+        NSDate*       second            = [second_properties fileModificationDate];
+        return [second compare:first];
+    }];
+
+    if(pathNamesSorted.count > max){
+        for(int i = 0; i < pathNamesSorted.count; i++){
+            NSString* path = pathNamesSorted[i];
+            if([resourcePath compare:path] != NSOrderedSame){
+       //         LgInfo(@"#del# # INBOX path %@ ", path);
+                [fm removeItemAtPath: path error:nil];
+                break;
+            }
+        }
+    }
+    
+}
+
 #pragma mark Defaults
 
 + (Class) squeakUIViewClass{
@@ -117,6 +154,14 @@
 + (NSString *)bundleResourceDirectoryWith: (NSString*)subDir {
     NSString *path = [[NSBundle mainBundle] resourcePath];
     return [path stringByAppendingPathComponent: subDir];
+}
+
++ (NSString *)currentCountry{
+    NSString* ccode = [[NSLocale currentLocale] objectForKey:NSLocaleCountryCode];
+    if(ccode==nil){
+        return @"";
+    }
+    return ccode;
 }
 
 #pragma mark Private

@@ -51,7 +51,7 @@
 		[pool drain];
 		return NO;
 	}
-	f = sqImageFileOpen(characterPathForImage, "rb");
+  	f = sqImageFileOpen(characterPathForImage, "rb");
 	readImageFromFileHeapSizeStartingAt(f, sqGetAvailableMemory(), (squeakFileOffsetType) 0);  //This is a VM Callback
 	sqImageFileClose(f);
 	[pool drain];
