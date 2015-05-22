@@ -310,6 +310,10 @@
 		8561D56A195887D0008FDA45 /* normalMode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = normalMode.png; path = Resources/images/normalMode.png; sourceTree = "<group>"; };
 		8561D56B195887D0008FDA45 /* presentationMode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = presentationMode.png; path = Resources/images/presentationMode.png; sourceTree = "<group>"; };
 		8561D56C195887D0008FDA45 /* quarterMode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = quarterMode.png; path = Resources/images/quarterMode.png; sourceTree = "<group>"; };
+		8566D0901B0EDDD900CDF860 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		8566D0911B0EDDD900CDF860 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		8566D0921B0EDDE100CDF860 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		8566D0931B0EDDE100CDF860 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		856D81C219140AA2000946DF /* Info-iPad.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Info-iPad.plist"; sourceTree = SOURCE_ROOT; };
 		857229701982B4A200BAE70B /* SUYMailComposer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUYMailComposer.h; sourceTree = "<group>"; };
 		857229711982B4A200BAE70B /* SUYMailComposer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUYMailComposer.m; sourceTree = "<group>"; };
@@ -2133,6 +2137,8 @@
 				ja,
 				es,
 				pt,
+				"zh-Hans",
+				"zh-Hant",
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
@@ -2417,6 +2423,8 @@
 				85D17E5819907B3200A917EF /* fr */,
 				85E14FE7199B2FA900BDCF40 /* es */,
 				85E14FE9199B2FB900BDCF40 /* pt */,
+				8566D0911B0EDDD900CDF860 /* zh-Hans */,
+				8566D0931B0EDDE100CDF860 /* zh-Hant */,
 			);
 			name = InfoPlist.strings;
 			path = Resources;
@@ -2431,6 +2439,8 @@
 				85D17E6019907C6500A917EF /* ja */,
 				85E14FE6199B2FA900BDCF40 /* es */,
 				85E14FE8199B2FB900BDCF40 /* pt */,
+				8566D0901B0EDDD900CDF860 /* zh-Hans */,
+				8566D0921B0EDDE100CDF860 /* zh-Hant */,
 			);
 			name = Localizable.strings;
 			path = Resources;
@@ -2505,7 +2515,7 @@
 				PRODUCT_NAME = Pyonkee;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 2;
-				VALID_ARCHS = "armv7 armv7s";
+				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Debug;
 		};
@@ -2571,10 +2581,10 @@
 				);
 				PRODUCT_NAME = Pyonkee;
 				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D9893353-0345-454B-A1B9-660B4E5091CB";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
-				VALID_ARCHS = "armv7 armv7s";
+				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Distribution;
 		};
