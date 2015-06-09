@@ -402,7 +402,7 @@ uint memoryWarningCount;
 
 #pragma mark Accessing
 - (int) viewModeIndex {
-    return self.radioButtonSetController.selectedIndex;
+    return (int)self.radioButtonSetController.selectedIndex;
 }
 
 - (ScratchIPhoneAppDelegate*) appDelegate{
@@ -627,7 +627,7 @@ uint memoryWarningCount;
 - (void)radioButtonSetController:(GSRadioButtonSetController *)controller didSelectButtonAtIndex:(NSUInteger)selectedIndex
 {
     [self changedViewModeIndex:selectedIndex];
-    [self setViewModeIndex:selectedIndex];
+    [self setViewModeIndex:(int)selectedIndex];
 }
 
 - (void)setViewModeIndex:(int)selectedIndex
@@ -641,9 +641,14 @@ uint memoryWarningCount;
     
 }
 
-- (BOOL) isInPresentationMode
+- (BOOL) isViewModeBarHidden
 {
     return self.viewModeBar.hidden;
+}
+
+- (BOOL) isInPresentationMode
+{
+    return [self isViewModeBarHidden] && self.viewModeIndex == 2;
 }
 
 #pragma mark Callback from Scratch

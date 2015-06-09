@@ -1989,6 +1989,30 @@ msgid "New name:"
 msgstr "あたらしいなまえ:"
 
 ############################################
+# MESH
+############################################
+msgid "Host Mesh"
+msgstr "メッシュのホストになる"
+
+msgid "Join Mesh"
+msgstr "メッシュにくわわる"
+
+msgid "Show IP Address"
+msgstr "IPアドレスをひょうじする"
+
+msgid "Stop Hosting Mesh"
+msgstr "メッシュのホストをていしする"
+
+msgid "Leave Mesh"
+msgstr "メッシュからぬける"
+
+msgid "IP Address"
+msgstr "IPアドレス"
+
+msgid "IP address:"
+msgstr "IPアドレス:"
+
+############################################
 # Pyonkee resource folders
 ############################################
 

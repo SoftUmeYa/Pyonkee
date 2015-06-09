@@ -18,7 +18,8 @@ Pyonkee was originally started as a fork of [John M McIntosh](https://www.smallt
  - Auto-saving project
  - Sending/Receiving projects via e-mail
  - Project import/export through iTunes (currently disabled on AppStore version)
- - Prokect sharing via AirDrop (since version 1.9)
+ - Photo importer/trimmer
+ - Prokect sharing via AirDrop
 
 ##License
 Pyonkee is a derivative work of open-sourced Scratch 1.4 and licensed under the GPL v2. See the included gpl-2.0.txt for details. 
@@ -41,6 +42,6 @@ We can also customize Pyonkee for your needs. Feel free to contact us.
 
 
 -----
-Copyright 2014 SoftUmeYa, LLC
+Copyright 2014-2015 SoftUmeYa, LLC
 
 

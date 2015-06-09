@@ -12,6 +12,8 @@
 	<dict>
 		<key>6925FEFC71DADEC403E5157BF17043CBC8D94B4B</key>
 		<string>https://github.com/SoftUmeYa/Pyonkee</string>
+		<key>F5FDAE75FB00DFB650B0582159B364D96564DE5E</key>
+		<string>https://bitbucket.org/softumeya/scratchonipad.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Pyonkee.xcodeproj</string>
@@ -19,6 +21,8 @@
 	<dict>
 		<key>6925FEFC71DADEC403E5157BF17043CBC8D94B4B</key>
 		<string>../..</string>
+		<key>F5FDAE75FB00DFB650B0582159B364D96564DE5E</key>
+		<string>../../../../git/ScratchOnIPad</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/SoftUmeYa/Pyonkee</string>
@@ -35,6 +39,14 @@
 			<string>6925FEFC71DADEC403E5157BF17043CBC8D94B4B</string>
 			<key>IDESourceControlWCCName</key>
 			<string>Pyonkee</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>F5FDAE75FB00DFB650B0582159B364D96564DE5E</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ScratchOnIPad</string>
 		</dict>
 	</array>
 </dict>

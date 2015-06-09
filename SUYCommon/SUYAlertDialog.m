@@ -76,7 +76,12 @@ extern struct	VirtualMachine* interpreterProxy;
 #pragma mark - Callback
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    UITextField *textField = [self.alertView textFieldAtIndex:0];
+    
+    UITextField *textField;
+    if(self.alertView.alertViewStyle == UIAlertViewStylePlainTextInput){
+        textField = [self.alertView textFieldAtIndex:0];
+    }
+    
     if(textField){
         textField.delegate = nil;
     }

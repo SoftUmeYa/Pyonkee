@@ -82,6 +82,8 @@
 - (int)  viewModeIndex;
 
 - (void) airDropProject: (NSString *)projectPath;
+- (BOOL) isViewModeBarHidden;
 - (BOOL) isInPresentationMode;
+
 
 @end

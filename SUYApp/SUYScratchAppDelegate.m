@@ -94,7 +94,7 @@ BOOL isRestarting = NO;
         
         [self trimResourcePathOnLaunch: url.path]; //MARK: Auto removing the oldest project => better to be off?
         
-        if([presentationSpace isInPresentationMode]){
+        if([presentationSpace isViewModeBarHidden]){
             [[[UIAlertView alloc] initWithTitle:@""
                     message: [NSString stringWithFormat: @"%@: %@", NSLocalizedString(@"New entry in Inbox",nil), [url.lastPathComponent stringByDeletingPathExtension]]
                     delegate:nil cancelButtonTitle:NSLocalizedString(@"OK",nil) otherButtonTitles:nil] show];
