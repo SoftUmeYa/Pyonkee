@@ -50,4 +50,38 @@ msgstr ""
 msgid "Linux-Font"
 msgstr ""
 
+############################################
+# # iPad Sensors (Pyonkee)
+############################################
+msgid "accX"
+msgstr "acceleration X"
 
+msgid "accY"
+msgstr "acceleration Y"
+
+msgid "accZ"
+msgstr "acceleration Z"
+
+msgid "gyroX"
+msgstr "gyro X"
+
+msgid "gyroY"
+msgstr "gyro Y"
+
+msgid "gyroZ"
+msgstr "gyro Z"
+
+msgid "yaw"
+msgstr "yaw"
+
+msgid "pitch"
+msgstr "pitch"
+
+msgid "roll"
+msgstr "roll"
+
+msgid "northHeading"
+msgstr "north heading"
+
+#msgid "brightness"
+#msgstr "brightness"

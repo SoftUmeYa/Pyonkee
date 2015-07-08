@@ -205,7 +205,7 @@ msgid "letter %n of %s"
 msgstr "letra %n de %s"
 
 # contexto?? podria ser usado tambien como verbo... enumerar
-# 
+#
 msgid "list"
 msgstr "lista"
 
@@ -439,7 +439,7 @@ msgstr "posición en y"
 ############################################
 
 # esto se refiere a la lista, verdad? alguien verifique esto por favor
-# 
+#
 msgid "(empty)"
 msgstr "(vacía)"
 
@@ -742,7 +742,7 @@ msgid "Fill tool (fill areas with color or gradient)"
 msgstr "Herramienta para llenar de color"
 
 # contexto?
-# 
+#
 msgid "first"
 msgstr "primero(a)"
 
@@ -825,7 +825,7 @@ msgid "Hmm..."
 msgstr "mmm..."
 
 # contexto?
-# 
+#
 msgid "Home"
 msgstr "Principal"
 
@@ -991,8 +991,8 @@ msgstr "Ningún puerto MIDI disponible"
 msgid "No motion blocks"
 msgstr "No hay bloques de movimiento"
 
-# veo que se ha traducido scripts como programas y estoy siendo consistente, pero creo que no los deberiamos de llamar programas 
-# Nota Gloria Aranzazu (Fund. Gabriel Piedrahita): entiendo el comentario anterior, pues 
+# veo que se ha traducido scripts como programas y estoy siendo consistente, pero creo que no los deberiamos de llamar programas
+# Nota Gloria Aranzazu (Fund. Gabriel Piedrahita): entiendo el comentario anterior, pues
 # en Sistemas uno entiende programa como algo mas grande y script como un programita corto,
 # una serie de instrucciones o algo así
 msgid "no scripts"
@@ -1418,7 +1418,7 @@ msgid "Acoustic Bass"
 msgstr "Bajo acústico"
 
 # MIDI percussion in Spanish at http://www.adolphesax.com/doc/Adolphesax.com_Fundamentos%20de%20inform%E1tica%20musical%20y%20edici%F3n%20de%20partituras.pdf  (English mapping at http://www.midi.org/about-midi/gm/gm1sound.shtml#Percussion)
-# 
+#
 msgid "Acoustic Bass Drum"
 msgstr "Bombo acústico"
 
@@ -1458,8 +1458,8 @@ msgid "Bird Tweet"
 msgstr "Piada de pájaro"
 
 # http://es.wikipedia.org/wiki/MIDI#Instrumentos_MIDI gives "Cuello de botella" - bottle neck - not sure if that is better
-# 
-# 
+#
+#
 msgid "Blown Bottle"
 msgstr "Botella soplada"
 
@@ -1481,8 +1481,8 @@ msgid "Celesta"
 msgstr "Celesta"
 
 # http://es.wikipedia.org/wiki/MIDI#Instrumentos_MIDI gives "Violoncello" and I also found "Cello" or just "Chelo"
-# 
-# 
+#
+#
 msgid "Cello"
 msgstr "Violonchelo"
 
@@ -1681,9 +1681,9 @@ msgid "Lead 4 (chiff)"
 msgstr "Principal 4 (siseo órgano)"
 
 # Charanga es una orquesta de músicos que mientras tocan van andando por las calles del pueblo. (probably not right) El charango es un instrumento musical vigente en las altipláns de Los Andes Posee cinco pares de cuerdas. (even less likely)
-# 
-# 
-# 
+#
+#
+#
 msgid "Lead 5 (charang)"
 msgstr "Principal 5 (charango)"
 
@@ -1752,8 +1752,8 @@ msgid "Muted Trumpet"
 msgstr "Trompeta con sordina"
 
 # or "Guitarra acústica (cuerdas de nailon)"?
-# 
-# 
+#
+#
 msgid "Nylon String Guitar"
 msgstr "Guitarra española"
 
@@ -1776,14 +1776,14 @@ msgid "Open Triangle"
 msgstr "Triángulo suelto"
 
 # or "Golpe orquestal"? (English should be "Orchestral Hit")
-# 
-# 
+#
+#
 msgid "Orchestra Hit"
 msgstr "Éxito de orquesta"
 
 # (English should be "Orchestral Harp"?)
-# 
-# 
+#
+#
 msgid "Orchestral Strings"
 msgstr "Cuerdas de orquesta"
 
@@ -1809,8 +1809,8 @@ msgid "Pad 6 (metallic)"
 msgstr "Fondo 6 (metálico)"
 
 # or (halo) or (celestial)
-# 
-# 
+#
+#
 msgid "Pad 7 (halo)"
 msgstr "Fondo 7 (halo)"
 
@@ -1844,12 +1844,12 @@ msgid "Reverse Cymbal"
 msgstr "Platillo invertido"
 
 # RIDE BELL=es la campana del plato guia,es decir la parte sobresalida del medio del plato, que generalente tocamos con el cuello de la baqueta
-# 
-# 
+#
+#
 msgid "Ride Bell"
 msgstr "Campana de platillo guía"
 
-# RIDE CYMBAL 1=Platillo guía (el que se usa para marcar el ritmo, como el charles) 
+# RIDE CYMBAL 1=Platillo guía (el que se usa para marcar el ritmo, como el charles)
 msgid "Ride Cymbal 1"
 msgstr "Platillo guía 1"
 
@@ -1862,7 +1862,7 @@ msgstr "Órgano de rock"
 msgid "Seashore"
 msgstr "Playa"
 
-# or "Flauta japonesa" 
+# or "Flauta japonesa"
 msgid "Shakuhachi"
 msgstr "Shakuhachi"
 
@@ -2007,8 +2007,8 @@ msgstr "Antes de compartir el proyecto, guardarlo?"
 msgid "Create a mail for sending this project"
 msgstr "Crear un correo electrónico para el envío de este proyecto"
 
-msgid "Share this project with AirDrop"
-msgstr "Comparte este proyecto con AirDrop"
+msgid "Share this project by AirDrop"
+msgstr "Comparte este proyecto por AirDrop"
 
 msgid "Exceeded recording time limit"
 msgstr "Límite de tiempo de grabación Superó"
@@ -2057,3 +2057,81 @@ msgstr "Rebautizar"
 
 msgid "New name:"
 msgstr "Nuevo nombre:"
+
+msgid "The file already exists:"
+msgstr "Ya existe el archivo:"
+
+msgid "Start Sensing"
+msgstr "Inicio Sensing"
+
+msgid "Stop Sensing"
+msgstr "Detener Sensing"
+
+msgid "Inbox"
+msgstr "Bandeja de entrada"
+
+############################################
+# MESH
+############################################
+msgid "Host Mesh"
+msgstr "Anfitrión Mesh"
+
+msgid "Join Mesh"
+msgstr "Unirse Mesh"
+
+msgid "Show IP Address"
+msgstr "Mostrar dirección IP"
+
+msgid "Stop Hosting Mesh"
+msgstr "Dejar de acoger Mesh"
+
+msgid "Leave Mesh"
+msgstr "Deja Mesh"
+
+msgid "IP Address"
+msgstr "Dirección IP"
+
+msgid "Could not connect"
+msgstr "No pudo conectar"
+
+msgid "Internet"
+msgstr "Internet"
+
+msgid "Share this project variables and events by Mesh protocol"
+msgstr "Compartir las variables y eventos utilizando Protocolo de Mesh"
+
+############################################
+# # iPad Sensors (Pyonkee)
+############################################
+msgid "accX"
+msgstr "aceleración X"
+
+msgid "accY"
+msgstr "aceleración Y"
+
+msgid "accZ"
+msgstr "aceleración Z"
+
+msgid "gyroX"
+msgstr "giroscopio X"
+
+msgid "gyroY"
+msgstr "giroscopio Y"
+
+msgid "gyroZ"
+msgstr "giroscopio Z"
+
+msgid "yaw"
+msgstr "guiñada"
+
+msgid "pitch"
+msgstr "cabeceo"
+
+msgid "roll"
+msgstr "balanceo"
+
+msgid "northHeading"
+msgstr "Norte de la dirección"
+
+#msgid "brightness"
+#msgstr "brightness"

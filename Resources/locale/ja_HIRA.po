@@ -1934,7 +1934,7 @@ msgstr "プロジェクトをきょうゆうするまえにほぞんしますか
 msgid "Create a mail for sending this project"
 msgstr "プロジェクトをメールでそうしん"
 
-msgid "Share this project with AirDrop"
+msgid "Share this project by AirDrop"
 msgstr "プロジェクトをAirDropできょうゆう"
 
 msgid "Exceeded recording time limit"
@@ -1988,6 +1988,18 @@ msgstr "なまえをかえる"
 msgid "New name:"
 msgstr "あたらしいなまえ:"
 
+msgid "The file already exists:"
+msgstr "おなじなまえのファイルがあります:"
+
+msgid "Start Sensing"
+msgstr "iPadセンサーゆうこう"
+
+msgid "Stop Sensing"
+msgstr "iPadセンサーむこう"
+
+msgid "Inbox"
+msgstr "じゅしんばこ"
+
 ############################################
 # MESH
 ############################################
@@ -2009,8 +2021,14 @@ msgstr "メッシュからぬける"
 msgid "IP Address"
 msgstr "IPアドレス"
 
-msgid "IP address:"
-msgstr "IPアドレス:"
+msgid "Could not connect"
+msgstr "せつぞくできません"
+
+msgid "Internet"
+msgstr "インターネット"
+
+msgid "Share this project variables and events by Mesh protocol"
+msgstr "プロジェクトのへんすうやイベントをメッシュできょうゆう"
 
 ############################################
 # Pyonkee resource folders
@@ -2154,3 +2172,39 @@ msgstr "そら"
 
 msgid "toy"
 msgstr "おもちゃ"
+
+############################################
+# # iPad Sensors (Pyonkee)
+############################################
+msgid "accX"
+msgstr "かそくど X"
+
+msgid "accY"
+msgstr "かそくど Y"
+
+msgid "accZ"
+msgstr "かそくど Z"
+
+msgid "gyroX"
+msgstr "ジャイロ X"
+
+msgid "gyroY"
+msgstr "ジャイロ Y"
+
+msgid "gyroZ"
+msgstr "ジャイロ Z"
+
+msgid "yaw"
+msgstr "ヨー"
+
+msgid "pitch"
+msgstr "ピッチ"
+
+msgid "roll"
+msgstr "ロール"
+
+msgid "northHeading"
+msgstr "きたのむき"
+
+#msgid "brightness"
+#msgstr "brightness"

@@ -1399,7 +1399,7 @@ msgstr "Afastar"
 ############################################
 
 # Portuguese translations of General MIDI instruments at http://pt.wikipedia.org/wiki/General_MIDI (English mapping to numbers at http://en.wikipedia.org/wiki/General_MIDI#Melodic_sounds)
-# 
+#
 msgid "Accordion"
 msgstr "Acordeão"
 
@@ -1959,8 +1959,8 @@ msgstr "Antes de compartilhar o projeto, salvá-lo?"
 msgid "Create a mail for sending this project"
 msgstr "Criar um e-mail para o envio desse projeto"
 
-msgid "Share this project with AirDrop"
-msgstr "Compartilhe este projeto com AirDrop"
+msgid "Share this project by AirDrop"
+msgstr "Compartilhe este projeto por AirDrop"
 
 msgid "Exceeded recording time limit"
 msgstr "Excedeu o limite de tempo de gravação"
@@ -2009,3 +2009,81 @@ msgstr "Rebatizar"
 
 msgid "New name:"
 msgstr "Novo nome:"
+
+msgid "The file already exists:"
+msgstr "O arquivo já existe:"
+
+msgid "Start Sensing"
+msgstr "Iniciar Sensing"
+
+msgid "Stop Sensing"
+msgstr "Parar Sensing"
+
+msgid "Inbox"
+msgstr "Caixa de entrada"
+
+############################################
+# MESH
+############################################
+msgid "Host Mesh"
+msgstr "Anfitrião Mesh"
+
+msgid "Join Mesh"
+msgstr "Junte-se Mesh"
+
+msgid "Show IP Address"
+msgstr "Mostrar endereço IP"
+
+msgid "Stop Hosting Mesh"
+msgstr "Pare de hospedagem Mesh"
+
+msgid "Leave Mesh"
+msgstr "Deixar de Mesh"
+
+msgid "IP Address"
+msgstr "Endereço de IP"
+
+msgid "Could not connect"
+msgstr "Não foi possível conectar"
+
+msgid "Internet"
+msgstr "Internet"
+
+msgid "Share this project variables and events by Mesh protocol"
+msgstr "Compartilhar esta variáveis do projeto e eventos por protocolo de Mesh"
+
+############################################
+# # iPad Sensors (Pyonkee)
+############################################
+msgid "accX"
+msgstr "aceleração X"
+
+msgid "accY"
+msgstr "aceleração Y"
+
+msgid "accZ"
+msgstr "aceleração Z"
+
+msgid "gyroX"
+msgstr "giroscópio X"
+
+msgid "gyroY"
+msgstr "giroscópio Y"
+
+msgid "gyroZ"
+msgstr "giroscópio Z"
+
+msgid "yaw"
+msgstr "guinada"
+
+msgid "pitch"
+msgstr "inclinação"
+
+msgid "roll"
+msgstr "rotação"
+
+msgid "northHeading"
+msgstr "direção do Norte"
+
+#msgid "brightness"
+#msgstr "brightness"

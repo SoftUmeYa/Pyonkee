@@ -1947,8 +1947,8 @@ msgstr "Avant de partager le projet, le sauver?"
 msgid "Create a mail for sending this project"
 msgstr "Créer un mail pour l'envoi de ce projet"
 
-msgid "Share this project with AirDrop"
-msgstr "Partager ce projet avec AirDrop"
+msgid "Share this project by AirDrop"
+msgstr "Partager ce projet par AirDrop"
 
 msgid "Exceeded recording time limit"
 msgstr "Dépassé enregistrement délai"
@@ -1997,3 +1997,81 @@ msgstr "Rebaptiser"
 
 msgid "New name:"
 msgstr "Nouveau nom:"
+
+msgid "The file already exists:"
+msgstr "Le fichier existe déjà:"
+
+msgid "Start Sensing"
+msgstr "Démarrer Sensing"
+
+msgid "Stop Sensing"
+msgstr "Arrêter Sensing"
+
+msgid "Inbox"
+msgstr "Boîte de réception"
+
+############################################
+# MESH
+############################################
+msgid "Host Mesh"
+msgstr "Hôte Mesh"
+
+msgid "Join Mesh"
+msgstr "Joindre Mesh"
+
+msgid "Show IP Address"
+msgstr "Voir Adresse IP"
+
+msgid "Stop Hosting Mesh"
+msgstr "Arrêtez d'hébergement Mesh"
+
+msgid "Leave Mesh"
+msgstr "Laissez Mesh"
+
+msgid "IP Address"
+msgstr "Adresse IP"
+
+msgid "Could not connect"
+msgstr "N'a pas pu se connecter"
+
+msgid "Internet"
+msgstr "Internet"
+
+msgid "Share this project variables and events by Mesh protocol"
+msgstr "Partager ce projet variables et événements par protocole Mesh"
+
+############################################
+# # iPad Sensors (Pyonkee)
+############################################
+msgid "accX"
+msgstr "accélération X"
+
+msgid "accY"
+msgstr "accélération Y"
+
+msgid "accZ"
+msgstr "accélération Z"
+
+msgid "gyroX"
+msgstr "gyro X"
+
+msgid "gyroY"
+msgstr "gyro Y"
+
+msgid "gyroZ"
+msgstr "gyro Z"
+
+msgid "yaw"
+msgstr "lacet"
+
+msgid "pitch"
+msgstr "tangage"
+
+msgid "roll"
+msgstr "roulis"
+
+msgid "northHeading"
+msgstr "direction du Nord"
+
+#msgid "brightness"
+#msgstr "brightness"

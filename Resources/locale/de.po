@@ -273,7 +273,7 @@ msgid "pen"
 msgstr "Malstift"
 
 # (Markus S.) war 'Stift runter', das aber bitte nicht. Darüber gab es bei uns an der Schule längere Diskussionen; aus Konsistenzgründen bitte immer Imperative auf den Kacheln.
-# 
+#
 # (Jens) Tut mir leid, aber mit "senke Stift ab" und "hebe Stift an" werde mich wohl niemals anfreunden können.
 # (Markus S.) war 'Stift runter', das aber bitte nicht. Darüber gab es bei uns an der Schule längere Diskussionen; aus Konsistenzgründen bitte immer Imperative auf den Kacheln.
 # (Jens) Tut mir leid, aber mit "senke Stift ab" und "hebe Stift an" werde mich wohl niemals anfreunden können.
@@ -2004,8 +2004,8 @@ msgstr "Antes de compartir el proyecto, guardarlo?"
 msgid "Create a mail for sending this project"
 msgstr "Erstellen Sie eine E-Mail für die Zusendung dieses Projekt"
 
-msgid "Share this project with AirDrop"
-msgstr "Teilen Sie dieses Projekt mit AirDrop"
+msgid "Share this project by AirDrop"
+msgstr "Teilen Sie dieses Projekt durch AirDrop"
 
 msgid "Exceeded recording time limit"
 msgstr "Überschritten Aufnahme Frist"
@@ -2054,3 +2054,81 @@ msgstr "Umbenennen"
 
 msgid "New name:"
 msgstr "Neuer Name:"
+
+msgid "The file already exists:"
+msgstr "Die Datei bereits vorhanden ist:"
+
+msgid "Start Sensing"
+msgstr "Start Sensing"
+
+msgid "Stop Sensing"
+msgstr "Stop Sensing"
+
+msgid "Inbox"
+msgstr "Inbox"
+
+############################################
+# MESH
+############################################
+msgid "Host Mesh"
+msgstr "Host Mesh"
+
+msgid "Join Mesh"
+msgstr "Join Mesh"
+
+msgid "Show IP Address"
+msgstr "Zeige IP Adresse"
+
+msgid "Stop Hosting Mesh"
+msgstr "Stoppen Hosting Mesh"
+
+msgid "Leave Mesh"
+msgstr "Lassen Mesh"
+
+msgid "IP Address"
+msgstr "IP Adresse"
+
+msgid "Could not connect"
+msgstr "Es konnte keine Verbindung"
+
+msgid "Internet"
+msgstr "Internet"
+
+msgid "Share this project variables and events by Mesh protocol"
+msgstr "Teilen Sie diese Projektvariablen und Veranstaltungen durch Mesh-Protokoll"
+
+############################################
+# # iPad Sensors (Pyonkee)
+############################################
+msgid "accX"
+msgstr "beschleunigung X"
+
+msgid "accY"
+msgstr "beschleunigung Y"
+
+msgid "accZ"
+msgstr "beschleunigung Z"
+
+msgid "gyroX"
+msgstr "gyro X"
+
+msgid "gyroY"
+msgstr "gyro Y"
+
+msgid "gyroZ"
+msgstr "gyro Z"
+
+msgid "yaw"
+msgstr "gieren"
+
+msgid "pitch"
+msgstr "pech"
+
+msgid "roll"
+msgstr "rolle"
+
+msgid "northHeading"
+msgstr "nordrichtung"
+
+#msgid "brightness"
+#msgstr "brightness"

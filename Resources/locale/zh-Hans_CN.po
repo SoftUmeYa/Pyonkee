@@ -1966,7 +1966,7 @@ msgstr "共享作品之前，保存呢？"
 msgid "Create a mail for sending this project"
 msgstr "创建一个邮件发送此作品"
 
-msgid "Share this project with AirDrop"
+msgid "Share this project by AirDrop"
 msgstr "使用AirDrop分享此作品"
 
 msgid "Exceeded recording time limit"
@@ -2016,3 +2016,81 @@ msgstr "重命名"
 
 msgid "New name:"
 msgstr "新名称:"
+
+msgid "The file already exists:"
+msgstr "有相同名称的文件:"
+
+msgid "Start Sensing"
+msgstr "iPad的传感器有效"
+
+msgid "Stop Sensing"
+msgstr "iPad的传感器无效"
+
+msgid "Inbox"
+msgstr "收件箱"
+
+############################################
+# MESH
+############################################
+msgid "Host Mesh"
+msgstr "主机网"
+
+msgid "Join Mesh"
+msgstr "加入网"
+
+msgid "Show IP Address"
+msgstr "显示IP地址"
+
+msgid "Stop Hosting Mesh"
+msgstr "停止主机网"
+
+msgid "Leave Mesh"
+msgstr "离开网"
+
+msgid "IP Address"
+msgstr "IP地址"
+
+msgid "Could not connect"
+msgstr "无法连接"
+
+msgid "Internet"
+msgstr "因特网"
+
+msgid "Share this project variables and events by Mesh protocol"
+msgstr "分享此作品的变量和事件由Mesh协议"
+
+############################################
+# # iPad Sensors (Pyonkee)
+############################################
+msgid "accX"
+msgstr "促进 X"
+
+msgid "accY"
+msgstr "促进 Y"
+
+msgid "accZ"
+msgstr "促进 Z"
+
+msgid "gyroX"
+msgstr "陀螺仪 X"
+
+msgid "gyroY"
+msgstr "陀螺仪 Y"
+
+msgid "gyroZ"
+msgstr "陀螺仪 Z"
+
+msgid "yaw"
+msgstr "偏航"
+
+msgid "pitch"
+msgstr "俯仰"
+
+msgid "roll"
+msgstr "滚转"
+
+msgid "northHeading"
+msgstr "方向北"
+
+#msgid "brightness"
+#msgstr "brightness"

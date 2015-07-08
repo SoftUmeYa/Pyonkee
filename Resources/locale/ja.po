@@ -1934,7 +1934,7 @@ msgstr "プロジェクトを共有する前に保存しますか?"
 msgid "Create a mail for sending this project"
 msgstr "プロジェクトをメールで送信"
 
-msgid "Share this project with AirDrop"
+msgid "Share this project by AirDrop"
 msgstr "プロジェクトをAirDropで共有"
 
 msgid "Exceeded recording time limit"
@@ -1985,6 +1985,18 @@ msgstr "名前の変更"
 msgid "New name:"
 msgstr "新たな名前:"
 
+msgid "The file already exists:"
+msgstr "同じ名前のファイルがあります:"
+
+msgid "Start Sensing"
+msgstr "iPadセンサー有効"
+
+msgid "Stop Sensing"
+msgstr "iPadセンサー無効"
+
+msgid "Inbox"
+msgstr "受信箱"
+
 ############################################
 # MESH
 ############################################
@@ -2011,6 +2023,9 @@ msgstr "接続できません"
 
 msgid "Internet"
 msgstr "インターネット"
+
+msgid "Share this project variables and events by Mesh protocol"
+msgstr "プロジェクトの変数やイベントをメッシュで共有"
 
 ############################################
 # Pyonkee resource folders
@@ -2154,3 +2169,39 @@ msgstr "空"
 
 msgid "toy"
 msgstr "おもちゃ"
+
+############################################
+# # iPad Sensors (Pyonkee)
+############################################
+msgid "accX"
+msgstr "加速度 X"
+
+msgid "accY"
+msgstr "加速度 Y"
+
+msgid "accZ"
+msgstr "加速度 Z"
+
+msgid "gyroX"
+msgstr "ジャイロ X"
+
+msgid "gyroY"
+msgstr "ジャイロ Y"
+
+msgid "gyroZ"
+msgstr "ジャイロ Z"
+
+msgid "yaw"
+msgstr "ヨー"
+
+msgid "pitch"
+msgstr "ピッチ"
+
+msgid "roll"
+msgstr "ロール"
+
+msgid "northHeading"
+msgstr "北の方角"
+
+#msgid "brightness"
+#msgstr "brightness"
