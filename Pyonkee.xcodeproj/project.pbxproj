@@ -9,6 +9,14 @@
 /* Begin PBXBuildFile section */
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		850A03DB1B4CBA0800F364E8 /* SUYLightSensor.m in Sources */ = {isa = PBXBuildFile; fileRef = 850A03D41B4CBA0800F364E8 /* SUYLightSensor.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		850A03DC1B4CBA0800F364E8 /* SUYLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 850A03D61B4CBA0800F364E8 /* SUYLocationManager.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		850A03DD1B4CBA0800F364E8 /* SUYNetUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 850A03D81B4CBA0800F364E8 /* SUYNetUtils.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		850A03DE1B4CBA0800F364E8 /* SUYSensorAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 850A03DA1B4CBA0800F364E8 /* SUYSensorAccessor.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		850A03E01B4CBB2500F364E8 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 850A03DF1B4CBB2500F364E8 /* CoreMotion.framework */; };
+		850A03E21B4CBB4000F364E8 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 850A03E11B4CBB4000F364E8 /* CoreMedia.framework */; };
+		850A03E41B4CBB4900F364E8 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 850A03E31B4CBB4900F364E8 /* ImageIO.framework */; };
+		850A03E61B4CBE7D00F364E8 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 850A03E51B4CBE7D00F364E8 /* SystemConfiguration.framework */; };
 		8516173D19646B3400D4E258 /* flat-cmd.png in Resources */ = {isa = PBXBuildFile; fileRef = 8516173C19646B3400D4E258 /* flat-cmd.png */; };
 		8516173F19646B4400D4E258 /* flat-shift.png in Resources */ = {isa = PBXBuildFile; fileRef = 8516173E19646B4400D4E258 /* flat-shift.png */; };
 		8516C7F1196F88AE00643850 /* SUYLauncherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8516C7F0196F88AE00643850 /* SUYLauncherViewController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
@@ -129,7 +137,6 @@
 		945550010DF1BC6A00FB176B /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 945550000DF1BC6A00FB176B /* AudioToolbox.framework */; };
 		94577FBD10684D5E0020840A /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94577FBC10684D5E0020840A /* CoreAudio.framework */; };
 		94577FBF10684D5E0020840A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94577FBE10684D5E0020840A /* CoreLocation.framework */; };
-		94577FC510684D7E0020840A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94577FC410684D7E0020840A /* SystemConfiguration.framework */; };
 		94581632112C6E0A00AD53FF /* sqScratchIPhoneApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 94581631112C6E0A00AD53FF /* sqScratchIPhoneApplication.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		94581653112C706400AD53FF /* sqSqueakOSXSoundCoreAudio.m in Sources */ = {isa = PBXBuildFile; fileRef = 94C4B82F10C06F8800CD4F90 /* sqSqueakOSXSoundCoreAudio.m */; };
 		94584F6410F020BD001401E7 /* ClipboardExtendedPlugin.c in Sources */ = {isa = PBXBuildFile; fileRef = 94584F6110F020BD001401E7 /* ClipboardExtendedPlugin.c */; };
@@ -285,6 +292,18 @@
 		1D6058910D05DD3D006BFB54 /* Pyonkee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pyonkee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = vm/Common/main.m; sourceTree = "<group>"; };
+		850A03D31B4CBA0800F364E8 /* SUYLightSensor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUYLightSensor.h; sourceTree = "<group>"; };
+		850A03D41B4CBA0800F364E8 /* SUYLightSensor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUYLightSensor.m; sourceTree = "<group>"; };
+		850A03D51B4CBA0800F364E8 /* SUYLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUYLocationManager.h; sourceTree = "<group>"; };
+		850A03D61B4CBA0800F364E8 /* SUYLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUYLocationManager.m; sourceTree = "<group>"; };
+		850A03D71B4CBA0800F364E8 /* SUYNetUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUYNetUtils.h; sourceTree = "<group>"; };
+		850A03D81B4CBA0800F364E8 /* SUYNetUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUYNetUtils.m; sourceTree = "<group>"; };
+		850A03D91B4CBA0800F364E8 /* SUYSensorAccessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUYSensorAccessor.h; sourceTree = "<group>"; };
+		850A03DA1B4CBA0800F364E8 /* SUYSensorAccessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUYSensorAccessor.m; sourceTree = "<group>"; };
+		850A03DF1B4CBB2500F364E8 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		850A03E11B4CBB4000F364E8 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		850A03E31B4CBB4900F364E8 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		850A03E51B4CBE7D00F364E8 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		8516173C19646B3400D4E258 /* flat-cmd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat-cmd.png"; sourceTree = "<group>"; };
 		8516173E19646B4400D4E258 /* flat-shift.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat-shift.png"; sourceTree = "<group>"; };
 		8516C7F0196F88AE00643850 /* SUYLauncherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUYLauncherViewController.m; sourceTree = "<group>"; };
@@ -513,7 +532,6 @@
 		945550000DF1BC6A00FB176B /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = /System/Library/Frameworks/AudioToolbox.framework; sourceTree = "<absolute>"; };
 		94577FBC10684D5E0020840A /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = /System/Library/Frameworks/CoreAudio.framework; sourceTree = "<absolute>"; };
 		94577FBE10684D5E0020840A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = /System/Library/Frameworks/CoreLocation.framework; sourceTree = "<absolute>"; };
-		94577FC410684D7E0020840A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = /System/Library/Frameworks/SystemConfiguration.framework; sourceTree = "<absolute>"; };
 		94581630112C6E0A00AD53FF /* sqScratchIPhoneApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sqScratchIPhoneApplication.h; sourceTree = "<group>"; };
 		94581631112C6E0A00AD53FF /* sqScratchIPhoneApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = sqScratchIPhoneApplication.m; sourceTree = "<group>"; };
 		94584F6110F020BD001401E7 /* ClipboardExtendedPlugin.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ClipboardExtendedPlugin.c; sourceTree = "<group>"; };
@@ -630,7 +648,6 @@
 		94C4B82E10C06F8800CD4F90 /* sqSqueakOSXSoundCoreAudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sqSqueakOSXSoundCoreAudio.h; path = vm/OSX/plugins/SoundPlugin/sqSqueakOSXSoundCoreAudio.h; sourceTree = "<group>"; };
 		94C4B82F10C06F8800CD4F90 /* sqSqueakOSXSoundCoreAudio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = sqSqueakOSXSoundCoreAudio.m; path = vm/OSX/plugins/SoundPlugin/sqSqueakOSXSoundCoreAudio.m; sourceTree = "<group>"; };
 		94C5C6C7112761F1001127A9 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		94C5C6C9112761FF001127A9 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		94C5C70411276291001127A9 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		94C887F910ADCEFC007CB39E /* sqSqueakOSXApplication+imageReadWrite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "sqSqueakOSXApplication+imageReadWrite.h"; path = "vm/OSX/sqSqueakOSXApplication+imageReadWrite.h"; sourceTree = "<group>"; };
 		94C887FA10ADCEFC007CB39E /* sqSqueakOSXApplication+imageReadWrite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "sqSqueakOSXApplication+imageReadWrite.m"; path = "vm/OSX/sqSqueakOSXApplication+imageReadWrite.m"; sourceTree = "<group>"; };
@@ -772,8 +789,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				85BC896A1AB08B9F0029ED79 /* AssetsLibrary.framework in Frameworks */,
+				850A03E61B4CBE7D00F364E8 /* SystemConfiguration.framework in Frameworks */,
 				85BC89681AB08B950029ED79 /* MobileCoreServices.framework in Frameworks */,
+				850A03E41B4CBB4900F364E8 /* ImageIO.framework in Frameworks */,
+				850A03E21B4CBB4000F364E8 /* CoreMedia.framework in Frameworks */,
+				850A03E01B4CBB2500F364E8 /* CoreMotion.framework in Frameworks */,
+				85BC896A1AB08B9F0029ED79 /* AssetsLibrary.framework in Frameworks */,
 				85A75A2719332CEC006A1A44 /* AVFoundation.framework in Frameworks */,
 				94668585111E16870077E0DE /* QuartzCore.framework in Frameworks */,
 				9484F99010B13D470038BDC0 /* CoreGraphics.framework in Frameworks */,
@@ -781,7 +802,6 @@
 				945550010DF1BC6A00FB176B /* AudioToolbox.framework in Frameworks */,
 				94577FBD10684D5E0020840A /* CoreAudio.framework in Frameworks */,
 				94577FBF10684D5E0020840A /* CoreLocation.framework in Frameworks */,
-				94577FC510684D7E0020840A /* SystemConfiguration.framework in Frameworks */,
 				9484F8E810B0E1050038BDC0 /* UIKit.framework in Frameworks */,
 				94C2F81B11167D79004483E8 /* MessageUI.framework in Frameworks */,
 				94C5C6C8112761F1001127A9 /* libz.dylib in Frameworks */,
@@ -891,6 +911,10 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				850A03E51B4CBE7D00F364E8 /* SystemConfiguration.framework */,
+				850A03E31B4CBB4900F364E8 /* ImageIO.framework */,
+				850A03E11B4CBB4000F364E8 /* CoreMedia.framework */,
+				850A03DF1B4CBB2500F364E8 /* CoreMotion.framework */,
 				85BC89691AB08B9F0029ED79 /* AssetsLibrary.framework */,
 				85BC89671AB08B950029ED79 /* MobileCoreServices.framework */,
 				85A75A2619332CEC006A1A44 /* AVFoundation.framework */,
@@ -904,11 +928,9 @@
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				94577FBC10684D5E0020840A /* CoreAudio.framework */,
 				94577FBE10684D5E0020840A /* CoreLocation.framework */,
-				94577FC410684D7E0020840A /* SystemConfiguration.framework */,
 				942ABE6E10AA23E20086D908 /* ApplicationServices.framework */,
 				94C208F810AF7262002F4160 /* QuartzCore.framework */,
 				94C5C6C7112761F1001127A9 /* libz.dylib */,
-				94C5C6C9112761FF001127A9 /* SystemConfiguration.framework */,
 				94AE8324112928950033D370 /* Security.framework */,
 				94A882FA123F616E0047813B /* OpenGLES.framework */,
 			);
@@ -1132,6 +1154,14 @@
 		85F8F78818F6856100948A68 /* SUYCommon */ = {
 			isa = PBXGroup;
 			children = (
+				850A03D31B4CBA0800F364E8 /* SUYLightSensor.h */,
+				850A03D41B4CBA0800F364E8 /* SUYLightSensor.m */,
+				850A03D51B4CBA0800F364E8 /* SUYLocationManager.h */,
+				850A03D61B4CBA0800F364E8 /* SUYLocationManager.m */,
+				850A03D71B4CBA0800F364E8 /* SUYNetUtils.h */,
+				850A03D81B4CBA0800F364E8 /* SUYNetUtils.m */,
+				850A03D91B4CBA0800F364E8 /* SUYSensorAccessor.h */,
+				850A03DA1B4CBA0800F364E8 /* SUYSensorAccessor.m */,
 				85BC89321AB087BC0029ED79 /* SUYAssetTablePicker.h */,
 				85BC89331AB087BC0029ED79 /* SUYAssetTablePicker.m */,
 				85BC89231AB087B00029ED79 /* SUYNavigationController.h */,
@@ -2274,11 +2304,13 @@
 				858A5884198351480082F48E /* SUYAlertDialog.m in Sources */,
 				94E659320DDD03FE00358328 /* Klatt.c in Sources */,
 				94E659330DDD03FE00358328 /* LargeIntegers.c in Sources */,
+				850A03DD1B4CBA0800F364E8 /* SUYNetUtils.m in Sources */,
 				94E659340DDD03FE00358328 /* Matrix2x3Plugin.c in Sources */,
 				94E659360DDD03FE00358328 /* MiscPrimitivePlugin.c in Sources */,
 				94E659370DDD03FE00358328 /* RePlugin.c in Sources */,
 				94E659380DDD03FE00358328 /* SecurityPlugin.c in Sources */,
 				94E6593A0DDD03FE00358328 /* SoundCodecPrims.c in Sources */,
+				850A03DB1B4CBA0800F364E8 /* SUYLightSensor.m in Sources */,
 				94E6593B0DDD03FE00358328 /* SoundGenerationPlugin.c in Sources */,
 				857229721982B4A200BAE70B /* SUYMailComposer.m in Sources */,
 				94E6593C0DDD03FE00358328 /* SoundPlugin.c in Sources */,
@@ -2296,6 +2328,7 @@
 				85BC89591AB088080029ED79 /* ELCOverlayImageView.m in Sources */,
 				94E65A3A0DDD053900358328 /* jccoefct.c in Sources */,
 				94E65A3B0DDD053900358328 /* jccolor.c in Sources */,
+				850A03DC1B4CBA0800F364E8 /* SUYLocationManager.m in Sources */,
 				94E65A3C0DDD053900358328 /* jcdctmgr.c in Sources */,
 				94E65A3D0DDD053900358328 /* jchuff.c in Sources */,
 				94E65A3E0DDD053900358328 /* jcinit.c in Sources */,
@@ -2374,6 +2407,7 @@
 				94AB2E570E003692006A79E4 /* sqVirtualMachine.c in Sources */,
 				9452D5E50E044A9D000AD792 /* Queue.m in Sources */,
 				9452D5E60E044A9D000AD792 /* sqMacV2Time.c in Sources */,
+				850A03DE1B4CBA0800F364E8 /* SUYSensorAccessor.m in Sources */,
 				9452D5E70E044A9D000AD792 /* sqSqueakFileDirectoryAPI.m in Sources */,
 				9452D5E80E044A9D000AD792 /* sqSqueakFileDirectoryInterface.m in Sources */,
 				9452D5E90E044A9D000AD792 /* sqSqueakMainApp.m in Sources */,
@@ -2543,6 +2577,7 @@
 					"-finline-functions",
 					"-fno-gcse",
 					"-falign-functions=16",
+					"-DSUY_DEBUG=1",
 				);
 				PRODUCT_NAME = Pyonkee;
 				PROVISIONING_PROFILE = "";

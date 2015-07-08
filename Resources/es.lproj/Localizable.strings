@@ -39,3 +39,6 @@
 "OK" = "OK";
 "New entry in Inbox" = "Nueva entrada en la Bandeja de entrada";
 
+"Warning" = "Advertencia";
+"No permission to use Camera. Please change privacy settings" = "Ningún permiso de usar la cámara. Por favor cambie la configuración de privacidad";
+"No permission to use Camera. For getting brightness value, please change privacy settings" = "Ningún permiso de usar la cámara. Para obtener el valor de brillo, modifique la configuración de privacidad";

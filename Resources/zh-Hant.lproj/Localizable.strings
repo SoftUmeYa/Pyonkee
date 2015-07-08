@@ -38,3 +38,7 @@
 "OK" = "確定";
 "New entry in Inbox" = "作品已進入收件箱";
 
+"Warning" = "警告";
+"No permission to use Camera. Please change privacy settings" = "您沒有權限使用相機。請檢查隱私設置";
+"No permission to use Camera. For getting brightness value, please change privacy settings" = "您沒有權限使用相機。要獲取的“亮度”的值，請從隱私設置獲得許可";
+
