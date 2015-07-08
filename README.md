@@ -5,7 +5,7 @@
 
 Pyonkee has been developed from [the open-source code of "Scratch 1.4"](http://wiki.scratch.mit.edu/wiki/Scratch_1.4_Source_Code) from MIT. Since Pyonkee is fully compatible with Scratch 1.4, millions of existing Scratch projects can be used for reference. 
 
-Pyonkee's user interface is optimized for touch interfaces. We do not need a cumbersome typing, even a mouse. Just program wherever you like. Pyonkee nicely supports pinch-in/out display, font scaling for small devices. Moreover, sound recorder and camera are provided for importing your sounds and pictures into the projects. We can mix various media on Pyonkee and program them. 
+Pyonkee's user interface is optimized for touch devices. We do not need cumbersome typing, even a mouse. Just write programs wherever you like. Pyonkee nicely supports pinch-in/out, and font scaling for small devices. Moreover, sound recorder and camera are provided for importing your sounds and pictures into the projects. We can mix various media on Pyonkee and program them.
 
 ## History
 Pyonkee was originally started as a fork of [John M McIntosh](https://www.smalltalkconsulting.com)'s Scratch Viewer - [Scratch.app.for.iOS](https://github.com/johnmci/Scratch.app.for.iOS). While Scratch Viewer just works as a viewer of the existing Scratch projects, Pyonkee supports creation/edit of projects.
@@ -19,7 +19,9 @@ Pyonkee was originally started as a fork of [John M McIntosh](https://www.smallt
  - Sending/Receiving projects via e-mail
  - Project import/export through iTunes (currently disabled on AppStore version)
  - Photo importer/trimmer
- - Prokect sharing via AirDrop
+ - Project sharing via AirDrop
+ - iPad built-in sensors support
+ - "Mesh" network protocol support - (project variables/events are sharable with connected peers)
 
 ##License
 Pyonkee is a derivative work of open-sourced Scratch 1.4 and licensed under the GPL v2. See the included gpl-2.0.txt for details. 
