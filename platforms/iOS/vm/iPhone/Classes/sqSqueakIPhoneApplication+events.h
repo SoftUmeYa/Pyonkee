@@ -42,7 +42,6 @@
 @interface sqSqueakIPhoneApplication (events) 
 - (void) recordTouchEvent:(NSSet *) touches type: (UITouchPhase) phase;
 - (void) buildTouchEventComplexObject:(NSSet *) touches forType: (NSNumber *) aType placeIn: (sqComplexEvent *) evt ;
-- (void) buildAccelerationEventComplexObject: (UIAcceleration *) acceleration placeIn: (sqComplexEvent *) evt;
 - (void) buildLocationEventComplexObject: (NSMutableArray *) acceleration placeIn: (sqComplexEvent *) evt;
 - (void) buildApplicationEventComplexObject: (NSMutableArray *) acceleration placeIn: (sqComplexEvent *) evt;
 @end

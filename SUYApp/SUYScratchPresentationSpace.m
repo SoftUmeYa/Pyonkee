@@ -21,6 +21,8 @@
 #import "SUYPhotoPickViewController.h"
 #import "SUYWebViewController.h"
 
+#import "SUYNetUtils.h"
+
 #import <QuartzCore/QuartzCore.h>
 
 extern ScratchIPhoneAppDelegate *gDelegateApp;
@@ -188,20 +190,21 @@ uint memoryWarningCount;
     
     UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
     if(_formerOrientation != orientation){
-        if(UIInterfaceOrientationIsLandscape(orientation)){
-            ratio = sz.width/sz.height;
-            _originalScrollerScale = _originalScrollerScale * ratio;
-            self.scrollView.minimumZoomScale = 1.0f;
-            [self.scrollView setZoomScale: _originalScrollerScale animated:YES];
-            self.scrollView.contentOffset = CGPointMake(offsetPoint.x*ratio, offsetPoint.y*ratio);
-            self.presentationExitButton.hidden = NO;
-        } else {
+        if(UIInterfaceOrientationIsPortrait(orientation) && UIInterfaceOrientationIsLandscape(_formerOrientation)){
             ratio = sz.height/sz.width;
             _originalScrollerScale = _originalScrollerScale * ratio;
             self.scrollView.minimumZoomScale = ratio;
             [self.scrollView setZoomScale: _originalScrollerScale animated:YES];
             self.scrollView.contentOffset = CGPointMake(offsetPoint.x*ratio, offsetPoint.y*ratio);
             self.presentationExitButton.hidden = YES;
+        }
+        else if(UIInterfaceOrientationIsLandscape(orientation) && UIInterfaceOrientationIsPortrait(_formerOrientation)) {
+            ratio = sz.width/sz.height;
+            _originalScrollerScale = _originalScrollerScale * ratio;
+            self.scrollView.minimumZoomScale = 1.0f;
+            [self.scrollView setZoomScale: _originalScrollerScale animated:YES];
+            self.scrollView.contentOffset = CGPointMake(offsetPoint.x*ratio, offsetPoint.y*ratio);
+            self.presentationExitButton.hidden = NO;
         }
         _formerOrientation = orientation;
     }
@@ -396,7 +399,7 @@ uint memoryWarningCount;
     popUpInfoViewController  = [[UIPopoverControllerClass alloc] initWithContentViewController: activityVc];
     self.popUpInfoViewController.delegate = self;
     [self.popUpInfoViewController setPopoverContentSize: CGSizeMake(320.0f,320.0f) animated: YES];
-    [self.popUpInfoViewController presentPopoverFromRect: CGRectMake(self.view.center.x-136,2,10,42) inView: self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated: YES];
+    [self.popUpInfoViewController presentPopoverFromRect: CGRectMake(self.view.center.x-135,2,10,42) inView: self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated: YES];
     
 }
 

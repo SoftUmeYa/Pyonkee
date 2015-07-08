@@ -65,10 +65,10 @@ sqInt	windowActive=1;
 			[self buildTouchEventComplexObject: [event objectAtIndex: 2] forType:  [event objectAtIndex: 1] placeIn: (sqComplexEvent *) evt];
 			return;
 		}
-		if ([[event objectAtIndex: 0] intValue] == 2) { // acceleration dataa
-			[self buildAccelerationEventComplexObject: [event objectAtIndex: 1] placeIn: (sqComplexEvent *) evt];
-			return;
-		}
+//		if ([[event objectAtIndex: 0] intValue] == 2) { // acceleration dataa
+//			[self buildAccelerationEventComplexObject: [event objectAtIndex: 1] placeIn: (sqComplexEvent *) evt];
+//			return;
+//		}
 		if ([[event objectAtIndex: 0] intValue] == 3) { // location data error
 			[self buildLocationEventComplexObject: event placeIn: (sqComplexEvent *) evt];
 			return;
@@ -182,21 +182,6 @@ sqInt	windowActive=1;
 	evt->action = interpreterProxy->integerObjectOf(action);
 	containerArray = interpreterProxy->popRemappableOop();	
 	evt->objectPointer = containerArray;
-	evt->unused1 =interpreterProxy->integerObjectOf(0);
-	evt->unused2 = interpreterProxy->integerObjectOf(0);
-	evt->unused3 =interpreterProxy->integerObjectOf(0);
-	evt->windowIndex = interpreterProxy->integerObjectOf(windowActive);
-}
-
-- (void) buildAccelerationEventComplexObject: (UIAcceleration *) acceleration placeIn: (sqComplexEvent *) evt {
-	sqInt squeakMSTimeNow = ioMSecs();
-	
-	interpreterProxy->pushRemappableOop(interpreterProxy->positive64BitIntegerFor(((usqInt) acceleration)));
-	
-	evt->type = EventTypeComplex;  //This is read as an integer and converted to an oop by interp.c
-	evt->timeStamp = interpreterProxy->integerObjectOf(squeakMSTimeNow);
-	evt->action = interpreterProxy->integerObjectOf(ComplexEventTypeAccelerationData);
-	evt->objectPointer = interpreterProxy->popRemappableOop();
 	evt->unused1 =interpreterProxy->integerObjectOf(0);
 	evt->unused2 = interpreterProxy->integerObjectOf(0);
 	evt->unused3 =interpreterProxy->integerObjectOf(0);

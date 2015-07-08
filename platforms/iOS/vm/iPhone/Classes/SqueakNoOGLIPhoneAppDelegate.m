@@ -208,17 +208,6 @@ SqueakNoOGLIPhoneAppDelegate *gDelegateApp;
 	[super dealloc];
 }
 
-- (void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration {
-	NSMutableArray* data = [NSMutableArray new];
-	
-	[acceleration retain]; 
-	[data addObject: [NSNumber numberWithInteger: 2]];
-	[data addObject: acceleration];
-	[[[self squeakApplication] eventQueue] addItem: data];
-	[data release];
-	interpreterProxy->signalSemaphoreWithIndex(gDelegateApp.squeakApplication.inputSemaphoreIndex);
-}
-
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)aError {
 	NSMutableArray* data = [NSMutableArray new];
 

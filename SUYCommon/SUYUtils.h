@@ -25,6 +25,7 @@
 + (NSString *)bundleResourceDirectoryWith: (NSString*)subDir;
 + (NSString *)currentCountry;
 + (void) inform:(NSString*)message duration:(int)seconds for:(id)dele;
++ (void) alertWarning: (NSString*) msg;
 + (void) printMemStats;
 
 @end

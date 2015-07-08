@@ -43,7 +43,7 @@ such third-party acknowledgments.
 #import "sqSqueakAppDelegate.h"
 #import	"sqiPhoneScreenAndWindow.h"
 
-@interface SqueakNoOGLIPhoneAppDelegate : sqSqueakAppDelegate <UIApplicationDelegate,UIScrollViewDelegate,UIAccelerometerDelegate,CLLocationManagerDelegate> {
+@interface SqueakNoOGLIPhoneAppDelegate : sqSqueakAppDelegate <UIApplicationDelegate,UIScrollViewDelegate,CLLocationManagerDelegate> {
 	IBOutlet UIWindow *window;
 	SqueakUIView *mainView;				//This is the squeak screen surface
 	UINavigationController *viewController;	//This controler manages the ability to do orientation
@@ -53,7 +53,6 @@ such third-party acknowledgments.
 	UIActivityIndicatorView *activityView;
 }
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView;
-- (void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration;
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error;
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation;
 - (void)applicationDidReceiveMemoryWarning:(UIApplication *)application;      // try to clean up as much memory as possible. next step is to terminate app

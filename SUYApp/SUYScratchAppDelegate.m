@@ -25,7 +25,7 @@ static uint sRestartCount = 0;
 
 BOOL isRestarting = NO;
 
-@synthesize	 squeakProxy, presentationSpace, squeakVMIsReady, defaultSerialQueue, mailComposer;
+@synthesize	 squeakProxy, presentationSpace, squeakVMIsReady, defaultSerialQueue;
 
 - (void) makeMainWindowOnMainThread
 {
@@ -70,8 +70,10 @@ BOOL isRestarting = NO;
     self.viewController.toolbarHidden = YES;
     [self.window setRootViewController: viewController];
   
-    mailComposer = [[SUYMailComposer alloc] init];
-    mailComposer.viewController = self.viewController;
+    _mailComposer = [[SUYMailComposer alloc] init];
+    _mailComposer.viewController = self.viewController;
+    
+    _sensorAccessor = [[SUYSensorAccessor alloc] init];
     
    	[window makeKeyAndVisible];
     isRestarting = NO;
@@ -195,7 +197,7 @@ BOOL isRestarting = NO;
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     // error in squeak
 	if (buttonIndex==1) {
-		[mailComposer reportErrorByEmail];
+		[_mailComposer reportErrorByEmail];
         return;
     }
     if(isRestarting==NO){
@@ -339,7 +341,7 @@ BOOL isRestarting = NO;
 
 - (void) bailWeAreBrokenOnMainThread: (NSString *) oopsText {
     
-	mailComposer.brokenWalkBackString = oopsText;
+	_mailComposer.brokenWalkBackString = oopsText;
     
     NSLog(@"!!St Walkback!!: %@", oopsText);
     
@@ -366,7 +368,7 @@ BOOL isRestarting = NO;
 #pragma mark Mail
 
 - (void)mailProject: (NSString *)projectPath {
-    [mailComposer performSelectorOnMainThread:@selector(mailProject:) withObject: projectPath waitUntilDone: NO];
+    [_mailComposer performSelectorOnMainThread:@selector(mailProject:) withObject: projectPath waitUntilDone: NO];
 }
 
 #pragma mark AirDrop
@@ -384,7 +386,7 @@ BOOL isRestarting = NO;
            ^{
             LgInfo(@"!! RequestRestart !!");
             [[NSNotificationCenter defaultCenter] postNotificationName: @"squeakVmWillReset" object:self];
-            [mailComposer abort];
+            [_mailComposer abort];
             [SUYUtils inform:(NSLocalizedString(@"Cleaning up memory...",nil)) duration:800 for:self];
             [self restartAfterDelay];
            }
@@ -415,6 +417,7 @@ BOOL isRestarting = NO;
 	self.scrollView = nil;
         
     self.mailComposer = nil;
+    self.sensorAccessor = nil;
     
 	self.presentationSpace  = nil;
 	if (self.screenAndWindow.blip) {
@@ -452,7 +455,8 @@ BOOL isRestarting = NO;
 	[squeakProxy release];
 	[presentationSpace release];
     [defaultSerialQueue release];
-    [mailComposer release];
+    [_mailComposer release];
+    [_sensorAccessor release];
 }
 
 @end

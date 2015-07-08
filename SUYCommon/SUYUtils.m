@@ -196,6 +196,14 @@
     );
 }
 
++ (void) alertWarning: (NSString*) msg
+{
+    [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Warning",nil)
+                                message:NSLocalizedString(msg,nil)
+                               delegate:nil
+                      cancelButtonTitle:NSLocalizedString(@"OK",nil)
+                      otherButtonTitles:nil] show];
+}
 
 #pragma mark Stats
 

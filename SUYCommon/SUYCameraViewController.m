@@ -13,6 +13,8 @@
 #import "SUYScratchAppDelegate.h"
 #import "SUYCameraViewController.h"
 
+#import "SUYLightSensor.h"
+
 @interface SUYCameraViewController ()
 
 @end
@@ -21,9 +23,11 @@
     BOOL isAuthorized;
     NSInteger shutterCount;
     BOOL avoidMirror;
+    
+    BOOL lightSensorStopped;
 }
 
-@synthesize previewView, session, previewLayer, videoInput, stillImageOutput, clientMode;
+@synthesize previewView, previewLayer, videoInput, stillImageOutput, clientMode;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -106,15 +110,35 @@
     }
 }
 
+#pragma mark Other Session Management
+
+-(void) restartLightSensorIfNeeded{
+    if(lightSensorStopped==YES){
+        SUYLightSensor* lightSensor = [SUYLightSensor soleInstance];
+        [lightSensor start];
+        lightSensorStopped = NO;
+    }
+}
+
+-(void) stopLightSensorIfRunning{
+    SUYLightSensor* lightSensor = [SUYLightSensor soleInstance];
+    if(lightSensor.isRunning==YES){
+        [lightSensor stop];
+        lightSensorStopped = YES;
+    }
+}
+
 #pragma mark Initialization
 
 - (void)setupAVCapture
 {
     NSError *error = nil;
     
+    [self stopLightSensorIfRunning];
+    
     self.session = [[AVCaptureSession alloc] init];
-    if ([session canSetSessionPreset:AVCaptureSessionPreset640x480]) {
-        session.sessionPreset = AVCaptureSessionPreset640x480;
+    if ([_session canSetSessionPreset:AVCaptureSessionPreset640x480]) {
+        _session.sessionPreset = AVCaptureSessionPreset640x480;
     }
     else {
         LgInfo(@"640x480 not allowed");
@@ -126,7 +150,7 @@
         LgInfo(@"No video input");
         return;
     }
-    [self.session addInput:self.videoInput];
+    [_session addInput:self.videoInput];
     
     self.stillImageOutput = [[AVCaptureStillImageOutput alloc] init];
     [self.session addOutput:self.stillImageOutput];
@@ -140,28 +164,21 @@
     viewLayer.masksToBounds = YES;
     [viewLayer addSublayer: self.previewLayer];
     
-    [self.session startRunning];
+    [_session startRunning];
 }
 
 - (void) checkVideoCapturePermission
 {
-    NSString *mediaType = AVMediaTypeVideo;
-    
-    [AVCaptureDevice requestAccessForMediaType:mediaType completionHandler:^(BOOL granted) {
+    if ([AVCaptureDevice respondsToSelector:@selector(requestAccessForMediaType: completionHandler:)]==NO){isAuthorized = YES; return;}
+    [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
         if (granted)
         {
-            //Granted access to mediaType
             isAuthorized = YES;
         }
         else
         {
-            //Not granted access to mediaType
             dispatch_async(dispatch_get_main_queue(), ^{
-                [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Warning",nil)
-                                            message:NSLocalizedString(@"No permission to use Camera, please change privacy settings",nil)
-                                           delegate:self
-                                  cancelButtonTitle:NSLocalizedString(@"OK",nil)
-                                  otherButtonTitles:nil] show];
+                [SUYUtils alertWarning:@"No permission to use Camera. Please change privacy settings"];
                 isAuthorized = NO;
             });
         }
@@ -248,12 +265,12 @@
     if ((orient == AVCaptureVideoOrientationLandscapeRight && position == AVCaptureDevicePositionFront)
         || (orient == AVCaptureVideoOrientationLandscapeLeft && position == AVCaptureDevicePositionBack))
     {
-        LgInfo(@"**Upside down the image** %d", orient);
+        LgInfo(@"**Upside down the image** %ld", (long)orient);
         savingImage = [SUYUtils upsideDownImage: image];
     }
     if (UIDeviceOrientationIsPortrait(orient))
     {
-        LgInfo(@"**Rotate the image** %d", orient);
+        LgInfo(@"**Rotate the image** %ld", (long)orient);
         if(orient == AVCaptureVideoOrientationPortraitUpsideDown){
             savingImage = [SUYUtils rotateLeftImage: image];
         } else {
@@ -276,6 +293,7 @@
 - (IBAction)close:(UIButton*)sender
 {
     shutterCount = 0;
+    [self restartLightSensorIfNeeded];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
