@@ -157,11 +157,44 @@
 }
 
 + (NSString *)currentCountry{
+    
+    if((OVER_IOS9)){
+        NSString* lang = [[NSLocale preferredLanguages] objectAtIndex:0];
+        NSArray *names = [lang componentsSeparatedByString:@"-"];
+        NSString* possibleRegion = names[1];
+        if(names.count>=1 && possibleRegion.length==2){
+            return possibleRegion;
+        }
+    }
+    
     NSString* ccode = [[NSLocale currentLocale] objectForKey:NSLocaleCountryCode];
     if(ccode==nil){
         return @"";
     }
     return ccode;
+}
+
++ (NSString *)currentLanguage{
+    NSString* lang = [[NSLocale preferredLanguages] objectAtIndex:0];
+    
+    NSArray *names = [lang componentsSeparatedByString:@"-"];
+    if(names.count>=1 && (OVER_IOS9)){
+        lang = names[0];
+        for(int i=1; i < names.count-1; i++){
+            NSString* part = names[i];
+            lang = [lang stringByAppendingFormat:@"-%@", part];
+        }
+        if([lang isEqualToString:@"zh"]){
+            NSString* region = names[names.count-1];
+            if([region isEqualToString:@"TW"] || [region isEqualToString:@"HK"]){
+                lang = [lang stringByAppendingFormat:@"-%@", @"Hant"];
+            }
+        }
+        
+    }
+    
+    LgInfo(@"CURRENT-LANG %@", lang);
+    return lang;
 }
 
 #pragma mark Private

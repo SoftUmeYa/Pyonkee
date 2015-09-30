@@ -15,8 +15,6 @@
 BOOL isComposing = NO;
 BOOL isForErrorReport = NO;
 
-@synthesize	 viewController, brokenWalkBackString;
-
 #pragma mark -
 #pragma mark Mail
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)aError {

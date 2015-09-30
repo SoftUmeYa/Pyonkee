@@ -373,7 +373,11 @@ BOOL isRestarting = NO;
 
 #pragma mark AirDrop
 - (void)airDropProject: (NSString *)projectPath {
-    [presentationSpace airDropProject: projectPath];
+    dispatch_async (
+        dispatch_get_main_queue(), ^{
+            [presentationSpace airDropProject: projectPath];
+        }
+    );
 }
 
 

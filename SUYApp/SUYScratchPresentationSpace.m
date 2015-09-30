@@ -384,22 +384,24 @@ uint memoryWarningCount;
     UIActivityViewController *activityVc = [[UIActivityViewController alloc] initWithActivityItems:objectsToShare applicationActivities:nil];
     
     // Exclude all activities except AirDrop.
-    NSArray *excludedActivities = @[UIActivityTypePostToTwitter, UIActivityTypePostToFacebook,
-                                    UIActivityTypePostToWeibo,
-                                    UIActivityTypeMessage, UIActivityTypeMail,
-                                    UIActivityTypePrint, UIActivityTypeCopyToPasteboard,
-                                    UIActivityTypeAssignToContact, UIActivityTypeSaveToCameraRoll,
-                                    UIActivityTypeAddToReadingList, UIActivityTypePostToFlickr,
-                                    UIActivityTypePostToVimeo, UIActivityTypePostToTencentWeibo];
+//    NSArray *excludedActivities = @[UIActivityTypePostToTwitter, UIActivityTypePostToFacebook,
+//                                    UIActivityTypePostToWeibo,
+//                                    UIActivityTypeMessage, UIActivityTypeMail,
+//                                    UIActivityTypePrint, UIActivityTypeCopyToPasteboard,
+//                                    UIActivityTypeAssignToContact, UIActivityTypeSaveToCameraRoll,
+//                                    UIActivityTypeAddToReadingList, UIActivityTypePostToFlickr,
+//                                    UIActivityTypePostToVimeo, UIActivityTypePostToTencentWeibo];
+//    activityVc.excludedActivityTypes = excludedActivities;
     
-    //activityVc.excludedActivityTypes = excludedActivities;
-    activityVc.modalPresentationStyle = UIModalPresentationFormSheet;
+    if(!(OVER_IOS9)){
+        activityVc.modalPresentationStyle = UIModalPresentationFormSheet;
+    }
     
-    Class UIPopoverControllerClass = NSClassFromString(@"UIPopoverController");
-    popUpInfoViewController  = [[UIPopoverControllerClass alloc] initWithContentViewController: activityVc];
+    popUpInfoViewController  = [[UIPopoverController alloc] initWithContentViewController: activityVc];
     self.popUpInfoViewController.delegate = self;
     [self.popUpInfoViewController setPopoverContentSize: CGSizeMake(320.0f,320.0f) animated: YES];
     [self.popUpInfoViewController presentPopoverFromRect: CGRectMake(self.view.center.x-135,2,10,42) inView: self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated: YES];
+    
     
 }
 
@@ -566,6 +568,12 @@ uint memoryWarningCount;
 }
 
 - (IBAction) keySpace: (id) sender {
+    
+    if(self.commandButton.selected == YES) {
+        [self keyEnter:sender];
+        return;
+    }
+    
 	BOOL spaceRepeats = [(sqSqueakIPhoneInfoPlistInterface*) gDelegateApp.squeakApplication.infoPlistInterfaceLogic spaceRepeats];
 	if (spaceRepeats) {
 		unichar character = 32;
@@ -585,6 +593,11 @@ uint memoryWarningCount;
 		}
 	}
 }
+
+- (IBAction) keyEnter: (id) sender {
+    [self pushCharacter: [NSString stringWithFormat:@"%c", 13]];
+}
+
 
 - (void) startRepeatKeyProcess: (unichar) character for: (id) sender {
 	NSString *string = [[NSString alloc] initWithCharacters:&character length: 1];

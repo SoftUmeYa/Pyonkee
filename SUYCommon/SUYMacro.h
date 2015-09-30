@@ -56,6 +56,7 @@
 #define LgInfo(...)           LoggerApp(LOG_LV_INFO, __VA_ARGS__)
 #define LgTrace(...)           LoggerApp(LOG_LV_TRACE, __VA_ARGS__)
 
-
-
+// iOS Version
+#define OVER_IOS8 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8)
+#define OVER_IOS9 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 9)
 

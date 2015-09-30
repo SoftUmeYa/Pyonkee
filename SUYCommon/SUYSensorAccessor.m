@@ -222,10 +222,14 @@ static inline double Percent(double numerator, double denominator)
 
 -(double) brightness
 {
-    //return [UIScreen mainScreen].brightness;
-    
     SUYLightSensor* lightSensor = [SUYLightSensor soleInstance];
-    return ValueInRange(lightSensor.brightness, 0, MaxSensorVal)*10; //0-100
+    
+    double rawBrightness = lightSensor.brightness;
+    if(OVER_IOS9){
+        rawBrightness = rawBrightness - 7.5;
+    }
+    
+    return ValueInRange(rawBrightness, 0.0, MaxSensorVal)*10; //0-100
 }
 
 
