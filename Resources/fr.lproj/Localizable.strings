@@ -51,7 +51,8 @@
 "Cleaning up memory..." = "Nettoyage de la mémoire...";
 "Done!" = "Terminé!";
 "OK" = "OK";
-"New entry in Inbox" = "Nouvelle entrée dans la boîte de réception";
+"New entry in Inbox" = "Une nouvelle entrée est entrée dans la boîte de réception";
+"New entry in Documents" = "Une nouvelle entrée est entrée dans les documents";
 
 "Warning" = "Avertissement";
 "No permission to use Camera. Please change privacy settings" = "Pas de permission pour utiliser l'appareil photo. S'il vous plaît changer les paramètres de confidentialité";
