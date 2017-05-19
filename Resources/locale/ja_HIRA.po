@@ -742,6 +742,9 @@ msgstr "ブロックをてんめつさせる (はやく)"
 msgid "Flash blocks (slow)"
 msgstr "ブロックをてんめつさせる (おそく)"
 
+msgid "Flash blocks (very slow)"
+msgstr "ブロックをてんめつさせる (ひじょうにおそく)"
+
 msgid "Flip horizontally"
 msgstr "すいへいにはんてん"
 
@@ -1999,6 +2002,15 @@ msgstr "iPadセンサーむこう"
 
 msgid "Inbox"
 msgstr "じゅしんばこ"
+
+msgid "Import from iCloud"
+msgstr "iCloudからインポート"
+
+msgid "Export to iCloud"
+msgstr "iCloudにエクスポート"
+
+msgid "Flash blocks (very slow)"
+msgstr "ブロックをてんめつさせる (ひじょうにおそく)"
 
 ############################################
 # MESH
