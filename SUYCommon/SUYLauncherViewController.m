@@ -70,7 +70,7 @@ bool isEnabled = NO;
     return UIInterfaceOrientationLandscapeLeft;
 }
 
-- (NSUInteger)supportedInterfaceOrientations{
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations{
     return UIInterfaceOrientationMaskLandscape;
 }
 
