@@ -8,7 +8,7 @@ Pyonkee uses these third-party Objective-C libraries. Please visit each link for
 - [UIImage-categories](https://github.com/mbcharbonneau/UIImage-Categories)
 - [ELCImagePicker](https://github.com/B-Sides/ELCImagePickerController/tree/master/Classes/ELCImagePicker)
 - [iOS Image Editor](https://github.com/heitorfr/ios-image-editor)
-
+- [MIKMIDI](https://github.com/mixedinkey-opensource/MIKMIDI)
 
 
 
