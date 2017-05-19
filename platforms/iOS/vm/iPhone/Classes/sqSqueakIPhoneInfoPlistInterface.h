@@ -47,4 +47,5 @@ Sept-02-08  1.03b1  setup useScrollingView
 - (CGFloat) timeOut;
 - (BOOL) spaceRepeats;
 - (NSInteger) inboxMaxNumOfItems;
+- (BOOL) useVirtualMIDI;
 @end
