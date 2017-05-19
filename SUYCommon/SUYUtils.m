@@ -94,6 +94,36 @@
     
 }
 
++ (void)removeFilesMatches:(NSString*)regexString inPath:(NSString*)path {
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:regexString options:NSRegularExpressionCaseInsensitive error:nil];
+    NSFileManager* fm = [NSFileManager defaultManager];
+    NSDirectoryEnumerator *filesEnumerator = [fm enumeratorAtPath:path];
+    NSString *file;
+    NSError *error;
+    while (file = [filesEnumerator nextObject]) {
+        NSUInteger match = [regex numberOfMatchesInString:file options:0 range:NSMakeRange(0, [file length])];
+        if (match) {
+            [fm removeItemAtPath:[path stringByAppendingPathComponent:file] error:&error];
+        }
+    }
+}
+
+#pragma mark - Testing
+
++ (BOOL) belongsToTempDirectory: (NSString*) filePath {
+    NSString *tempBaseDir = [self tempDirectory];
+    return [filePath hasPrefix:tempBaseDir];
+}
+
++ (int) fileExists: (NSString*)fileName inDirectory: (NSString*)path{
+    NSString* pathName = [path stringByAppendingPathComponent:fileName];
+    
+    if([[NSFileManager defaultManager] fileExistsAtPath:pathName]){
+        return 1;
+    };
+    return 0;
+}
+
 #pragma mark Defaults
 
 + (Class) squeakUIViewClass{
@@ -151,6 +181,21 @@
     return path;
 }
 
++ (NSString *)documentDirectory
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(
+                                                         NSDocumentDirectory,
+                                                         NSUserDomainMask,
+                                                         YES);
+    return [paths objectAtIndex:0];
+}
+
++ (NSString *)documentInboxDirectory
+{
+    NSString *path = [[self documentDirectory] stringByAppendingPathComponent:@"Inbox"];
+    return path;
+}
+
 + (NSString *)bundleResourceDirectoryWith: (NSString*)subDir {
     NSString *path = [[NSBundle mainBundle] resourcePath];
     return [path stringByAppendingPathComponent: subDir];
@@ -197,6 +242,11 @@
     return lang;
 }
 
++ (NSArray*) supportedUtis{
+    return @[@"com.softumeya.scratch-project",@"com.softumeya.scratch-sprite",@"com.microsoft.waveform-audio",@"com.compuserve.gif",@"com.microsoft.bmp",@"public.png",@"public.jpeg",@"public.utf8-plain-text"];
+}
+
+
 #pragma mark Private
 
 + (BOOL)addSkipBackupAttributeToItemAtURL:(NSURL *)URL
@@ -238,16 +288,32 @@
                       otherButtonTitles:nil] show];
 }
 
++ (UIAlertController*) newAlert:(NSString*)message title: (NSString*)title{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+    return alertController;
+}
+
++ (UIAlertController*) newAlert:(NSString*)message {
+    UIAlertController *alertController = [self newAlert:message title: @""];
+    return alertController;
+}
+
++ (UIAlertController*) newInfoAlert:(NSString*)message {
+    UIAlertController *alert = [self newAlert:message];
+    [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"OK",nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {}]];
+    return alert;
+}
+
 #pragma mark Stats
 
 +(void) printMemStats{
 #ifdef SUY_DEBUG
-   LgInfo(@"@@##!!STATS!!!##@@ app %u", [self getAppMemory]);
+   LgInfo(@"@@##!!STATS!!!##@@ app %lu", [self getAppMemory]);
 #endif
 }
 
 #ifdef SUY_DEBUG
-+ (unsigned int)getFreeMemory {
++ (vm_size_t)getFreeMemory {
     
     mach_port_t host_port;
     mach_msg_type_number_t host_size;
@@ -263,13 +329,13 @@
         return 0;
     }
     
-    natural_t mem_free = vm_stat.free_count * pagesize;
+    vm_size_t mem_free = vm_stat.free_count * pagesize;
     
     return (unsigned int)mem_free;
 }
 
 
-+(unsigned int) getAppMemory {
++(vm_size_t) getAppMemory {
     struct task_basic_info basic_info;
     mach_msg_type_number_t t_info_count = TASK_BASIC_INFO_COUNT;
     kern_return_t status;
