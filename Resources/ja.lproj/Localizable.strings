@@ -53,7 +53,8 @@
 "Cleaning up memory..." = "メモリ掃除中...";
 "Done!" = "完了!";
 "OK" = "OK";
-"New entry in Inbox" = "受信箱にプロジェクトが入りました";
+"New entry in Inbox" = "受信箱に入りました";
+"New entry in Documents" = "ドキュメントに保存されました";
 
 "Warning" = "警告";
 "No permission to use Camera. Please change privacy settings" = "カメラを使う権限がありません。プライバシーの設定を確認してください";

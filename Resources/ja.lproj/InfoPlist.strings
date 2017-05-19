@@ -8,3 +8,9 @@
 
 CFBundleName = "ピョンキー";
 CFBundleDisplayName = "ピョンキー";
+
+NSCameraUsageDescription = "新しい写真をインポートできます";
+NSLocationWhenInUseUsageDescription = "センサーブロックで使用します";
+NSMicrophoneUsageDescription = "音声をブロックで再生できます";
+NSMotionUsageDescription = "センサーブロックで使用します";
+NSPhotoLibraryUsageDescription = "写真をインポートできます";

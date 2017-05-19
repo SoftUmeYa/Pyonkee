@@ -46,6 +46,7 @@ NSString * kmemorySize_preferenceKey = @"memorySize_preference";
 NSString * ktimeOut_preferenceKey = @"timeOut_preference";
 NSString * kspaceRepeats_preferenceKey = @"spaceRepeats_preference";
 NSString * kinboxMaxNumOfItems_preferenceKey = @"inboxMaxNumOfItems_preference";
+NSString * kuseVirtualMIDI_preferenceKey = @"useVirtualMIDI_preference";
 
  extern int gSqueakUseFileMappedMMAP;
 
@@ -79,6 +80,7 @@ NSString * kinboxMaxNumOfItems_preferenceKey = @"inboxMaxNumOfItems_preference";
 		NSString	*timeOut_preferenceDefault=@"30";
 		NSString	*spaceRepeats_preferenceDefault=@"NO";
         NSString	*inboxMaxNumOfItems_preferenceDefault=@"10";
+        NSString	*useVirtualMIDI_preferenceDefault=@"NO";
         
 		for (prefItem in prefSpecifierArray)	{
 			NSString *keyValueStr = [prefItem objectForKey:@"Key"];
@@ -107,6 +109,11 @@ NSString * kinboxMaxNumOfItems_preferenceKey = @"inboxMaxNumOfItems_preference";
             if ([keyValueStr isEqualToString: kinboxMaxNumOfItems_preferenceKey]) {
                 inboxMaxNumOfItems_preferenceDefault = defaultValue;
             }
+            
+            if ([keyValueStr isEqualToString: kuseVirtualMIDI_preferenceKey]) {
+                useVirtualMIDI_preferenceDefault = defaultValue;
+            }
+            
 		}
 		
         // since no default values have been set (i.e. no preferences file created), create it here
@@ -116,7 +123,8 @@ NSString * kinboxMaxNumOfItems_preferenceKey = @"inboxMaxNumOfItems_preference";
 									  timeOut_preferenceDefault,  ktimeOut_preferenceKey,
 									  spaceRepeats_preferenceDefault,  kspaceRepeats_preferenceKey,
                                       inboxMaxNumOfItems_preferenceDefault,  kinboxMaxNumOfItems_preferenceKey,
-									  nil];
+                                      useVirtualMIDI_preferenceDefault,  kuseVirtualMIDI_preferenceKey,
+                                      nil];
         
         [[NSUserDefaults standardUserDefaults] registerDefaults: appDefaults];
         [[NSUserDefaults standardUserDefaults] synchronize];
@@ -147,6 +155,10 @@ NSString * kinboxMaxNumOfItems_preferenceKey = @"inboxMaxNumOfItems_preference";
 
 - (NSInteger) inboxMaxNumOfItems {
     return [defaults integerForKey: kinboxMaxNumOfItems_preferenceKey];
+}
+
+- (BOOL) useVirtualMIDI {
+    return [defaults boolForKey: kuseVirtualMIDI_preferenceKey];
 }
 
 @end

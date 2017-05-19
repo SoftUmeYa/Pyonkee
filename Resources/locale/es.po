@@ -2070,6 +2070,15 @@ msgstr "Detener Sensing"
 msgid "Inbox"
 msgstr "Bandeja de entrada"
 
+msgid "Import from iCloud"
+msgstr "Importar de iCloud"
+
+msgid "Export to iCloud"
+msgstr "Exportar a iCloud"
+
+msgid "Flash blocks (very slow)"
+msgstr "Iluminar bloques (muy lento)"
+
 ############################################
 # MESH
 ############################################

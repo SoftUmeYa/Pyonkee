@@ -8,3 +8,9 @@
 
 CFBundleName = "Pyonkee";
 CFBundleDisplayName = "Pyonkee";
+
+NSCameraUsageDescription = "zum Importieren neuer Fotos";
+NSLocationWhenInUseUsageDescription = "für Sensorblöcke";
+NSMicrophoneUsageDescription = "zum Abspielen von aufgezeichneten Sounds";
+NSMotionUsageDescription = "für Sensorblöcke";
+NSPhotoLibraryUsageDescription = "zum Importieren bestehender Fotos";

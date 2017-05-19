@@ -1997,6 +1997,15 @@ msgstr "iPadセンサー無効"
 msgid "Inbox"
 msgstr "受信箱"
 
+msgid "Import from iCloud"
+msgstr "iCloudからインポート"
+
+msgid "Export to iCloud"
+msgstr "iCloudにエクスポート"
+
+msgid "Flash blocks (very slow)"
+msgstr "ブロックを点滅させる (非常に遅く)"
+
 ############################################
 # MESH
 ############################################

@@ -184,73 +184,45 @@ void unicodeDrawString(char *utf8, int utf8Length, int *wPtr, int *hPtr, unsigne
 int unicodeGetXRanges(char *utf8, int utf8Length, int *resultPtr, int resultLength) {
 	@autoreleasepool {
         
-	NSString *stringToMangle = [[NSString alloc] initWithBytes: utf8 length: utf8Length encoding:  NSUTF8StringEncoding];
-	NSUInteger stringSize = [stringToMangle length];
-	NSUInteger i;
-	int *dst = resultPtr;
-	int leftEdge, rightEdge,estimatedWidth;
+	NSString *stringToMangle = [[NSString alloc] initWithBytes: utf8 length: utf8Length encoding: NSUTF8StringEncoding];
+	__block    NSUInteger stringSize = 0;
+    __block int *dst = resultPtr;
+	__block int leftEdge, rightEdge,estimatedWidth;
 	
 	if (gFontToUse == nil) {
 		gFontSize = 12.0f;
 		gFontToUse = [UIFont systemFontOfSize: gFontSize];
 		gFontName = [gFontToUse fontName];
 	}
+    
+    leftEdge = 0;
+    rightEdge = 0;
+        
+    [stringToMangle enumerateSubstringsInRange:NSMakeRange(0, [stringToMangle length]) options:NSStringEnumerationByComposedCharacterSequences usingBlock: ^(NSString* substring, NSRange substringRange, NSRange enclosingRange, BOOL* stop) {
+        const unichar high = [substring characterAtIndex: 0];
+        unichar c;
+        
+        // Surrogate pair (U+1D000-1F77F)
+        if (0xd800 <= high && high <= 0xdbff) {
+            c = [substring characterAtIndex: 1];
+        } else {
+            c = [substring characterAtIndex: 0];
+        }
+        
+        NSString *stringToDraw = [[NSString alloc] initWithCharacters: &c length: 1];
+        CGSize size = [stringToDraw sizeWithAttributes:@{NSFontAttributeName: gFontToUse}];
+        estimatedWidth = size.width + 0.5f;
+        rightEdge += estimatedWidth;
+        *dst++ = leftEdge;
+        *dst++ = rightEdge;
+        leftEdge += estimatedWidth;
+        
+        stringSize++;
+        
+    }];
 
-	leftEdge = 0;
-	rightEdge = 0;
-	for (i=0;i<stringSize;i++) {
-		unichar c = [stringToMangle characterAtIndex: i];
-		NSString *stringToDraw = [[NSString alloc] initWithCharacters: &c length: 1];
-		CGSize size = [stringToDraw sizeWithFont: gFontToUse];
-		estimatedWidth = size.width + 0.5f;
-		rightEdge += estimatedWidth;
-		*dst++ = leftEdge;
-		*dst++ = rightEdge;
-		leftEdge += estimatedWidth;
-	}
 	
-/*	ATSUCaret mainCaret;
-	ATSUCaret secondaryCaret;
-	Boolean isSplit;
-	int leftToRight, prev, thisEdge, otherEdge, i;
-
-	if (setText(utf8, utf8Length) != noErr) return 0;
-	if (resultLength < (2 * g_utf16Length)) return 0;
-
-	ATSUOffsetToPosition(g_layout, 0, TRUE, &mainCaret, &secondaryCaret, &isSplit);
-	prev = mainCaret.fX >> 16;
-	leftToRight = (mainCaret.fX == 0);
-
-	for (i = 1; i <= g_utf16Length; i++) {
-		ATSUOffsetToPosition(g_layout, i, TRUE, &mainCaret, &secondaryCaret, &isSplit);
-		thisEdge = mainCaret.fX >> 16;
-		otherEdge = prev;
-		prev = thisEdge;
-		if (isSplit) {  // direction change
-			if (leftToRight) {
-				leftToRight = false;
-				thisEdge = secondaryCaret.fX >> 16;
-				prev = mainCaret.fX >> 16;
-			} else {
-				leftToRight = true;
-				prev = secondaryCaret.fX >> 16;
-			}
-		}
-//*dst++ = mainCaret.fX >> 16;
-//*dst++ = secondaryCaret.fX >> 16;
-		if (otherEdge <= thisEdge) {
-			*dst++ = otherEdge;
-			*dst++ = thisEdge;
-		} else {
-			*dst++ = thisEdge;
-			*dst++ = otherEdge;
-		}
-	}
-
-	fixMulicharRanges(resultPtr, (2 * g_utf16Length));
-	return g_utf16Length;
- */
-	return stringSize;
+	return (int)stringSize;
     }
 }
 

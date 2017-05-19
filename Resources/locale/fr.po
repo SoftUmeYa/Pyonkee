@@ -2010,6 +2010,15 @@ msgstr "Arrêter Sensing"
 msgid "Inbox"
 msgstr "Boîte de réception"
 
+msgid "Import from iCloud"
+msgstr "Importer depuis iCloud"
+
+msgid "Export to iCloud"
+msgstr "Exporter vers iCloud"
+
+msgid "Flash blocks (very slow)"
+msgstr "Blocs clignotants (très lent)"
+
 ############################################
 # MESH
 ############################################

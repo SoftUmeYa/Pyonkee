@@ -1997,6 +1997,15 @@ msgstr "iPad的傳感器無效"
 msgid "Inbox"
 msgstr "收件箱"
 
+msgid "Import from iCloud"
+msgstr "從iCloud導入"
+
+msgid "Export to iCloud"
+msgstr "導出到iCloud"
+
+msgid "Flash blocks (very slow)"
+msgstr "積木閃動速度（非常慢）"
+
 ############################################
 # MESH
 ############################################

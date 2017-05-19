@@ -36,7 +36,9 @@
 "Cleaning up memory..." = "清理內存...";
 "Done!" = "完成!";
 "OK" = "確定";
-"New entry in Inbox" = "作品已進入收件箱";
+"New entry in Inbox" = "Inbox中輸入的新條目";
+"New entry in Documents" = "在文檔中輸入的新條目";
+
 
 "Warning" = "警告";
 "No permission to use Camera. Please change privacy settings" = "您沒有權限使用相機。請檢查隱私設置";

@@ -741,10 +741,10 @@ msgid "fisheye"
 msgstr "olho de peixe"
 
 msgid "Flash blocks (fast)"
-msgstr ""
+msgstr "piscar blocos (rápido)"
 
 msgid "Flash blocks (slow)"
-msgstr ""
+msgstr "piscar blocos (devagar)"
 
 msgid "Flip horizontally"
 msgstr "Inverter horizontalmente"
@@ -2021,6 +2021,15 @@ msgstr "Parar Sensing"
 
 msgid "Inbox"
 msgstr "Caixa de entrada"
+
+msgid "Import from iCloud"
+msgstr "Importar do iCloud"
+
+msgid "Export to iCloud"
+msgstr "Exportar para o iCloud"
+
+msgid "Flash blocks (very slow)"
+msgstr "piscar blocos (muito devagar)"
 
 ############################################
 # MESH

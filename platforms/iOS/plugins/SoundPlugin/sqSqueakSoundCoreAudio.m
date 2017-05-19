@@ -320,10 +320,9 @@ void MyAudioQueueInputCallback (
 		return 0;
 	OSStatus result = AudioQueueStop (self.outputAudioQueue,true);  //This implicitly invokes AudioQueueReset
 	if (result != noErr) {
-		LgError(@"snd_Stop>AudioQueueStop status: %ld", result);
+		LgError(@"snd_Stop>AudioQueueStop status: %d", (int)result);
 		return 0;
     }
-    if ([self stopAudioSession] == NO){ return 0;}
     self.outputIsRunning = NO;
 	return 1;
     }
@@ -337,7 +336,7 @@ void MyAudioQueueInputCallback (
 	NSLog(@"sound stop force");
 	OSStatus result = AudioQueueStop (self.outputAudioQueue,true);  //This implicitly invokes AudioQueueReset
     if (result != noErr) {
-		LgError(@"snd_Stop_Force>AudioQueueStop status: %ld", result);
+		LgError(@"snd_Stop_Force>AudioQueueStop status: %d", (int)result);
 		return;
     }
     if ([self stopAudioSession] == NO){ return;}
@@ -348,7 +347,7 @@ void MyAudioQueueInputCallback (
 
 - (sqInt)	snd_StopAndDispose {
 	@synchronized(self) {
-    LgInfo(@"!!snd_stopAndDispose!!");
+    LgInfo(@"!!snd_StopAndDispose!!");
 	if (self.outputAudioQueue == nil)
 		return 0;
 	
@@ -358,7 +357,7 @@ void MyAudioQueueInputCallback (
 	
 	OSStatus result  = AudioQueueDispose (self.outputAudioQueue,true);
     if (result != noErr) {
-        LgError(@"snd_StopAndDispose>AudioQueueDispose status: %ld", result);
+        LgError(@"snd_StopAndDispose>AudioQueueDispose status: %d", (int)result);
 		return 0;
     }
     LgInfo(@"outputAudioQueue := nil");
@@ -409,7 +408,7 @@ void MyAudioQueueInputCallback (
 		AudioQueuePrime(self.outputAudioQueue,0,&outNumberOfFramesPrepared);
 		result =  AudioQueueStart (self.outputAudioQueue,NULL);
         if(result != noErr){
-            LgError(@"snd_PlaySamplesFromAtLength status: %ld", result);
+            LgError(@"snd_PlaySamplesFromAtLength status: %d", (int)result);
         }
 		//Force it as running
 		self.outputIsRunning = YES;
@@ -448,12 +447,12 @@ void MyAudioQueueInputCallback (
     for (int i = 0; i < kNumberOfBuffers; ++i) {
 		result = AudioQueueAllocateBuffer(self.inputAudioQueue, self.bufferSizeForInput, &self.inputBuffers[i]);
 		if(result != noErr){
-            LgError(@"AudioQueueAllocateBuffer status: %ld", result);
+            LgError(@"AudioQueueAllocateBuffer status: %d", (int)result);
 			return NO;
         }
 		result = AudioQueueEnqueueBuffer(self.inputAudioQueue,self.inputBuffers[i],0,NULL);
 		if(result != noErr){
-            LgError(@"AudioQueueEnqueueBuffer status: %ld", result);
+            LgError(@"AudioQueueEnqueueBuffer status: %d", (int)result);
 			return NO;
         }
 	}
@@ -475,7 +474,7 @@ void MyAudioQueueInputCallback (
     if([audioSession respondsToSelector:@selector(requestRecordPermission:)])
     {
         [audioSession requestRecordPermission:^(BOOL allowed){
-            LgInfo(@"Allow microphone use? %hhd", allowed);
+            LgInfo(@"Allow microphone use? %d", allowed);
             self.recordAllowed = allowed;
         }];
     } else {
@@ -521,7 +520,7 @@ void MyAudioQueueInputCallback (
                                                0,
                                                &newQueue);
         if (result != noErr) {
-            LgError(@"AudioQueueNewInput status: %ld", result);
+            LgError(@"AudioQueueNewInput status: %d", (int)result);
             [self recordingTrialFailed];
             return interpreterProxy->primitiveFail();
         }
@@ -533,9 +532,11 @@ void MyAudioQueueInputCallback (
         }
         
         if ([self startAudioSession] == NO){ return [self recordingTrialFailed];}
+        if ([self ensureAudioSessionRecordingMode] == NO){ return [self recordingTrialFailed];}
+        
         result =  AudioQueueStart(self.inputAudioQueue,NULL);
         if(result != noErr){
-            LgError(@"AudioQueueStart status: %ld", result);
+            LgError(@"AudioQueueStart status: %d", (int)result);
             [self recordingTrialFailed];
             return interpreterProxy->primitiveFail();
         }
@@ -543,7 +544,6 @@ void MyAudioQueueInputCallback (
         
         if (!self.recordAllowed){
             LgWarn(@"record is not allowed!!");
-            //return 403;
         }
         
         return 0;
@@ -578,10 +578,6 @@ void MyAudioQueueInputCallback (
 	self.inputAudioQueue = nil;
 	[self.soundInQueue removeAll];
     
-    if ([self stopAudioSession] == NO){
-        LgWarn(@"stopAudioSession fail");
-        return 0;
-    }
     LgInfo(@"==snd_StopRecording end");
 	return 1;
     }
@@ -630,7 +626,19 @@ void MyAudioQueueInputCallback (
 		
 }
 
-#pragma mark private
+#pragma mark - Initialization
+- (BOOL)initAudioSession
+{
+    [self ensureAudioSessionRecordingMode];
+    
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    [center addObserver:self selector:@selector(sessionDidInterrupt:) name:AVAudioSessionInterruptionNotification object:nil];
+    [center addObserver:self selector:@selector(sessionRouteDidChange:) name:AVAudioSessionRouteChangeNotification object:nil];
+    
+    return YES;
+}
+
+#pragma mark - Callback
 
 - (void)stopIfRunning
 {
@@ -641,26 +649,9 @@ void MyAudioQueueInputCallback (
     if (self.inputIsRunning) {
         LgInfo(@"inputIsRunning-> snd_StopRecording");
         [self snd_StopRecording];
+        [self stopAudioSession];
     }
 }
-
-- (BOOL)initAudioSession
-{
-    AVAudioSession *audioSession = [AVAudioSession sharedInstance];
-    NSError *err = nil;
-    [audioSession setCategory: AVAudioSessionCategoryPlayAndRecord error: &err];
-    if(err){
-        LgError(@"audioSession: %@ %d %@", [err domain], [err code], [[err userInfo] description]);
-        return NO;
-    }
-    
-    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-    [center addObserver:self selector:@selector(sessionDidInterrupt:) name:AVAudioSessionInterruptionNotification object:nil];
-    [center addObserver:self selector:@selector(sessionRouteDidChange:) name:AVAudioSessionRouteChangeNotification object:nil];
-    
-    return YES;
-}
-
 
 
 - (void)sessionDidInterrupt:(NSNotification *)notification
@@ -684,6 +675,7 @@ void MyAudioQueueInputCallback (
     [self stopIfRunning];
 }
 
+#pragma mark - AudioSesssion
 - (BOOL)startAudioSession
 {
     LgInfo(@"###startAudioSession");
@@ -691,7 +683,7 @@ void MyAudioQueueInputCallback (
     NSError *err = nil;
     [audioSession setActive:YES error:&err];
     if(err){
-        LgError(@"audioSession: %@ %d %@", [err domain], [err code], [[err userInfo] description]);
+        LgError(@"audioSession: %@ %ld %@", [err domain], (long)err.code, [[err userInfo] description]);
         return NO;
     }
     
@@ -703,6 +695,17 @@ void MyAudioQueueInputCallback (
     return YES;
 }
 
+- (BOOL) ensureAudioSessionRecordingMode
+{
+    NSError *err = nil;
+    [[AVAudioSession sharedInstance] setCategory: AVAudioSessionCategoryPlayAndRecord error: &err];
+    if(err){
+        LgError(@"audioSession: %@ %ld %@", [err domain], (long)err.code, [[err userInfo] description]);
+        return NO;
+    }
+    return YES;
+}
+
 - (BOOL)stopAudioSession
 {
     LgInfo(@"+++stopAudioSession");
@@ -710,7 +713,7 @@ void MyAudioQueueInputCallback (
     NSError *err = nil;
     [audioSession setActive:NO error:&err];
     if(err){
-        LgError(@"audioSession: %@ %d %@", [err domain], [err code], [[err userInfo] description]);
+        LgError(@"audioSession: %@ %ld %@", [err domain], (long)err.code, [[err userInfo] description]);
         return NO;
     }
     

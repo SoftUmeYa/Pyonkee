@@ -22,6 +22,9 @@ Pyonkee was originally started as a fork of [John M McIntosh](https://www.smallt
  - Project sharing via AirDrop
  - iPad built-in sensors support
  - "Mesh" network protocol support - (project variables/events are sharable with connected peers)
+ - Built-in MIDI synth
+ - Virtual MIDI support
+ - iCloud based project/sprite/costume/sounds sharing
 
 ##License
 Pyonkee is a derivative work of open-sourced Scratch 1.4 and licensed under the GPL v2. See the included gpl-2.0.txt for details. 
@@ -44,6 +47,6 @@ We can also customize Pyonkee for your needs. Feel free to contact us.
 
 
 -----
-Copyright 2014-2015 SoftUmeYa, LLC
+Copyright 2014-2017 SoftUmeYa, LLC
 
 

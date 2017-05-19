@@ -65,6 +65,13 @@
 		85930B39193EEB8F00F878CA /* SUYCameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85930B37193EEB8F00F878CA /* SUYCameraViewController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		859A575219627C890096CA54 /* locale in Resources */ = {isa = PBXBuildFile; fileRef = 859A575119627C890096CA54 /* locale */; };
 		859A575619627CA80096CA54 /* Projects in Resources */ = {isa = PBXBuildFile; fileRef = 859A575519627CA80096CA54 /* Projects */; };
+		859C5FF81ECEB43D00276023 /* SUYExternalMIDISynth.m in Sources */ = {isa = PBXBuildFile; fileRef = 859C5FF31ECEB43D00276023 /* SUYExternalMIDISynth.m */; };
+		859C5FF91ECEB43D00276023 /* SUYInternalMIDISynth.m in Sources */ = {isa = PBXBuildFile; fileRef = 859C5FF51ECEB43D00276023 /* SUYInternalMIDISynth.m */; };
+		859C5FFA1ECEB43D00276023 /* SUYMIDISynth.m in Sources */ = {isa = PBXBuildFile; fileRef = 859C5FF71ECEB43D00276023 /* SUYMIDISynth.m */; };
+		859C5FFD1ECEB45D00276023 /* SUYiCloudAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 859C5FFC1ECEB45D00276023 /* SUYiCloudAccessor.m */; };
+		859C5FFF1ECEB5EC00276023 /* MIKMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 859C5FFE1ECEB5EC00276023 /* MIKMIDI.framework */; };
+		859C60011ECEB69900276023 /* TimGM6mb.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = 859C60001ECEB69900276023 /* TimGM6mb.sf2 */; };
+		859C60031ECEB80900276023 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 859C60021ECEB80900276023 /* Info.plist */; };
 		85A511C719652F4500A5413E /* blue-rect.png in Resources */ = {isa = PBXBuildFile; fileRef = 85A511C619652F4500A5413E /* blue-rect.png */; };
 		85A75A2719332CEC006A1A44 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85A75A2619332CEC006A1A44 /* AVFoundation.framework */; };
 		85B22FB01976602400A7E6E5 /* flat-close.png in Resources */ = {isa = PBXBuildFile; fileRef = 85B22FAD1976602400A7E6E5 /* flat-close.png */; };
@@ -337,7 +344,6 @@
 		8566D0911B0EDDD900CDF860 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		8566D0921B0EDDE100CDF860 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		8566D0931B0EDDE100CDF860 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
-		856D81C219140AA2000946DF /* Info-iPad.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Info-iPad.plist"; sourceTree = SOURCE_ROOT; };
 		85716E3B1B267F5700926629 /* LauncherViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LauncherViewController.xib; path = Resources/LauncherViewController.xib; sourceTree = "<group>"; };
 		85716E3C1B267F5700926629 /* MainWindowiPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainWindowiPad.xib; path = Resources/MainWindowiPad.xib; sourceTree = "<group>"; };
 		85716E3D1B267F5700926629 /* ScratchIPhonePresentationSpaceiPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ScratchIPhonePresentationSpaceiPad.xib; path = Resources/ScratchIPhonePresentationSpaceiPad.xib; sourceTree = "<group>"; };
@@ -370,6 +376,18 @@
 		85930B37193EEB8F00F878CA /* SUYCameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUYCameraViewController.m; sourceTree = "<group>"; };
 		859A575119627C890096CA54 /* locale */ = {isa = PBXFileReference; lastKnownFileType = folder; name = locale; path = Resources/locale; sourceTree = "<group>"; };
 		859A575519627CA80096CA54 /* Projects */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Projects; path = Resources/Projects; sourceTree = "<group>"; };
+		859C5FF01ECEB41A00276023 /* Pyonkee.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = Pyonkee.entitlements; sourceTree = "<group>"; };
+		859C5FF21ECEB43D00276023 /* SUYExternalMIDISynth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUYExternalMIDISynth.h; sourceTree = "<group>"; };
+		859C5FF31ECEB43D00276023 /* SUYExternalMIDISynth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUYExternalMIDISynth.m; sourceTree = "<group>"; };
+		859C5FF41ECEB43D00276023 /* SUYInternalMIDISynth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUYInternalMIDISynth.h; sourceTree = "<group>"; };
+		859C5FF51ECEB43D00276023 /* SUYInternalMIDISynth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUYInternalMIDISynth.m; sourceTree = "<group>"; };
+		859C5FF61ECEB43D00276023 /* SUYMIDISynth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUYMIDISynth.h; sourceTree = "<group>"; };
+		859C5FF71ECEB43D00276023 /* SUYMIDISynth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUYMIDISynth.m; sourceTree = "<group>"; };
+		859C5FFB1ECEB45D00276023 /* SUYiCloudAccessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUYiCloudAccessor.h; sourceTree = "<group>"; };
+		859C5FFC1ECEB45D00276023 /* SUYiCloudAccessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUYiCloudAccessor.m; sourceTree = "<group>"; };
+		859C5FFE1ECEB5EC00276023 /* MIKMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MIKMIDI.framework; path = Carthage/Build/iOS/MIKMIDI.framework; sourceTree = "<group>"; };
+		859C60001ECEB69900276023 /* TimGM6mb.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; name = TimGM6mb.sf2; path = Resources/TimGM6mb.sf2; sourceTree = "<group>"; };
+		859C60021ECEB80900276023 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
 		85A511C619652F4500A5413E /* blue-rect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "blue-rect.png"; path = "Resources/images/blue-rect.png"; sourceTree = "<group>"; };
 		85A75A2619332CEC006A1A44 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		85B22FAD1976602400A7E6E5 /* flat-close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "flat-close.png"; path = "Resources/images/newer/flat-close.png"; sourceTree = SOURCE_ROOT; };
@@ -789,6 +807,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				859C5FFF1ECEB5EC00276023 /* MIKMIDI.framework in Frameworks */,
 				850A03E61B4CBE7D00F364E8 /* SystemConfiguration.framework in Frameworks */,
 				85BC89681AB08B950029ED79 /* MobileCoreServices.framework in Frameworks */,
 				850A03E41B4CBB4900F364E8 /* ImageIO.framework in Frameworks */,
@@ -865,6 +884,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				859C5FF01ECEB41A00276023 /* Pyonkee.entitlements */,
 				941D1C9A0E696FC7005B77B3 /* Entitlements.plist */,
 				9412CAB20E6C037B00DB8625 /* Settings.bundle */,
 				29B97315FDCFA39411CA2CEA /* Classes */,
@@ -880,6 +900,7 @@
 		29B97315FDCFA39411CA2CEA /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				859C5FF11ECEB43D00276023 /* SUYSound */,
 				85918D3019113E8600F9637A /* SUYScratchApp */,
 				85F8F78818F6856100948A68 /* SUYCommon */,
 				94C2F685111652EC004483E8 /* CSCScratchiPhoneInterface */,
@@ -892,6 +913,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				859C60001ECEB69900276023 /* TimGM6mb.sf2 */,
 				85D17E5D19907C5F00A917EF /* Localizable.strings */,
 				85D17E5519907B2600A917EF /* InfoPlist.strings */,
 				85DD43B818F3A52A0030B27F /* windows */,
@@ -911,6 +933,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				859C5FFE1ECEB5EC00276023 /* MIKMIDI.framework */,
 				850A03E51B4CBE7D00F364E8 /* SystemConfiguration.framework */,
 				850A03E31B4CBB4900F364E8 /* ImageIO.framework */,
 				850A03E11B4CBB4000F364E8 /* CoreMedia.framework */,
@@ -1008,10 +1031,23 @@
 		85918D311911526200F9637A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				856D81C219140AA2000946DF /* Info-iPad.plist */,
+				859C60021ECEB80900276023 /* Info.plist */,
 				85918D371911569300F9637A /* ScratchOnIPad_Prefix.pch */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		859C5FF11ECEB43D00276023 /* SUYSound */ = {
+			isa = PBXGroup;
+			children = (
+				859C5FF21ECEB43D00276023 /* SUYExternalMIDISynth.h */,
+				859C5FF31ECEB43D00276023 /* SUYExternalMIDISynth.m */,
+				859C5FF41ECEB43D00276023 /* SUYInternalMIDISynth.h */,
+				859C5FF51ECEB43D00276023 /* SUYInternalMIDISynth.m */,
+				859C5FF61ECEB43D00276023 /* SUYMIDISynth.h */,
+				859C5FF71ECEB43D00276023 /* SUYMIDISynth.m */,
+			);
+			path = SUYSound;
 			sourceTree = "<group>";
 		};
 		85A05B2B18FD56AB002D6BDC /* ThirdPartyClasses */ = {
@@ -1154,6 +1190,8 @@
 		85F8F78818F6856100948A68 /* SUYCommon */ = {
 			isa = PBXGroup;
 			children = (
+				859C5FFB1ECEB45D00276023 /* SUYiCloudAccessor.h */,
+				859C5FFC1ECEB45D00276023 /* SUYiCloudAccessor.m */,
 				850A03D31B4CBA0800F364E8 /* SUYLightSensor.h */,
 				850A03D41B4CBA0800F364E8 /* SUYLightSensor.m */,
 				850A03D51B4CBA0800F364E8 /* SUYLocationManager.h */,
@@ -2177,6 +2215,16 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0510;
+				TargetAttributes = {
+					1D6058900D05DD3D006BFB54 = {
+						DevelopmentTeam = RXNQHKQR2N;
+						SystemCapabilities = {
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
+					};
+				};
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Pyonkee" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -2221,6 +2269,7 @@
 				8561D56F195887D0008FDA45 /* presentationMode-on.png in Resources */,
 				853099B5197966190071CDBF /* fontScale-active.png in Resources */,
 				85BC895A1AB088080029ED79 /* ELCAlbumPickerController.xib in Resources */,
+				859C60011ECEB69900276023 /* TimGM6mb.sf2 in Resources */,
 				85716E451B267F5700926629 /* MainWindowiPad.xib in Resources */,
 				859A575219627C890096CA54 /* locale in Resources */,
 				85D17E5319907B2600A917EF /* InfoPlist.strings in Resources */,
@@ -2228,6 +2277,7 @@
 				85D17E5B19907C5F00A917EF /* Localizable.strings in Resources */,
 				85716E541B26809F00926629 /* flat-arrow-right.png in Resources */,
 				8561D570195887D0008FDA45 /* normalMode.png in Resources */,
+				859C60031ECEB80900276023 /* Info.plist in Resources */,
 				85716E4A1B267F5700926629 /* SUYPhotoPicker.storyboard in Resources */,
 				85716E481B267F5700926629 /* SUYFontResizeViewController.xib in Resources */,
 				85716E561B26809F00926629 /* flat-folder-open.png in Resources */,
@@ -2282,12 +2332,13 @@
 			files = (
 			);
 			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/MIKMIDI.framework",
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "APP_VERSION=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" $PRODUCT_SETTINGS_PATH)\n/usr/libexec/PlistBuddy -c \"Set :PreferenceSpecifiers:7:DefaultValue ${APP_VERSION}\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/Settings.bundle/Root.plist\"\n\nBUILD_NUMBER=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" $PRODUCT_SETTINGS_PATH)\n/usr/libexec/PlistBuddy -c \"Set :PreferenceSpecifiers:8:DefaultValue ${BUILD_NUMBER}\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/Settings.bundle/Root.plist\"";
+			shellScript = "APP_VERSION=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" $PRODUCT_SETTINGS_PATH)\n/usr/libexec/PlistBuddy -c \"Set :PreferenceSpecifiers:9:DefaultValue ${APP_VERSION}\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/Settings.bundle/Root.plist\"\n\nBUILD_NUMBER=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" $PRODUCT_SETTINGS_PATH)\n/usr/libexec/PlistBuddy -c \"Set :PreferenceSpecifiers:10:DefaultValue ${BUILD_NUMBER}\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/Settings.bundle/Root.plist\"\n\n/usr/local/bin/carthage copy-frameworks\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -2303,6 +2354,7 @@
 				9424FF6B0DDCB202009912BF /* sqMacV2Memory.c in Sources */,
 				9424FF730DDCB234009912BF /* macintoshextra.c in Sources */,
 				9424FF760DDCB271009912BF /* osExports.c in Sources */,
+				859C5FFA1ECEB43D00276023 /* SUYMIDISynth.m in Sources */,
 				85EC5EA71946DCFE001E68B9 /* UIImage+Resize.m in Sources */,
 				94A3488E0DDCCCC700D1D4A9 /* sqSqueakScreenAPI.m in Sources */,
 				94E659230DDD03FE00358328 /* ADPCMCodecPlugin.c in Sources */,
@@ -2322,6 +2374,7 @@
 				94E659320DDD03FE00358328 /* Klatt.c in Sources */,
 				94E659330DDD03FE00358328 /* LargeIntegers.c in Sources */,
 				850A03DD1B4CBA0800F364E8 /* SUYNetUtils.m in Sources */,
+				859C5FF81ECEB43D00276023 /* SUYExternalMIDISynth.m in Sources */,
 				94E659340DDD03FE00358328 /* Matrix2x3Plugin.c in Sources */,
 				94E659360DDD03FE00358328 /* MiscPrimitivePlugin.c in Sources */,
 				94E659370DDD03FE00358328 /* RePlugin.c in Sources */,
@@ -2332,6 +2385,7 @@
 				857229721982B4A200BAE70B /* SUYMailComposer.m in Sources */,
 				94E6593C0DDD03FE00358328 /* SoundPlugin.c in Sources */,
 				94E6593D0DDD03FE00358328 /* Squeak3D.c in Sources */,
+				859C5FFD1ECEB45D00276023 /* SUYiCloudAccessor.m in Sources */,
 				94E6593E0DDD03FE00358328 /* StarSqueakPlugin.c in Sources */,
 				94E6593F0DDD03FE00358328 /* UUIDPlugin.c in Sources */,
 				94E659400DDD03FE00358328 /* ZipPlugin.c in Sources */,
@@ -2388,6 +2442,7 @@
 				94E65A590DDD053900358328 /* jerror.c in Sources */,
 				94E65A5A0DDD053900358328 /* jfdctflt.c in Sources */,
 				94E65A5B0DDD053900358328 /* jfdctfst.c in Sources */,
+				859C5FF91ECEB43D00276023 /* SUYInternalMIDISynth.m in Sources */,
 				94E65A5C0DDD053900358328 /* jfdctint.c in Sources */,
 				94E65A5D0DDD053900358328 /* jidctflt.c in Sources */,
 				94E65A5E0DDD053900358328 /* jidctfst.c in Sources */,
@@ -2543,7 +2598,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = /usr/include/uuid;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "";
 				PREBINDING = NO;
@@ -2558,14 +2613,19 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_ENTITLEMENTS = Pyonkee.entitlements;
 				"CODE_SIGN_ENTITLEMENTS[sdk=*]" = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = RXNQHKQR2N;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 1;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2587,8 +2647,9 @@
 					"$(PROJECT_DIR)/ThirdPartyClasses/**",
 					/usr/include/uuid,
 				);
-				INFOPLIST_FILE = "Info-iPad.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				INFOPLIST_FILE = Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = (
 					"-finline-functions",
@@ -2615,7 +2676,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = /usr/include/uuid;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "";
 				PREBINDING = NO;
@@ -2631,13 +2692,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_ENTITLEMENTS = Pyonkee.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
+				DEVELOPMENT_TEAM = RXNQHKQR2N;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_OPTIMIZATION_LEVEL = 1;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = ScratchOnIPad_Prefix.pch;
@@ -2654,8 +2720,9 @@
 					"$(PROJECT_DIR)/ThirdPartyClasses/**",
 					/usr/include/uuid,
 				);
-				INFOPLIST_FILE = "Info-iPad.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				INFOPLIST_FILE = Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = (
 					"-finline-functions",
