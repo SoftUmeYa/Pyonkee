@@ -8,3 +8,9 @@
 
 CFBundleName = "Pyonkee";
 CFBundleDisplayName = "Pyonkee";
+
+NSCameraUsageDescription = "用於導入新照片";
+NSLocationWhenInUseUsageDescription = "傳感器塊";
+NSMicrophoneUsageDescription = "播放錄音";
+NSMotionUsageDescription = "傳感器塊";
+NSPhotoLibraryUsageDescription = "用於導入現有照片";
