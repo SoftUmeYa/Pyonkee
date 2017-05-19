@@ -26,7 +26,7 @@ Pyonkee was originally started as a fork of [John M McIntosh](https://www.smallt
  - Virtual MIDI support
  - iCloud based project/sprite/costume/sounds sharing
 
-##License
+## License
 Pyonkee is a derivative work of open-sourced Scratch 1.4 and licensed under the GPL v2. See the included gpl-2.0.txt for details. 
 
 Additional Squeak image components in Scratch.image, Squeak VM source code (/src) and VM support code (/platforms) are under MIT license.
@@ -37,10 +37,10 @@ Scratch sample Media files (/Resources/Media), and sample projects (/Resources/P
 
 Third party Objective-C libraries (/ThirdPartyClasses) are under the each author's original license. See /ThirdPartyClasses/README.md for details.
 
-##Contributions
+## Contributions
 Your contributions are always welcome. Especially we would like to improve translations. For now, complete translations are only available for English and Japanese. We would like to provide full translations for German, French, Spanish, Portuguese, etc.
 
-##Questions?
+## Questions?
 Please visit [SoftUmeYa Pyonkee support site](http://softumeya.com/pyonkee/en/).
 
 We can also customize Pyonkee for your needs. Feel free to contact us.
