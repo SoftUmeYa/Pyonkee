@@ -8,17 +8,25 @@
 #import "SUYMenuDialog.h"
 #import "sq.h"
 
+#import "SUYScratchAppDelegate.h"
+
+extern ScratchIPhoneAppDelegate *gDelegateApp;
+
 extern struct	VirtualMachine* interpreterProxy;
 
 
 @implementation SUYMenuDialog
-@synthesize actionsView,buttonIndexs,resultIndex;
+@synthesize alertController,buttonIndexs,resultIndex;
 
 - (SUYMenuDialog *) initTitle: (NSString *) title message: (NSString *) message semaIndex: (NSInteger) si {
     self = [super init];
-    self.actionsView = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(title, nil) delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
+   // self.actionsView = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(title, nil) delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
+    
+    self.alertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(title, nil) message:nil preferredStyle:UIAlertControllerStyleAlert];
+                            
     semaIndex = si;
     resultIndex = -1;
+    buttonNumber = 0;
 	self.buttonIndexs = [NSMutableDictionary dictionaryWithCapacity: 10];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(abort) name:@"squeakVmWillReset" object:nil];
 	return self;
@@ -26,29 +34,51 @@ extern struct	VirtualMachine* interpreterProxy;
 
 - (void) showInView: (UIView *) originator
 {
-    [self.actionsView addButtonWithTitle: @""];
-    [self.actionsView setCancelButtonIndex: actionsView.numberOfButtons - 1];
-	[self.actionsView showInView: originator];
+    //[self addCancelButton];
+    
+    self.alertController.modalPresentationStyle = UIAlertControllerStyleActionSheet;
+    self.alertController.popoverPresentationController.sourceView = originator;
+    self.alertController.popoverPresentationController.sourceRect = originator.frame;
+    [gDelegateApp.viewController presentViewController:self.alertController animated:YES completion: ^{
+        UIView* backView = self.alertController.view.superview.subviews[1];
+        backView.userInteractionEnabled = YES;
+        [backView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget: self action: @selector(alertControllerBackgroundTapped)]];
+    }];
+
+}
+
+- (void)alertControllerBackgroundTapped
+{
+    [self abort];
 }
 
 - (void) addButtonWithTitle: (NSString *) buttonString {
-	NSInteger buttonNumber = [self.actionsView addButtonWithTitle: buttonString];
-	[self.buttonIndexs setObject: buttonString forKey: [NSNumber numberWithInteger: buttonNumber]];
+    NSInteger idx = buttonNumber++;
+    UIAlertAction * action = [UIAlertAction actionWithTitle:buttonString style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction * ac) {
+                                                              [self clickedButtonAtIndex:idx];
+                                                          }];
+    [self.alertController addAction:action];
+    
 }
 
 - (void) addCancelButton {
-	[self addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
+    
+    UIAlertAction * cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleCancel
+                                                          handler:^(UIAlertAction * ac) {[self abort];}];
+    [self.alertController addAction:cancelAction];
+    
 }
 
-- (void)actionSheet:(UIActionSheet *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-	resultIndex = buttonIndex;
-	interpreterProxy->signalSemaphoreWithIndex(semaIndex);
+- (void)clickedButtonAtIndex:(NSInteger)buttonIndex {
+    resultIndex = (int)buttonIndex;
+    interpreterProxy->signalSemaphoreWithIndex((int)semaIndex);
     [[NSNotificationCenter defaultCenter] removeObserver: self];
 }
 
-
 - (void)abort {
-    [self.actionsView dismissWithClickedButtonIndex:self.actionsView.cancelButtonIndex animated:NO];
+    [self clickedButtonAtIndex: buttonNumber + 1];
+    [self.alertController dismissViewControllerAnimated:YES completion:nil];
     [[NSNotificationCenter defaultCenter] removeObserver: self];
     
 }

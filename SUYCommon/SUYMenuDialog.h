@@ -7,16 +7,20 @@
 #import <Foundation/Foundation.h>
 
 
-@interface SUYMenuDialog : NSObject <UIActionSheetDelegate> {
+@interface SUYMenuDialog : NSObject {
 	NSInteger semaIndex;
+    NSInteger buttonNumber;
 }
-@property (nonatomic,retain) UIActionSheet *actionsView;
+
+@property (nonatomic,strong) UIAlertController *alertController;
+
+
 @property (nonatomic,retain) NSMutableDictionary *buttonIndexs;
 @property int resultIndex;
 
 - (SUYMenuDialog *) initTitle: (NSString *) title message: (NSString *) message semaIndex: (NSInteger) si;
 
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex;
+//- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex;
 
 - (void) addButtonWithTitle: (NSString *) buttonString;
 - (void) addCancelButton;
