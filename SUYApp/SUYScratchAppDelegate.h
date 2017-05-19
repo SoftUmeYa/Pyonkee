@@ -20,7 +20,7 @@
 	
 }
 
-@property (nonatomic, assign) BOOL squeakVMIsReady;
+@property (nonatomic) BOOL squeakVMIsReady;
 @property (nonatomic, retain) SqueakProxy *squeakProxy;
 @property (nonatomic, retain) ScratchIPhonePresentationSpace* presentationSpace;
 
@@ -28,10 +28,12 @@
 @property (nonatomic, retain) SUYMailComposer *mailComposer;
 @property (nonatomic, retain) SUYSensorAccessor *sensorAccessor;
 
-@property (nonatomic, copy) NSString* clickedResourcePathOnLaunch;
+@property (nonatomic, copy) NSString* resourcePathOnLaunch;
+@property (nonatomic) NSUInteger resourseLoadedCount;
 
 - (void) openDefaultProject;
-- (void) openProject:(NSString*)projectPathName;
+- (void) openResource:(NSString*)projectPathName;
+- (void) openImporting: (NSURL*) externalFileUrl;
 - (void) shoutGo;
 - (void) stopAll;
 - (void) exitPresentationMode;
@@ -56,6 +58,8 @@
 - (void) hideWaitIndicator;
 - (void) mailProject: (NSString *)projectPath;
 - (void) airDropProject: (NSString *)projectPath;
+- (void) exportToCloud: (NSString *)resourcePath;
+- (void) importFromCloud;
 - (void) textMorphFocused: (NSString *)status;
 
 - (void) bailWeAreBroken: (NSString *) oopsText;

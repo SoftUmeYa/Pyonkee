@@ -20,8 +20,7 @@
 #import "SUYCameraViewController.h"
 #import "SUYPhotoPickViewController.h"
 #import "SUYWebViewController.h"
-
-#import "SUYNetUtils.h"
+#import "SUYMIDISynth.h"
 
 #import <QuartzCore/QuartzCore.h>
 
@@ -35,6 +34,8 @@ static const int kShiftAutoUpSeconds = 20;
     NSInteger _originalEditModeIndex;
     BOOL _useIme;
     UIInterfaceOrientation _formerOrientation;
+    NSString* _lastExportResourcePath;
+    NSInteger _exportResourceRetryCount;
 }
 
 @synthesize scrollView,scrollViewController,fontScaleButton, radioButtonSetController,
@@ -42,7 +43,7 @@ static const int kShiftAutoUpSeconds = 20;
     softKeyboardField, softKeyboardOnButton,
 	shoutGoLandscapeButton,stopAllLandscapeButton,landscapeToolBar,landscapeToolBar2,padLockButton,
     commandButton, shiftButton,
-	indicatorView, popUpInfoViewController, viewModeBar, presentationExitButton;
+	indicatorView, viewModeBar, presentationExitButton;
 
 
 uint warningMinHeapThreshold;
@@ -87,10 +88,10 @@ uint memoryWarningCount;
     memoryWarningCount = 0;
     
     _formerOrientation = [[UIApplication sharedApplication] statusBarOrientation];
+    
 }
 
 - (void) viewWillAppear:(BOOL)animated {
-	[[UIApplication sharedApplication] setStatusBarHidden: YES withAnimation: UIStatusBarAnimationFade];
 	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: NO];
 	[gDelegateApp.viewController setNavigationBarHidden: YES animated: YES];
 	
@@ -145,6 +146,9 @@ uint memoryWarningCount;
 #pragma mark View Opening
 - (void) firstViewDidAppear{
     [[self appDelegate] openDefaultProject];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        [[SUYMIDISynth soleInstance] prepareDelegates];
+    });
 }
 
 - (void) restartedViewDidAppear{
@@ -153,12 +157,13 @@ uint memoryWarningCount;
 }
 
 - (void) postOpen {
-	[self performSelectorOnMainThread:@selector(postOpenOnMainThread) withObject: nil waitUntilDone: NO];
-}
-
-- (void) postOpenOnMainThread {
-	[gDelegateApp terminateActivityView];
-    [self fixOrientationIfNeeded];
+    dispatch_async (
+        dispatch_get_main_queue(),
+        ^{
+            [gDelegateApp terminateActivityView];
+            [self fixOrientationIfNeeded];
+        }
+    );
 }
 
 #pragma mark Rotation
@@ -166,7 +171,7 @@ uint memoryWarningCount;
     return YES;
 }
 
-- (NSUInteger)supportedInterfaceOrientations{
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations{
     if([self isInPresentationMode]){
         return UIInterfaceOrientationMaskAll;
     }
@@ -225,12 +230,15 @@ uint memoryWarningCount;
 //    }
 }
 
-#pragma mark Actions
 
-- (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController {
+#pragma mark - UIPopoverPresentationControllerDelegate
+
+- (void)popoverPresentationControllerDidDismissPopover:(UIPopoverPresentationController *)popoverPresentationController {
     self.fontScaleButton.selected = NO;
-	self.popUpInfoViewController = nil;
 }
+
+#pragma mark - Actions
+
 
 - (IBAction) openCamera:(NSString *)clientMode{
     SUYCameraViewController *viewController = [[SUYCameraViewController alloc] initWithNibName:@"SUYCameraViewController" bundle:nil];
@@ -282,14 +290,18 @@ uint memoryWarningCount;
     self.fontScaleButton.selected = YES;
 	SUYFontResizeViewController *fontResizeController = [[SUYFontResizeViewController alloc] initWithNibName:@"SUYFontResizeViewController" bundle:[NSBundle mainBundle]];
     
-	Class UIPopoverControllerClass = NSClassFromString(@"UIPopoverController");
-	popUpInfoViewController  = [[UIPopoverControllerClass alloc] initWithContentViewController: fontResizeController];
-	self.popUpInfoViewController.delegate = self;
-	[self.popUpInfoViewController setPopoverContentSize: CGSizeMake(320.0f,80.0f) animated: YES];
-	[self.popUpInfoViewController presentPopoverFromRect: self.fontScaleButton.frame inView: self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated: YES];
-
+    fontResizeController.modalPresentationStyle = UIModalPresentationPopover;
+    fontResizeController.preferredContentSize = CGSizeMake(320.0f,80.0f);
+    
+    UIPopoverPresentationController *presentationController = [fontResizeController popoverPresentationController];
+    presentationController.permittedArrowDirections = UIPopoverArrowDirectionAny;
+    presentationController.sourceView = self.view;
+    presentationController.sourceRect = self.fontScaleButton.frame;
+    presentationController.delegate = self;
+    
+    [self presentViewController:fontResizeController animated: YES completion: nil];
+    
 }
-
 
 - (IBAction) operatePadLock: (id) sender {
 	self.padLockButton.selected = !self.padLockButton.selected;
@@ -332,11 +344,13 @@ uint memoryWarningCount;
 }
 
 - (IBAction) softKeyboardActivate:(id)sender {
+    if(!self.softKeyboardField.hidden){return;}
     self.softKeyboardField.hidden = NO;
     [softKeyboardField becomeFirstResponder];
 }
 
 - (IBAction) softKeyboardDeactivate: (id) sender{
+    if(self.softKeyboardField.hidden){return;}
     self.softKeyboardField.hidden = YES;
     [softKeyboardField resignFirstResponder];
 }
@@ -393,17 +407,79 @@ uint memoryWarningCount;
 //                                    UIActivityTypePostToVimeo, UIActivityTypePostToTencentWeibo];
 //    activityVc.excludedActivityTypes = excludedActivities;
     
-    if(!(OVER_IOS9)){
-        activityVc.modalPresentationStyle = UIModalPresentationFormSheet;
-    }
+    activityVc.modalPresentationStyle = UIModalPresentationPopover;
+    activityVc.preferredContentSize = CGSizeMake(320.0f,320.0f);
     
-    popUpInfoViewController  = [[UIPopoverController alloc] initWithContentViewController: activityVc];
-    self.popUpInfoViewController.delegate = self;
-    [self.popUpInfoViewController setPopoverContentSize: CGSizeMake(320.0f,320.0f) animated: YES];
-    [self.popUpInfoViewController presentPopoverFromRect: CGRectMake(self.view.center.x-135,2,10,42) inView: self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated: YES];
+    UIPopoverPresentationController *presentationController = [activityVc popoverPresentationController];
+    presentationController.permittedArrowDirections = UIPopoverArrowDirectionAny;
+    presentationController.sourceView = self.view;
+    presentationController.sourceRect = CGRectMake(self.view.center.x-135,2,10,42);
+    presentationController.delegate = self;
     
-    
+    [self presentViewController:activityVc animated: YES completion: nil];
 }
+
+
+- (void) exportToCloud: (NSString *)resourcePath{
+    NSDictionary *userInfo =  @{@"resourcePath": resourcePath};
+    _exportResourceRetryCount = 0;
+    [NSTimer scheduledTimerWithTimeInterval: 1.5 target: self selector:@selector(tickExportToCloud:) userInfo: userInfo repeats:YES];
+}
+
+
+- (void) tickExportToCloud: (NSTimer*) timer {
+    NSDictionary *userInfo = timer.userInfo;
+    NSString *resourcePath = (NSString*)userInfo[@"resourcePath"];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:resourcePath] == NO){
+        _exportResourceRetryCount = _exportResourceRetryCount + 1;
+        if(_exportResourceRetryCount > 20){
+            [timer invalidate];
+        }
+        return;
+    }
+    [timer invalidate];
+    
+    NSURL *url = [NSURL fileURLWithPath: resourcePath];
+    UIDocumentPickerViewController *picker = [[UIDocumentPickerViewController alloc] initWithURL:url inMode:UIDocumentPickerModeExportToService];
+    picker.delegate = self;
+    [self presentViewController:picker animated:YES completion:nil];
+    _lastExportResourcePath = resourcePath;
+}
+
+- (void) importFromCloud{
+    UIDocumentPickerViewController *picker = [[UIDocumentPickerViewController alloc] initWithDocumentTypes:[SUYUtils supportedUtis] inMode:UIDocumentPickerModeImport];
+    picker.delegate = self;
+    
+    if(OVER_IOS10){
+        return [self presentViewController:picker animated:NO completion:nil];
+    }
+    //FIXME: For iOS9 stability
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self presentViewController:picker animated:NO completion:nil];
+    });
+}
+
+#pragma mark UIDocumentPickerDelegate
+- (void)documentPicker:(UIDocumentPickerViewController *)controller didPickDocumentAtURL:(NSURL *)url{
+    if(controller.documentPickerMode == UIDocumentPickerModeImport){
+        NSLog(@"IMPORT");
+        [[self appDelegate] openImporting:url];
+    }
+    if(controller.documentPickerMode == UIDocumentPickerModeExportToService){
+        NSLog(@"Export");
+        if(_lastExportResourcePath){
+            if([_lastExportResourcePath hasPrefix: [SUYUtils tempDirectory]]){
+                [[NSFileManager defaultManager] removeItemAtPath:_lastExportResourcePath error:nil];
+            }
+        }
+        [SUYUtils inform:(NSLocalizedString(@"Done!",nil)) duration:400 for:self];
+    }
+}
+
+- (void)documentPickerWasCancelled:(UIDocumentPickerViewController *)controller{
+    LgInfo(@"Picker cancelled");
+}
+
 
 #pragma mark Accessing
 - (int) viewModeIndex {
@@ -412,6 +488,13 @@ uint memoryWarningCount;
 
 - (ScratchIPhoneAppDelegate*) appDelegate{
     return (ScratchIPhoneAppDelegate*) gDelegateApp;
+}
+
+#pragma mark Testing
+
+- (BOOL)prefersStatusBarHidden
+{
+    return YES;
 }
 
 #pragma mark Scrolling

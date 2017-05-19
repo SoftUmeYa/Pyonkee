@@ -15,7 +15,7 @@
 #import "ScratchPresentationUITextField.h"
 #import "GSRadioButtonSetController.h"
 
-@interface ScratchIPhonePresentationSpace : UIViewController <UIScrollViewDelegate, UITextFieldDelegate, UIAlertViewDelegate, UIPopoverControllerDelegate, GSRadioButtonSetControllerDelegate> {
+@interface ScratchIPhonePresentationSpace : UIViewController <UIScrollViewDelegate, UITextFieldDelegate, UIAlertViewDelegate, UIPopoverPresentationControllerDelegate, UIDocumentPickerDelegate, GSRadioButtonSetControllerDelegate> {
 
   	NSInteger	characterCounter;
 	NSMutableDictionary *repeatKeyDict;
@@ -43,7 +43,6 @@
 @property (nonatomic, retain) UIView *landscapeToolBar2;
 @property (nonatomic, retain) UIView *viewModeBar;
 @property (nonatomic, retain) UIActivityIndicatorView *indicatorView;
-@property (nonatomic, retain) UIPopoverController *popUpInfoViewController;
 
 @property (nonatomic, readonly) UIInterfaceOrientation formerOrientation;
 
@@ -82,6 +81,9 @@
 - (int)  viewModeIndex;
 
 - (void) airDropProject: (NSString *)projectPath;
+- (void) exportToCloud: (NSString *)resourcePath;
+- (void) importFromCloud;
+
 - (BOOL) isViewModeBarHidden;
 - (BOOL) isInPresentationMode;
 

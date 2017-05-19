@@ -17,6 +17,7 @@
 #import "SUYScratchPresentationSpace.h"
 #import "sqScratchIPhoneApplication.h"
 #import "SUYUtils.h"
+#import "SUYiCloudAccessor.h"
 
 
 static uint sRestartCount = 0;
@@ -50,6 +51,7 @@ BOOL isRestarting = NO;
 
 - (BOOL)application: (UIApplication *)application didFinishLaunchingWithOptions: (NSDictionary*) launchOptions  {
     
+    self.resourseLoadedCount = 0;
     if(defaultSerialQueue == nil){ defaultSerialQueue = dispatch_queue_create("ScratchIPhoneAppDelegate", DISPATCH_QUEUE_SERIAL);}
     
 	[self listenNotifications];
@@ -78,38 +80,55 @@ BOOL isRestarting = NO;
    	[window makeKeyAndVisible];
     isRestarting = NO;
     
+    [[SUYiCloudAccessor soleInstance] detectiCloud];
+    
     NSURL *url = (NSURL *)[launchOptions valueForKey:UIApplicationLaunchOptionsURLKey];
     
-    if (url != nil && [url isFileURL]) {
-        self.clickedResourcePathOnLaunch = url.path;
-    } else {
-        self.clickedResourcePathOnLaunch = nil;
-    }
-    
+    if(url == nil || ![url isFileURL]){ return NO;}
+       
     return YES;
     
 }
 
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+- (BOOL)application:(nonnull UIApplication *)application openURL:(nonnull NSURL *)url options: (nonnull NSDictionary<NSString *,id> *)options {
     //TODO: Prohibit request from com.apple.mobilemail
-    if (self.clickedResourcePathOnLaunch == nil && url != nil && [url isFileURL]) {
+    LgInfo(@"###openURL: %@", url);
+    
+    //iCloud-Inbox
+    if([SUYUtils belongsToTempDirectory: url.path]){
+        NSString *docInboxDir = [SUYUtils documentDirectory];
+        NSString *toPath = [docInboxDir stringByAppendingPathComponent: url.lastPathComponent];
+        toPath = [toPath precomposedStringWithCanonicalMapping];
+        NSData *data = [NSData dataWithContentsOfURL:url];
         
-        [self trimResourcePathOnLaunch: url.path]; //MARK: Auto removing the oldest project => better to be off?
+        BOOL result = [data writeToFile:toPath atomically:YES];
+        if(!result){ return NO;}
         
-        if([presentationSpace isViewModeBarHidden]){
-            [[[UIAlertView alloc] initWithTitle:@""
-                    message: [NSString stringWithFormat: @"%@: %@", NSLocalizedString(@"New entry in Inbox",nil), [url.lastPathComponent stringByDeletingPathExtension]]
-                    delegate:nil cancelButtonTitle:NSLocalizedString(@"OK",nil) otherButtonTitles:nil] show];
+        LgInfo(@"###openURL: iCloud file copied to %@", toPath);
+        
+        if(self.resourcePathOnLaunch == nil || self.resourseLoadedCount > 0){
+            [self openOrSaveResourcePath:toPath saveTitle: @"New entry in Documents"];
         } else {
-            [self openProject:url.path];
+            self.resourcePathOnLaunch = toPath;
         }
-        
+        return YES;
+    }
+    
+    //Mail, AirDrop
+    LgInfo(@"###openURL: Mail, AirDrop handling");
+    NSString *toPath = url.path;
+    toPath = [toPath precomposedStringWithCanonicalMapping];
+    if (self.resourcePathOnLaunch == nil || self.resourseLoadedCount > 0) {
+        [self trimResourcePathOnLaunch: toPath];
+        [self openOrSaveResourcePath:toPath saveTitle: @"New entry in Inbox"];
+    } else {
+        self.resourcePathOnLaunch = toPath;
     }
     return YES;
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application{
-    [self getViewModeIndex];
+    [self becomeBackground];
     LgInfo(@"!! applicationDidEnterBackground !!");
 }
 
@@ -121,6 +140,7 @@ BOOL isRestarting = NO;
 #pragma mark Private
 -(void) trimResourcePathOnLaunch: (NSString*) resourcePath
 {
+    if([resourcePath hasPrefix:[SUYUtils documentInboxDirectory]] == NO){return;}
     NSInteger maxNum = [(sqSqueakIPhoneInfoPlistInterface*) self.squeakApplication.infoPlistInterfaceLogic inboxMaxNumOfItems];
     [[SUYUtils class] trimResourcePathOnLaunch: resourcePath max: (int)maxNum];
 }
@@ -143,7 +163,7 @@ BOOL isRestarting = NO;
     [[NSNotificationCenter defaultCenter] removeObserver: self];
 }
 
-#pragma mark Callbnack
+#pragma mark Callback
 - (void) didReceiveSqueakVMReady {
 	self.squeakVMIsReady = YES;
 }
@@ -192,36 +212,46 @@ BOOL isRestarting = NO;
     return sRestartCount;
 }
 
-#pragma mark -
-#pragma mark Alert Delegate
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    // error in squeak
-	if (buttonIndex==1) {
-		[_mailComposer reportErrorByEmail];
-        return;
-    }
-    if(isRestarting==NO){
-        isRestarting = YES;
-        [self enterRestart];
+#pragma mark - Opening
+
+- (void) openDefaultProject{
+    if(self.resourcePathOnLaunch == nil){
+        [self openResource:@""];
+    } else {
+        NSString *resourcePath = self.resourcePathOnLaunch;
+        [self trimResourcePathOnLaunch: resourcePath];
+        [self openResource: resourcePath];
     }
 }
 
+- (void) openImporting: (NSURL*) externalFileUrl {
+    [[SUYiCloudAccessor soleInstance] openUrl:externalFileUrl succeeded:^(NSString *pathStr) {
+        [self openResource:[pathStr copy]];
+    }];
+}
+
+- (void) openOrSaveResourcePath: (NSString*) resourcePath saveTitle: (NSString*) title {
+    
+    if(self.resourseLoadedCount == 0){
+        self.resourcePathOnLaunch = resourcePath;
+        return;
+    }
+    
+    if([presentationSpace isViewModeBarHidden]){
+        UIAlertController *alert = [SUYUtils newInfoAlert: [NSString stringWithFormat: @"%@: %@", NSLocalizedString(title,nil), [resourcePath.lastPathComponent stringByDeletingPathExtension]]];
+        [self.viewController presentViewController:alert animated:YES completion:nil];
+    } else {
+        [self openResource:resourcePath];
+    }
+}
 
 #pragma mark -
 #pragma mark ScratchAdapter
 
-- (void) openDefaultProject{
-    if(self.clickedResourcePathOnLaunch == nil){
-        [self openProject:@""];
-    } else {
-        [self trimResourcePathOnLaunch: self.clickedResourcePathOnLaunch];
-        [self openProject: self.clickedResourcePathOnLaunch];
-        self.clickedResourcePathOnLaunch = nil;
-    }
-}
-
-- (void) openProject:(NSString*)projectPathName{
-    [squeakProxy chooseThisProject: projectPathName runProject: NO];
+- (void) openResource:(NSString*)resourcePathName{
+    LgInfo(@"###resourcePath %@", resourcePathName);
+    [squeakProxy chooseThisProject: resourcePathName runProject: NO];
+    self.resourseLoadedCount++;
 }
 
 - (void) shoutGo{
@@ -256,6 +286,12 @@ BOOL isRestarting = NO;
 - (void)  becomeActive{
     if(squeakVMIsReady){
         [squeakProxy becomeActive];
+    }
+}
+
+- (void)  becomeBackground{
+    if(squeakVMIsReady){
+        [squeakProxy becomeBackground];
     }
 }
 
@@ -299,7 +335,7 @@ BOOL isRestarting = NO;
 
 #pragma mark -
 #pragma mark Rotation
-- (NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window{
+- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window{
     return UIInterfaceOrientationMaskAll;
 }
 
@@ -346,18 +382,27 @@ BOOL isRestarting = NO;
     NSLog(@"!!St Walkback!!: %@", oopsText);
     
 	[self terminateActivityView];
-	UIAlertView *alertView = [UIAlertView alloc];
-	NSString *cough = NSLocalizedString(@"Cough",nil);
-	NSString *massive = NSLocalizedString(@"Massive",nil);
-	NSString *reset = NSLocalizedString(@"Reset",nil);
-	NSString *email = NSLocalizedString(@"Email",nil);
+    
+    NSString *cough = NSLocalizedString(@"Cough",nil);
+    NSString *massive = NSLocalizedString(@"Massive",nil);
+    NSString *reset = NSLocalizedString(@"Reset",nil);
+    NSString *email = NSLocalizedString(@"Email",nil);
+    
+    UIAlertController *alert = [SUYUtils newAlert: massive title: cough];
+    
+    [alert addAction:[UIAlertAction actionWithTitle:reset style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        if(isRestarting==NO){
+            isRestarting = YES;
+            [self enterRestart];
+        }
+    }]];
+    
     if ([SUYUtils canSendMail]){
-		alertView = [alertView initWithTitle: cough message: massive delegate: self cancelButtonTitle: reset otherButtonTitles: email,nil];
-    } else {
-        alertView = [alertView initWithTitle: cough message: massive delegate: self cancelButtonTitle: reset otherButtonTitles: nil];
+        [alert addAction:[UIAlertAction actionWithTitle:email style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {[_mailComposer reportErrorByEmail];}]];
     }
-	[alertView show];
-	[alertView release];
+    
+    [self.viewController presentViewController:alert animated:YES completion:nil];
+
 }	
 
 - (void) bailWeAreBroken: (NSString *) oopsText {
@@ -380,6 +425,21 @@ BOOL isRestarting = NO;
     );
 }
 
+#pragma mark iCloud
+- (void)exportToCloud: (NSString *)resourcePath {
+    dispatch_async (
+        dispatch_get_main_queue(), ^{
+            [presentationSpace exportToCloud: resourcePath];
+        }
+    );
+}
+- (void)importFromCloud {
+    dispatch_async (
+        dispatch_get_main_queue(), ^{
+            [presentationSpace importFromCloud];
+        }
+    );
+}
 
 #pragma mark -
 #pragma mark Restart
