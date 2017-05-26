@@ -26,6 +26,28 @@ Pyonkee was originally started as a fork of [John M McIntosh](https://www.smallt
  - Virtual MIDI support
  - iCloud based project/sprite/costume/sounds sharing
 
+## How to build
+From version 2.3, [Carthage](https://github.com/Carthage/Carthage) is partly used for library management.
+Before building from Xcode, please install Carthage and run the command below:
+
+```carthage update --platform iOS```
+
+### Note on iCloud feature
+
+When attempting to build and run on a physical iPad (not the simulator), you will receive the message:
+
+The 'iCloud' feature is only available to users enrolled in Apple Developer Program. Please visit https://developer.apple.com/programs/ to enroll.
+
+To disable iCloud and allow the build to continue, change line 2223 of Pyonkee.xcodeproj/project.pbxproj from:
+
+```enabled = 1;```
+
+to
+
+```enabled = 0;```
+
+which will disable iCloud and allow the build to continue.
+
 ## License
 Pyonkee is a derivative work of open-sourced Scratch 1.4 and licensed under the GPL v2. See the included gpl-2.0.txt for details. 
 
