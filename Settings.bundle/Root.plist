@@ -32,7 +32,7 @@
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
-			<string>Memory: 40 to 100 MB</string>
+			<string>Memory: 40 to 400 MB</string>
 		</dict>
 		<dict>
 			<key>Type</key>
@@ -42,11 +42,11 @@
 			<key>Key</key>
 			<string>memorySize_preference</string>
 			<key>DefaultValue</key>
-			<integer>56623104</integer>
+			<integer>67108864</integer>
 			<key>MinimumValue</key>
 			<integer>41943040</integer>
 			<key>MaximumValue</key>
-			<integer>104857600</integer>
+			<integer>419430400</integer>
 		</dict>
 		<dict>
 			<key>Type</key>
