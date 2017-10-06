@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		8507C6EE1F87091600C14BA0 /* NSLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8507C6ED1F87091600C14BA0 /* NSLogger.framework */; };
+		8507C6F01F87091B00C14BA0 /* ToastSwiftFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8507C6EF1F87091B00C14BA0 /* ToastSwiftFramework.framework */; };
+		8507C6F21F87092000C14BA0 /* TouchVisualizer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8507C6F11F87092000C14BA0 /* TouchVisualizer.framework */; };
+		8507C6FA1F870D3700C14BA0 /* SUYTouchCursor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8507C6F81F870D3600C14BA0 /* SUYTouchCursor.swift */; };
 		850A03DB1B4CBA0800F364E8 /* SUYLightSensor.m in Sources */ = {isa = PBXBuildFile; fileRef = 850A03D41B4CBA0800F364E8 /* SUYLightSensor.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		850A03DC1B4CBA0800F364E8 /* SUYLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 850A03D61B4CBA0800F364E8 /* SUYLocationManager.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		850A03DD1B4CBA0800F364E8 /* SUYNetUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 850A03D81B4CBA0800F364E8 /* SUYNetUtils.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
@@ -71,7 +75,6 @@
 		859C5FFD1ECEB45D00276023 /* SUYiCloudAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 859C5FFC1ECEB45D00276023 /* SUYiCloudAccessor.m */; };
 		859C5FFF1ECEB5EC00276023 /* MIKMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 859C5FFE1ECEB5EC00276023 /* MIKMIDI.framework */; };
 		859C60011ECEB69900276023 /* TimGM6mb.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = 859C60001ECEB69900276023 /* TimGM6mb.sf2 */; };
-		859C60031ECEB80900276023 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 859C60021ECEB80900276023 /* Info.plist */; };
 		85A511C719652F4500A5413E /* blue-rect.png in Resources */ = {isa = PBXBuildFile; fileRef = 85A511C619652F4500A5413E /* blue-rect.png */; };
 		85A75A2719332CEC006A1A44 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85A75A2619332CEC006A1A44 /* AVFoundation.framework */; };
 		85B22FB01976602400A7E6E5 /* flat-close.png in Resources */ = {isa = PBXBuildFile; fileRef = 85B22FAD1976602400A7E6E5 /* flat-close.png */; };
@@ -108,7 +111,6 @@
 		85CD4FA9196710C900BAFADF /* flat-cmd-active1.png in Resources */ = {isa = PBXBuildFile; fileRef = 85CD4FA3196710C900BAFADF /* flat-cmd-active1.png */; };
 		85D17E5319907B2600A917EF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 85D17E5519907B2600A917EF /* InfoPlist.strings */; };
 		85D17E5B19907C5F00A917EF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 85D17E5D19907C5F00A917EF /* Localizable.strings */; };
-		85D5AD7E190FFBD4009E8931 /* LoggerClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 85D5AD7B190FFBD4009E8931 /* LoggerClient.m */; };
 		85D9640319A0E60500763A47 /* OldQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 85D9640219A0E60500763A47 /* OldQueue.m */; };
 		85DBC50419546FB6000AC218 /* SUYFontResizeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85DBC50319546FB6000AC218 /* SUYFontResizeViewController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		85EC5EA71946DCFE001E68B9 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 85EC5EA61946DCFE001E68B9 /* UIImage+Resize.m */; };
@@ -299,6 +301,11 @@
 		1D6058910D05DD3D006BFB54 /* Pyonkee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pyonkee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = vm/Common/main.m; sourceTree = "<group>"; };
+		8507C6ED1F87091600C14BA0 /* NSLogger.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NSLogger.framework; path = Carthage/Build/iOS/NSLogger.framework; sourceTree = "<group>"; };
+		8507C6EF1F87091B00C14BA0 /* ToastSwiftFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ToastSwiftFramework.framework; path = Carthage/Build/iOS/ToastSwiftFramework.framework; sourceTree = "<group>"; };
+		8507C6F11F87092000C14BA0 /* TouchVisualizer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TouchVisualizer.framework; path = Carthage/Build/iOS/TouchVisualizer.framework; sourceTree = "<group>"; };
+		8507C6F71F870D3600C14BA0 /* Pyonkee-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Pyonkee-Bridging-Header.h"; sourceTree = "<group>"; };
+		8507C6F81F870D3600C14BA0 /* SUYTouchCursor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SUYTouchCursor.swift; sourceTree = "<group>"; };
 		850A03D31B4CBA0800F364E8 /* SUYLightSensor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUYLightSensor.h; sourceTree = "<group>"; };
 		850A03D41B4CBA0800F364E8 /* SUYLightSensor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUYLightSensor.m; sourceTree = "<group>"; };
 		850A03D51B4CBA0800F364E8 /* SUYLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUYLocationManager.h; sourceTree = "<group>"; };
@@ -452,9 +459,6 @@
 		85D17E5E19907C6400A917EF /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		85D17E5F19907C6400A917EF /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		85D17E6019907C6500A917EF /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
-		85D5AD7A190FFBD4009E8931 /* LoggerClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoggerClient.h; sourceTree = "<group>"; };
-		85D5AD7B190FFBD4009E8931 /* LoggerClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoggerClient.m; sourceTree = "<group>"; };
-		85D5AD7C190FFBD4009E8931 /* LoggerCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoggerCommon.h; sourceTree = "<group>"; };
 		85D9640119A0E60500763A47 /* OldQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OldQueue.h; sourceTree = "<group>"; };
 		85D9640219A0E60500763A47 /* OldQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OldQueue.m; sourceTree = "<group>"; };
 		85DBC50219546FB6000AC218 /* SUYFontResizeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUYFontResizeViewController.h; sourceTree = "<group>"; };
@@ -808,6 +812,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				859C5FFF1ECEB5EC00276023 /* MIKMIDI.framework in Frameworks */,
+				8507C6EE1F87091600C14BA0 /* NSLogger.framework in Frameworks */,
+				8507C6F01F87091B00C14BA0 /* ToastSwiftFramework.framework in Frameworks */,
+				8507C6F21F87092000C14BA0 /* TouchVisualizer.framework in Frameworks */,
 				850A03E61B4CBE7D00F364E8 /* SystemConfiguration.framework in Frameworks */,
 				85BC89681AB08B950029ED79 /* MobileCoreServices.framework in Frameworks */,
 				850A03E41B4CBB4900F364E8 /* ImageIO.framework in Frameworks */,
@@ -933,6 +940,9 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8507C6F11F87092000C14BA0 /* TouchVisualizer.framework */,
+				8507C6EF1F87091B00C14BA0 /* ToastSwiftFramework.framework */,
+				8507C6ED1F87091600C14BA0 /* NSLogger.framework */,
 				859C5FFE1ECEB5EC00276023 /* MIKMIDI.framework */,
 				850A03E51B4CBE7D00F364E8 /* SystemConfiguration.framework */,
 				850A03E31B4CBB4900F364E8 /* ImageIO.framework */,
@@ -1057,7 +1067,6 @@
 				85BC893B1AB088080029ED79 /* ELCImagePicker */,
 				85C4DC581958756000F48ACB /* GSRadioButtonSetController */,
 				85EC5EA41946DCFE001E68B9 /* UIImage-categories */,
-				85D5AD79190FFBD4009E8931 /* NSLogger */,
 				8541CA66190002450019163E /* LFCGzipUtility */,
 			);
 			path = ThirdPartyClasses;
@@ -1144,16 +1153,6 @@
 			path = GSRadioButtonSetController;
 			sourceTree = "<group>";
 		};
-		85D5AD79190FFBD4009E8931 /* NSLogger */ = {
-			isa = PBXGroup;
-			children = (
-				85D5AD7A190FFBD4009E8931 /* LoggerClient.h */,
-				85D5AD7B190FFBD4009E8931 /* LoggerClient.m */,
-				85D5AD7C190FFBD4009E8931 /* LoggerCommon.h */,
-			);
-			path = NSLogger;
-			sourceTree = "<group>";
-		};
 		85DD43B818F3A52A0030B27F /* windows */ = {
 			isa = PBXGroup;
 			children = (
@@ -1190,6 +1189,7 @@
 		85F8F78818F6856100948A68 /* SUYCommon */ = {
 			isa = PBXGroup;
 			children = (
+				8507C6F81F870D3600C14BA0 /* SUYTouchCursor.swift */,
 				859C5FFB1ECEB45D00276023 /* SUYiCloudAccessor.h */,
 				859C5FFC1ECEB45D00276023 /* SUYiCloudAccessor.m */,
 				850A03D31B4CBA0800F364E8 /* SUYLightSensor.h */,
@@ -1231,6 +1231,7 @@
 				85918D2E19113DA000F9637A /* SUYInitializer.m */,
 				857229701982B4A200BAE70B /* SUYMailComposer.h */,
 				857229711982B4A200BAE70B /* SUYMailComposer.m */,
+				8507C6F71F870D3600C14BA0 /* Pyonkee-Bridging-Header.h */,
 			);
 			path = SUYCommon;
 			sourceTree = "<group>";
@@ -2214,10 +2215,11 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0900;
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
 						DevelopmentTeam = RXNQHKQR2N;
+						LastSwiftMigration = 0900;
 						SystemCapabilities = {
 							com.apple.iCloud = {
 								enabled = 1;
@@ -2277,7 +2279,6 @@
 				85D17E5B19907C5F00A917EF /* Localizable.strings in Resources */,
 				85716E541B26809F00926629 /* flat-arrow-right.png in Resources */,
 				8561D570195887D0008FDA45 /* normalMode.png in Resources */,
-				859C60031ECEB80900276023 /* Info.plist in Resources */,
 				85716E4A1B267F5700926629 /* SUYPhotoPicker.storyboard in Resources */,
 				85716E481B267F5700926629 /* SUYFontResizeViewController.xib in Resources */,
 				85716E561B26809F00926629 /* flat-folder-open.png in Resources */,
@@ -2333,6 +2334,9 @@
 			);
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/MIKMIDI.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/NSLogger.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/TouchVisualizer.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/ToastSwiftFramework.framework",
 			);
 			outputPaths = (
 			);
@@ -2440,6 +2444,7 @@
 				85930B39193EEB8F00F878CA /* SUYCameraViewController.m in Sources */,
 				94E65A580DDD053900358328 /* jdtrans.c in Sources */,
 				94E65A590DDD053900358328 /* jerror.c in Sources */,
+				8507C6FA1F870D3700C14BA0 /* SUYTouchCursor.swift in Sources */,
 				94E65A5A0DDD053900358328 /* jfdctflt.c in Sources */,
 				94E65A5B0DDD053900358328 /* jfdctfst.c in Sources */,
 				859C5FF91ECEB43D00276023 /* SUYInternalMIDISynth.m in Sources */,
@@ -2473,7 +2478,6 @@
 				94E65AF40DDD053900358328 /* study.c in Sources */,
 				94BCE78C0DDDF61200F38F31 /* sqUnixUUID.c in Sources */,
 				94A0E8850DE5EF430071C8B9 /* sqSqueakMainApplication+imageReadWrite.m in Sources */,
-				85D5AD7E190FFBD4009E8931 /* LoggerClient.m in Sources */,
 				94A0E9840DE5F1FE0071C8B9 /* sqSqueakMainApplication+screen.m in Sources */,
 				94AB2E560E003689006A79E4 /* interp.c in Sources */,
 				94AB2E570E003692006A79E4 /* sqVirtualMachine.c in Sources */,
@@ -2599,9 +2603,10 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = /usr/include/uuid;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "";
 				PREBINDING = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.softumeya.Pyonkee;
 				PRODUCT_NAME = Pyonkee;
 				PROVISIONING_PROFILE = "0D6DD87A-8082-4F95-B346-5EA6F40E78F2";
 				SDKROOT = iphoneos;
@@ -2612,10 +2617,12 @@
 		947E5F3710A9FD0400D3B69E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Pyonkee.entitlements;
 				"CODE_SIGN_ENTITLEMENTS[sdk=*]" = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -2657,8 +2664,11 @@
 					"-falign-functions=16",
 					"-DSUY_DEBUG=1",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.softumeya.Pyonkee;
 				PRODUCT_NAME = Pyonkee;
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "SUYCommon/Pyonkee-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 2;
 				VALID_ARCHS = "armv7 armv7s arm64";
 			};
@@ -2680,6 +2690,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "";
 				PREBINDING = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.softumeya.Pyonkee;
 				PRODUCT_NAME = Pyonkee;
 				PROVISIONING_PROFILE = "D9893353-0345-454B-A1B9-660B4E5091CB";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D9893353-0345-454B-A1B9-660B4E5091CB";
@@ -2691,10 +2702,12 @@
 		9480CD160E5C7D9300C32178 /* Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Pyonkee.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -2730,9 +2743,12 @@
 					"-fomit-frame-pointer",
 					"-DNS_BLOCK_ASSERTIONS=1",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.softumeya.Pyonkee;
 				PRODUCT_NAME = Pyonkee;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "SUYCommon/Pyonkee-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "armv7 armv7s arm64";
