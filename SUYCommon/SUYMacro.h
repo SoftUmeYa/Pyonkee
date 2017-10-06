@@ -4,7 +4,7 @@
 //
 //  Created by Masashi UMEZAWA on 2014/04/10.
 
-#import "LoggerClient.h"
+#import <NSLogger/LoggerClient.h>
 
 // NSLogger
 #ifdef SUY_DEBUG
