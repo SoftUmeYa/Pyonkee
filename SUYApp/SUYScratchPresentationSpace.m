@@ -22,6 +22,8 @@
 #import "SUYWebViewController.h"
 #import "SUYMIDISynth.h"
 
+#import "Pyonkee-Swift.h"
+
 #import <QuartzCore/QuartzCore.h>
 
 extern ScratchIPhoneAppDelegate *gDelegateApp;
@@ -285,6 +287,7 @@ uint memoryWarningCount;
 
 
 - (IBAction) openFontResizer:(id)sender {
+    [SUYUtils hideCursor];
     if(self.viewModeIndex == 2){return;}
     
     self.fontScaleButton.selected = YES;
@@ -304,11 +307,13 @@ uint memoryWarningCount;
 }
 
 - (IBAction) operatePadLock: (id) sender {
+    [SUYUtils hideCursor];
 	self.padLockButton.selected = !self.padLockButton.selected;
 	self.scrollView.delaysContentTouches = self.padLockButton.selected;  // padlock is open (aka selected) so we delay
 }
 
 - (IBAction) shoutGo:(id)sender {
+    [SUYUtils hideCursor];
 	self.shoutGoLandscapeButton.selected = YES;
 	self.stopAllLandscapeButton.selected = NO;
     dispatch_async (
@@ -320,8 +325,10 @@ uint memoryWarningCount;
 }
 
 - (IBAction) stopAll:(id)sender {
+    [SUYUtils hideCursor];
 	self.shoutGoLandscapeButton.selected =  NO;
 	self.stopAllLandscapeButton.selected = YES;
+    
     dispatch_async (
         dispatch_get_main_queue(),
         ^{
@@ -331,6 +338,7 @@ uint memoryWarningCount;
 }
 
 - (IBAction) exitPresentation:(id)sender{
+    [SUYUtils hideCursor];
     self.radioButtonSetController.selectedIndex = _originalEditModeIndex;
     self.presentationExitButton.hidden = YES;
     self.viewModeBar.hidden = NO;
@@ -344,6 +352,7 @@ uint memoryWarningCount;
 }
 
 - (IBAction) softKeyboardActivate:(id)sender {
+    [SUYUtils hideCursor];
     if(!self.softKeyboardField.hidden){return;}
     self.softKeyboardField.hidden = NO;
     [softKeyboardField becomeFirstResponder];
@@ -356,12 +365,12 @@ uint memoryWarningCount;
 }
 
 - (IBAction) commandButtonUp:(id)sender {
-    
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(basicCommandButtonAutoUp:) object:sender];
     [self performSelector:@selector(basicCommandButtonAutoUp:) withObject:sender afterDelay: kCommandAutoUpSeconds];
 }
 
 - (IBAction) commandButtonDown:(id)sender {
+    [SUYUtils hideCursor];
 	self.commandButton.selected = YES;
 	[[self appDelegate] commandKeyStateChanged: 1];
 }
@@ -381,6 +390,7 @@ uint memoryWarningCount;
 }
 
 - (IBAction) shiftButtonDown:(id)sender {
+    [SUYUtils hideCursor];
 	self.shiftButton.selected =  !self.shiftButton.selected;
 	[[self appDelegate] shiftKeyStateChanged: shiftButton.selected];
 }
@@ -392,6 +402,7 @@ uint memoryWarningCount;
 }
 
 - (void) airDropProject: (NSString *)projectPath {
+    [SUYUtils hideCursor];
     NSURL *url = [NSURL fileURLWithPath:projectPath];
     NSArray *objectsToShare = @[url];
     
@@ -416,11 +427,12 @@ uint memoryWarningCount;
     presentationController.sourceRect = CGRectMake(self.view.center.x-135,2,10,42);
     presentationController.delegate = self;
     
-    [self presentViewController:activityVc animated: YES completion: nil];
+    [self presentViewController:activityVc animated: NO completion: nil];
 }
 
 
 - (void) exportToCloud: (NSString *)resourcePath{
+    [SUYUtils hideCursor];
     NSDictionary *userInfo =  @{@"resourcePath": resourcePath};
     _exportResourceRetryCount = 0;
     [NSTimer scheduledTimerWithTimeInterval: 1.5 target: self selector:@selector(tickExportToCloud:) userInfo: userInfo repeats:YES];
@@ -442,11 +454,12 @@ uint memoryWarningCount;
     NSURL *url = [NSURL fileURLWithPath: resourcePath];
     UIDocumentPickerViewController *picker = [[UIDocumentPickerViewController alloc] initWithURL:url inMode:UIDocumentPickerModeExportToService];
     picker.delegate = self;
-    [self presentViewController:picker animated:YES completion:nil];
+    [self presentViewController:picker animated:NO completion:nil];
     _lastExportResourcePath = resourcePath;
 }
 
 - (void) importFromCloud{
+    [SUYUtils hideCursor];
     UIDocumentPickerViewController *picker = [[UIDocumentPickerViewController alloc] initWithDocumentTypes:[SUYUtils supportedUtis] inMode:UIDocumentPickerModeImport];
     picker.delegate = self;
     
@@ -514,18 +527,17 @@ uint memoryWarningCount;
     LgInfo(@"keyboardDidChange");
     self.softKeyboardField.text = @"";
     NSString *primLang = [self inputModePrimaryLanguage];
+    
     if(
        ([primLang rangeOfString:@"ja-"].location != NSNotFound) ||
        ([primLang rangeOfString:@"ko-"].location != NSNotFound) ||
        ([primLang rangeOfString:@"zh-"].location != NSNotFound)) {
         LgInfo(@"ime mode = %@", primLang);
         self.softKeyboardField.autocorrectionType = UITextAutocorrectionTypeDefault;
-        self.softKeyboardField.frame = CGRectMake(292, 324, 440, 32);
         _useIme = YES;
     } else {
         LgInfo(@"non ime = %@", primLang);
         self.softKeyboardField.autocorrectionType = UITextAutocorrectionTypeNo;
-        self.softKeyboardField.frame = CGRectMake(292, 366, 380, 40);
         _useIme = NO;
     }
  }
@@ -610,7 +622,7 @@ uint memoryWarningCount;
 }
 
 - (NSString *)inputModePrimaryLanguage {
-    UITextInputMode *inputMode = [UITextInputMode currentInputMode];
+    UITextInputMode *inputMode = self.textInputMode;
     if(inputMode == nil){ return @"";}
     NSString *primLang = [inputMode primaryLanguage];
     return primLang;
@@ -667,6 +679,8 @@ uint memoryWarningCount;
 }
 
 - (IBAction) keyTouchUp:(id)sender {
+    [SUYUtils hideCursor];
+    LgInfo(@"HIDE cursor");
 	@synchronized(self) {
 		NSNumber *senderHash = [NSNumber numberWithUnsignedInteger:[sender hash]];
 		NSTimer *repeatKeyTimerInstance = [self.repeatKeyDict objectForKey: senderHash];
@@ -711,6 +725,7 @@ uint memoryWarningCount;
 #pragma mark View Mode
 - (void)changedViewModeIndex:(NSUInteger)selectedIndex
 {
+    [SUYUtils hideCursor];
     if(selectedIndex <= 1){
         _originalEditModeIndex = selectedIndex;
         self.scrollView.backgroundColor = _originalBackgroundColor;

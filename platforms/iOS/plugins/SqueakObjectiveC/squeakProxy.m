@@ -80,7 +80,7 @@
 	return self;
 }
 
-#include <dlfcn.h>
+//#include <dlfcn.h>
 - (void) forwardInvocation: (NSInvocation*) anInvocation
 {
 	NSDate *timeout;

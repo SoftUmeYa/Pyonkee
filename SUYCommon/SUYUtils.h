@@ -16,6 +16,7 @@
 + (UIImage *)upsideDownImage:(UIImage*)origImage;
 + (UIImage *)rotateRightImage:(UIImage*)origImage;
 + (UIImage *)rotateLeftImage:(UIImage*)origImage;
++ (UIImage *)offsetImage:(UIImage*)origImage transposed: (CGRect) rect offset: (CGPoint) offset size: (CGSize) size;
 + (void) trimResourcePathOnLaunch: (NSString*) resourcePath max: (int) max;
 + (void) removeFilesMatches:(NSString*)regexString inPath:(NSString*)path;
 + (BOOL) belongsToTempDirectory: (NSString*) filePath;
@@ -37,5 +38,8 @@
 + (UIAlertController*) newInfoAlert:(NSString*)message;
 + (void) printMemStats;
 + (NSArray*) supportedUtis;
++ (void) showCursor:(int)cursorCode;
++ (void) hideCursor;
++ (BOOL) cursorEnabled;
 
 @end

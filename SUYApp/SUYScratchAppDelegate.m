@@ -284,15 +284,15 @@ BOOL isRestarting = NO;
 }
 
 - (void)  becomeActive{
-    if(squeakVMIsReady){
-        [squeakProxy becomeActive];
-    }
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        if(squeakVMIsReady){[squeakProxy becomeActive];}
+    });
 }
 
 - (void)  becomeBackground{
-    if(squeakVMIsReady){
-        [squeakProxy becomeBackground];
-    }
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        if(squeakVMIsReady){[squeakProxy becomeBackground];}
+    });
 }
 
 - (void) restartVm {
@@ -437,6 +437,27 @@ BOOL isRestarting = NO;
     dispatch_async (
         dispatch_get_main_queue(), ^{
             [presentationSpace importFromCloud];
+        }
+    );
+}
+
+#pragma mark Cursor
+- (void) showCursor:(int)cursorCode {
+    //Hack for TouchVisualizer bug
+    if([SUYUtils cursorEnabled]){return;}
+    dispatch_async (
+        dispatch_get_main_queue(), ^{
+            [presentationSpace.softKeyboardField becomeFirstResponder];
+            [presentationSpace.softKeyboardField resignFirstResponder];
+            [SUYUtils showCursor:cursorCode];
+        }
+    );
+    
+}
+- (void) hideCursor {
+    dispatch_async (
+        dispatch_get_main_queue(), ^{
+            [SUYUtils hideCursor];
         }
     );
 }

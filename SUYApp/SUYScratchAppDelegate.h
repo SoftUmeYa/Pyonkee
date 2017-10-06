@@ -61,6 +61,8 @@
 - (void) exportToCloud: (NSString *)resourcePath;
 - (void) importFromCloud;
 - (void) textMorphFocused: (NSString *)status;
+- (void) showCursor:(int)cursorCode;
+- (void) hideCursor;
 
 - (void) bailWeAreBroken: (NSString *) oopsText;
 

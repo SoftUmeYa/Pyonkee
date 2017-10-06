@@ -13,6 +13,10 @@
 #import "SqueakUIViewCALayer.h"
 #import "SqueakUIViewOpenGL.h"
 
+#import "UIImage+Resize.h"
+
+#import "Pyonkee-Swift.h"
+
 #import "SUYUtils.h"
 
 @implementation SUYUtils
@@ -44,6 +48,18 @@
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 }
 
++ (void) showCursor: (int) cursorCode {
+    LgInfo(@"showCursor %i", cursorCode);
+    [SUYTouchCursor showEyeDropper];
+}
+
++ (void) hideCursor {
+    [SUYTouchCursor hide];
+}
+
++ (BOOL) cursorEnabled {
+    return [SUYTouchCursor IsEnabled];
+}
 
 + (UIImage *)upsideDownImage:(UIImage*)origImage{
     return [UIImage imageWithCGImage:origImage.CGImage scale:1.0 orientation:UIImageOrientationDown];
@@ -55,6 +71,36 @@
 
 + (UIImage *)rotateLeftImage:(UIImage*)origImage{
     return [UIImage imageWithCGImage:origImage.CGImage scale:1.0 orientation:UIImageOrientationLeft];
+}
+
++ (UIImage *)offsetImage:(UIImage*)origImage transposed: (CGRect) rect offset: (CGPoint) offset size: (CGSize) size {
+    
+    CGAffineTransform transform = CGAffineTransformMakeTranslation(offset.x , offset.y);
+    CGFloat scale = 1.0f;
+    CGRect transposedRect = rect;
+    CGImageRef imageRef = origImage.CGImage;
+    
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    CGContextRef bitmap = CGBitmapContextCreate(
+                                                NULL,
+                                                size.width,
+                                                size.height,
+                                                8, /* bits per channel */
+                                                (size.width * 4), /* 4 channels per pixel * numPixels/row */
+                                                colorSpace,
+                                                kCGImageAlphaPremultipliedLast
+                                                );
+    CGColorSpaceRelease(colorSpace);
+    CGContextConcatCTM(bitmap, transform);
+    CGContextSetInterpolationQuality(bitmap, kCGInterpolationDefault);
+    CGContextDrawImage(bitmap, transposedRect, imageRef);
+    CGImageRef newImageRef = CGBitmapContextCreateImage(bitmap);
+    UIImage *newImage = [UIImage imageWithCGImage:newImageRef scale:scale orientation:UIImageOrientationUp];
+    CGContextRelease(bitmap);
+    CGImageRelease(newImageRef);
+    
+    return newImage;
+    
 }
 
 #pragma mark Files

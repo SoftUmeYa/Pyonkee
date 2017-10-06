@@ -88,7 +88,7 @@ void MyProviderReleaseData (
 #if BUILD_FOR_OSX
 		NSRect screenSize = [gDelegateApp.mainView bounds];
 #else
-		CGRect screenSize = [gDelegateApp.mainView bounds];
+    CGRect screenSize = CGRectMake(0,0,1024,768); //[gDelegateApp.mainView bounds];
 #endif
 		
 		w = (sqInt) screenSize.size.width;
