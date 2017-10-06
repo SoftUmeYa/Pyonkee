@@ -2594,7 +2594,7 @@
 		947E5F3610A9FD0400D3B69E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PREPROCESSOR_DEFINITIONS = "-DSQUEAK_BUILTIN_PLUGIN";
@@ -2677,7 +2677,7 @@
 		9480CD150E5C7D9300C32178 /* Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: SoftUmeYa, LLC. (RXNQHKQR2N)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: SoftUmeYa, LLC. (RXNQHKQR2N)";
 				GCC_C_LANGUAGE_STANDARD = c99;
