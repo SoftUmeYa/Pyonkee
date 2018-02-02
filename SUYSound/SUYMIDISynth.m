@@ -23,6 +23,8 @@
 
 
 @implementation SUYMIDISynth {
+    int lastProgNum;
+    int lastProgNumChannel;
 }
 
 extern ScratchIPhoneAppDelegate *gDelegateApp;
@@ -51,6 +53,8 @@ static SUYMIDISynth *soleInstance;
         return [self.external programChange:progNum channel:channel];
     }
     [self.internal  programChange:progNum channel:channel];
+    lastProgNum = progNum;
+    lastProgNumChannel = channel;
 }
 - (void) allSoundOff:(int)channel
 {
@@ -69,10 +73,18 @@ static SUYMIDISynth *soleInstance;
 #pragma mark - Initialization
 - (void) prepareDelegates
 {
-    self.internal = [SUYInternalMIDISynth soleInstance];
+    self.internal = [[SUYInternalMIDISynth alloc] init];
     self.external = [SUYExternalMIDISynth soleInstance];
 }
 
+- (void) reset
+{
+    @synchronized(self){
+        self.internal = [[SUYInternalMIDISynth alloc] init];
+        [self.internal loadDefaultSoundFont];
+        [self.internal programChange: lastProgNum channel: lastProgNumChannel]; //recover previous status
+    }
+}
 
 #pragma mark - Instance creation
 
@@ -91,7 +103,7 @@ static SUYMIDISynth *soleInstance;
     
     self = [super init];
     if (self) {
-        //[self prepareDelegates];
+        [self prepareDelegates];
     }
     return self;
 }

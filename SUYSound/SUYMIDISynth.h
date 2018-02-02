@@ -18,5 +18,6 @@
 - (void) allSoundOff:(int)channel;
 
 - (void) prepareDelegates;
+- (void) reset;
 
 @end

@@ -20,7 +20,6 @@
 #import "SUYCameraViewController.h"
 #import "SUYPhotoPickViewController.h"
 #import "SUYWebViewController.h"
-#import "SUYMIDISynth.h"
 
 #import "Pyonkee-Swift.h"
 
@@ -148,9 +147,6 @@ uint memoryWarningCount;
 #pragma mark View Opening
 - (void) firstViewDidAppear{
     [[self appDelegate] openDefaultProject];
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-        [[SUYMIDISynth soleInstance] prepareDelegates];
-    });
 }
 
 - (void) restartedViewDidAppear{

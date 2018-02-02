@@ -19,6 +19,7 @@
 #import "SUYUtils.h"
 #import "SUYiCloudAccessor.h"
 
+#import "SUYMIDISynth.h"
 
 static uint sRestartCount = 0;
 
@@ -286,6 +287,9 @@ BOOL isRestarting = NO;
 - (void)  becomeActive{
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         if(squeakVMIsReady){[squeakProxy becomeActive];}
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [[SUYMIDISynth soleInstance] reset];
+        });
     });
 }
 
