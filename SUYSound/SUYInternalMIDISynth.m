@@ -56,11 +56,6 @@ static NSString *const kDefaultSountFont = @"TimGM6mb";
 
 
 #pragma mark - Loading
-- (void)asyncLoadDefaultSoundFont{
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-        [self loadDefaultSoundFont];
-    });
-}
 
 - (void)loadDefaultSoundFont{
     NSURL *soundfont = [[NSBundle mainBundle] URLForResource:kDefaultSountFont withExtension:@"sf2"];
@@ -119,37 +114,6 @@ static NSString *const kDefaultSountFont = @"TimGM6mb";
 
 
 #pragma mark - Instance creation
-
-+ (instancetype)soleInstance;
-{
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        soleInstance = [(SUYInternalMIDISynth *)[super allocWithZone:NULL] init];
-    });
-    return soleInstance;
-}
-
-- (id)init
-{
-    if (self == soleInstance) return soleInstance;
-    
-    self = [super init];
-    if (self) {
-        soundFontLoaded = NO;
-        [self asyncLoadDefaultSoundFont];
-    }
-    return self;
-}
-
-+ (id)allocWithZone:(NSZone *)zone
-{
-    return [self soleInstance];
-}
-
-- (id)copyWithZone:(NSZone *)zone
-{
-    return self;
-}
 
 
 @end
