@@ -45,6 +45,6 @@ class SUYTouchCursor: NSObject {
     
     private class func showToast(message:String, image: UIImage) {
         let view = UIApplication.shared.keyWindow?.rootViewController?.view
-        view?.makeToast(message, duration: 0.5, position: .center, title: "", image: image, style: nil, completion: nil)
+        view?.makeToast(message, duration: 0.5, position: .center, title: "", image: image, style: ToastManager.shared.style, completion: nil)
     }
 }

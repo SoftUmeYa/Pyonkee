@@ -52,7 +52,7 @@ Copyright (C) 2007 Apple Inc. All Rights Reserved.
 
 */
 
-/* non-arc version for SoundPlugin */
+/* arc version for SoundPlugin */
 
 
 #import "OldQueue.h"
@@ -64,72 +64,65 @@ Copyright (C) 2007 Apple Inc. All Rights Reserved.
 // which we can fill
 - (id) init
 {
-	self = [super init];
-	{
-		mItemArray = [[NSMutableArray alloc] initWithCapacity :10];
-	}
-	
-	return self;
+    self = [super init];
+    {
+        mItemArray = [[NSMutableArray alloc] initWithCapacity :10];
+    }
+    
+    return self;
 }
 
 // Returns (and removes) the oldest item in the queue
 -(id)returnAndRemoveOldest
 {
-	id anObject = nil;
-	@synchronized(self) {	
+    id anObject = nil;
+    @synchronized(self) {    
 
-	anObject = [mItemArray lastObject];
-	if (anObject)
-	{
-		[anObject retain];
-		[mItemArray removeLastObject];		
-	}
-		}
-	return anObject;	
+    anObject = [mItemArray lastObject];
+    if (anObject)
+    {
+        [mItemArray removeLastObject];        
+    }
+        }
+    return anObject;    
 }
 
 // Returns the oldest item in the queue or nil
 -(id)returnOldest
 {
-	id anObject = nil;
-	@synchronized(self) {		
-	
-	anObject = [mItemArray lastObject];
-	}
-	return anObject;	
+    id anObject = nil;
+    @synchronized(self) {        
+    
+    anObject = [mItemArray lastObject];
+    }
+    return anObject;    
 }
 
 
 // Adds the specified item to the queue
 -(void)addItem:(id)anItem
 {
-	@synchronized(self) {	
-		[mItemArray insertObject:anItem atIndex:0];
-	}
+    @synchronized(self) {    
+        [mItemArray insertObject:anItem atIndex:0];
+    }
 }
 
 -(NSUInteger) pendingElements {
-	return [mItemArray count];
+    return [mItemArray count];
 }
 
 - (NSArray *) elements {
-	return mItemArray;
+    return mItemArray;
 }
 
-- (void) dealloc
-{
-	[mItemArray release];
-	
-	[super dealloc];
-}
 
 -(void)removeAll
 {
-	@synchronized(self) {
+    @synchronized(self) {
         
         [mItemArray removeAllObjects];
-	}
-	return;
+    }
+    return;
 }
 
 @end

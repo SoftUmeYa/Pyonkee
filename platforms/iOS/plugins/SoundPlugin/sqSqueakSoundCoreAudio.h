@@ -40,48 +40,49 @@
 
 #import <AudioToolbox/AudioToolbox.h>
 
+static const int kNumberOfPlayBuffers=2;
 static const int kNumberOfBuffers=4;
 
 @interface sqSqueakSoundCoreAudio : NSObject {
-	AudioQueueRef	inputAudioQueue;
-	sqInt			semaIndexForInput;
-	UInt32			bufferSizeForInput;
-	sqInt			inputIsRunning;
-	double			inputSampleRate;
-	sqInt			inputChannels;
-	AudioStreamBasicDescription *inputFormat;
-	AudioQueueBufferRef *inputBuffers;
-	AudioQueueRef	outputAudioQueue;
-	OldQueue*			soundInQueue;
-	sqInt			semaIndexForOutput;
-	UInt32			bufferSizeForOutput;
-	BOOL			outputIsRunning;
-	AudioStreamBasicDescription *outputFormat;
-	AudioQueueBufferRef *outputBuffers;
-	OldQueue*			soundOutQueue;
+    AudioQueueRef    inputAudioQueue;
+    sqInt            semaIndexForInput;
+    UInt32            bufferSizeForInput;
+    sqInt            inputIsRunning;
+    double            inputSampleRate;
+    sqInt            inputChannels;
+    AudioStreamBasicDescription *inputFormat;
+    AudioQueueBufferRef *inputBuffers;
+    AudioQueueRef    outputAudioQueue;
+    OldQueue*            soundInQueue;
+    sqInt            semaIndexForOutput;
+    UInt32            bufferSizeForOutput;
+    BOOL            outputIsRunning;
+    AudioStreamBasicDescription *outputFormat;
+    AudioQueueBufferRef *outputBuffers;
+    OldQueue*            soundOutQueue;
 }
-- (sqInt)	soundInit;
-- (sqInt)	soundShutdown;
-- (sqInt)	snd_Start: (sqInt) frameCount samplesPerSec: (sqInt) samplesPerSec stereo: (sqInt) stereo semaIndex: (sqInt) semaIndex;
-- (sqInt)	snd_Stop;
-- (void)	snd_Stop_Force;
-- (sqInt)	snd_StopAndDispose;
-- (sqInt)	snd_PlaySilence;
-- (sqInt)	snd_AvailableSpace;
-- (sqInt)	snd_PlaySamplesFromAtLength: (sqInt) frameCount arrayIndex: (char *) arrayIndex startIndex: (usqInt) startIndex;
-- (sqInt)	snd_InsertSamplesFromLeadTime: (sqInt) frameCount srcBufPtr: (char*) srcBufPtr samplesOfLeadTime: (sqInt) samplesOfLeadTime;
-- (sqInt)	snd_StartRecording: (sqInt) desiredSamplesPerSec stereo: (sqInt) stereo semaIndex: (sqInt) semaIndex;
-- (sqInt)	snd_RecordSamplesIntoAtLength: (char*) arrayIndex startSliceIndex: (usqInt) startSliceIndex bufferSizeInBytes: (usqInt) bufferSizeInBytes;
-- (sqInt)	snd_StopRecording;
-- (double)	snd_GetRecordingSampleRate;
+- (sqInt)    soundInit;
+- (sqInt)    soundShutdown;
+- (sqInt)    snd_Start: (sqInt) frameCount samplesPerSec: (sqInt) samplesPerSec stereo: (sqInt) stereo semaIndex: (sqInt) semaIndex;
+- (sqInt)    snd_Stop;
+- (void)     snd_Stop_Force;
+- (sqInt)    snd_StopAndDispose;
+- (sqInt)    snd_PlaySilence;
+- (sqInt)    snd_AvailableSpace;
+- (sqInt)    snd_PlaySamplesFromAtLength: (sqInt) frameCount arrayIndex: (char *) arrayIndex startIndex: (usqInt) startIndex;
+- (sqInt)    snd_InsertSamplesFromLeadTime: (sqInt) frameCount srcBufPtr: (char*) srcBufPtr samplesOfLeadTime: (sqInt) samplesOfLeadTime;
+- (sqInt)    snd_StartRecording: (sqInt) desiredSamplesPerSec stereo: (sqInt) stereo semaIndex: (sqInt) semaIndex;
+- (sqInt)    snd_RecordSamplesIntoAtLength: (char*) arrayIndex startSliceIndex: (usqInt) startSliceIndex bufferSizeInBytes: (usqInt) bufferSizeInBytes;
+- (sqInt)    snd_StopRecording;
+- (double)    snd_GetRecordingSampleRate;
 
 - (BOOL)initAudioSession;
 
-@property (nonatomic) AudioQueueRef	outputAudioQueue;
-@property (nonatomic) AudioQueueRef	inputAudioQueue;
-@property (nonatomic) sqInt	semaIndexForOutput;
+@property (nonatomic) AudioQueueRef    outputAudioQueue;
+@property (nonatomic) AudioQueueRef    inputAudioQueue;
+@property (nonatomic) sqInt    semaIndexForOutput;
 @property (nonatomic) UInt32 bufferSizeForOutput;
-@property (nonatomic) sqInt	semaIndexForInput;
+@property (nonatomic) sqInt    semaIndexForInput;
 @property (nonatomic) UInt32 bufferSizeForInput;
 @property (nonatomic) sqInt inputChannels;
 
@@ -95,18 +96,18 @@ static const int kNumberOfBuffers=4;
 @property (nonatomic) AudioStreamBasicDescription* inputFormat;
 @property (nonatomic) AudioQueueBufferRef * outputBuffers;
 @property (nonatomic) AudioQueueBufferRef * inputBuffers;
-@property (nonatomic,retain) OldQueue* soundOutQueue;
-@property (nonatomic,retain) OldQueue* soundInQueue;
+@property (nonatomic,strong) OldQueue* soundOutQueue;
+@property (nonatomic,strong) OldQueue* soundInQueue;
 @end
 
 @interface soundAtom : NSObject {
-	char	*data; 
-	usqInt	byteCount;
-	usqInt	startOffset;
+    char    *data; 
+    usqInt    byteCount;
+    usqInt    startOffset;
 }
 - (id) initWith: (char*) buffer count: (usqInt) bytes;
 
-@property (nonatomic,assign) char *	data;
+@property (nonatomic,assign) char *    data;
 @property (nonatomic,assign) usqInt byteCount;
 @property (nonatomic,assign) usqInt startOffset;
 @end

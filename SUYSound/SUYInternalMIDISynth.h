@@ -11,11 +11,11 @@
 
 @interface SUYInternalMIDISynth : MIKMIDISynthesizer
 
-+ (SUYInternalMIDISynth*) soleInstance;
-
 - (void) noteOn:(int) note velocity:(int)velocity channel:(int)channel;
 - (void) noteOff:(int) note velocity:(int)velocity channel:(int)channel;
 - (void) programChange:(int) progNum channel:(int)channel;
 - (void) allSoundOff:(int)channel;
+
+- (void)loadDefaultSoundFont;
 
 @end
