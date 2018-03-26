@@ -2218,7 +2218,7 @@
 				LastUpgradeCheck = 0900;
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
-						DevelopmentTeam = RXNQHKQR2N;
+						DevelopmentTeam = R8H398549S;
 						LastSwiftMigration = 0900;
 						SystemCapabilities = {
 							com.apple.iCloud = {
@@ -2628,7 +2628,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				DEVELOPMENT_TEAM = RXNQHKQR2N;
+				DEVELOPMENT_TEAM = R8H398549S;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -2664,7 +2664,7 @@
 					"-falign-functions=16",
 					"-DSUY_DEBUG=1",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.softumeya.Pyonkee;
+				PRODUCT_BUNDLE_IDENTIFIER = afg.werne.Pyonkee;
 				PRODUCT_NAME = Pyonkee;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "SUYCommon/Pyonkee-Bridging-Header.h";
@@ -2712,7 +2712,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
-				DEVELOPMENT_TEAM = RXNQHKQR2N;
+				DEVELOPMENT_TEAM = R8H398549S;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -2743,7 +2743,7 @@
 					"-fomit-frame-pointer",
 					"-DNS_BLOCK_ASSERTIONS=1",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.softumeya.Pyonkee;
+				PRODUCT_BUNDLE_IDENTIFIER = afg.werne.Pyonkee;
 				PRODUCT_NAME = Pyonkee;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
