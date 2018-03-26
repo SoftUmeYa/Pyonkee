@@ -2104,7 +2104,7 @@ msgid "Internet"
 msgstr "Internet"
 
 msgid "Share this project variables and events by Mesh protocol"
-msgstr "Variablen und Ereignisse dieses Projekt über das Mesh-Protokoll teilen"
+msgstr "Teilen Sie Projektvariablen und Ereignisse dieses Projekt über das Mesh-Protokoll"
 
 ############################################
 # # iPad Sensors (Pyonkee)
