@@ -2059,10 +2059,10 @@ msgid "The file already exists:"
 msgstr "Die Datei ist bereits vorhanden:"
 
 msgid "Start Sensing"
-msgstr "Sensorverwendung starten"
+msgstr "Starte Sensorverwendung"
 
 msgid "Stop Sensing"
-msgstr "Sensorverwendung stoppen"
+msgstr "Stoppe Sensorverwendung"
 
 msgid "Inbox"
 msgstr "Inbox"
