@@ -1,11 +1,11 @@
-/* 
-   Localizable.strings
-   SqueakPureObjc
-
-   Created by John M McIntosh on 09-11-24.
-   Copyright 2009 Corporate Smalltalk Consulting Ltd. All rights reserved.
+/*
+ Localizable.strings
+ SqueakPureObjc
  
-   Modified and added by Masashi Umezawa.
+ Created by John M McIntosh on 09-11-24.
+ Copyright 2009 Corporate Smalltalk Consulting Ltd. All rights reserved.
+ 
+ Modified and added by Masashi Umezawa.
  */
 
 "SqueakSelectImagePanePrompt" = "Select a Squeak image file to open";
@@ -17,7 +17,7 @@
 "Massive" = "Extra haariger Absturz";
 "Reset" = "Reset";
 "Wait" = "Warten";
-"Email" = "Email";
+"Email" = "E-Mail";
 "Kilogram" = "10 kg Katze, zu dick!!!";
 "Saved" = "Gespeichert";
 "SavedMsg" = "Nachricht wurde gespeichert.";
@@ -25,14 +25,14 @@
 "FailedMsg" = "Das Schicken/Senden hat nicht funktioniert. Die Nachricht wurde nicht verschickt.";
 "helpEmailAddress" = "info@softumeya.com";
 "helpSubject" = "Pyonkee hatte Schluckauf";
-"helpMessage" = "Etwas unvorhergesehenes ist passiert und wir würden gerne dem Programmierer Information darüber schicken damit er es vielleicht reparieren kann.";
+"helpMessage" = "Etwas Unvorhergesehenes ist passiert und wir würden gerne dem Programmierer Information darüber schicken damit er es vielleicht reparieren kann.";
 "herding" = "Dabei Flöhe zu hüten, arbeite wie verrückt, Sekunde noch...";
 "Ahem" = "* Räusper *";
 "AhemMsg" = "Ok, dieses Flöhe hüten dauert zu lange. Du kannst entweder WARTEN, bis wir damit fertig sind, oder Du kannst alles ZURÜCKSETZEN. Wir vergessen dann allerdings alles und fangen von vorne an";
 "defaultProjectName" = "iPhoneGardenSecret";
 "Restriction" = "<html><center><font size=+5 color='red'>Zugriff auf das Internet ist eingeschränkt. Um den Zugriff zu erlauben musst du in Safari den Zugriff in den Settings General Restrictions option</font></center></html>";
 "checking" = "* Just Checking *";
-"checkingMsg" = "Um den Scratch Viewer zu verwenden, brauchst du einen Scratch Benutzerkonto und du musst auf das Internet zugreifen können. Wenn du ein Scratch-Konto anlegen möchtest, wird diese Anwendung geschlossen und wir werden zu Safari wechseln.";
+"checkingMsg" = "Um den Scratch Viewer zu verwenden, brauchst du ein Scratch Benutzerkonto und du musst auf das Internet zugreifen können. Wenn du ein Scratch-Konto anlegen möchtest, wird diese Anwendung geschlossen und wir werden zu Safari wechseln.";
 "play" = "Lass uns spielen";
 "create" = "Anlegen";
 "Login" = "Login";
@@ -43,17 +43,18 @@
 
 /*Pyonkee*/
 
-"Loading..." = "Loading...";
-"Play!" = "Spielen!";
+"Loading..." = "Lade...";
+"Play!" = "Abspielen!";
 "Menu" = "Menü";
 "projectSendMailSubject" = "[Scratch Projekt]";
-"projectSendMailMessage" = "Senden einer Scratch-Projekt.";
-"Cleaning up memory..." = "Reinigung speicher....";
-"Done!" = "Gemacht!";
+"projectSendMailMessage" = "Senden eines Scratch-Projekts.";
+"Cleaning up memory..." = "Speicher wird aufgeräumt...";
+"Done!" = "Erledigt!";
 "OK" = "OK";
-"New entry in Inbox" = "Ein neuer Eintrag in Posteingang";
+"New entry in Inbox" = "Ein neuer Eintrag im Posteingang";
 "New entry in Documents" = "Ein neuer Eintrag in Dokumente";
 
 "Warning" = "Warnung";
 "No permission to use Camera. Please change privacy settings" = "Es gibt keine Erlaubnis, die Kamera zu verwenden. Bitte ändern Sie die Datenschutzeinstellungen";
 "No permission to use Camera. For getting brightness value, please change privacy settings" = "Es gibt keine Erlaubnis, die Kamera zu verwenden. Um Helligkeitswert zu bekommen, ändern Sie bitte Datenschutzeinstellungen";
+
