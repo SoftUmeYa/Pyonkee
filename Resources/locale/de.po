@@ -2002,10 +2002,10 @@ msgid "Before share the project, save it?"
 msgstr "Das Projekt vor dem Teilen speichern?"
 
 msgid "Create a mail for sending this project"
-msgstr "E-Mail für die Zusendung dieses Projekts erstellen"
+msgstr "Erstellen Sie eine E-Mail für die Zusendung dieses Projekts"
 
 msgid "Share this project by AirDrop"
-msgstr "Teilen dieses Projekts per AirDrop"
+msgstr "Teilen Sie dieses Projekt per AirDrop"
 
 msgid "Exceeded recording time limit"
 msgstr "Aufzeichnungs-Zeitlimit überschritten"
@@ -2080,19 +2080,19 @@ msgstr "Bausteine hervorheben (sehr langsam)"
 # MESH
 ############################################
 msgid "Host Mesh"
-msgstr "Stelle Mesh-Netz bereit"
+msgstr "Mesh-Netz bereitstellen"
 
 msgid "Join Mesh"
-msgstr "Tritt Mesh-Netz bei"
+msgstr "Mesh-Netz beitreten"
 
 msgid "Show IP Address"
 msgstr "Zeige IP Adresse"
 
 msgid "Stop Hosting Mesh"
-msgstr "Stoppe bereitgestelltes Mesh-Netz"
+msgstr "Bereitgestelltes Mesh-Netz stoppen"
 
 msgid "Leave Mesh"
-msgstr "Verlasse Mesh-Netz"
+msgstr "Mesh-Netz verlassen"
 
 msgid "IP Address"
 msgstr "IP-Adresse"
