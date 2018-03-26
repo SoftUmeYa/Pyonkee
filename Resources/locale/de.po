@@ -2128,13 +2128,14 @@ msgid "gyroZ"
 msgstr "Gyro Z"
 
 msgid "yaw"
-msgstr "Drehung-Gieren"
+msgstr "Scherbewegung"
 
+# (aBrAEUMER: Not sure about what this senses )
 msgid "pitch"
-msgstr "Drehung-Nicken"
+msgstr "Fallbewegung"
 
 msgid "roll"
-msgstr "Drehung-Wanken"
+msgstr "Drehung"
 
 msgid "northHeading"
 msgstr "Nordrichtung"
