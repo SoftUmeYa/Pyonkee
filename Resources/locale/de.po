@@ -1996,22 +1996,22 @@ msgstr "Xylophon"
 ############################################
 
 msgid "Before mail the project, save it?"
-msgstr "Das Projekt vor dem E-Mail-Versandt speichern?"
+msgstr "Bevor Mail das Projekt, speichern Sie es?"
 
 msgid "Before share the project, save it?"
-msgstr "Das Projekt vor dem Teilen speichern?"
+msgstr "Antes de compartir el proyecto, guardarlo?"
 
 msgid "Create a mail for sending this project"
-msgstr "Erstellen Sie eine E-Mail für die Zusendung dieses Projekts"
+msgstr "Erstellen Sie eine E-Mail für die Zusendung dieses Projekt"
 
 msgid "Share this project by AirDrop"
-msgstr "Teilen Sie dieses Projekt per AirDrop"
+msgstr "Teilen Sie dieses Projekt durch AirDrop"
 
 msgid "Exceeded recording time limit"
-msgstr "Aufzeichnungs-Zeitlimit überschritten"
+msgstr "Überschritten Aufnahme Frist"
 
 msgid "Failed saving the project"
-msgstr "Speichern des Projekts fehlgeschlagen"
+msgstr "Gescheitert Speichern des Projekts"
 
 msgid "To record, you need to stop sound level sensing. Stop now?"
 msgstr "Zu erfassen, müssen Sie Schallpegelmess stoppen. Jetzt aufhören?"
@@ -2029,16 +2029,16 @@ msgid "About Pyonkee"
 msgstr "Über Pyonkee"
 
 msgid "Video Tutorial"
-msgstr "Video-Tutorial"
+msgstr "Tutorenkursvideo"
 
 msgid "About samples"
-msgstr "Über die Beispiele"
+msgstr "Über Proben"
 
 msgid "About media"
-msgstr "Über Bilder und Töne"
+msgstr "Über Medien"
 
 msgid "New folder name:"
-msgstr "Neuer Ordnername:"
+msgstr "Neuen Ordnernamen:"
 
 msgid "Could not create folder."
 msgstr "Ordner konnte nicht erstellt werden."
@@ -2056,13 +2056,13 @@ msgid "New name:"
 msgstr "Neuer Name:"
 
 msgid "The file already exists:"
-msgstr "Die Datei ist bereits vorhanden:"
+msgstr "Die Datei bereits vorhanden ist:"
 
 msgid "Start Sensing"
-msgstr "Sensorverwendung starten"
+msgstr "Start Sensing"
 
 msgid "Stop Sensing"
-msgstr "Sensorverwendung stoppen"
+msgstr "Stop Sensing"
 
 msgid "Inbox"
 msgstr "Inbox"
@@ -2080,65 +2080,64 @@ msgstr "Bausteine hervorheben (sehr langsam)"
 # MESH
 ############################################
 msgid "Host Mesh"
-msgstr "Mesh-Netz bereitstellen"
+msgstr "Host Mesh"
 
 msgid "Join Mesh"
-msgstr "Mesh-Netz beitreten"
+msgstr "Join Mesh"
 
 msgid "Show IP Address"
 msgstr "Zeige IP Adresse"
 
 msgid "Stop Hosting Mesh"
-msgstr "Bereitgestelltes Mesh-Netz stoppen"
+msgstr "Stoppen Hosting Mesh"
 
 msgid "Leave Mesh"
-msgstr "Mesh-Netz verlassen"
+msgstr "Lassen Mesh"
 
 msgid "IP Address"
-msgstr "IP-Adresse"
+msgstr "IP Adresse"
 
 msgid "Could not connect"
-msgstr "Verbindung fehlgeschlagen"
+msgstr "Es konnte keine Verbindung"
 
 msgid "Internet"
 msgstr "Internet"
 
 msgid "Share this project variables and events by Mesh protocol"
-msgstr "Teilen Sie diese Projektvariablen und Ereignisse durch das Mesh-Protokoll"
+msgstr "Teilen Sie diese Projektvariablen und Veranstaltungen durch Mesh-Protokoll"
 
 ############################################
 # # iPad Sensors (Pyonkee)
 ############################################
 msgid "accX"
-msgstr "Beschleunigung X"
+msgstr "beschleunigung X"
 
 msgid "accY"
-msgstr "Beschleunigung Y"
+msgstr "beschleunigung Y"
 
 msgid "accZ"
-msgstr "Beschleunigung Z"
+msgstr "beschleunigung Z"
 
 msgid "gyroX"
-msgstr "Gyro X"
+msgstr "gyro X"
 
 msgid "gyroY"
-msgstr "Gyro Y"
+msgstr "gyro Y"
 
 msgid "gyroZ"
-msgstr "Gyro Z"
+msgstr "gyro Z"
 
 msgid "yaw"
-msgstr "Scherbewegung"
+msgstr "gieren"
 
-# (aBrAEUMER: Not sure about what this senses )
 msgid "pitch"
-msgstr "Fallbewegung"
+msgstr "pech"
 
 msgid "roll"
-msgstr "Drehung"
+msgstr "rolle"
 
 msgid "northHeading"
-msgstr "Nordrichtung"
+msgstr "nordrichtung"
 
 #msgid "brightness"
-#msgstr "Helligkeit"
+#msgstr "brightness"
