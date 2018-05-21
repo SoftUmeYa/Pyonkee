@@ -1,6 +1,6 @@
-# Third party Objective-C libraries
+# Third party Objective-C/Swift libraries
 
-Pyonkee uses these third-party Objective-C libraries. Please visit each link for details.
+Pyonkee uses these third-party Objective-C/Swift libraries. Please visit each link for details.
 
 - [NSLogger](https://github.com/fpillet/NSLogger)
 - [GSRadioButtonSetController](https://github.com/goosoftware/GSRadioButtonSetController)
