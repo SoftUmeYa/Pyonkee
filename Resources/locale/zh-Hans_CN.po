@@ -2038,6 +2038,12 @@ msgstr "导出到iCloud"
 msgid "Flash blocks (very slow)"
 msgstr "模块闪动速度（非常慢）"
 
+msgid "Cannot load File"
+msgstr "无法加载文件"
+
+msgid "Unrecognized audio file format"
+msgstr "无法识别的音频文件格式"
+
 ############################################
 # MESH
 ############################################

@@ -2076,6 +2076,12 @@ msgstr "Export zu iCloud"
 msgid "Flash blocks (very slow)"
 msgstr "Bausteine hervorheben (sehr langsam)"
 
+msgid "Cannot load File"
+msgstr "Kann Datei nicht laden"
+
+msgid "Unrecognized audio file format"
+msgstr "Nicht erkanntes Audio-Dateiformat"
+
 ############################################
 # MESH
 ############################################

@@ -2005,6 +2005,12 @@ msgstr "Exporter vers iCloud"
 msgid "Flash blocks (very slow)"
 msgstr "Flash blocs (très lent)"
 
+msgid "Cannot load File"
+msgstr "Impossible de charger le fichier"
+
+msgid "Unrecognized audio file format"
+msgstr "Format de fichier audio non reconnu"
+
 ############################################
 # MESH
 ############################################

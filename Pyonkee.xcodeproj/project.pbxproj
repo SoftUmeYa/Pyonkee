@@ -116,6 +116,7 @@
 		85EC5EA71946DCFE001E68B9 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 85EC5EA61946DCFE001E68B9 /* UIImage+Resize.m */; };
 		85EC5EAC1946DD5C001E68B9 /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 85EC5EA81946DD5C001E68B9 /* UIImage+Alpha.m */; };
 		85EC5EAD1946DD5C001E68B9 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 85EC5EA91946DD5C001E68B9 /* UIImage+RoundedCorner.m */; };
+		85F48BB5215E1F0400B00B9E /* SUYAudioFileConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F48BB4215E1F0400B00B9E /* SUYAudioFileConverter.m */; };
 		85F8F78B18F685FD00948A68 /* SUYUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F8F78A18F685FD00948A68 /* SUYUtils.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		9402F2B00F3F9BB900F3D637 /* PDColoredProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9402F2AF0F3F9BB900F3D637 /* PDColoredProgressView.m */; };
 		9402F2C60F3F9C5600F3D637 /* drawing.m in Sources */ = {isa = PBXBuildFile; fileRef = 9402F2C50F3F9C5600F3D637 /* drawing.m */; };
@@ -474,6 +475,8 @@
 		85EC5EA91946DD5C001E68B9 /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
 		85EC5EAA1946DD5C001E68B9 /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
 		85EC5EAB1946DD5C001E68B9 /* UIImage+Alpha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Alpha.h"; sourceTree = "<group>"; };
+		85F48BB3215E1F0400B00B9E /* SUYAudioFileConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUYAudioFileConverter.h; sourceTree = "<group>"; };
+		85F48BB4215E1F0400B00B9E /* SUYAudioFileConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUYAudioFileConverter.m; sourceTree = "<group>"; };
 		85F8F78918F685FD00948A68 /* SUYUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUYUtils.h; sourceTree = "<group>"; };
 		85F8F78A18F685FD00948A68 /* SUYUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUYUtils.m; sourceTree = "<group>"; };
 		9400325B0DEF3936002FA1C4 /* sqDummyaio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sqDummyaio.h; sourceTree = "<group>"; };
@@ -1189,6 +1192,8 @@
 		85F8F78818F6856100948A68 /* SUYCommon */ = {
 			isa = PBXGroup;
 			children = (
+				85F48BB3215E1F0400B00B9E /* SUYAudioFileConverter.h */,
+				85F48BB4215E1F0400B00B9E /* SUYAudioFileConverter.m */,
 				8507C6F81F870D3600C14BA0 /* SUYTouchCursor.swift */,
 				859C5FFB1ECEB45D00276023 /* SUYiCloudAccessor.h */,
 				859C5FFC1ECEB45D00276023 /* SUYiCloudAccessor.m */,
@@ -2516,6 +2521,7 @@
 				9484F8DB10B0E09B0038BDC0 /* sqiPhoneScreenAndWindow.m in Sources */,
 				85BC89301AB087B00029ED79 /* SUYPhotoTablePicker.m in Sources */,
 				9484F8DC10B0E0C60038BDC0 /* sqSqueakIPhoneApplication+attributes.m in Sources */,
+				85F48BB5215E1F0400B00B9E /* SUYAudioFileConverter.m in Sources */,
 				9484F8DD10B0E0C70038BDC0 /* sqSqueakIPhoneApplication+events.m in Sources */,
 				9484F8DE10B0E0C90038BDC0 /* sqSqueakIPhoneApplication+imageReadWrite.m in Sources */,
 				9484F8DF10B0E0CB0038BDC0 /* sqSqueakIPhoneApplication+Network.m in Sources */,

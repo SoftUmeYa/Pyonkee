@@ -1088,7 +1088,7 @@ msgid "Quit Scratch"
 msgstr "Scratchをしゅうりょう"
 
 msgid "Reading"
-msgstr "Reading"
+msgstr "よみこみちゅう"
 
 msgid "record"
 msgstr "ろくおん"
@@ -2011,6 +2011,12 @@ msgstr "iCloudにエクスポート"
 
 msgid "Flash blocks (very slow)"
 msgstr "ブロックをてんめつさせる (ひじょうにおそく)"
+
+msgid "Cannot load File"
+msgstr "ファイルがよみこみません"
+
+msgid "Unrecognized audio file format"
+msgstr "オーディオファイルのフォーマットがわかりません"
 
 ############################################
 # MESH

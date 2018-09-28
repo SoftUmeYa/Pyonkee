@@ -46,6 +46,8 @@
 
 @property (nonatomic, readonly) UIInterfaceOrientation formerOrientation;
 
+@property(nonatomic, readonly) NSArray *keyCommands;
+
 - (IBAction) shoutGo:(id)sender;
 - (IBAction) stopAll:(id)sender;
 - (IBAction) exitPresentation:(id)sender;
