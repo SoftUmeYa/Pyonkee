@@ -37,6 +37,8 @@ static const int kShiftAutoUpSeconds = 20;
     UIInterfaceOrientation _formerOrientation;
     NSString* _lastExportResourcePath;
     NSInteger _exportResourceRetryCount;
+    
+    NSArray* _keyCommands;
 }
 
 @synthesize scrollView,scrollViewController,fontScaleButton, radioButtonSetController,
@@ -597,7 +599,6 @@ uint memoryWarningCount;
 		return NO;
 	}
 	if ([rstr length] == 0) {
-		
 		[gDelegateApp.mainView recordCharEvent: [NSString stringWithCharacters: &delete length: 1] ];
 	} else {
         if(range.length > 0){
@@ -802,6 +803,65 @@ uint memoryWarningCount;
     );
 }
 
+#pragma mark Shortcut keys
+
+- (BOOL)canBecomeFirstResponder {
+    return YES;
+}
+
+- (NSArray *) keyCommands
+{
+    if(!_keyCommands){
+        UIKeyCommand *upArrow = [UIKeyCommand keyCommandWithInput: UIKeyInputUpArrow modifierFlags: 0 action: @selector(externalKeyBoardUpArrow:)];
+        UIKeyCommand *downArrow = [UIKeyCommand keyCommandWithInput: UIKeyInputDownArrow modifierFlags: 0 action: @selector(externalKeyBoardDownArrow:)];
+        UIKeyCommand *leftArrow = [UIKeyCommand keyCommandWithInput: UIKeyInputLeftArrow modifierFlags: 0 action: @selector(externalKeyBoardLeftArrow:)];
+        UIKeyCommand *rightArrow = [UIKeyCommand keyCommandWithInput: UIKeyInputRightArrow modifierFlags: 0 action: @selector(externalKeyBoardRightArrow:)];
+        UIKeyCommand *esc = [UIKeyCommand keyCommandWithInput:UIKeyInputEscape modifierFlags:0 action:@selector(externalKeyBoardEscape:)];
+        _keyCommands = [[NSArray alloc] initWithObjects: upArrow, downArrow, leftArrow, rightArrow, esc, nil];
+    }
+    return _keyCommands;
+}
+
+- (void) externalKeyBoardUpArrow: (UIKeyCommand *) keyCommand
+{
+    [self keyUpArrow:self];
+    [self keyTouchUp:self];
+}
+
+- (void) externalKeyBoardDownArrow: (UIKeyCommand *) keyCommand
+{
+    [self keyDownArrow:self];
+    [self keyTouchUp:self];
+}
+
+- (void) externalKeyBoardLeftArrow: (UIKeyCommand *) keyCommand
+{
+    [self keyLeftArrow:self];
+    [self keyTouchUp:self];
+}
+
+- (void) externalKeyBoardRightArrow: (UIKeyCommand *) keyCommand
+{
+    [self keyRightArrow:self];
+    [self keyTouchUp:self];
+}
+
+- (void) externalKeyBoardEscape: (UIKeyCommand *) keyCommand
+{
+    //Specific handling on presentation mode
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    if((self.viewModeIndex == 2)){
+        if((UIInterfaceOrientationIsPortrait(orientation))){
+            return;
+        } else {
+            return [self exitPresentation: self];
+        }
+    }
+    
+    unichar character = 27;
+    [self startRepeatKeyProcess: character for: self];
+    [self keyTouchUp:self];
+}
 
 #pragma mark Releasing
 
