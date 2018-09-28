@@ -41,5 +41,6 @@
 + (void) showCursor:(int)cursorCode;
 + (void) hideCursor;
 + (BOOL) cursorEnabled;
++ (NSString*)saveAiffFromPath: (NSString*) fromPath;
 
 @end

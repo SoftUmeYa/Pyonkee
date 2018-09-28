@@ -15,6 +15,7 @@
 
 #import "UIImage+Resize.h"
 
+#import "SUYAudioFileConverter.h"
 #import "Pyonkee-Swift.h"
 
 #import "SUYUtils.h"
@@ -101,6 +102,12 @@
     
     return newImage;
     
+}
+
++(NSString*)saveAiffFromPath: (NSString*) fromPath;
+{
+    SUYAudioFileConverter* converter = [[SUYAudioFileConverter alloc] init];
+    return [converter saveAiffFromPath:fromPath];
 }
 
 #pragma mark Files
@@ -289,7 +296,9 @@
 }
 
 + (NSArray*) supportedUtis{
-    return @[@"com.softumeya.scratch-project",@"com.softumeya.scratch-sprite",@"com.microsoft.waveform-audio",@"com.compuserve.gif",@"com.microsoft.bmp",@"public.png",@"public.jpeg",@"public.utf8-plain-text"];
+    return @[@"com.softumeya.scratch-project",@"com.softumeya.scratch-sprite",
+             @"com.microsoft.waveform-audio",@"public.mp3",
+             @"com.compuserve.gif",@"com.microsoft.bmp",@"public.png",@"public.jpeg",@"public.utf8-plain-text"];
 }
 
 
