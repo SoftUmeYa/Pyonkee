@@ -1,5 +1,8 @@
 # Pyonkee
 
+## !Notice!
+For building with Xcode 10.3 (Swift 5.0), use  v2.9 branch (work in progress).
+
 ## Overview
 
 [Pyonkee](http://softumeya.com/pyonkee/en/) is a visual-programming language running on iPad. It is based on Scratch from the MIT Media Laboratory.
