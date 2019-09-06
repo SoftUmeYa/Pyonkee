@@ -13,7 +13,7 @@ import UIKit
 class SUYTouchCursor: NSObject {
     
     static let EyeDropperConfig: Configuration = createEyeDropperConfig()
-    static var IsEnabled = false;
+    @objc static var IsEnabled = false;
     
     private class func createEyeDropperConfig() -> Configuration {
         var config = Configuration()
@@ -24,7 +24,7 @@ class SUYTouchCursor: NSObject {
         return config
     }
     
-    public class func showEyeDropper() {
+    @objc public class func showEyeDropper() {
         if(IsEnabled){return}
         showToast(message: "", image: UIImage(named: "eyeDropper")!)
         show(EyeDropperConfig)
@@ -36,7 +36,7 @@ class SUYTouchCursor: NSObject {
         IsEnabled = true;
     }
     
-    public class func hide() {
+    @objc public class func hide() {
         //To detect Visualizer bug
         //for window in UIApplication.shared.windows {print(window)}
         Visualizer.stop()
