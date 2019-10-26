@@ -66,7 +66,7 @@ static inline double Percent(double numerator, double denominator)
 {
     if (!_motionManager) {
         _motionManager = [[CMMotionManager alloc] init];
-        _motionManager.deviceMotionUpdateInterval = 0.025; //40Hz
+        _motionManager.deviceMotionUpdateInterval = 0.05; //20Hz
     }
 }
 
