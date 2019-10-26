@@ -177,7 +177,7 @@
 		9484F8E010B0E0CE0038BDC0 /* sqSqueakiPhoneApplication+sound.m in Sources */ = {isa = PBXBuildFile; fileRef = 94554F1E0DF1B65700FB176B /* sqSqueakiPhoneApplication+sound.m */; };
 		9484F8E110B0E0CE0038BDC0 /* sqSqueakIPhoneApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 942F761C0E0B6B6100848BF2 /* sqSqueakIPhoneApplication.m */; };
 		9484F8E210B0E0D10038BDC0 /* sqSqueakIPhoneFileDirectoryInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 943001A40E0D600C0040BB27 /* sqSqueakIPhoneFileDirectoryInterface.m */; };
-		9484F8E310B0E0D30038BDC0 /* sqSqueakIPhoneInfoPlistInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F879900E6C0C7E00662DEA /* sqSqueakIPhoneInfoPlistInterface.m */; };
+		9484F8E310B0E0D30038BDC0 /* sqSqueakIPhoneInfoPlistInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F879900E6C0C7E00662DEA /* sqSqueakIPhoneInfoPlistInterface.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		9484F8E510B0E0F00038BDC0 /* SqueakNoOGLIPhoneAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* SqueakNoOGLIPhoneAppDelegate.m */; };
 		9484F8E610B0E0FD0038BDC0 /* SqueakUIController.m in Sources */ = {isa = PBXBuildFile; fileRef = 940CE8550DFCE2D200EBA91B /* SqueakUIController.m */; };
 		9484F8E710B0E0FE0038BDC0 /* SqueakUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 949E5DB60DE3AB6A007388E0 /* SqueakUIView.m */; };
