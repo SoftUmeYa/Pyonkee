@@ -193,13 +193,17 @@
     return CGSizeMake(1024,768);
 }
 
-+ (float) scratchScreenZoomScale;
++ (float) scratchScreenZoomScale
 {
-    //    if([SUYUtils isRetina]){
-    //        return 1.25f * 2.0;
-    //    }
-    
-    return 1.0f;
+    CGFloat expandRatio = [self landscapeScreenHeight] / [self scratchScreenSize].height;
+    return 1.0f * expandRatio;
+}
+
++ (CGFloat) landscapeScreenHeight
+{
+    CGRect screenRect = [UIScreen mainScreen].bounds;
+    CGSize screenSize = screenRect.size;
+    return MIN(screenSize.width, screenSize.height);
 }
 
 + (NSString *)applicationSupportDirectory {
