@@ -383,7 +383,7 @@
 - (void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
     self.view.superview.bounds = CGRectMake(0, 0, 380, 300);
-    self.view.superview.alpha = 0.95;
+    self.view.superview.alpha = 1.0;
 }
 
 #pragma mark - Releasing

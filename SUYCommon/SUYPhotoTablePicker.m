@@ -170,7 +170,12 @@
                 UIImage *img = [UIImage imageWithCGImage:imgRef
                                                    scale:1.0f
                                              orientation:orientation];
-                [workingDictionary setObject:img forKey:UIImagePickerControllerOriginalImage];
+                if(img){
+                    [workingDictionary setObject:img forKey:UIImagePickerControllerOriginalImage];
+                } else {
+                    return;
+                }
+                
             }
             
             [workingDictionary setObject:[[asset valueForProperty:ALAssetPropertyURLs] valueForKey:[[[asset valueForProperty:ALAssetPropertyURLs] allKeys] objectAtIndex:0]] forKey:UIImagePickerControllerReferenceURL];
