@@ -1,8 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="LT8-Fu-Dvj">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="LT8-Fu-Dvj">
+    <device id="ipad12_9rounded" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Photo Table Picker-->
@@ -14,23 +16,23 @@
                         <viewControllerLayoutGuide type="bottom" id="zqF-wH-Xcb"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Shs-vR-rdJ">
-                        <rect key="frame" x="0.0" y="0.0" width="540" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="960" height="720"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R75-0t-R4c">
-                                <rect key="frame" x="30" y="0.0" width="480" height="554"/>
+                                <rect key="frame" x="30" y="0.0" width="900" height="674"/>
                                 <connections>
                                     <segue destination="oSI-9E-rJ8" kind="embed" id="nh5-xr-Sok"/>
                                 </connections>
                             </containerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Bx-sx-WTq">
-                                <rect key="frame" x="250" y="557" width="40" height="40"/>
+                                <rect key="frame" x="460" y="677" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="WXL-zV-zA5"/>
                                     <constraint firstAttribute="height" constant="40" id="i5J-I4-OBP"/>
                                 </constraints>
                                 <state key="normal" image="flat-arrow-right.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <state key="disabled" image="flat-arrow-right-disabled.png"/>
                                 <connections>
@@ -38,7 +40,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="R75-0t-R4c" firstAttribute="top" secondItem="Shs-vR-rdJ" secondAttribute="top" id="341-Ks-ayu"/>
                             <constraint firstAttribute="trailing" secondItem="R75-0t-R4c" secondAttribute="trailing" constant="30" id="5OI-fU-nSq"/>
@@ -48,8 +50,9 @@
                             <constraint firstItem="R75-0t-R4c" firstAttribute="leading" secondItem="Shs-vR-rdJ" secondAttribute="leading" constant="30" id="u08-PA-hWC"/>
                         </constraints>
                     </view>
+                    <value key="contentSizeForViewInPopover" type="size" width="960" height="720"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="540" height="600"/>
+                    <size key="freeformSize" width="960" height="720"/>
                     <connections>
                         <outlet property="nextButton" destination="8Bx-sx-WTq" id="g0C-La-Dxg"/>
                     </connections>
@@ -67,11 +70,12 @@
                         <viewControllerLayoutGuide type="bottom" id="Gpx-Th-KDi"/>
                     </layoutGuides>
                     <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="8rK-AJ-Ul1" customClass="UITableView">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="554"/>
+                        <rect key="frame" x="0.0" y="0.0" width="900" height="674"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <toolbarItems/>
+                    <value key="contentSizeForViewInPopover" type="size" width="900" height="674"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i4T-X5-zxa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

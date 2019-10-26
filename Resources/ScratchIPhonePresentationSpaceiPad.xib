@@ -1,21 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
-    <device id="ipad9_7" orientation="portrait">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="ipad9_7" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="Helvetica.ttc">
-            <string>Helvetica</string>
-            <string>Helvetica-Bold</string>
-        </array>
-    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ScratchIPhonePresentationSpace">
             <connections>
@@ -23,10 +16,13 @@
                 <outlet property="fontScaleButton" destination="24" id="ThV-Xn-oNJ"/>
                 <outlet property="landscapeToolBar" destination="61" id="62"/>
                 <outlet property="landscapeToolBar2" destination="63" id="74"/>
+                <outlet property="modeBarLeadingConstraint" destination="996-TZ-H5U" id="bgn-Gb-Knb"/>
+                <outlet property="modeBarWidthConstraint" destination="tbb-BE-sLd" id="XZ3-pj-7bp"/>
                 <outlet property="padLockButton" destination="77" id="80"/>
                 <outlet property="presentationExitButton" destination="ZTb-6b-wCE" id="2fV-D1-O1x"/>
                 <outlet property="radioButtonSetController" destination="h4S-8z-pJD" id="Ujk-zr-ML1"/>
                 <outlet property="scrollView" destination="4" id="14"/>
+                <outlet property="scrollViewHeightConstraint" destination="7nZ-0s-O6i" id="cMc-Tc-Bfu"/>
                 <outlet property="shiftButton" destination="g8x-gu-BpO" id="sK4-zb-FxO"/>
                 <outlet property="shoutGoLandscapeButton" destination="35" id="59"/>
                 <outlet property="softKeyboardField" destination="jsf-Lj-cQP" id="241-6F-siE"/>
@@ -57,12 +53,12 @@
             <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
-                <scrollView clipsSubviews="YES" clearsContextBeforeDrawing="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" canCancelContentTouches="NO" minimumZoomScale="0.5" maximumZoomScale="8" translatesAutoresizingMaskIntoConstraints="NO" id="4">
-                    <rect key="frame" x="0.0" y="4" width="1024" height="768"/>
+                <scrollView clipsSubviews="YES" clearsContextBeforeDrawing="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" canCancelContentTouches="NO" minimumZoomScale="0.5" maximumZoomScale="8" translatesAutoresizingMaskIntoConstraints="NO" id="4">
+                    <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                     <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="width" secondItem="4" secondAttribute="height" multiplier="4:3" id="RCr-NL-xkZ"/>
-                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="768" id="zvb-2S-k3U"/>
+                        <constraint firstAttribute="height" constant="768" id="7nZ-0s-O6i"/>
+                        <constraint firstAttribute="width" secondItem="4" secondAttribute="height" multiplier="4:3" id="jNt-EF-gLE"/>
                     </constraints>
                     <connections>
                         <outlet property="delegate" destination="-1" id="21"/>
@@ -299,7 +295,7 @@
                     </connections>
                 </button>
                 <textField opaque="NO" clipsSubviews="YES" alpha="0.59999999999999964" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="32" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="jsf-Lj-cQP" userLabel="softkey text field">
-                    <rect key="frame" x="237" y="328" width="550" height="40"/>
+                    <rect key="frame" x="237" y="315" width="550" height="40"/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="UHY-WQ-nhK"/>
@@ -312,9 +308,12 @@
                         <outlet property="delegate" destination="-1" id="c4p-yY-h8N"/>
                     </connections>
                 </textField>
-                <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZTb-6b-wCE" userLabel="presen exit button">
-                    <rect key="frame" x="32" y="5" width="32" height="32"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZTb-6b-wCE" userLabel="presen exit button">
+                    <rect key="frame" x="30" y="3" width="32" height="32"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="ZTb-6b-wCE" secondAttribute="height" multiplier="1:1" id="TWY-Yf-8vt"/>
+                        <constraint firstAttribute="width" constant="32" id="e6G-s3-inQ"/>
+                    </constraints>
                     <state key="normal" image="back.png">
                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
@@ -352,29 +351,25 @@
                         <constraint firstAttribute="width" constant="84" id="wvQ-hB-pHE"/>
                     </constraints>
                 </view>
-                <view opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fbL-S6-5qG" userLabel="mode bar">
-                    <rect key="frame" x="867" y="10" width="150" height="34"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fbL-S6-5qG" userLabel="mode bar">
+                    <rect key="frame" x="862" y="6" width="150" height="34"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EWv-YW-BN5" userLabel="quarterModeButton">
-                            <rect key="frame" x="2" y="2" width="40" height="32"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EWv-YW-BN5" userLabel="quarterModeButton">
+                            <rect key="frame" x="2" y="2" width="42" height="32"/>
                             <state key="normal" image="quarterMode.png">
                                 <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                             <state key="selected" image="quarterMode-on.png"/>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ehv-c5-hHl" userLabel="normalModeButton">
-                            <rect key="frame" x="55" y="2" width="40" height="32"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ehv-c5-hHl" userLabel="normalModeButton">
+                            <rect key="frame" x="57" y="2" width="42" height="32"/>
                             <state key="normal" image="normalMode.png">
                                 <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                             <state key="selected" image="normalMode-on.png"/>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="umY-R9-7M0" userLabel="presentationModeButton">
-                            <rect key="frame" x="108" y="2" width="40" height="32"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="umY-R9-7M0" userLabel="presentationModeButton">
+                            <rect key="frame" x="108" y="2" width="42" height="32"/>
                             <state key="normal" image="presentationMode.png">
                                 <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
@@ -382,16 +377,36 @@
                         </button>
                     </subviews>
                     <color key="backgroundColor" red="0.75294117647058822" green="0.76470588235294112" blue="0.77647058823529413" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="Ehv-c5-hHl" firstAttribute="leading" secondItem="EWv-YW-BN5" secondAttribute="trailing" constant="13" id="0eX-zl-E8P"/>
+                        <constraint firstItem="Ehv-c5-hHl" firstAttribute="top" secondItem="fbL-S6-5qG" secondAttribute="top" constant="2" id="53i-Dn-Irc"/>
+                        <constraint firstAttribute="width" secondItem="fbL-S6-5qG" secondAttribute="height" multiplier="75:17" id="7d1-YP-Gb8"/>
+                        <constraint firstItem="umY-R9-7M0" firstAttribute="leading" secondItem="Ehv-c5-hHl" secondAttribute="trailing" constant="9" id="I2T-ya-8un"/>
+                        <constraint firstAttribute="bottom" secondItem="umY-R9-7M0" secondAttribute="bottom" id="MYW-eD-Xa7"/>
+                        <constraint firstItem="EWv-YW-BN5" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="fbL-S6-5qG" secondAttribute="leading" constant="2" id="PbY-fY-Zll"/>
+                        <constraint firstItem="umY-R9-7M0" firstAttribute="top" secondItem="fbL-S6-5qG" secondAttribute="top" constant="2" id="YdZ-P5-y8Q"/>
+                        <constraint firstItem="Ehv-c5-hHl" firstAttribute="leading" secondItem="EWv-YW-BN5" secondAttribute="trailing" constant="13" id="d0t-OD-LpR"/>
+                        <constraint firstAttribute="trailing" secondItem="umY-R9-7M0" secondAttribute="trailing" id="fKG-RY-nI6"/>
+                        <constraint firstAttribute="bottom" secondItem="Ehv-c5-hHl" secondAttribute="bottom" id="hYG-zC-Dp7"/>
+                        <constraint firstItem="umY-R9-7M0" firstAttribute="leading" secondItem="Ehv-c5-hHl" secondAttribute="trailing" constant="9" id="k6y-ff-daY"/>
+                        <constraint firstItem="EWv-YW-BN5" firstAttribute="top" secondItem="fbL-S6-5qG" secondAttribute="top" constant="2" id="p60-vh-it5"/>
+                        <constraint firstAttribute="width" constant="150" id="tbb-BE-sLd"/>
+                        <constraint firstAttribute="bottom" secondItem="EWv-YW-BN5" secondAttribute="bottom" id="vDn-hs-scG"/>
+                    </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" red="0.70097160339355469" green="0.71406924724578857" blue="0.72791790962219238" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="jsf-Lj-cQP" firstAttribute="top" secondItem="1" secondAttribute="topMargin" constant="308" id="2RZ-oF-bUe"/>
+                <constraint firstItem="jsf-Lj-cQP" firstAttribute="centerY" secondItem="1" secondAttribute="centerYWithinMargins" multiplier="0.85" id="2RZ-oF-bUe"/>
+                <constraint firstItem="ZTb-6b-wCE" firstAttribute="centerY" secondItem="1" secondAttribute="centerY" multiplier="0.05" id="58j-yj-5WZ"/>
+                <constraint firstItem="4" firstAttribute="centerX" secondItem="1" secondAttribute="centerX" id="667-ef-zTo"/>
+                <constraint firstItem="fbL-S6-5qG" firstAttribute="leading" secondItem="4" secondAttribute="centerX" constant="350" id="996-TZ-H5U"/>
                 <constraint firstItem="63" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="9ay-00-wzt"/>
                 <constraint firstItem="63" firstAttribute="top" secondItem="61" secondAttribute="top" id="BiR-Ak-kzJ"/>
                 <constraint firstAttribute="trailing" secondItem="61" secondAttribute="trailing" id="DGZ-oV-jfM"/>
                 <constraint firstAttribute="bottom" secondItem="24" secondAttribute="bottom" constant="4" id="ENY-H9-49T"/>
-                <constraint firstItem="63" firstAttribute="top" secondItem="1" secondAttribute="top" constant="224" id="GKp-Sc-vOa"/>
+                <constraint firstItem="ZTb-6b-wCE" firstAttribute="centerX" secondItem="1" secondAttribute="centerX" multiplier="0.09" id="FYx-8w-5CS"/>
+                <constraint firstItem="63" firstAttribute="centerY" secondItem="1" secondAttribute="centerY" id="GKp-Sc-vOa"/>
                 <constraint firstItem="77" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="Mgl-2f-ME6"/>
                 <constraint firstAttribute="centerX" secondItem="jsf-Lj-cQP" secondAttribute="centerX" id="PYd-TY-zQX"/>
                 <constraint firstAttribute="bottom" secondItem="77" secondAttribute="bottom" constant="4" id="Qln-LL-Vvt"/>
@@ -400,31 +415,32 @@
                 <constraint firstAttribute="bottom" secondItem="ZdR-vi-ukD" secondAttribute="bottom" constant="4" id="h7G-o5-suI"/>
                 <constraint firstAttribute="bottom" secondItem="g8x-gu-BpO" secondAttribute="bottom" constant="4" id="hMU-B8-OVr"/>
                 <constraint firstItem="nBf-mh-npM" firstAttribute="leading" secondItem="ZdR-vi-ukD" secondAttribute="trailing" constant="24" id="hRs-p1-3pX"/>
-                <constraint firstItem="4" firstAttribute="top" secondItem="1" secondAttribute="top" constant="4" id="nBO-zw-9Qd"/>
-                <constraint firstItem="4" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="oQc-ye-utr"/>
+                <constraint firstItem="4" firstAttribute="top" secondItem="1" secondAttribute="top" id="nBO-zw-9Qd"/>
+                <constraint firstItem="fbL-S6-5qG" firstAttribute="centerY" secondItem="1" secondAttribute="centerY" multiplier="0.06" id="qnD-Cq-Rgr"/>
                 <constraint firstAttribute="trailing" secondItem="24" secondAttribute="trailing" id="yP7-bv-VKO"/>
-                <constraint firstAttribute="trailing" secondItem="4" secondAttribute="trailing" id="yb7-4u-AvZ"/>
                 <constraint firstAttribute="bottom" secondItem="nBf-mh-npM" secondAttribute="bottom" constant="4" id="ypJ-Qd-7p5"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
+            <viewLayoutGuide key="safeArea" id="tik-Eo-Sgf"/>
+            <point key="canvasLocation" x="15" y="41"/>
         </view>
     </objects>
     <resources>
         <image name="RedFlag.png" width="28" height="23"/>
         <image name="RedFlagLight.png" width="28" height="23"/>
-        <image name="back.png" width="32" height="32"/>
+        <image name="back.png" width="25.600000381469727" height="25.600000381469727"/>
         <image name="downArrow.png" width="44" height="15"/>
         <image name="flat-cmd-active1.png" width="32" height="32"/>
         <image name="flat-cmd.png" width="32" height="32"/>
         <image name="flat-shift-active1.png" width="32" height="32"/>
         <image name="flat-shift.png" width="32" height="32"/>
-        <image name="flat-space.png" width="20" height="10"/>
+        <image name="flat-space.png" width="16" height="8"/>
         <image name="fontScale-active.png" width="32" height="32"/>
         <image name="fontScale.png" width="32" height="32"/>
         <image name="greenFlag.png" width="29" height="25"/>
         <image name="greenFlagLight.png" width="29" height="25"/>
-        <image name="kbd-left.png" width="60" height="32"/>
-        <image name="kbd-right.png" width="24" height="32"/>
+        <image name="kbd-left.png" width="15.104894638061523" height="8.0559444427490234"/>
+        <image name="kbd-right.png" width="6" height="8.0559444427490234"/>
         <image name="leftArrow.png" width="15" height="44"/>
         <image name="normalMode-on.png" width="42" height="32"/>
         <image name="normalMode.png" width="42" height="32"/>
