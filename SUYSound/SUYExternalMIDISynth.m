@@ -115,7 +115,7 @@ static SUYExternalMIDISynth *soleInstance;
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        soleInstance = [(SUYExternalMIDISynth *)[super allocWithZone:NULL] init];
+        soleInstance = [(SUYExternalMIDISynth *)[super allocWithZone:NULL] initWithError: NULL];
     });
     return soleInstance;
 }

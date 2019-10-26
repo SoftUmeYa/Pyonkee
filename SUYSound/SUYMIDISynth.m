@@ -73,14 +73,14 @@ static SUYMIDISynth *soleInstance;
 #pragma mark - Initialization
 - (void) prepareDelegates
 {
-    self.internal = [[SUYInternalMIDISynth alloc] init];
+    self.internal = [SUYInternalMIDISynth newInstance];
     self.external = [SUYExternalMIDISynth soleInstance];
 }
 
 - (void) reset
 {
     @synchronized(self){
-        self.internal = [[SUYInternalMIDISynth alloc] init];
+        self.internal = [SUYInternalMIDISynth newInstance];
         [self.internal loadDefaultSoundFont];
         [self.internal programChange: lastProgNum channel: lastProgNumChannel]; //recover previous status
     }
