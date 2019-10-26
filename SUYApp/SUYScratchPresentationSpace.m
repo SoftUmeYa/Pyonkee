@@ -46,7 +46,8 @@ static const int kShiftAutoUpSeconds = 20;
     softKeyboardField, softKeyboardOnButton,
 	shoutGoLandscapeButton,stopAllLandscapeButton,landscapeToolBar,landscapeToolBar2,padLockButton,
     commandButton, shiftButton,
-	indicatorView, viewModeBar, presentationExitButton;
+	indicatorView, viewModeBar, presentationExitButton,
+    scrollViewHeightConstraint, modeBarLeadingConstraint, modeBarWidthConstraint;
 
 
 uint warningMinHeapThreshold;
@@ -68,6 +69,8 @@ uint memoryWarningCount;
     [super viewDidLoad];
     
     _useIme = NO;
+    
+    [self adjustConstraintsOnViewLoad];
 
 	self.textField.keyboardAppearance = UIKeyboardAppearanceAlert;
     self.softKeyboardField.hidden = YES;
@@ -166,6 +169,14 @@ uint memoryWarningCount;
     );
 }
 
+- (void)adjustConstraintsOnViewLoad {
+    scrollViewHeightConstraint.constant = SUYUtils.landscapeScreenHeight;
+    
+    CGFloat ratio = SUYUtils.landscapeScreenHeight / SUYUtils.scratchScreenSize.height;
+    modeBarLeadingConstraint.constant = 350 * ratio;
+    modeBarWidthConstraint.constant = 150 * ratio;
+}
+
 #pragma mark Rotation
 - (BOOL)shouldAutorotate {
     return YES;
@@ -197,6 +208,7 @@ uint memoryWarningCount;
     if(_formerOrientation != orientation){
         if(UIInterfaceOrientationIsPortrait(orientation) && UIInterfaceOrientationIsLandscape(_formerOrientation)){
             ratio = sz.height/sz.width;
+            scrollViewHeightConstraint.constant = [SUYUtils landscapeScreenHeight]*ratio;
             _originalScrollerScale = _originalScrollerScale * ratio;
             self.scrollView.minimumZoomScale = ratio;
             [self.scrollView setZoomScale: _originalScrollerScale animated:YES];
@@ -205,6 +217,7 @@ uint memoryWarningCount;
         }
         else if(UIInterfaceOrientationIsLandscape(orientation) && UIInterfaceOrientationIsPortrait(_formerOrientation)) {
             ratio = sz.width/sz.height;
+            scrollViewHeightConstraint.constant = [SUYUtils landscapeScreenHeight];
             _originalScrollerScale = _originalScrollerScale * ratio;
             self.scrollView.minimumZoomScale = 1.0f;
             [self.scrollView setZoomScale: _originalScrollerScale animated:YES];
@@ -242,7 +255,7 @@ uint memoryWarningCount;
 
 - (IBAction) openCamera:(NSString *)clientMode{
     SUYCameraViewController *viewController = [[SUYCameraViewController alloc] initWithNibName:@"SUYCameraViewController" bundle:nil];
-    viewController.modalPresentationStyle = UIModalPresentationFormSheet;
+    viewController.modalPresentationStyle = UIModalPresentationOverFullScreen;
     viewController.clientMode = clientMode;
     [self presentViewController:viewController animated:YES completion:NULL];
 }
@@ -252,14 +265,14 @@ uint memoryWarningCount;
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"SUYPhotoPicker" bundle:[NSBundle mainBundle]];
     SUYPhotoPickViewController *viewController = (SUYPhotoPickViewController*)[storyboard instantiateInitialViewController];
     
-    viewController.modalPresentationStyle = UIModalPresentationFormSheet;
+    viewController.modalPresentationStyle = UIModalPresentationOverFullScreen;
     viewController.clientMode = clientMode;
     [self presentViewController:viewController animated:YES completion:NULL];
 }
 
 - (IBAction) openHelp:(NSString *)url {
     SUYWebViewController *viewController = [[SUYWebViewController alloc] initWithNibName:@"SUYWebViewController" bundle:nil];
-    viewController.modalPresentationStyle = UIModalPresentationPageSheet;
+    viewController.modalPresentationStyle = UIModalPresentationOverFullScreen;
     viewController.initialUrl = url;
     [self presentViewController:viewController animated:YES completion:NULL];
     
@@ -866,7 +879,7 @@ uint memoryWarningCount;
 #pragma mark Releasing
 
 - (void)dealloc {
-	@synchronized(self) {
+    @synchronized(self) {
 		for (NSTimer *e in [self.repeatKeyDict allValues]) {
 			[e invalidate];
 		}
