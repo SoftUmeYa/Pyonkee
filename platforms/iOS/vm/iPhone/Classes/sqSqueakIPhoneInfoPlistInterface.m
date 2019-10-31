@@ -40,11 +40,9 @@ Sept-02-08  1.03b1  setup useScrollingView
 
 #import "sqSqueakIPhoneInfoPlistInterface.h"
 
-NSString * kwriteable_preferenceKey = @"writeable_preference";
-NSString * kscrollableView_preferenceKey = @"scrollableView_preference";
+NSString * kspaceRepeats_preference = @"spaceRepeats_preference";
 NSString * kmemorySize_preferenceKey = @"memorySize_preference";
 NSString * ktimeOut_preferenceKey = @"timeOut_preference";
-NSString * kspaceRepeats_preferenceKey = @"spaceRepeats_preference";
 NSString * kinboxMaxNumOfItems_preferenceKey = @"inboxMaxNumOfItems_preference";
 NSString * kuseVirtualMIDI_preferenceKey = @"useVirtualMIDI_preference";
 
@@ -52,113 +50,134 @@ NSString * kuseVirtualMIDI_preferenceKey = @"useVirtualMIDI_preference";
 
 @implementation sqSqueakIPhoneInfoPlistInterface
 - (void) parseInfoPlist {
-	NSAutoreleasePool * pool = [NSAutoreleasePool new];
-
-	[super parseInfoPlist];
 	
+	[super parseInfoPlist];
+    
 //	self.SqueakUseFileMappedMMAP = YES;
 //	gSqueakUseFileMappedMMAP = 1;
 
     self.SqueakUseFileMappedMMAP = gSqueakUseFileMappedMMAP;
-        
-	NSString *testValue = [defaults stringForKey: kwriteable_preferenceKey];
-	
-	if (testValue == nil) {
-		// no default values have been set, create them here based on what's in our Settings bundle info
-        //
-        NSString *pathStr = [[NSBundle mainBundle] bundlePath];
-        NSString *settingsBundlePath = [pathStr stringByAppendingPathComponent:@"Settings.bundle"];
-        NSString *finalPath = [settingsBundlePath stringByAppendingPathComponent:@"Root.plist"];
-		
-        NSDictionary *settingsDict = [NSDictionary dictionaryWithContentsOfFile:finalPath];
-        NSArray *prefSpecifierArray = [settingsDict objectForKey:@"PreferenceSpecifiers"];
+    
+    NSArray* allKeys = [[defaults dictionaryRepresentation] allKeys];
+    if([allKeys containsObject:kmemorySize_preferenceKey] == NO){
+        [self setupDefaultValues];
+    }
+    
+    NSLog(@"*** spaceRepeats: %ul, ", self.spaceRepeats);
+//    NSLog(@"*** memorySize: %@, ", [NSNumber numberWithLong: self.memorySize]);
+//    NSLog(@"*** inboxMaxNumOfItems: %@, ", [NSNumber numberWithLong: self.inboxMaxNumOfItems]);
 
-        NSDictionary *prefItem;
-		NSString	*writeable_preferenceDefault = @"NO";
-		NSString	*scrollableView_preferenceDefault= @"YES";
-		NSString	*memorySize_preferenceDefault=@"78643200";
-		NSString	*timeOut_preferenceDefault=@"30";
-		NSString	*spaceRepeats_preferenceDefault=@"NO";
-        NSString	*inboxMaxNumOfItems_preferenceDefault=@"10";
-        NSString	*useVirtualMIDI_preferenceDefault=@"NO";
-        
-		for (prefItem in prefSpecifierArray)	{
-			NSString *keyValueStr = [prefItem objectForKey:@"Key"];
-			id defaultValue = [prefItem objectForKey:@"DefaultValue"];
-		
-			if ([keyValueStr isEqualToString: kwriteable_preferenceKey]) {
-				writeable_preferenceDefault = defaultValue;
-			}
+}
 
-			if ([keyValueStr isEqualToString: kscrollableView_preferenceKey]) {
-				scrollableView_preferenceDefault = defaultValue;
-			}
+- (void) setupDefaultValues {
+    // no default values have been set, create them here based on what's in our Settings bundle info
+    //
+    NSString *pathStr = [[NSBundle mainBundle] bundlePath];
+    NSString *settingsBundlePath = [pathStr stringByAppendingPathComponent:@"Settings.bundle"];
+    NSString *finalPath = [settingsBundlePath stringByAppendingPathComponent:@"Root.plist"];
+    
+    NSDictionary *settingsDict = [NSDictionary dictionaryWithContentsOfFile:finalPath];
+    NSArray *prefSpecifierArray = [settingsDict objectForKey:@"PreferenceSpecifiers"];
+    NSDictionary *prefItem;
+    
+    for (prefItem in prefSpecifierArray)    {
+        NSString *keyValueStr = [prefItem objectForKey:@"Key"];
+        id defaultValue = [prefItem objectForKey:@"DefaultValue"];
 
-			if ([keyValueStr isEqualToString: kmemorySize_preferenceKey]) {
-				memorySize_preferenceDefault = defaultValue;
-			}
-
-			if ([keyValueStr isEqualToString: ktimeOut_preferenceKey]) {
-				timeOut_preferenceDefault = defaultValue;
-			}
-
-			if ([keyValueStr isEqualToString: kspaceRepeats_preferenceKey]) {
-				spaceRepeats_preferenceDefault = defaultValue;
-			}
-            
+        if(OVER_IOS13){
+            NSNumber* adjustedDefaultValue;
+            if ([keyValueStr isEqualToString: kmemorySize_preferenceKey]) {
+                adjustedDefaultValue = [self adjustedSliderValue: defaultValue min: 41943040.0 max: 419430400.0];
+                [defaults setObject: adjustedDefaultValue forKey:kmemorySize_preferenceKey];
+            }
             if ([keyValueStr isEqualToString: kinboxMaxNumOfItems_preferenceKey]) {
-                inboxMaxNumOfItems_preferenceDefault = defaultValue;
+                adjustedDefaultValue = [self adjustedSliderValue: defaultValue min: 100.0 max: 1000.0];
+                [defaults setObject: adjustedDefaultValue forKey:kinboxMaxNumOfItems_preferenceKey];
             }
-            
-            if ([keyValueStr isEqualToString: kuseVirtualMIDI_preferenceKey]) {
-                useVirtualMIDI_preferenceDefault = defaultValue;
+        } else {
+            if ([keyValueStr isEqualToString: kmemorySize_preferenceKey]) {
+                [defaults setObject: defaultValue forKey:kmemorySize_preferenceKey];
             }
-            
-		}
-		
-        // since no default values have been set (i.e. no preferences file created), create it here
-        NSDictionary *appDefaults =  [NSDictionary dictionaryWithObjectsAndKeys: writeable_preferenceDefault,  kwriteable_preferenceKey,
-									  scrollableView_preferenceDefault,  kscrollableView_preferenceKey,
-									  memorySize_preferenceDefault,  kmemorySize_preferenceKey,
-									  timeOut_preferenceDefault,  ktimeOut_preferenceKey,
-									  spaceRepeats_preferenceDefault,  kspaceRepeats_preferenceKey,
-                                      inboxMaxNumOfItems_preferenceDefault,  kinboxMaxNumOfItems_preferenceKey,
-                                      useVirtualMIDI_preferenceDefault,  kuseVirtualMIDI_preferenceKey,
-                                      nil];
+            if ([keyValueStr isEqualToString: kinboxMaxNumOfItems_preferenceKey]) {
+                [defaults setObject: defaultValue forKey:kinboxMaxNumOfItems_preferenceKey];
+            }
+        }
         
-        [[NSUserDefaults standardUserDefaults] registerDefaults: appDefaults];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-	}
-	[pool drain];
-	
+        if ([keyValueStr isEqualToString: kspaceRepeats_preference]) {
+             [defaults setBool: YES forKey: kspaceRepeats_preference];
+        }
+
+        //do nothing if default value is NO
+        if ([keyValueStr isEqualToString: kuseVirtualMIDI_preferenceKey]) {
+        }
+
+    }
+    
+    //For older iOS (before 11)
+    [defaults synchronize];
 }
 
-- (BOOL) imageIsWriteable {
-	return [defaults boolForKey: kwriteable_preferenceKey];
+- (double) adjustedAppValue:(double) rawSliderValue min: (double) min max: (double) max {
+    return (rawSliderValue + min/(max-min)) * (max-min);
 }
 
-- (BOOL) useScrollingView {
-	return [defaults boolForKey: kscrollableView_preferenceKey];
+- (NSNumber*) adjustedSliderValue:(NSNumber*) rawAppValue min: (double) min max: (double) max {
+    return [NSNumber numberWithDouble:(rawAppValue.doubleValue - min) / (max - min)];
 }
+
+
+#pragma mark - Accessing
 
 - (NSInteger) memorySize {
-	return [defaults integerForKey: kmemorySize_preferenceKey];
-}
-
-- (CGFloat) timeOut {
-	return [defaults floatForKey: ktimeOut_preferenceKey];
-}
-
-- (BOOL) spaceRepeats {
-	return [defaults boolForKey: kspaceRepeats_preferenceKey];
+    NSNumber* memSize = [defaults objectForKey: kmemorySize_preferenceKey];
+    if(memSize.doubleValue <= 1){ //For iOS13
+        double memAppValue = [self adjustedAppValue: memSize.doubleValue min: 41943040.0 max: 419430400.0];
+        return memAppValue;
+    }
+    return memSize.integerValue;
 }
 
 - (NSInteger) inboxMaxNumOfItems {
-    return [defaults integerForKey: kinboxMaxNumOfItems_preferenceKey];
+    NSNumber* inboxSize = [defaults objectForKey:kinboxMaxNumOfItems_preferenceKey];
+    if(inboxSize.doubleValue <= 1){ //For iOS13
+        double inboxAppValue = [self adjustedAppValue: inboxSize.doubleValue min: 100.0 max: 1000.0];
+        return inboxAppValue;
+    }
+    return inboxSize.integerValue;
 }
 
 - (BOOL) useVirtualMIDI {
     return [defaults boolForKey: kuseVirtualMIDI_preferenceKey];
+}
+
+- (BOOL) spaceRepeats {
+    return [defaults boolForKey: kspaceRepeats_preference];
+}
+
+
+#pragma mark - Accessing - Obsolete
+
+- (BOOL) imageIsWriteable {
+    return NO;
+}
+
+- (BOOL) useScrollingView {
+    return YES;
+}
+
+- (CGFloat) timeOut {
+    return 30.0f;
+}
+
+#pragma mark - Debugging
+
+- (void) printUserDefaults: (NSDictionary*)defs tag: (NSString*)tag {
+    //For debug
+    NSLog(@"-%@",tag);
+    for (id key in defs)
+    {
+        NSLog(@"key: %@, value: %@", key, [defs objectForKey:key]);
+    }
 }
 
 @end

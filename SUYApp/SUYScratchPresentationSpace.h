@@ -48,6 +48,11 @@
 
 @property(nonatomic, readonly) NSArray *keyCommands;
 
+@property (retain, nonatomic) IBOutlet NSLayoutConstraint *scrollViewHeightConstraint;
+@property (retain, nonatomic) IBOutlet NSLayoutConstraint *modeBarLeadingConstraint;
+@property (retain, nonatomic) IBOutlet NSLayoutConstraint *modeBarWidthConstraint;
+
+
 - (IBAction) shoutGo:(id)sender;
 - (IBAction) stopAll:(id)sender;
 - (IBAction) exitPresentation:(id)sender;

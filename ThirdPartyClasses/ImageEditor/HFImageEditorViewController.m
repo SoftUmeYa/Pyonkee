@@ -298,7 +298,7 @@ static const NSTimeInterval kAnimationIntervalTransform = 0.2;
     self.view.userInteractionEnabled = NO;
     [self startTransformHook];
     
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        //Modified by SUY to avoid the main thread warning
         CGImageRef resultRef = [self newTransformedImage:self.imageView.transform
                                         sourceImage:self.sourceImage.CGImage
                                          sourceSize:self.sourceImage.size
@@ -315,7 +315,7 @@ static const NSTimeInterval kAnimationIntervalTransform = 0.2;
             }
             [self endTransformHook];
         });
-    });
+    
 
 }
 

@@ -30,6 +30,7 @@
 + (NSString *)documentInboxDirectory;
 + (NSString *)bundleResourceDirectoryWith: (NSString*)subDir;
 + (NSString *)currentCountry;
++ (CGFloat) landscapeScreenHeight;
 + (NSString *)currentLanguage;
 + (void) inform:(NSString*)message duration:(int)seconds for:(id)dele;
 + (void) alertWarning: (NSString*) msg;

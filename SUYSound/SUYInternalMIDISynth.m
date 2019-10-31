@@ -24,6 +24,12 @@
 static SUYInternalMIDISynth *soleInstance;
 static NSString *const kDefaultSountFont = @"TimGM6mb";
 
+#pragma mark - instance creation
+
++ (nullable instancetype)newInstance
+{
+    return [[[self class] alloc] initWithError: NULL];
+}
 
 #pragma mark - Actions
 

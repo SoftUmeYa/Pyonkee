@@ -11,6 +11,8 @@
 
 @interface SUYInternalMIDISynth : MIKMIDISynthesizer
 
++ (nullable instancetype)newInstance;
+
 - (void) noteOn:(int) note velocity:(int)velocity channel:(int)channel;
 - (void) noteOff:(int) note velocity:(int)velocity channel:(int)channel;
 - (void) programChange:(int) progNum channel:(int)channel;

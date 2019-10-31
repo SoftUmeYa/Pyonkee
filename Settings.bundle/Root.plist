@@ -22,11 +22,7 @@
 			<key>Title</key>
 			<string>Space key repeats</string>
 			<key>DefaultValue</key>
-			<string>NO</string>
-			<key>TrueValue</key>
-			<string>YES</string>
-			<key>FalseValue</key>
-			<string>NO</string>
+			<true/>
 		</dict>
 		<dict>
 			<key>Type</key>
@@ -42,7 +38,7 @@
 			<key>Key</key>
 			<string>memorySize_preference</string>
 			<key>DefaultValue</key>
-			<integer>67108864</integer>
+			<integer>83886080</integer>
 			<key>MinimumValue</key>
 			<integer>41943040</integer>
 			<key>MaximumValue</key>

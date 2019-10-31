@@ -69,6 +69,8 @@
 		85930B39193EEB8F00F878CA /* SUYCameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85930B37193EEB8F00F878CA /* SUYCameraViewController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		859A575219627C890096CA54 /* locale in Resources */ = {isa = PBXBuildFile; fileRef = 859A575119627C890096CA54 /* locale */; };
 		859A575619627CA80096CA54 /* Projects in Resources */ = {isa = PBXBuildFile; fileRef = 859A575519627CA80096CA54 /* Projects */; };
+		859A81D92365D98A00DA3ECE /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 859A81D82365D98A00DA3ECE /* Launch Screen.storyboard */; };
+		859A81DB2365DA0400DA3ECE /* splashx2.png in Resources */ = {isa = PBXBuildFile; fileRef = 859A81DA2365DA0400DA3ECE /* splashx2.png */; };
 		859C5FF81ECEB43D00276023 /* SUYExternalMIDISynth.m in Sources */ = {isa = PBXBuildFile; fileRef = 859C5FF31ECEB43D00276023 /* SUYExternalMIDISynth.m */; };
 		859C5FF91ECEB43D00276023 /* SUYInternalMIDISynth.m in Sources */ = {isa = PBXBuildFile; fileRef = 859C5FF51ECEB43D00276023 /* SUYInternalMIDISynth.m */; };
 		859C5FFA1ECEB43D00276023 /* SUYMIDISynth.m in Sources */ = {isa = PBXBuildFile; fileRef = 859C5FF71ECEB43D00276023 /* SUYMIDISynth.m */; };
@@ -177,7 +179,7 @@
 		9484F8E010B0E0CE0038BDC0 /* sqSqueakiPhoneApplication+sound.m in Sources */ = {isa = PBXBuildFile; fileRef = 94554F1E0DF1B65700FB176B /* sqSqueakiPhoneApplication+sound.m */; };
 		9484F8E110B0E0CE0038BDC0 /* sqSqueakIPhoneApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 942F761C0E0B6B6100848BF2 /* sqSqueakIPhoneApplication.m */; };
 		9484F8E210B0E0D10038BDC0 /* sqSqueakIPhoneFileDirectoryInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 943001A40E0D600C0040BB27 /* sqSqueakIPhoneFileDirectoryInterface.m */; };
-		9484F8E310B0E0D30038BDC0 /* sqSqueakIPhoneInfoPlistInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F879900E6C0C7E00662DEA /* sqSqueakIPhoneInfoPlistInterface.m */; };
+		9484F8E310B0E0D30038BDC0 /* sqSqueakIPhoneInfoPlistInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F879900E6C0C7E00662DEA /* sqSqueakIPhoneInfoPlistInterface.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		9484F8E510B0E0F00038BDC0 /* SqueakNoOGLIPhoneAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* SqueakNoOGLIPhoneAppDelegate.m */; };
 		9484F8E610B0E0FD0038BDC0 /* SqueakUIController.m in Sources */ = {isa = PBXBuildFile; fileRef = 940CE8550DFCE2D200EBA91B /* SqueakUIController.m */; };
 		9484F8E710B0E0FE0038BDC0 /* SqueakUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 949E5DB60DE3AB6A007388E0 /* SqueakUIView.m */; };
@@ -384,6 +386,8 @@
 		85930B37193EEB8F00F878CA /* SUYCameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUYCameraViewController.m; sourceTree = "<group>"; };
 		859A575119627C890096CA54 /* locale */ = {isa = PBXFileReference; lastKnownFileType = folder; name = locale; path = Resources/locale; sourceTree = "<group>"; };
 		859A575519627CA80096CA54 /* Projects */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Projects; path = Resources/Projects; sourceTree = "<group>"; };
+		859A81D82365D98A00DA3ECE /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = "Launch Screen.storyboard"; path = "Resources/Launch Screen.storyboard"; sourceTree = "<group>"; };
+		859A81DA2365DA0400DA3ECE /* splashx2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = splashx2.png; path = Resources/images/backgrounds/splashx2.png; sourceTree = "<group>"; };
 		859C5FF01ECEB41A00276023 /* Pyonkee.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = Pyonkee.entitlements; sourceTree = "<group>"; };
 		859C5FF21ECEB43D00276023 /* SUYExternalMIDISynth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUYExternalMIDISynth.h; sourceTree = "<group>"; };
 		859C5FF31ECEB43D00276023 /* SUYExternalMIDISynth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUYExternalMIDISynth.m; sourceTree = "<group>"; };
@@ -1024,6 +1028,7 @@
 		857B0680191BF1C000C8CCB1 /* backgrounds */ = {
 			isa = PBXGroup;
 			children = (
+				859A81DA2365DA0400DA3ECE /* splashx2.png */,
 				851938061981FAB400EC4DFC /* cleaning.png */,
 				851938071981FAB400EC4DFC /* loading.png */,
 			);
@@ -1159,6 +1164,7 @@
 		85DD43B818F3A52A0030B27F /* windows */ = {
 			isa = PBXGroup;
 			children = (
+				859A81D82365D98A00DA3ECE /* Launch Screen.storyboard */,
 				85716E3B1B267F5700926629 /* LauncherViewController.xib */,
 				85716E3C1B267F5700926629 /* MainWindowiPad.xib */,
 				85716E3D1B267F5700926629 /* ScratchIPhonePresentationSpaceiPad.xib */,
@@ -2249,6 +2255,7 @@
 				pt,
 				"zh-Hans",
 				"zh-Hant",
+				en,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
@@ -2312,9 +2319,11 @@
 				85B22FB21976602400A7E6E5 /* change-camera.png in Resources */,
 				85716E4B1B267F5700926629 /* SUYPhotoTablePicker.storyboard in Resources */,
 				85B381F019645C4500440D5E /* Images.xcassets in Resources */,
+				859A81D92365D98A00DA3ECE /* Launch Screen.storyboard in Resources */,
 				85186B421961B593006301EB /* Help in Resources */,
 				853099B6197966190071CDBF /* pinchIn-active.png in Resources */,
 				859A575619627CA80096CA54 /* Projects in Resources */,
+				859A81DB2365DA0400DA3ECE /* splashx2.png in Resources */,
 				85716E531B26809F00926629 /* flat-arrow-right-disabled.png in Resources */,
 				8561D56E195887D0008FDA45 /* normalMode-on.png in Resources */,
 				85CD4F9D1967047A00BAFADF /* kbd-left.png in Resources */,
@@ -2634,6 +2643,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = RXNQHKQR2N;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2674,7 +2684,7 @@
 				PRODUCT_NAME = Pyonkee;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "SUYCommon/Pyonkee-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 2;
 				VALID_ARCHS = "armv7 armv7s arm64";
 			};
@@ -2718,6 +2728,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = RXNQHKQR2N;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2754,7 +2765,7 @@
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "SUYCommon/Pyonkee-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "armv7 armv7s arm64";

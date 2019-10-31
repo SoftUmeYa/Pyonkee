@@ -34,15 +34,22 @@
 //{
 //    return YES;
 //}
-//
-//- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations{
-//    LgInfo(@"LOC %@", locations);
-//}
-//
-//- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
-//    LgInfo(@"ERR %@", error);
-//    [self stopLocationManager];
-//}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations{
+    LgInfo(@"LOC %@", locations);
+    CLAuthorizationStatus authStatus = CLLocationManager.authorizationStatus;
+    if(authStatus == kCLAuthorizationStatusAuthorizedAlways || authStatus == kCLAuthorizationStatusAuthorizedWhenInUse){
+        if(CLLocationManager.headingAvailable == YES){
+            self.locationManager.delegate = self;
+            [self start];
+        }
+    }
+}
+
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
+    LgInfo(@"ERR %@", error);
+    [self stop];
+}
 
 
 
@@ -64,18 +71,21 @@
     _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     _locationManager.headingFilter = kCLHeadingFilterNone;
     
-    CLAuthorizationStatus authStatus = [[CLLocationManager class] authorizationStatus];
-    if(authStatus==kCLAuthorizationStatusNotDetermined){
+    CLAuthorizationStatus authStatus = CLLocationManager.authorizationStatus;
+    if(authStatus == kCLAuthorizationStatusNotDetermined){
         if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
             [self.locationManager requestWhenInUseAuthorization];
             //[self.locationManager requestAlwaysAuthorization];
         }
     }
-    if(authStatus==kCLAuthorizationStatusAuthorizedAlways || authStatus == kCLAuthorizationStatusAuthorizedWhenInUse){
-        if([CLLocationManager headingAvailable] == YES){
+    if(authStatus == kCLAuthorizationStatusAuthorizedAlways || authStatus == kCLAuthorizationStatusAuthorizedWhenInUse){
+        if(CLLocationManager.headingAvailable == YES){
             self.locationManager.delegate = self;
-            [self.locationManager startUpdatingHeading];
+            [self start];
         }
+    }
+    if(authStatus == kCLAuthorizationStatusRestricted || authStatus == kCLAuthorizationStatusDenied){
+        LgInfo(@"authStatus ERR %ul", authStatus);
     }
     
 }

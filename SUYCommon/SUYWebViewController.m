@@ -32,6 +32,7 @@
     webView.delegate = self;
     webView.scalesPageToFit = YES;
     webView.allowsInlineMediaPlayback = YES;
+    webView.mediaPlaybackRequiresUserAction = NO;
     LgInfo(@"LOCAL URL is %@", initialUrl);
     [self loadUrl];
 }

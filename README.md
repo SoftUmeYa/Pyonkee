@@ -23,7 +23,7 @@ Pyonkee was originally started as a fork of [John M McIntosh](https://www.smallt
 - IME support
 - Auto-saving project
 - Sending/Receiving projects via e-mail
-- Project import/export through iTunes (currently disabled on AppStore version)
+- Project import/export through iTunes
 - Photo importer/trimmer
 - Project sharing via AirDrop
 - iPad built-in sensors support
@@ -46,13 +46,21 @@ When attempting to build and run on a physical iPad (not the simulator), you wil
 
 The 'iCloud' feature is only available to users enrolled in Apple Developer Program. Please visit https://developer.apple.com/programs/ to enroll.
 
-To disable iCloud and allow the build to continue, change line 2223 of Pyonkee.xcodeproj/project.pbxproj from:
+To disable iCloud and allow the build to continue, change line 2236 of Pyonkee.xcodeproj/project.pbxproj from:
 
-```enabled = 1;```
+```
+com.apple.iCloud = {
+	enabled = 1;
+};
+```
 
 to
 
-```enabled = 0;```
+```
+com.apple.iCloud = {
+	enabled = 0;
+};
+```
 
 which will disable iCloud and allow the build to continue.
 
