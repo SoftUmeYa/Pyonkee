@@ -60,5 +60,6 @@
 #define OVER_IOS8 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8)
 #define OVER_IOS9 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 9)
 #define OVER_IOS10 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 10)
+#define OVER_IOS11 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 11)
 #define OVER_IOS13 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 13)
 
