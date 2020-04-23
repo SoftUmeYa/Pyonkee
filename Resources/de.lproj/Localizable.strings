@@ -57,4 +57,4 @@
 "Warning" = "Warnung";
 "No permission to use Camera. Please change privacy settings" = "Es gibt keine Erlaubnis, die Kamera zu verwenden. Bitte ändern Sie die Datenschutzeinstellungen";
 "No permission to use Camera. For getting brightness value, please change privacy settings" = "Es gibt keine Erlaubnis, die Kamera zu verwenden. Um Helligkeitswert zu bekommen, ändern Sie bitte Datenschutzeinstellungen";
-
+"Cannot download" = "Kann nicht herunterladen";
