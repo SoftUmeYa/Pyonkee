@@ -42,7 +42,7 @@ such third-party acknowledgments.
 #import "sqSqueakIPhoneInfoPlistInterface.h"
 #import "SqueakUIView.h"
 #import "SqueakUIViewCALayer.h"
-#import "SqueakUIViewOpenGL.h"
+//#import "SqueakUIViewOpenGL.h"
 
 #import "SUYUtils.h"
 
