@@ -11,7 +11,7 @@
 #endif
 
 #import "SqueakUIViewCALayer.h"
-#import "SqueakUIViewOpenGL.h"
+//#import "SqueakUIViewOpenGL.h"
 
 #import "UIImage+Resize.h"
 
@@ -177,15 +177,21 @@
     return 0;
 }
 
+#pragma mark Accessing
+
++ (CGSize) rootViewSizeOf: (UIView *)view {
+    while (view.superview != Nil) {
+        view = view.superview;
+    }
+    return view.bounds.size;
+}
+
 #pragma mark Defaults
 
 + (Class) squeakUIViewClass{
     //Currently, we do not use OpenGL
-    //if([SUYUtils isRetina]){
-    if(YES){
-        return [SqueakUIViewCALayer class];
-    }
-    return [SqueakUIViewOpenGL class];
+    //return [SqueakUIViewOpenGL class];
+    return [SqueakUIViewCALayer class];
 }
 
 + (CGSize) scratchScreenSize
@@ -203,7 +209,16 @@
 {
     CGRect screenRect = [UIScreen mainScreen].bounds;
     CGSize screenSize = screenRect.size;
-    return MIN(screenSize.width, screenSize.height);
+    CGFloat height = screenSize.height;
+    
+    if (OVER_IOS11) {
+        UIWindow *window = UIApplication.sharedApplication.keyWindow;
+        if (@available(iOS 11.0, *)) {
+            CGFloat bottomPadding = window.safeAreaInsets.bottom;
+            height = height - (bottomPadding / 2);
+        }
+    }
+    return MIN(screenSize.width, height);
 }
 
 + (NSString *)applicationSupportDirectory {
@@ -321,6 +336,23 @@
     return success;
 }
 
+#pragma mark Toast
+
++ (void) showToast: (NSString*) message image: (UIImage*) image{
+    [SUYToast showToastWithMessage:message image:image];
+}
+
++ (void) showToastOn:(UIView*) view message:(NSString*) message image: (UIImage*) image{
+    [SUYToast showToastOnView:view message:message image:image];
+}
+
++ (void) showActivityToastOn:(UIView*) view{
+    [SUYToast showActivityToastOnView:view];
+}
+
++ (void) hideActivityToastOn:(UIView*) view{
+    [SUYToast hideActivityToastOnView:view];
+}
 
 #pragma mark Alert
 
