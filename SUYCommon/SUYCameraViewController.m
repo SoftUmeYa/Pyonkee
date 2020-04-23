@@ -20,14 +20,15 @@
 @end
 
 @implementation SUYCameraViewController{
-    BOOL isAuthorized;
+    BOOL isCaptureAuthorized;
     NSInteger shutterCount;
     BOOL avoidMirror;
     
     BOOL lightSensorStopped;
+    ScratchIPhoneAppDelegate *appDele;
 }
 
-@synthesize previewView, previewLayer, videoInput, stillImageOutput, clientMode;
+@synthesize previewView, previewLayer, videoInput, stillImageOutput, clientMode, imagePickerButton, takePictureButton;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -41,64 +42,67 @@
 
 - (void)setup
 {
-    isAuthorized = NO;
+    isCaptureAuthorized = NO;
     shutterCount = 0;
     avoidMirror = NO;
+    appDele = (ScratchIPhoneAppDelegate*)[[UIApplication sharedApplication] delegate];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didRotate:) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        
-        UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error",nil)
-                                                              message:NSLocalizedString(@"Device has no camera",nil)
-                                                             delegate:nil
-                                                    cancelButtonTitle:NSLocalizedString(@"OK",nil)
-                                                    otherButtonTitles: nil];
-        [myAlertView show];
-    }
+    
+    [self checkCameraAvailability];
+    [self checkPhotoLibraryAuthorizationStatus];
     
     self.previewView.contentMode = UIViewContentModeCenter;
     [self.view addSubview: self.previewView];
     
     [self checkVideoCapturePermission];
     [self setupAVCapture];
-
 }
 
 // Re-enable capture session if not currently running
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [self startSession];
-    });
+    if(isCaptureAuthorized == NO) {return;}
+    [self startSession];
 }
 
 // Stop running capture session when this view disappears
 - (void)viewWillDisappear:(BOOL)animated {
 	[super viewWillDisappear:animated];
-    if(isAuthorized == NO) {return;}
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [self stopSession];
-    });
+    if(isCaptureAuthorized == NO) {return;}
+    [self stopSession];
 }
 
 #pragma mark Session
 
-- (void)startSession {
-	if(self.session == nil) {return;}
-	if (![self.session isRunning]) {
-        [self.session startRunning];
-	}
+- (void) startSession {
+    if(self.session == nil) {return;}
+    if (![self.session isRunning]) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            [self basicStartSession];
+        });
+    }
 }
 
-- (void)stopSession {
-	if(self.session == nil) {return;}
-	if ([self.session isRunning]) {
-        [self.session stopRunning];
-	}
+- (void) stopSession {
+    if(self.session == nil) {return;}
+    if ([self.session isRunning]) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            [self basicStopSession];
+        });
+    }
+}
+
+- (void)basicStartSession {
+    [self.session startRunning];
+}
+
+- (void)basicStopSession {
+	[self.session stopRunning];
 }
 
 #pragma mark Rotation
@@ -129,6 +133,28 @@
 }
 
 #pragma mark Initialization
+
+- (void)checkPhotoLibraryAuthorizationStatus
+{
+    if ([PHPhotoLibrary authorizationStatus] != PHAuthorizationStatusAuthorized){
+        [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status){
+            if (status != PHAuthorizationStatusAuthorized) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    self.imagePickerButton.enabled = NO;
+                });
+            }
+        }];
+    }
+}
+
+- (void) checkCameraAvailability
+{
+    if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [SUYUtils alertWarning:@"Device has no camera"];
+        });
+    }
+}
 
 - (void)setupAVCapture
 {
@@ -164,25 +190,44 @@
     viewLayer.masksToBounds = YES;
     [viewLayer addSublayer: self.previewLayer];
     
-    [_session startRunning];
+    [self startSession];
 }
 
 - (void) checkVideoCapturePermission
 {
-    if ([AVCaptureDevice respondsToSelector:@selector(requestAccessForMediaType: completionHandler:)]==NO){isAuthorized = YES; return;}
+    if (isCaptureAuthorized){ return;}
+    if ([AVCaptureDevice respondsToSelector:@selector(requestAccessForMediaType: completionHandler:)]==NO){
+        [self onCaptureAuthorized]; return;
+    }
+    
     [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
+        isCaptureAuthorized = granted;
         if (granted)
         {
-            isAuthorized = YES;
-        }
-        else
-        {
+            [self onCaptureAuthorized];
+        } else {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [SUYUtils alertWarning:@"No permission to use Camera. Please change privacy settings"];
-                isAuthorized = NO;
+                [self onCaptureRejected];
             });
         }
     }];
+}
+
+- (void) onCaptureAuthorized
+{
+    isCaptureAuthorized = YES;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.takePictureButton.enabled = YES;
+    });
+}
+
+- (void) onCaptureRejected
+{
+    isCaptureAuthorized = NO;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.takePictureButton.enabled = NO;
+    });
 }
 
 #pragma mark - Handle Video Orientation
@@ -228,11 +273,12 @@
 
 - (IBAction)takePicture:(id)sender
 {
-    if(isAuthorized == NO){
+    if(isCaptureAuthorized == NO){
         LgInfo(@"not authorized");
         [self close: nil];
         return;
     }
+    
     AVCaptureConnection *videoConnection = [self.stillImageOutput connectionWithMediaType:AVMediaTypeVideo];
     if (videoConnection == nil) {
         return;
@@ -249,7 +295,6 @@
          NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
          UIImage *image = [[UIImage alloc] initWithData:imageData];
          
-         ScratchIPhoneAppDelegate *appDele = (ScratchIPhoneAppDelegate*)[[UIApplication sharedApplication] delegate];
          dispatch_async(appDele.defaultSerialQueue, ^(void) {
              [self processTakenPictureImage:image deviceOrientation: videoConnection.videoOrientation];
          });
@@ -283,10 +328,9 @@
     //LgInfo(@"savingImage %@", savingImage);
     //UIImageWriteToSavedPhotosAlbum(savingImage, self, @selector(savingToPhotosAlbumFinished:didFinishSavingWithError:contextInfo:), nil);
     NSString *filePath = [self saveImage:savingImage];
-    [self stopSession];
-    ScratchIPhoneAppDelegate *appDele = (ScratchIPhoneAppDelegate*)[[UIApplication sharedApplication] delegate];
+    //[self stopSession];
     [appDele pickPhoto: filePath];
-    [self startSession];
+    //[self startSession];
     //[self close: nil];
 }
 
@@ -330,7 +374,6 @@
 {
     NSString* origClientMode = self.clientMode;
     [self close: nil];
-    ScratchIPhoneAppDelegate *appDele = (ScratchIPhoneAppDelegate*)[[UIApplication sharedApplication] delegate];
     [appDele openPhotoLibraryPicker: origClientMode];
 }
 
