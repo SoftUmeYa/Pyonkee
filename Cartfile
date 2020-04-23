@@ -1,4 +1,4 @@
 github "mixedinkey-opensource/MIKMIDI"
 github "fpillet/NSLogger"
-github "morizotter/TouchVisualizer"
+github "rosberry/TouchVisualizer" "master"
 github "scalessec/Toast-Swift"
