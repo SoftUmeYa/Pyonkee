@@ -21,6 +21,7 @@
 + (void) removeFilesMatches:(NSString*)regexString inPath:(NSString*)path;
 + (BOOL) belongsToTempDirectory: (NSString*) filePath;
 + (int) fileExists: (NSString*)fileName inDirectory: (NSString*)path;
++ (CGSize) rootViewSizeOf: (UIView *)view;
 + (CGSize) scratchScreenSize;
 + (float) scratchScreenZoomScale;
 + (Class) squeakUIViewClass;
@@ -42,6 +43,10 @@
 + (void) showCursor:(int)cursorCode;
 + (void) hideCursor;
 + (BOOL) cursorEnabled;
++ (void) showToast: (NSString*) message image: (UIImage*) image;
++ (void) showToastOn:(UIView*) view message:(NSString*) message image: (UIImage*) image;
++ (void) showActivityToastOn:(UIView*) view;
++ (void) hideActivityToastOn:(UIView*) view;
 + (NSString*)saveAiffFromPath: (NSString*) fromPath;
 
 @end

@@ -7,12 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <WebKit/WebKit.h>
 
-@interface SUYWebViewController : UIViewController <UIWebViewDelegate>
+@interface SUYWebViewController : UIViewController <WKNavigationDelegate>
 
-@property (nonatomic, retain) IBOutlet UIWebView *webView;
-@property (nonatomic, retain) UITapGestureRecognizer *gestureRecognizer;
-@property (nonatomic, retain) NSString*        initialUrl;
+@property (nonatomic) WKWebView *webView;
+@property (nonatomic) UITapGestureRecognizer *gestureRecognizer;
+@property (nonatomic) NSString*        initialUrl;
 
 - (IBAction)close:(UIButton *)sender;
 

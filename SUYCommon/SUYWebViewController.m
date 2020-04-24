@@ -7,6 +7,7 @@
 //
 
 #import "SUYWebViewController.h"
+#import "SUYUtils.h"
 
 @interface SUYWebViewController ()
 
@@ -26,13 +27,41 @@
 
 #pragma mark ViewCallbacks
 
+- (void)loadView
+{
+    [super loadView];
+    
+    WKWebViewConfiguration *config = [self createConfig];
+    
+    self.webView = [[WKWebView alloc] initWithFrame:self.view.bounds configuration:config];
+    
+    self.webView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addConstraints:@[
+                                [NSLayoutConstraint constraintWithItem:self.webView
+                                                             attribute:NSLayoutAttributeWidth
+                                                             relatedBy:NSLayoutRelationEqual
+                                                                toItem:self.view
+                                                             attribute:NSLayoutAttributeWidth
+                                                            multiplier:1.0
+                                                              constant:0],
+                                [NSLayoutConstraint constraintWithItem:self.webView
+                                                             attribute:NSLayoutAttributeHeight
+                                                             relatedBy:NSLayoutRelationEqual
+                                                                toItem:self.view
+                                                             attribute:NSLayoutAttributeHeight
+                                                            multiplier:1.0
+                                                              constant:0]
+                                ]];
+    
+    self.webView.navigationDelegate = self;
+    [self.view addSubview:self.webView];
+    [self.view sendSubviewToBack:self.webView];
+}
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    webView.delegate = self;
-    webView.scalesPageToFit = YES;
-    webView.allowsInlineMediaPlayback = YES;
-    webView.mediaPlaybackRequiresUserAction = NO;
     LgInfo(@"LOCAL URL is %@", initialUrl);
     [self loadUrl];
 }
@@ -45,11 +74,23 @@
 
 - (void)viewWillLayoutSubviews {
     [super viewWillLayoutSubviews];
-    self.view.superview.bounds = CGRectMake(0, 0, 960, 720);
+    CGSize rootViewSize = [SUYUtils rootViewSizeOf:self.view];
+    self.view.superview.bounds = CGRectMake(0, 0, rootViewSize.width*.9, rootViewSize.height*.99);
     self.view.superview.alpha = 1.0;
 }
 
 #pragma mark Private
+
+- (WKWebViewConfiguration*)createConfig {
+    WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc] init];
+    config.allowsInlineMediaPlayback = YES;
+    config.mediaTypesRequiringUserActionForPlayback = WKAudiovisualMediaTypeNone;
+    WKUserContentController *wkUController = [[WKUserContentController alloc] init];
+    config.userContentController = wkUController;
+    return config;
+}
+
+
 
 - (void)loadUrl {
     NSURL *url = [NSURL fileURLWithPath: initialUrl];
@@ -78,15 +119,15 @@
     }
 }
 
-#pragma mark WebViewDelegateCallback
+#pragma mark WKNavigationDelegate
 
-- (void)webViewDidStartLoad:(UIWebView*)webView
+- (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation
 {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 }
 
 
-- (void)webViewDidFinishLoad:(UIWebView*)webView
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation
 {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }

@@ -219,7 +219,7 @@ uint memoryWarningCount;
             ratio = sz.width/sz.height;
             scrollViewHeightConstraint.constant = [SUYUtils landscapeScreenHeight];
             _originalScrollerScale = _originalScrollerScale * ratio;
-            self.scrollView.minimumZoomScale = 1.0f;
+            self.scrollView.minimumZoomScale = [SUYUtils scratchScreenZoomScale];
             [self.scrollView setZoomScale: _originalScrollerScale animated:YES];
             self.scrollView.contentOffset = CGPointMake(offsetPoint.x*ratio, offsetPoint.y*ratio);
             self.presentationExitButton.hidden = NO;
@@ -430,7 +430,6 @@ uint memoryWarningCount;
 //    activityVc.excludedActivityTypes = excludedActivities;
     
     activityVc.modalPresentationStyle = UIModalPresentationPopover;
-    activityVc.preferredContentSize = CGSizeMake(320.0f,320.0f);
     
     UIPopoverPresentationController *presentationController = [activityVc popoverPresentationController];
     presentationController.permittedArrowDirections = UIPopoverArrowDirectionAny;

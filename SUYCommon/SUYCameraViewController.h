@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
+#import <Photos/Photos.h>
 
 #import "SUYPhotoViewController.h"
 
@@ -21,7 +22,9 @@
 @property (nonatomic, retain)                       AVCaptureDeviceInput        *videoInput;
 @property (nonatomic, retain)						AVCaptureStillImageOutput	*stillImageOutput;
 
+@property (retain, nonatomic) IBOutlet UIButton *imagePickerButton;
 
+@property (retain, nonatomic) IBOutlet UIButton *takePictureButton;
 
 - (IBAction)takePicture:  (UIButton *)sender;
 - (IBAction)close:(UIButton *)sender;

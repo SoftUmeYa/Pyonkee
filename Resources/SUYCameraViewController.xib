@@ -1,13 +1,17 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
+    <device id="ipad9_7" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SUYCameraViewController">
             <connections>
+                <outlet property="imagePickerButton" destination="P1A-yU-he4" id="zCP-N6-fqo"/>
                 <outlet property="previewView" destination="TLz-Ug-Oue" id="0O0-JE-D80"/>
+                <outlet property="takePictureButton" destination="FJV-zU-u3R" id="yUH-6R-T39"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -30,7 +34,7 @@
                         <constraint firstAttribute="height" constant="40" id="TSP-Ss-7Ob"/>
                     </constraints>
                     <state key="normal" image="flat-camera.png">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                     <connections>
                         <action selector="takePicture:" destination="-1" eventType="touchUpInside" id="cr7-hr-VFW"/>
@@ -38,8 +42,9 @@
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pO8-Q5-7Pk" userLabel="closeButton">
                     <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" image="flat-close.png">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                     <connections>
                         <action selector="close:" destination="-1" eventType="touchUpInside" id="u34-Lp-h7P"/>
@@ -52,7 +57,7 @@
                         <constraint firstAttribute="width" constant="40" id="pM2-c5-sNF"/>
                     </constraints>
                     <state key="normal" image="change-camera.png">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                     <connections>
                         <action selector="toggleCamera:" destination="-1" eventType="touchUpInside" id="QKd-8U-uYM"/>
@@ -65,14 +70,14 @@
                         <constraint firstAttribute="width" constant="40" id="SKS-k5-Lxx"/>
                     </constraints>
                     <state key="normal" image="flat-folder-open.png">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                     <connections>
                         <action selector="lauchPicker:" destination="-1" eventType="touchUpInside" id="rcV-1Z-JQU"/>
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.66666668653488159" green="0.66666668653488159" blue="0.66666668653488159" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="centerX" secondItem="P1A-yU-he4" secondAttribute="centerX" id="9YP-lc-jK2"/>
                 <constraint firstAttribute="bottom" secondItem="P1A-yU-he4" secondAttribute="bottom" id="DLT-Me-cWN"/>
@@ -84,8 +89,8 @@
                 <constraint firstAttribute="trailing" secondItem="FJV-zU-u3R" secondAttribute="trailing" constant="30" id="pvV-MY-uxq"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
-            <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="133" y="117"/>
         </view>
     </objects>
     <resources>
@@ -94,9 +99,4 @@
         <image name="flat-close.png" width="32" height="32"/>
         <image name="flat-folder-open.png" width="64" height="64"/>
     </resources>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination"/>
-    </simulatedMetricsContainer>
 </document>

@@ -8,7 +8,8 @@
 
 #import "SUYPhotoPickViewController.h"
 
-#import "SUYPhotoTablePicker.h"
+#import "SUYTablePhotoPicker.h"
+
 #import "SUYPhotoCropper.h"
 
 #import "SUYUtils.h"
@@ -55,20 +56,14 @@
     [self.embedNavigationController popViewControllerAnimated:NO];
 }
 
-- (IBAction)openPushed:(UIButton*)sender
-{
-    [self openTablePicker];
-}
-
 - (IBAction)openTablePicker
 {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"SUYPhotoTablePicker" bundle:[NSBundle mainBundle]];
-    SUYPhotoTablePicker *tablePicker = (SUYPhotoTablePicker*)[storyboard instantiateInitialViewController];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"SUYTablePhotoPicker" bundle:[NSBundle mainBundle]];
+    SUYTablePhotoPicker *tablePicker = (SUYTablePhotoPicker*)[storyboard instantiateInitialViewController];
     
     tablePicker.parent = self;
     
     [self.embedNavigationController pushViewController:tablePicker animated:NO];
-
 }
 
 - (void) openCropper:(UIImage*) image {

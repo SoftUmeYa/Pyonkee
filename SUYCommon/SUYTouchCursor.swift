@@ -7,7 +7,6 @@
 //
 
 import TouchVisualizer
-import ToastSwiftFramework
 import UIKit
 
 class SUYTouchCursor: NSObject {
@@ -26,7 +25,7 @@ class SUYTouchCursor: NSObject {
     
     @objc public class func showEyeDropper() {
         if(IsEnabled){return}
-        showToast(message: "", image: UIImage(named: "eyeDropper")!)
+        SUYToast.showToast(message: "", image: UIImage(named: "eyeDropper")!)
         show(EyeDropperConfig)
     }
     
@@ -43,8 +42,4 @@ class SUYTouchCursor: NSObject {
         IsEnabled = false;
     }
     
-    private class func showToast(message:String, image: UIImage) {
-        let view = UIApplication.shared.keyWindow?.rootViewController?.view
-        view?.makeToast(message, duration: 0.5, position: .center, title: "", image: image, style: ToastManager.shared.style, completion: nil)
-    }
 }
