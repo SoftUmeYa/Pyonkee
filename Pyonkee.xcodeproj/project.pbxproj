@@ -47,7 +47,6 @@
 		854F08E01B2A9C4C00E7A6A9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 854F08DF1B2A9C4C00E7A6A9 /* CoreLocation.framework */; };
 		854F08EC1B2B280000E7A6A9 /* SUYLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 854F08EB1B2B280000E7A6A9 /* SUYLocationManager.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		855A8B321A871C2700F9F1C8 /* SUYNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 855A8B311A871C2700F9F1C8 /* SUYNavigationController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		855FDDA523D1D7F2002E15AD /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 855FDDA423D1D7F2002E15AD /* CoreServices.framework */; };
 		8561D56619587F80008FDA45 /* GSRadioButtonSetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8561D56519587F80008FDA45 /* GSRadioButtonSetController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		8561D56D195887D0008FDA45 /* quarterMode-on.png in Resources */ = {isa = PBXBuildFile; fileRef = 8561D567195887D0008FDA45 /* quarterMode-on.png */; };
 		8561D56E195887D0008FDA45 /* normalMode-on.png in Resources */ = {isa = PBXBuildFile; fileRef = 8561D568195887D0008FDA45 /* normalMode-on.png */; };
@@ -101,7 +100,6 @@
 		85DE4B001F74CE4500692C2B /* ToastSwiftFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85DE4AFF1F74CE4500692C2B /* ToastSwiftFramework.framework */; platformFilter = ios; };
 		85E76AD61A49462F002B223C /* SUYPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85E76AD51A49462F002B223C /* SUYPhotoViewController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		85E888C11F56885700E9F0DA /* NSLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85E888C01F56885700E9F0DA /* NSLogger.framework */; platformFilter = ios; };
-		85E99D672408E57B009951CE /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85E99D662408E57B009951CE /* WebKit.framework */; };
 		85EC5EA71946DCFE001E68B9 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 85EC5EA61946DCFE001E68B9 /* UIImage+Resize.m */; };
 		85EC5EAC1946DD5C001E68B9 /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 85EC5EA81946DD5C001E68B9 /* UIImage+Alpha.m */; };
 		85EC5EAD1946DD5C001E68B9 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 85EC5EA91946DD5C001E68B9 /* UIImage+RoundedCorner.m */; };
@@ -354,7 +352,6 @@
 		854F08EB1B2B280000E7A6A9 /* SUYLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUYLocationManager.m; sourceTree = "<group>"; };
 		855A8B301A871C2700F9F1C8 /* SUYNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUYNavigationController.h; sourceTree = "<group>"; };
 		855A8B311A871C2700F9F1C8 /* SUYNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUYNavigationController.m; sourceTree = "<group>"; };
-		855FDDA423D1D7F2002E15AD /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/CoreServices.framework; sourceTree = DEVELOPER_DIR; };
 		8561D56419587F80008FDA45 /* GSRadioButtonSetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSRadioButtonSetController.h; sourceTree = "<group>"; };
 		8561D56519587F80008FDA45 /* GSRadioButtonSetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSRadioButtonSetController.m; sourceTree = "<group>"; };
 		8561D567195887D0008FDA45 /* quarterMode-on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "quarterMode-on.png"; path = "Resources/images/quarterMode-on.png"; sourceTree = "<group>"; };
@@ -438,7 +435,6 @@
 		85E76AD41A49462F002B223C /* SUYPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUYPhotoViewController.h; sourceTree = "<group>"; };
 		85E76AD51A49462F002B223C /* SUYPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUYPhotoViewController.m; sourceTree = "<group>"; };
 		85E888C01F56885700E9F0DA /* NSLogger.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NSLogger.framework; path = Carthage/Build/iOS/NSLogger.framework; sourceTree = "<group>"; };
-		85E99D662408E57B009951CE /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/WebKit.framework; sourceTree = DEVELOPER_DIR; };
 		85EC5EA51946DCFE001E68B9 /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
 		85EC5EA61946DCFE001E68B9 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
 		85EC5EA81946DD5C001E68B9 /* UIImage+Alpha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Alpha.m"; sourceTree = "<group>"; };
@@ -787,8 +783,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				85E99D672408E57B009951CE /* WebKit.framework in Frameworks */,
-				855FDDA523D1D7F2002E15AD /* CoreServices.framework in Frameworks */,
 				854C35011E7EBC6700BA0515 /* MIKMIDI.framework in Frameworks */,
 				85E888C11F56885700E9F0DA /* NSLogger.framework in Frameworks */,
 				85DE130A1F5937A700F0C30C /* TouchVisualizer.framework in Frameworks */,
@@ -913,8 +907,6 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				85E99D662408E57B009951CE /* WebKit.framework */,
-				855FDDA423D1D7F2002E15AD /* CoreServices.framework */,
 				85DE4AFF1F74CE4500692C2B /* ToastSwiftFramework.framework */,
 				85DE13091F5937A700F0C30C /* TouchVisualizer.framework */,
 				85E888C01F56885700E9F0DA /* NSLogger.framework */,
@@ -2180,7 +2172,7 @@
 					};
 				};
 			};
-			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "ScratchOnIPad" */;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Pyonkee" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
@@ -2540,6 +2532,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
+				EXCLUDED_ARCHS = "";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = "-DSQUEAK_BUILTIN_PLUGIN";
@@ -2574,6 +2567,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 0;
 				DEVELOPMENT_TEAM = RXNQHKQR2N;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -2622,7 +2616,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "SUYCommon/Pyonkee-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 2;
-				VALID_ARCHS = "armv7 armv7s arm64 arm64e";
+				VALID_ARCHS = "$(ARCHS_STANDARD)";
 			};
 			name = Debug;
 		};
@@ -2631,6 +2625,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				EXCLUDED_ARCHS = "";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 1;
 				GCC_PREPROCESSOR_DEFINITIONS = "-DSQUEAK_BUILTIN_PLUGIN";
@@ -2665,6 +2660,7 @@
 				COPY_PHASE_STRIP = YES;
 				CURRENT_PROJECT_VERSION = 0;
 				DEVELOPMENT_TEAM = RXNQHKQR2N;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -2710,7 +2706,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
-				VALID_ARCHS = "armv7 armv7s arm64 arm64e";
+				VALID_ARCHS = "$(ARCHS_STANDARD)";
 			};
 			name = Distribution;
 		};
