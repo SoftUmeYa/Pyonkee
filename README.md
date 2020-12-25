@@ -37,13 +37,15 @@ Before building from Xcode, please install Carthage and run the command below:
 
 ```carthage update --platform iOS```
 
+Note: from Xcode 12, you need a [workaround script for carthage](https://github.com/Carthage/Carthage/blob/master/Documentation/Xcode12Workaround.md).
+
 ### Note on iCloud feature
 
 When attempting to build and run on a physical iPad (not the simulator), you will receive the message:
 
 The 'iCloud' feature is only available to users enrolled in Apple Developer Program. Please visit https://developer.apple.com/programs/ to enroll.
 
-To disable iCloud and allow the build to continue, change line 2177 of Pyonkee.xcodeproj/project.pbxproj from:
+To disable iCloud and allow the build to continue, change line 2168 of Pyonkee.xcodeproj/project.pbxproj from:
 
 ```
 com.apple.iCloud = {
