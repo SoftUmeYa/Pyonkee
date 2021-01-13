@@ -97,22 +97,13 @@ BOOL isRestarting = NO;
     
     //iCloud-Inbox
     if([SUYUtils belongsToTempDirectory: url.path]){
-        NSString *docInboxDir = [SUYUtils documentDirectory];
-        NSString *toPath = [docInboxDir stringByAppendingPathComponent: url.lastPathComponent];
-        toPath = [toPath precomposedStringWithCanonicalMapping];
-        NSData *data = [NSData dataWithContentsOfURL:url];
-        
-        BOOL result = [data writeToFile:toPath atomically:YES];
-        if(!result){ return NO;}
-        
-        LgInfo(@"###openURL: iCloud file copied to %@", toPath);
-        
-        if(self.resourcePathOnLaunch == nil || self.resourseLoadedCount > 0){
-            [self openOrSaveResourcePath:toPath saveTitle: @"New entry in Documents"];
-        } else {
-            self.resourcePathOnLaunch = toPath;
-        }
-        return YES;
+        return [self openOrSaveFixingResourcePathOnTempDirectory: url];
+    }
+    
+    //External File Provider
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    if([fileManager isReadableFileAtPath: url.path] == NO){
+        return [self openOrSaveFixingResourcePathOnExernalDirectory: url];
     }
     
     //Mail, AirDrop
@@ -145,6 +136,66 @@ BOOL isRestarting = NO;
     NSInteger maxNum = [(sqSqueakIPhoneInfoPlistInterface*) self.squeakApplication.infoPlistInterfaceLogic inboxMaxNumOfItems];
     [[SUYUtils class] trimResourcePathOnLaunch: resourcePath max: (int)maxNum];
 }
+
+- (BOOL) openOrSaveFixingResourcePathOnTempDirectory: (nonnull NSURL*) url {
+    NSString *docInboxDir = [SUYUtils documentDirectory];
+    NSString *toPath = [docInboxDir stringByAppendingPathComponent: url.lastPathComponent];
+    toPath = [toPath precomposedStringWithCanonicalMapping];
+    NSData *data = [NSData dataWithContentsOfURL:url];
+    BOOL result = [data writeToFile:toPath atomically:YES];
+    if(!result){ return NO;}
+    LgInfo(@"###openURL: iCloud file copied to %@", toPath);
+    if(self.resourcePathOnLaunch == nil || self.resourseLoadedCount > 0){
+        [self openOrSaveResourcePath:toPath saveTitle: @"New entry in Documents"];
+    } else {
+        self.resourcePathOnLaunch = toPath;
+    }
+    return YES;
+}
+- (BOOL) openOrSaveFixingResourcePathOnExernalDirectory: (nonnull NSURL*) url {
+    NSError *error = nil;
+    NSString *docInboxDir = [SUYUtils documentDirectory];
+    NSString *toPath = [docInboxDir stringByAppendingPathComponent: url.lastPathComponent];
+    toPath = [toPath precomposedStringWithCanonicalMapping];
+    BOOL allowed = [url startAccessingSecurityScopedResource];
+    
+    NSNumber *isIniCloud = nil;
+    if ([url getResourceValue:&isIniCloud forKey:NSURLIsUbiquitousItemKey error:nil] && ([isIniCloud boolValue])) {
+        NSFileManager *fm = [NSFileManager defaultManager];
+        [fm startDownloadingUbiquitousItemAtURL: url error:&error];
+        if(error){
+            LgError(@"Error downloading iCloud resource: %@", error);
+            if(allowed){[url stopAccessingSecurityScopedResource];}
+            return NO;
+        }
+    }
+    
+    //Load data by FileCordinator
+    NSFileCoordinator *fileCoordinator = [[NSFileCoordinator alloc] initWithFilePresenter:nil];
+    [fileCoordinator coordinateReadingItemAtURL:url options:NSFileCoordinatorReadingWithoutChanges error:&error byAccessor:^(NSURL *newUrl) {
+        NSError *errorInAccess = nil;
+        NSData *data = nil;
+        data = [NSData dataWithContentsOfURL:newUrl options:nil error:&errorInAccess];
+        if(allowed){[url stopAccessingSecurityScopedResource];}
+        if(errorInAccess){
+            LgError(@"Error downloading iCloud resource: %@", errorInAccess);
+        }
+        BOOL result = [data writeToFile:toPath atomically:YES];
+        if(result == NO){
+            LgInfo(@"Error writing new file to: %@", toPath);
+            return;
+        }
+        LgInfo(@"###openURL: external file copied to %@", toPath);
+        if(self.resourcePathOnLaunch == nil || self.resourseLoadedCount > 0){
+            [self openOrSaveResourcePath:toPath saveTitle: @"New entry in Documents"];
+        } else {
+            self.resourcePathOnLaunch = toPath;
+        }
+    }];
+    
+    return YES;
+}
+
 
 #pragma mark Accessing
 
