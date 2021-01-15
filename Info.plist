@@ -206,6 +206,46 @@
 				<string>public.content</string>
 			</array>
 			<key>UTTypeDescription</key>
+			<string>Scratch 2.0 Project</string>
+			<key>UTTypeIdentifier</key>
+			<string>com.softumeya.scratch2-project</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>sb2</string>
+				</array>
+				<key>public.mime-type</key>
+				<string>application/scratch2-project</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.data</string>
+				<string>public.content</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Scratch 3.0 Project</string>
+			<key>UTTypeIdentifier</key>
+			<string>com.softumeya.scratch3-project</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>sb3</string>
+				</array>
+				<key>public.mime-type</key>
+				<string>application/scratch3-project</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.data</string>
+				<string>public.content</string>
+			</array>
+			<key>UTTypeDescription</key>
 			<string>Scratch Sprite</string>
 			<key>UTTypeIdentifier</key>
 			<string>com.softumeya.scratch-sprite</string>
