@@ -38,7 +38,7 @@
 			<key>Key</key>
 			<string>memorySize_preference</string>
 			<key>DefaultValue</key>
-			<integer>83886080</integer>
+			<integer>125829120</integer>
 			<key>MinimumValue</key>
 			<integer>41943040</integer>
 			<key>MaximumValue</key>
