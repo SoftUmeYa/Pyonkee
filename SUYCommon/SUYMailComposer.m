@@ -18,29 +18,21 @@ BOOL isForErrorReport = NO;
 #pragma mark -
 #pragma mark Mail
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)aError {
-	UIAlertView *mailResult = [[UIAlertView alloc] init];
-	NSString *ok = NSLocalizedString(@"OK",nil);
 	switch(result) {
 		case MFMailComposeResultSaved: {
 			NSString *saved = NSLocalizedString(@"Saved",nil);
 			NSString *savedMsg = NSLocalizedString(@"SavedMsg",nil);
- 			mailResult.title = saved;
-			mailResult.message = savedMsg;
-			NSInteger indexOfButton = [mailResult addButtonWithTitle: ok];
-			[mailResult dismissWithClickedButtonIndex:indexOfButton animated:YES];
-			[self.viewController  dismissViewControllerAnimated:YES completion:NULL];
-			[mailResult show];
-			break;
+            UIAlertController *alert = [SUYUtils newInfoAlert:savedMsg title:saved];
+            [self.viewController  dismissViewControllerAnimated:YES completion:NULL];
+            [self.viewController presentViewController:alert animated:YES completion:nil];
+ 			break;
 		}
 		case MFMailComposeResultFailed: {
 			NSString *failed = NSLocalizedString(@"Failed",nil);
 			NSString *failedMsg = NSLocalizedString(@"FailedMsg",nil);
-			mailResult.title = failed;
-			mailResult.message = failedMsg;
-			NSInteger indexOfButton = [mailResult addButtonWithTitle: ok];
-			[mailResult dismissWithClickedButtonIndex:indexOfButton animated:YES];
-			[self.viewController dismissViewControllerAnimated:YES completion:NULL];
-			[mailResult show];
+            UIAlertController *alert = [SUYUtils newInfoAlert:failed title:failedMsg];
+            [self.viewController  dismissViewControllerAnimated:YES completion:NULL];
+            [self.viewController presentViewController:alert animated:YES completion:nil];
 			break;
 		}
 		default:
@@ -55,7 +47,7 @@ BOOL isForErrorReport = NO;
 
 - (void) reportErrorByEmail {
 	if (!([SUYUtils canSendMail])){return;}
-    if(isComposing == YES){return;}
+    if(isComposing == YES){[self abort];}
     isComposing = YES;
     isForErrorReport = YES;
 	NSString *helpEmailAddress = NSLocalizedString(@"helpEmailAddress",nil);
@@ -81,7 +73,7 @@ BOOL isForErrorReport = NO;
 
 - (void) mailProject: (NSString *)projectPath{
     if (!([SUYUtils canSendMail])){return;}
-    if(isComposing == YES){return;}
+    if(isComposing == YES){[self abort];}
     isComposing = YES;
     isForErrorReport = NO;
     NSString *projName = [projectPath lastPathComponent];
@@ -95,7 +87,7 @@ BOOL isForErrorReport = NO;
     NSData *data = [[NSData alloc] initWithContentsOfFile: projectPath];
 	[emailController addAttachmentData: data mimeType: @"application/octet-stream" fileName: projName];
     self.viewController.modalPresentationStyle = UIModalPresentationPageSheet;
-	[self.viewController presentViewController: emailController animated:YES completion:NULL];
+    [self.viewController presentViewController: emailController animated:YES completion:NULL];
 }
 
 #pragma mark -
@@ -105,6 +97,7 @@ BOOL isForErrorReport = NO;
     if(isComposing){
         [self.viewController dismissViewControllerAnimated:YES completion:NULL];
     }
+    isComposing = NO;
 }
 
 #pragma mark -
