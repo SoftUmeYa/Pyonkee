@@ -51,6 +51,13 @@ msgid "Linux-Font"
 msgstr ""
 
 ############################################
+# Pyonkee resource folders
+############################################
+
+msgid "Microbit"
+msgstr "micro:bit"
+
+############################################
 # # iPad Sensors (Pyonkee)
 ############################################
 msgid "accX"
@@ -85,3 +92,37 @@ msgstr "north heading"
 
 #msgid "brightness"
 #msgstr "brightness"
+
+############################################
+# # micro:bit Sensors (Pyonkee)
+############################################
+msgid "mb:accX"
+msgstr "mb:acceleration X"
+
+msgid "mb:accY"
+msgstr "mb:acceleration Y"
+
+msgid "mb:accZ"
+msgstr "mb:acceleration Z"
+
+msgid "mb:magX"
+msgstr "mb:magnetic force X"
+
+msgid "mb:magY"
+msgstr "mb:magnetic force Y"
+
+msgid "mb:magZ"
+msgstr "mb:magnetic force Z"
+
+msgid "mb:northHeading"
+msgstr "mb:north heading"
+
+msgid "mb:temperature"
+msgstr "mb:temperature"
+
+msgid "mb:buttonA"
+msgstr "mb:button A"
+
+msgid "mb:buttonB"
+msgstr "mb:button B"
+

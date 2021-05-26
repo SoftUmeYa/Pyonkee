@@ -2018,6 +2018,15 @@ msgstr "ファイルがよみこみません"
 msgid "Unrecognized audio file format"
 msgstr "オーディオファイルのフォーマットがわかりません"
 
+msgid "Copy this .hex file to micro:bit. Then open the corresponding project with Pyonkee. Now you can interact with micro:bit. (This program can be edited with MakeCode.)"
+msgstr "この.hexファイルをmicro:bitにいれてから、たいおうするなまえのプロジェクトをピョンキーでひらくとmicro:bitとつながります。(このファイルはMakeCodeでへんしゅうできます)。"
+
+msgid "Connect to micro:bit"
+msgstr "マイクロビットにつなぐ"
+
+msgid "Show micro:bit status"
+msgstr "マイクロビットをかくにん"
+
 ############################################
 # MESH
 ############################################
@@ -2145,6 +2154,9 @@ msgstr "ボーカル"
 msgid "PeKay"
 msgstr "ピッケ"
 
+msgid "Microbit"
+msgstr "マイクロビット"
+
 ############################################
 # PeKay folders
 ############################################
@@ -2226,3 +2238,37 @@ msgstr "きたのむき"
 
 #msgid "brightness"
 #msgstr "brightness"
+
+############################################
+# # micro:bit Sensors (Pyonkee)
+############################################
+msgid "mb:accX"
+msgstr "mb:かそくど X"
+
+msgid "mb:accY"
+msgstr "mb:かそくど Y"
+
+msgid "mb:accZ"
+msgstr "mb:かそくど Z"
+
+msgid "mb:magX"
+msgstr "mb:じりょく X"
+
+msgid "mb:magY"
+msgstr "mb:じりょく Y"
+
+msgid "mb:magZ"
+msgstr "mb:じりょく Z"
+
+msgid "mb:northHeading"
+msgstr "mb:きたのむき"
+
+msgid "mb:temperature"
+msgstr "mb:おんど"
+
+msgid "mb:buttonA"
+msgstr "mb:ボタン A"
+
+msgid "mb:buttonB"
+msgstr "mb:ボタン B"
+

@@ -2082,6 +2082,22 @@ msgstr "Kann Datei nicht laden"
 msgid "Unrecognized audio file format"
 msgstr "Nicht erkanntes Audio-Dateiformat"
 
+msgid "Copy this .hex file to micro:bit. Then open the corresponding project with Pyonkee. Now you can interact with micro:bit. (This program can be edited with MakeCode.)"
+msgstr "Kopieren Sie diese .hex-Datei nach micro:bit. Öffnen Sie dann das entsprechende Projekt mit Pyonkee. Jetzt können Sie mit micro:bit interagieren. (Dieses Programm kann mit MakeCode bearbeitet werden.)"
+
+msgid "Connect to micro:bit"
+msgstr "Mit micro:bit verbinden"
+
+msgid "Show micro:bit status"
+msgstr "mikro:bit Status anzeigen"
+
+############################################
+# Pyonkee resource folders
+############################################
+
+msgid "Microbit"
+msgstr "micro:bit"
+
 ############################################
 # MESH
 ############################################
@@ -2147,4 +2163,37 @@ msgstr "Nordrichtung"
 
 #msgid "brightness"
 #msgstr "Helligkeit"
+
+############################################
+# # micro:bit Sensors (Pyonkee)
+############################################
+msgid "mb:accX"
+msgstr "mb:Beschleunigung X"
+
+msgid "mb:accY"
+msgstr "mb:Beschleunigung Y"
+
+msgid "mb:accZ"
+msgstr "mb:Beschleunigung Z"
+
+msgid "mb:magX"
+msgstr "mb:Magnetkraft X"
+
+msgid "mb:magY"
+msgstr "mb:Magnetkraft Y"
+
+msgid "mb:magZ"
+msgstr "mb:Magnetkraft Z"
+
+msgid "mb:northHeading"
+msgstr "mb:Nordrichtung"
+
+msgid "mb:temperature"
+msgstr "mb:Temperatur"
+
+msgid "mb:buttonA"
+msgstr "mb:Schaltfläche A"
+
+msgid "mb:buttonB"
+msgstr "mb:Schaltfläche B"
 
