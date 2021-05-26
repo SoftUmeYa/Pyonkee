@@ -14,6 +14,7 @@
 #import "SUYScratchPresentationSpace.h"
 #import "SUYMailComposer.h"
 #import "SUYSensorAccessor.h"
+#import "SUYMicrobitAccessor.h"
 #import	"squeakProxy.h"
 
 @interface ScratchIPhoneAppDelegate : SqueakNoOGLIPhoneAppDelegate <UIAlertViewDelegate> {
@@ -27,6 +28,7 @@
 @property (nonatomic, retain) dispatch_queue_t defaultSerialQueue;
 @property (nonatomic, retain) SUYMailComposer *mailComposer;
 @property (nonatomic, retain) SUYSensorAccessor *sensorAccessor;
+@property (nonatomic, retain) SUYMicrobitAccessor *microbitAccessor;
 
 @property (nonatomic, copy) NSString* resourcePathOnLaunch;
 @property (nonatomic) NSUInteger resourseLoadedCount;
