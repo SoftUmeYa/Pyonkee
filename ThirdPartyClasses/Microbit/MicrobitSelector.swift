@@ -119,13 +119,13 @@ let UD_LAST_MB_UUID_KEY_AND_NAME = "SUY:MBPeripheralUuidAndName"
         let storedUuidAndName = storedMicrobitUuidAndName()
     
         let uuidString = (storedUuidAndName?[0])
-        let deviseName = (storedUuidAndName?[1])
+        let deviceName = (storedUuidAndName?[1])
         var peripherals: [CBPeripheral]
         
         if let uStr = uuidString {
             let uuid = UUID(uuidString:uStr)
             peripherals = centralManager.retrievePeripherals(withIdentifiers: [uuid!])
-            if(trySelectOnceConnectedMicrobitIn(peripherals: peripherals, deviseName: deviseName!)){
+            if(trySelectOnceConnectedMicrobitIn(peripherals: peripherals, deviceName: deviceName!)){
                 return
             }
         }
@@ -133,7 +133,7 @@ let UD_LAST_MB_UUID_KEY_AND_NAME = "SUY:MBPeripheralUuidAndName"
         peripherals = centralManager.retrieveConnectedPeripherals(withServices: ServiceUUIDs.ALL)
         if(peripherals.count > 0){
             let peripheralName = peripherals[Int.random(in: 0..<peripherals.count)].name
-            if(trySelectOnceConnectedMicrobitIn(peripherals: peripherals, deviseName: peripheralName!)){
+            if(trySelectOnceConnectedMicrobitIn(peripherals: peripherals, deviceName: peripheralName!)){
                 return
             }
         }
@@ -219,14 +219,14 @@ let UD_LAST_MB_UUID_KEY_AND_NAME = "SUY:MBPeripheralUuidAndName"
         userDefaults.removeObject(forKey: UD_LAST_MB_UUID_KEY_AND_NAME)
     }
     
-    func trySelectOnceConnectedMicrobitIn(peripherals: [CBPeripheral], deviseName: String) -> Bool {
+    func trySelectOnceConnectedMicrobitIn(peripherals: [CBPeripheral], deviceName: String) -> Bool {
         if(peripherals.count > 0){
             let retrievedPeripheral = peripherals[0]
             let peripheralName = retrievedPeripheral.name
-            if(deviseName == peripheralName){
-                let mb = Microbit(deviseName, peripheral: retrievedPeripheral)
-                microbits[deviseName] = mb
-                selectNamed(deviseName)
+            if(deviceName == peripheralName){
+                let mb = Microbit(deviceName, peripheral: retrievedPeripheral)
+                microbits[deviceName] = mb
+                selectNamed(deviceName)
                 return true
             }
         }
