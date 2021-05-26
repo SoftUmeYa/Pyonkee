@@ -180,7 +180,7 @@
 #pragma mark Accessing
 
 + (CGSize) rootViewSizeOf: (UIView *)view {
-    while (view.superview != Nil) {
+    while (view.superview != nil) {
         view = view.superview;
     }
     return view.bounds.size;
@@ -338,12 +338,12 @@
 
 #pragma mark Toast
 
-+ (void) showToast: (NSString*) message image: (UIImage*) image{
-    [SUYToast showToastWithMessage:message image:image];
++ (void) showToast: (NSString*) message image: (UIImage*) image title: (NSString*) title {
+    [SUYToast showToastWithMessage:message image:image title: title duration: 1];
 }
 
-+ (void) showToastOn:(UIView*) view message:(NSString*) message image: (UIImage*) image{
-    [SUYToast showToastOnView:view message:message image:image];
++ (void) showToastOn:(UIView*) view message:(NSString*) message image: (UIImage*) image title: (NSString*) title {
+    [SUYToast showToastOnView:view message:message image:image title: title duration: 1];
 }
 
 + (void) showActivityToastOn:(UIView*) view{
@@ -385,12 +385,15 @@
 }
 
 + (UIAlertController*) newAlert:(NSString*)message {
-    UIAlertController *alertController = [self newAlert:message title: @""];
-    return alertController;
+    return [self newAlert:message title: @""];
 }
 
 + (UIAlertController*) newInfoAlert:(NSString*)message {
-    UIAlertController *alert = [self newAlert:message];
+    return [self newInfoAlert:message title:@""];
+}
+
++ (UIAlertController*) newInfoAlert:(NSString*)message title: (NSString*)title {
+    UIAlertController *alert = [self newAlert:message title: title];
     [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"OK",nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {}]];
     return alert;
 }
