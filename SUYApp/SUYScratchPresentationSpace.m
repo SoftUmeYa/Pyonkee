@@ -182,6 +182,17 @@ uint memoryWarningCount;
     return YES;
 }
 
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
+    [super viewWillTransitionToSize: size withTransitionCoordinator: coordinator];
+    [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
+        
+    } completion:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
+        UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+        [self appDelegate].sensorAccessor.currentStatusBarOrientation = orientation;
+    }];
+}
+
+
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations{
     if([self isInPresentationMode]){
         return UIInterfaceOrientationMaskAll;

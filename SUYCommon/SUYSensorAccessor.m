@@ -57,7 +57,7 @@ static inline double Percent(double numerator, double denominator)
 #pragma mark private
 - (double) degFromRad: (double) radians
 {
-    return DegFromRad(radians, [[UIApplication sharedApplication] statusBarOrientation]);
+    return DegFromRad(radians, self.currentStatusBarOrientation);
 }
 
 #pragma mark Initialization
@@ -149,13 +149,13 @@ static inline double Percent(double numerator, double denominator)
 
 - (BOOL) isPortrait
 {
-    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    UIInterfaceOrientation orientation = self.currentStatusBarOrientation;
     return UIInterfaceOrientationIsPortrait(orientation);
 }
 
 - (BOOL) isInverted
 {
-    return IsInverted([[UIApplication sharedApplication] statusBarOrientation]);
+    return IsInverted(self.currentStatusBarOrientation);
 }
 
 #pragma mark Mode Accessing
