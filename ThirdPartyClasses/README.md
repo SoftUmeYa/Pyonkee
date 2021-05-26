@@ -10,3 +10,5 @@ Pyonkee uses these third-party Objective-C/Swift libraries. Please visit each li
 - [MIKMIDI](https://github.com/mixedinkey-opensource/MIKMIDI)
 - [TouchVisualizer](https://github.com/rosberry/TouchVisualizer)
 - [Toast-Swift](https://github.com/scalessec/Toast-Swift)
+- [microbit-swift](https://github.com/phwallen/microbit-swift)
+- [SDCAlertView](https://github.com/sberrevoets/SDCAlertView)

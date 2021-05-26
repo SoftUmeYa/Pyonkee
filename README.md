@@ -35,7 +35,7 @@ Pyonkee was originally started as a fork of [John M McIntosh](https://www.smallt
 From version 2.3, [Carthage](https://github.com/Carthage/Carthage) is partly used for library management.
 Before building from Xcode, please install Carthage and run the command below:
 
-```carthage update --platform iOS```
+```carthage update --use-xcframeworks```
 
 Note: from Xcode 12, you need a [workaround script for carthage](https://github.com/Carthage/Carthage/blob/master/Documentation/Xcode12Workaround.md).
 
