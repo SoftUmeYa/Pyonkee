@@ -38,13 +38,14 @@
 + (UIAlertController*) newAlert:(NSString*)message title: (NSString*)title;
 + (UIAlertController*) newAlert:(NSString*)message;
 + (UIAlertController*) newInfoAlert:(NSString*)message;
++ (UIAlertController*) newInfoAlert:(NSString*)message title: (NSString*)title;
 + (void) printMemStats;
 + (NSArray*) supportedUtis;
 + (void) showCursor:(int)cursorCode;
 + (void) hideCursor;
 + (BOOL) cursorEnabled;
-+ (void) showToast: (NSString*) message image: (UIImage*) image;
-+ (void) showToastOn:(UIView*) view message:(NSString*) message image: (UIImage*) image;
++ (void) showToast: (NSString*) message image: (UIImage*) image title: (NSString*) title;
++ (void) showToastOn:(UIView*) view message:(NSString*) message image: (UIImage*) image title: (NSString*) title;
 + (void) showActivityToastOn:(UIView*) view;
 + (void) hideActivityToastOn:(UIView*) view;
 + (NSString*)saveAiffFromPath: (NSString*) fromPath;

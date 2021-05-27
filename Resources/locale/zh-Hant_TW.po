@@ -2012,6 +2012,22 @@ msgstr "無法加載文件"
 msgid "Unrecognized audio file format"
 msgstr "無法識別的音頻文件格式"
 
+msgid "Copy this .hex file to micro:bit. Then open the corresponding project with Pyonkee. Now you can interact with micro:bit. (This program can be edited with MakeCode.)"
+msgstr "將此.hex文件複製到micro:bit。 然後用Pyonkee打開相應的項目。 現在，您可以與micro:bit進行交互。 （可以使用MakeCode編輯該程序。）"
+
+msgid "Connect to micro:bit"
+msgstr "連接到micro:bit"
+
+msgid "Show micro:bit status"
+msgstr "顯示micro:bit狀態"
+
+############################################
+# Pyonkee resource folders
+############################################
+
+msgid "Microbit"
+msgstr "micro:bit"
+
 ############################################
 # MESH
 ############################################
@@ -2077,3 +2093,36 @@ msgstr "方向北"
 
 #msgid "brightness"
 #msgstr "brightness"
+
+############################################
+# # micro:bit Sensors (Pyonkee)
+############################################
+msgid "mb:accX"
+msgstr "mb:促進 X"
+
+msgid "mb:accY"
+msgstr "mb:促進 Y"
+
+msgid "mb:accZ"
+msgstr "mb:促進 Z"
+
+msgid "mb:magX"
+msgstr "mb:磁力 X"
+
+msgid "mb:magY"
+msgstr "mb:磁力 Y"
+
+msgid "mb:magZ"
+msgstr "mb:磁力 Z"
+
+msgid "mb:northHeading"
+msgstr "mb:方向北"
+
+msgid "mb:temperature"
+msgstr "mb:溫度"
+
+msgid "mb:buttonA"
+msgstr "mb:按鈕 A"
+
+msgid "mb:buttonB"
+msgstr "mb:按鈕 B"

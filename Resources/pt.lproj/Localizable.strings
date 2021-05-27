@@ -44,3 +44,15 @@
 "No permission to use Camera. Please change privacy settings" = "Sem permissão para usar a câmera. Por favor, altere as configurações de privacidade";
 "No permission to use Camera. For getting brightness value, please change privacy settings" = "Sem permissão para usar a câmera. Para obter o valor de brilho, por favor, mude as configurações de privacidade";
 "Cannot download" = "Não é possível baixar";
+
+/*Pyonkee-micro:bit*/
+
+"Not found" = "Não encontrado";
+"Choose one" = "Escolha um";
+"Scan other micro:bit peers" = "Escanear outros micro:bit peers";
+"Close" = "Fechar";
+"Connected" = "Conectado";
+"Disconnected" = "Desconectado";
+"Release the connection" = "Libertar a ligação";
+"Stop interacting with micro:bit" = "Parar de interagir com micro:bit";
+

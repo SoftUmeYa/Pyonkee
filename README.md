@@ -29,15 +29,14 @@ Pyonkee was originally started as a fork of [John M McIntosh](https://www.smallt
 - Virtual MIDI support
 - iCloud based project/sprite/costume/sounds sharing
 - Touch scrolling support
+- Connectivity with micro:bit via Bluetooth LE
 
 ## How to build
 
 From version 2.3, [Carthage](https://github.com/Carthage/Carthage) is partly used for library management.
 Before building from Xcode, please install Carthage and run the command below:
 
-```carthage update --platform iOS```
-
-Note: from Xcode 12, you need a [workaround script for carthage](https://github.com/Carthage/Carthage/blob/master/Documentation/Xcode12Workaround.md).
+```carthage update --use-xcframeworks```
 
 ### Note on iCloud feature
 
@@ -45,7 +44,7 @@ When attempting to build and run on a physical iPad (not the simulator), you wil
 
 The 'iCloud' feature is only available to users enrolled in Apple Developer Program. Please visit https://developer.apple.com/programs/ to enroll.
 
-To disable iCloud and allow the build to continue, change line 2168 of Pyonkee.xcodeproj/project.pbxproj from:
+To disable iCloud and allow the build to continue, change line 2257 of Pyonkee.xcodeproj/project.pbxproj from:
 
 ```
 com.apple.iCloud = {
@@ -73,7 +72,7 @@ The Squeak iOS platform (/platforms/iOS, /CSCScratchiPhoneInterface) are under M
 
 Scratch sample Media files (/Resources/Media), and sample projects (/Resources/Projects), are licensed under the Creative Commons Attribution-ShareAlike 2.0 Generic (CC BY-SA 2.0) license.
 
-Third party Objective-C libraries (/ThirdPartyClasses) are under the each author's original license. See /ThirdPartyClasses/README.md for details.
+Third party libraries (/ThirdPartyClasses) are under the each author's original license. See /ThirdPartyClasses/README.md for details.
 
 ## Contributions
 

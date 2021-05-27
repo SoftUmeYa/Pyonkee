@@ -77,6 +77,7 @@ BOOL isRestarting = NO;
     _mailComposer.viewController = self.viewController;
     
     _sensorAccessor = [[SUYSensorAccessor alloc] init];
+    _microbitAccessor = [[SUYMicrobitAccessor alloc] init];
     
    	[window makeKeyAndVisible];
     isRestarting = NO;
@@ -558,6 +559,7 @@ BOOL isRestarting = NO;
         
     self.mailComposer = nil;
     self.sensorAccessor = nil;
+    self.microbitAccessor = nil;
     
 	self.presentationSpace  = nil;
 	if (self.screenAndWindow.blip) {
@@ -597,6 +599,7 @@ BOOL isRestarting = NO;
     [defaultSerialQueue release];
     [_mailComposer release];
     [_sensorAccessor release];
+    [_microbitAccessor release];
 }
 
 @end

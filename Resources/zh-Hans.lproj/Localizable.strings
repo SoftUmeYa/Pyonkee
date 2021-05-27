@@ -43,3 +43,14 @@
 "No permission to use Camera. Please change privacy settings" = "您没有权限使用相机。请检查隐私设置";
 "No permission to use Camera. For getting brightness value, please change privacy settings" = "您没有权限使用相机。要获取的“亮度”的值，请从隐私设置获得许可";
 "Cannot download" = "无法下载";
+
+/*Pyonkee-micro:bit*/
+
+"Not found" = "未找到";
+"Choose one" = "选一个";
+"Scan other micro:bit peers" = "扫描其他micro:bit同行";
+"Close" = "关闭";
+"Connected" = "连接的";
+"Disconnected" = "断线";
+"Release the connection" = "释放连接";
+"Stop interacting with micro:bit" = "停止与micro:bit互动";
