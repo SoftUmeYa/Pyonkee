@@ -29,6 +29,7 @@ Pyonkee was originally started as a fork of [John M McIntosh](https://www.smallt
 - Virtual MIDI support
 - iCloud based project/sprite/costume/sounds sharing
 - Touch scrolling support
+- Connectivity with micro:bit via Bluetooth LE
 
 ## How to build
 
@@ -36,8 +37,6 @@ From version 2.3, [Carthage](https://github.com/Carthage/Carthage) is partly use
 Before building from Xcode, please install Carthage and run the command below:
 
 ```carthage update --use-xcframeworks```
-
-Note: from Xcode 12, you need a [workaround script for carthage](https://github.com/Carthage/Carthage/blob/master/Documentation/Xcode12Workaround.md).
 
 ### Note on iCloud feature
 
@@ -73,7 +72,7 @@ The Squeak iOS platform (/platforms/iOS, /CSCScratchiPhoneInterface) are under M
 
 Scratch sample Media files (/Resources/Media), and sample projects (/Resources/Projects), are licensed under the Creative Commons Attribution-ShareAlike 2.0 Generic (CC BY-SA 2.0) license.
 
-Third party Objective-C libraries (/ThirdPartyClasses) are under the each author's original license. See /ThirdPartyClasses/README.md for details.
+Third party libraries (/ThirdPartyClasses) are under the each author's original license. See /ThirdPartyClasses/README.md for details.
 
 ## Contributions
 
