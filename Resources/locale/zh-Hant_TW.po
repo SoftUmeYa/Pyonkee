@@ -1961,6 +1961,9 @@ msgstr "關於Pyonkee"
 msgid "Video Tutorial"
 msgstr "視頻教程"
 
+msgid "micro:bit Connection Tutorial"
+msgstr "micro:bit連接教程"
+
 msgid "About samples"
 msgstr "關於例子"
 

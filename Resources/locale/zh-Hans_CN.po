@@ -1993,6 +1993,9 @@ msgstr "关于Pyonkee"
 msgid "Video Tutorial"
 msgstr "视频教程"
 
+msgid "micro:bit Connection Tutorial"
+msgstr "micro:bit连接教程"
+
 msgid "About samples"
 msgstr "关于例子"
 

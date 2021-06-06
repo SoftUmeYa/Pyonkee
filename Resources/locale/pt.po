@@ -1987,7 +1987,10 @@ msgid "About samples"
 msgstr "Sobre amostras"
 
 msgid "Video Tutorial"
-msgstr "Vídeo o Tutorial"
+msgstr "Vídeo tutorial"
+
+msgid "micro:bit Connection Tutorial"
+msgstr "Tutorial de conexão micro:bit"
 
 msgid "About media"
 msgstr "Sobre meios de comunicação social"

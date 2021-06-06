@@ -2031,6 +2031,9 @@ msgstr "Über Pyonkee"
 msgid "Video Tutorial"
 msgstr "Video-Tutorial"
 
+msgid "micro:bit Connection Tutorial"
+msgstr "micro:bit-Verbindungs-Tutorial"
+
 msgid "About samples"
 msgstr "Über die Beispiele"
 
