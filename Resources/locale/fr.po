@@ -1972,7 +1972,10 @@ msgid "About Pyonkee"
 msgstr "À propos de Pyonkee"
 
 msgid "Video Tutorial"
-msgstr "Vidéo d'instructions"
+msgstr "Tutoriel vidéo"
+
+msgid "micro:bit Connection Tutorial"
+msgstr "Tutoriel de connexion micro:bit"
 
 msgid "About samples"
 msgstr "A propos des échantillons"

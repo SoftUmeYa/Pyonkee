@@ -1967,6 +1967,9 @@ msgstr "ピョンキーについて"
 msgid "Video Tutorial"
 msgstr "にゅうもんビデオ"
 
+msgid "micro:bit Connection Tutorial"
+msgstr "マイクロビットとのつなぎかた"
+
 msgid "About samples"
 msgstr "さくひんれいについて"
 

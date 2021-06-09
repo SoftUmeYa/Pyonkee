@@ -2037,6 +2037,9 @@ msgstr "Acerca de las muestras"
 msgid "Video Tutorial"
 msgstr "Tutorial video"
 
+msgid "micro:bit Connection Tutorial"
+msgstr "Tutorial de conexión micro:bit"
+
 msgid "About media"
 msgstr "Acerca de los medios de comunicación"
 

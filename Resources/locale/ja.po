@@ -1961,6 +1961,9 @@ msgstr "ピョンキーについて"
 msgid "Video Tutorial"
 msgstr "入門ビデオ"
 
+msgid "micro:bit Connection Tutorial"
+msgstr "micro:bitとのつなぎかた"
+
 msgid "About samples"
 msgstr "作品例について"
 
