@@ -73,8 +73,8 @@
 - (IBAction) keySpace: (id) sender;
 - (IBAction) operatePadLock: (id) sender;
 
-- (IBAction) softKeyboardActivate: (id) sender;
-- (IBAction) softKeyboardDeactivate: (id) sender;
+- (IBAction) keyboardActivate: (id) sender;
+- (IBAction) keyboardDeactivate: (id) sender;
 
 - (IBAction) commandButtonUp: (id) sender;
 - (IBAction) commandButtonDown: (id) sender;

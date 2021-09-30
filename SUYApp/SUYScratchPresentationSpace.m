@@ -103,7 +103,7 @@ uint memoryWarningCount;
 	
 	self.scrollView.delaysContentTouches = self.padLockButton.selected;
     self.radioButtonSetController.selectedIndex = _originalEditModeIndex;
-    [self keyboardDidChange:nil];
+    [self keyboardDidShowOrChange:nil];
     [self listenNotifications];
     
 	[super viewWillAppear: animated];
@@ -125,17 +125,22 @@ uint memoryWarningCount;
 
 #pragma mark Notifications
 - (void)listenNotifications {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidChange:)
+    
+    NSNotificationCenter* notificationCenter = [NSNotificationCenter defaultCenter];
+    
+    [notificationCenter addObserver:self selector:@selector(keyboardDidShowOrChange:)
 												 name:UITextInputCurrentInputModeDidChangeNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(softKeyboardDeactivate:)
+    [notificationCenter addObserver:self selector:@selector(keyboardDidShowOrChange:)
+                                                 name:UIKeyboardDidShowNotification object:nil];
+    [notificationCenter addObserver:self selector:@selector(keyboardDeactivate:)
+                                                 name:UIKeyboardWillHideNotification object:nil];
+    [notificationCenter addObserver:self selector:@selector(keyboardDeactivate:)
 												 name:@"SqueakUIViewTouchesBegan" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(softKeyboardDeactivate:)
-												 name:UIKeyboardWillHideNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(scratchDialogOpened:)
+    [notificationCenter addObserver:self selector:@selector(scratchDialogOpened:)
 												 name:@"ScratchDialogOpened" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(scratchDialogClosed:)
+    [notificationCenter addObserver:self selector:@selector(scratchDialogClosed:)
 												 name:@"ScratchDialogClosed" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(scratchProjectReloaded:)
+    [notificationCenter addObserver:self selector:@selector(scratchProjectReloaded:)
 												 name:@"ScratchProjectReloaded" object:nil];
 }
 
@@ -373,14 +378,14 @@ uint memoryWarningCount;
     );
 }
 
-- (IBAction) softKeyboardActivate:(id)sender {
+- (IBAction) keyboardActivate:(id)sender {
     [SUYUtils hideCursor];
     if(!self.softKeyboardField.hidden){return;}
     self.softKeyboardField.hidden = NO;
     [softKeyboardField becomeFirstResponder];
 }
 
-- (IBAction) softKeyboardDeactivate: (id) sender{
+- (IBAction) keyboardDeactivate: (id) sender{
     if(self.softKeyboardField.hidden){return;}
     self.softKeyboardField.hidden = YES;
     [softKeyboardField resignFirstResponder];
@@ -544,7 +549,7 @@ uint memoryWarningCount;
 
 #pragma mark TextEdit
 
-- (void)keyboardDidChange:(NSNotification*)sender{
+- (void)keyboardDidShowOrChange:(NSNotification*)sender{
     LgInfo(@"keyboardDidChange");
     self.softKeyboardField.text = @"";
     NSString *primLang = [self inputModePrimaryLanguage];
@@ -637,7 +642,7 @@ uint memoryWarningCount;
 - (void) textMorphFocused: (BOOL)status{
     if((status == YES) && (softKeyboardField.hidden))
     {
-        [self performSelectorOnMainThread:@selector(softKeyboardActivate:) withObject: nil waitUntilDone: NO];
+        [self performSelectorOnMainThread:@selector(keyboardActivate:) withObject: nil waitUntilDone: NO];
     }
 }
 
