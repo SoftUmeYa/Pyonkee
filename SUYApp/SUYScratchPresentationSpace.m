@@ -38,7 +38,7 @@ static const int kShiftAutoUpSeconds = 20;
     NSString* _lastExportResourcePath;
     NSInteger _exportResourceRetryCount;
     
-    NSArray* _keyCommands;
+    NSMutableArray* _keyCommands;
 }
 
 @synthesize scrollView,scrollViewController,fontScaleButton, radioButtonSetController,
@@ -146,8 +146,9 @@ uint memoryWarningCount;
 
 - (void)forgetNotifications {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UITextInputCurrentInputModeDidChangeNotification object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"SqueakUIViewTouchesBegan" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"SqueakUIViewTouchesBegan" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"ScratchDialogOpened" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"ScratchDialogClosed" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"ScratchProjectReloaded" object:nil];
@@ -547,27 +548,7 @@ uint memoryWarningCount;
     _originalScrollerScale = scale;
 }
 
-#pragma mark TextEdit
-
-- (void)keyboardDidShowOrChange:(NSNotification*)sender{
-    LgInfo(@"keyboardDidChange");
-    self.softKeyboardField.text = @"";
-    NSString *primLang = [self inputModePrimaryLanguage];
-    
-    if(
-       ([primLang rangeOfString:@"ja-"].location != NSNotFound) ||
-       ([primLang rangeOfString:@"ko-"].location != NSNotFound) ||
-       ([primLang rangeOfString:@"zh-"].location != NSNotFound)) {
-        LgInfo(@"ime mode = %@", primLang);
-        self.softKeyboardField.autocorrectionType = UITextAutocorrectionTypeDefault;
-        _useIme = YES;
-    } else {
-        LgInfo(@"non ime = %@", primLang);
-        self.softKeyboardField.autocorrectionType = UITextAutocorrectionTypeNo;
-        _useIme = NO;
-    }
- }
-
+#pragma mark - UITextFieldDelegate
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *) aTextField {
     if(aTextField == self.softKeyboardField){
@@ -593,16 +574,7 @@ uint memoryWarningCount;
     } else {
         aTextField.text = @"";
     }
-	return YES;
-}
-
--(void)flushInputString:(NSString*) processedString {
-    if(_useIme == NO) {return;}
-    LgInfo(@"!!! flushInputString %@", processedString);
-    if(self.viewModeIndex==2){
-        [[self appDelegate] flushInputString: processedString];
-    }
-    [gDelegateApp.mainView recordCharEvent: processedString];
+    return YES;
 }
 
 - (BOOL)textField:(UITextField *) aTextField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)rstr {
@@ -615,7 +587,37 @@ uint memoryWarningCount;
         }
         return YES;
     }
-	return NO;
+    return NO;
+}
+
+#pragma mark TextEdit
+
+- (void)keyboardDidShowOrChange:(NSNotification*)sender {
+    LgInfo(@"keyboardDidChange");
+    self.softKeyboardField.text = @"";
+    NSString *primLang = [self inputModePrimaryLanguage];
+    
+    if(
+       ([primLang rangeOfString:@"ja-"].location != NSNotFound) ||
+       ([primLang rangeOfString:@"ko-"].location != NSNotFound) ||
+       ([primLang rangeOfString:@"zh-"].location != NSNotFound)) {
+        LgInfo(@"ime mode = %@", primLang);
+        self.softKeyboardField.autocorrectionType = UITextAutocorrectionTypeDefault;
+        _useIme = YES;
+    } else {
+        LgInfo(@"non ime = %@", primLang);
+        self.softKeyboardField.autocorrectionType = UITextAutocorrectionTypeNo;
+        _useIme = NO;
+    }
+ }
+
+-(void)flushInputString:(NSString*) processedString {
+    if(_useIme == NO) {return;}
+    LgInfo(@"!!! flushInputString %@", processedString);
+    if(self.viewModeIndex==2){
+        [[self appDelegate] flushInputString: processedString];
+    }
+    [gDelegateApp.mainView recordCharEvent: processedString];
 }
 
 - (BOOL)nonImeTextField:(UITextField *) aTextField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)rstr {
@@ -840,14 +842,38 @@ uint memoryWarningCount;
 - (NSArray *) keyCommands
 {
     if(!_keyCommands){
-        UIKeyCommand *upArrow = [UIKeyCommand keyCommandWithInput: UIKeyInputUpArrow modifierFlags: 0 action: @selector(externalKeyBoardUpArrow:)];
-        UIKeyCommand *downArrow = [UIKeyCommand keyCommandWithInput: UIKeyInputDownArrow modifierFlags: 0 action: @selector(externalKeyBoardDownArrow:)];
-        UIKeyCommand *leftArrow = [UIKeyCommand keyCommandWithInput: UIKeyInputLeftArrow modifierFlags: 0 action: @selector(externalKeyBoardLeftArrow:)];
-        UIKeyCommand *rightArrow = [UIKeyCommand keyCommandWithInput: UIKeyInputRightArrow modifierFlags: 0 action: @selector(externalKeyBoardRightArrow:)];
-        UIKeyCommand *esc = [UIKeyCommand keyCommandWithInput:UIKeyInputEscape modifierFlags:0 action:@selector(externalKeyBoardEscape:)];
-        _keyCommands = [[NSArray alloc] initWithObjects: upArrow, downArrow, leftArrow, rightArrow, esc, nil];
+        _keyCommands = [[NSMutableArray alloc] init];
+        //arrow keys
+        [self addKeyCommand:UIKeyInputUpArrow modifierFlags:kNilOptions action:@selector(externalKeyBoardUpArrow:)
+             overrideSystem:YES to: _keyCommands];
+        [self addKeyCommand:UIKeyInputDownArrow modifierFlags:kNilOptions action:@selector(externalKeyBoardDownArrow:)
+             overrideSystem:YES to: _keyCommands];
+        [self addKeyCommand:UIKeyInputLeftArrow modifierFlags:kNilOptions action:@selector(externalKeyBoardLeftArrow:)
+             overrideSystem:YES to: _keyCommands];
+        [self addKeyCommand:UIKeyInputRightArrow modifierFlags:kNilOptions action:@selector(externalKeyBoardRightArrow:)
+             overrideSystem:YES to: _keyCommands];
+        //escape
+        [self addKeyCommand:UIKeyInputEscape modifierFlags:kNilOptions action:@selector(externalKeyBoardEscape:)
+             overrideSystem:NO to: _keyCommands];
+        //space
+        [self addKeyCommand:@" " modifierFlags:kNilOptions action:@selector(externalKeyBoardSpace:)
+             overrideSystem:NO to: _keyCommands];
+        //shift-only
+        [self addKeyCommand:@"" modifierFlags:UIKeyModifierShift action:@selector(externalKeyBoardShift:)
+             overrideSystem:NO to: _keyCommands];
+        //cmd-only
+        [self addKeyCommand:@"" modifierFlags:UIKeyModifierCommand action:@selector(externalKeyBoardCommand:)
+             overrideSystem:NO to: _keyCommands];
     }
     return _keyCommands;
+}
+
+- (void) addKeyCommand: (NSString *)input modifierFlags:(UIKeyModifierFlags)modifierFlags action:(SEL)action overrideSystem:(BOOL) overrideSystem to:(NSMutableArray *) keyCommands {
+    UIKeyCommand* command = [UIKeyCommand keyCommandWithInput:input modifierFlags:modifierFlags action:action];
+    if (@available(iOS 15.0, *)) {
+        command.wantsPriorityOverSystemBehavior = overrideSystem;
+    }
+    [keyCommands addObject: command];
 }
 
 - (void) externalKeyBoardUpArrow: (UIKeyCommand *) keyCommand
@@ -889,6 +915,28 @@ uint memoryWarningCount;
     unichar character = 27;
     [self startRepeatKeyProcess: character for: self];
     [self keyTouchUp:self];
+}
+
+- (void) externalKeyBoardSpace: (UIKeyCommand *) keyCommand
+{
+    [self keySpace:self];
+    [self keyTouchUp:self];
+}
+
+- (void) externalKeyBoardShift: (UIKeyCommand *) keyCommand
+{
+    [self shiftButtonDown:self];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        [self basicShiftButtonAutoUp:self];
+    });
+}
+
+- (void) externalKeyBoardCommand: (UIKeyCommand *) keyCommand
+{
+    [self commandButtonDown:self];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        [self basicCommandButtonAutoUp:self];
+    });
 }
 
 #pragma mark Releasing
