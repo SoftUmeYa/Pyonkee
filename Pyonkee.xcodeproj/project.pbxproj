@@ -400,7 +400,6 @@
 		85406F981B17F45100CBE22E /* SUYPhotoCropper.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SUYPhotoCropper.storyboard; path = Resources/SUYPhotoCropper.storyboard; sourceTree = "<group>"; };
 		8541CA67190002450019163E /* LFCGzipUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFCGzipUtility.h; sourceTree = "<group>"; };
 		8541CA68190002450019163E /* LFCGzipUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFCGzipUtility.m; sourceTree = "<group>"; };
-		854C35001E7EBC6700BA0515 /* MIKMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MIKMIDI.framework; path = Carthage/Build/iOS/MIKMIDI.framework; sourceTree = "<group>"; };
 		854F08DF1B2A9C4C00E7A6A9 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		854F08EA1B2B280000E7A6A9 /* SUYLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUYLocationManager.h; sourceTree = "<group>"; };
 		854F08EB1B2B280000E7A6A9 /* SUYLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUYLocationManager.m; sourceTree = "<group>"; };
@@ -477,16 +476,13 @@
 		85DBC50219546FB6000AC218 /* SUYFontResizeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUYFontResizeViewController.h; sourceTree = "<group>"; };
 		85DBC50319546FB6000AC218 /* SUYFontResizeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUYFontResizeViewController.m; sourceTree = "<group>"; };
 		85DD43BB18F3CB190030B27F /* SUYLauncherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUYLauncherViewController.h; sourceTree = "<group>"; };
-		85DE13091F5937A700F0C30C /* TouchVisualizer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TouchVisualizer.framework; path = Carthage/Build/iOS/TouchVisualizer.framework; sourceTree = "<group>"; };
 		85DE1E8319D90B7600A8FBFB /* flat-folder-open.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat-folder-open.png"; sourceTree = "<group>"; };
-		85DE4AFF1F74CE4500692C2B /* ToastSwiftFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ToastSwiftFramework.framework; path = Carthage/Build/iOS/ToastSwiftFramework.framework; sourceTree = "<group>"; };
 		85E14FE6199B2FA900BDCF40 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		85E14FE7199B2FA900BDCF40 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		85E14FE8199B2FB900BDCF40 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Localizable.strings; sourceTree = "<group>"; };
 		85E14FE9199B2FB900BDCF40 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		85E76AD41A49462F002B223C /* SUYPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUYPhotoViewController.h; sourceTree = "<group>"; };
 		85E76AD51A49462F002B223C /* SUYPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUYPhotoViewController.m; sourceTree = "<group>"; };
-		85E888C01F56885700E9F0DA /* NSLogger.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NSLogger.framework; path = Carthage/Build/iOS/NSLogger.framework; sourceTree = "<group>"; };
 		85EC5EA51946DCFE001E68B9 /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
 		85EC5EA61946DCFE001E68B9 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
 		85EC5EA81946DD5C001E68B9 /* UIImage+Alpha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Alpha.m"; sourceTree = "<group>"; };
@@ -967,10 +963,6 @@
 				85397393265F7AD700F93F69 /* NSLoggerSwift.xcframework */,
 				85397390265F7AD200F93F69 /* NSLogger.xcframework */,
 				8539738C265F7AC600F93F69 /* MIKMIDI.xcframework */,
-				85DE4AFF1F74CE4500692C2B /* ToastSwiftFramework.framework */,
-				85DE13091F5937A700F0C30C /* TouchVisualizer.framework */,
-				85E888C01F56885700E9F0DA /* NSLogger.framework */,
-				854C35001E7EBC6700BA0515 /* MIKMIDI.framework */,
 				85EE048F1B37E65900EA3F1F /* ImageIO.framework */,
 				85EE048D1B37E60200EA3F1F /* CoreMedia.framework */,
 				854F08DF1B2A9C4C00E7A6A9 /* CoreLocation.framework */,
@@ -2365,7 +2357,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "APP_VERSION=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" $PRODUCT_SETTINGS_PATH)\n/usr/libexec/PlistBuddy -c \"Set :PreferenceSpecifiers:9:DefaultValue ${APP_VERSION}\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/Settings.bundle/Root.plist\"\n\nBUILD_NUMBER=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" $PRODUCT_SETTINGS_PATH)\n/usr/libexec/PlistBuddy -c \"Set :PreferenceSpecifiers:10:DefaultValue ${BUILD_NUMBER}\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/Settings.bundle/Root.plist\"\n\n/usr/local/bin/carthage outdated --xcode-warnings 2>/dev/null\n";
+			shellScript = "APP_VERSION=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" $PRODUCT_SETTINGS_PATH)\n/usr/libexec/PlistBuddy -c \"Set :PreferenceSpecifiers:9:DefaultValue ${APP_VERSION}\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/Settings.bundle/Root.plist\"\n\nBUILD_NUMBER=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" $PRODUCT_SETTINGS_PATH)\n/usr/libexec/PlistBuddy -c \"Set :PreferenceSpecifiers:10:DefaultValue ${BUILD_NUMBER}\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/Settings.bundle/Root.plist\"\n\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -2624,6 +2616,7 @@
 			buildSettings = {
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CODE_SIGN_IDENTITY = "";
+				DEVELOPMENT_TEAM = RXNQHKQR2N;
 				ENABLE_TESTABILITY = YES;
 				EXCLUDED_ARCHS = "";
 				GCC_C_LANGUAGE_STANDARD = c99;
@@ -2633,7 +2626,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = /usr/include/uuid;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.3;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.softumeya.Pyonkee;
@@ -2651,14 +2644,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Pyonkee.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 0;
 				DEVELOPMENT_TEAM = RXNQHKQR2N;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -2691,7 +2682,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 2.10;
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = (
 					"-finline-functions",
 					"-falign-functions=16",
@@ -2700,9 +2691,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.softumeya.Pyonkee;
 				"PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]" = com.softumeya.PyonkeeM;
 				PRODUCT_NAME = Pyonkee;
-				PROVISIONING_PROFILE = "578f1558-39e2-4c2c-ad23-c7d1e9c9fda3";
-				PROVISIONING_PROFILE_SPECIFIER = Pyonkee;
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = PyonkeeM;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "SUYCommon/Pyonkee-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -2717,6 +2707,7 @@
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = RXNQHKQR2N;
 				EXCLUDED_ARCHS = "";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 1;
@@ -2725,8 +2716,8 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = /usr/include/uuid;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				ONLY_ACTIVE_ARCH = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.3;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.softumeya.Pyonkee;
 				PRODUCT_NAME = Pyonkee;
@@ -2744,13 +2735,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Pyonkee.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Distribution";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
 				CURRENT_PROJECT_VERSION = 0;
 				DEVELOPMENT_TEAM = RXNQHKQR2N;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -2778,7 +2768,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 2.10;
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = (
 					"-finline-functions",
 					"-fomit-frame-pointer",
@@ -2787,10 +2777,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.softumeya.Pyonkee;
 				"PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]" = com.softumeya.PyonkeeM;
 				PRODUCT_NAME = Pyonkee;
-				PROVISIONING_PROFILE = "d06ce7a1-c5d4-4eca-870a-d74d088ae21a";
+				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				PROVISIONING_PROFILE_SPECIFIER = "Pyonkee-dist";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "PyonkeeM-dist";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "SUYCommon/Pyonkee-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;

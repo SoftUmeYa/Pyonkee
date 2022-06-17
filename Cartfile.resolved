@@ -1,5 +1,5 @@
 github "fpillet/NSLogger" "v1.9.7"
 github "mixedinkey-opensource/MIKMIDI" "1.7.1"
 github "rosberry/TouchVisualizer" "034ab0c4c7396ab98ee8586ceef043ed3ae275cc"
-github "sberrevoets/SDCAlertView" "12.0.1"
+github "sberrevoets/SDCAlertView" "12.0.2"
 github "scalessec/Toast-Swift" "5.0.1"
