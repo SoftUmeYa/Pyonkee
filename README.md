@@ -38,6 +38,9 @@ Before building from Xcode, please install Carthage and run the command below:
 
 ```carthage update --use-xcframeworks```
 
+You need to specify `--no-use-binaries` for MIKMIDI.
+```carthage update MIKMIDI --use-xcframeworks --no-use-binaries```
+
 ### Note on iCloud feature
 
 When attempting to build and run on a physical iPad (not the simulator), you will receive the message:
