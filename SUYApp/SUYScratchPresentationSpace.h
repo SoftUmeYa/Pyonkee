@@ -15,7 +15,7 @@
 #import "ScratchPresentationUITextField.h"
 #import "GSRadioButtonSetController.h"
 
-@interface ScratchIPhonePresentationSpace : UIViewController <UIScrollViewDelegate, UITextFieldDelegate, UIAlertViewDelegate, UIPopoverPresentationControllerDelegate, UIDocumentPickerDelegate, GSRadioButtonSetControllerDelegate> {
+@interface ScratchIPhonePresentationSpace : UIViewController <UIScrollViewDelegate, UITextFieldDelegate, UIPopoverPresentationControllerDelegate, UIDocumentPickerDelegate, GSRadioButtonSetControllerDelegate> {
 
   	NSInteger	characterCounter;
 	NSMutableDictionary *repeatKeyDict;
@@ -93,6 +93,9 @@
 
 - (BOOL) isViewModeBarHidden;
 - (BOOL) isInPresentationMode;
+- (BOOL) isPresentationButtonOn;
 
+- (void) fixLayoutOnWindowResizing;
+- (void) fixSizeOfSubViewsIfNeeded;
 
 @end

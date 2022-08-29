@@ -13,11 +13,16 @@
 #import "SqueakNoOGLIPhoneAppDelegate.h"
 #import "SUYScratchPresentationSpace.h"
 #import "SUYMailComposer.h"
-#import "SUYSensorAccessor.h"
 #import "SUYMicrobitAccessor.h"
 #import	"squeakProxy.h"
 
-@interface ScratchIPhoneAppDelegate : SqueakNoOGLIPhoneAppDelegate <UIAlertViewDelegate> {
+#if (TARGET_OS_MACCATALYST)
+#import "SUYDummySensorAccessor.h"
+#else
+#import "SUYSensorAccessor.h"
+#endif
+
+@interface ScratchIPhoneAppDelegate : SqueakNoOGLIPhoneAppDelegate <UIMenuBuilder>{
 	
 }
 
@@ -27,8 +32,13 @@
 
 @property (nonatomic, retain) dispatch_queue_t defaultSerialQueue;
 @property (nonatomic, retain) SUYMailComposer *mailComposer;
-@property (nonatomic, retain) SUYSensorAccessor *sensorAccessor;
 @property (nonatomic, retain) SUYMicrobitAccessor *microbitAccessor;
+
+#if (TARGET_OS_MACCATALYST)
+@property (nonatomic, retain) SUYDummySensorAccessor *sensorAccessor;
+#else
+@property (nonatomic, retain) SUYSensorAccessor *sensorAccessor;
+#endif
 
 @property (nonatomic, copy) NSString* resourcePathOnLaunch;
 @property (nonatomic) NSUInteger resourseLoadedCount;
@@ -49,6 +59,9 @@
 - (void) pickPhoto: (NSString *)filePath;
 - (void) flushInputString: (NSString *)inputString;
 - (void) restartVm;
+- (void) restoreDisplay;
+- (void) restoreDisplayIfNeeded;
+- (int) catalystMode;
 
 - (void) enterRestart;
 - (void) restartAfterDelay;
@@ -74,7 +87,5 @@
 - (uint) squeakMemoryBytesLeft;
 - (uint) squeakMaxHeapSize;
 - (uint) restartCount;
-
-
 
 @end

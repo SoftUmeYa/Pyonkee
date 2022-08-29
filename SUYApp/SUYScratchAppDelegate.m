@@ -21,11 +21,14 @@
 
 #import "SUYMIDISynth.h"
 
+#import <SDCAlertView/SDCAlertView.h>
+
 static uint sRestartCount = 0;
 
 @implementation ScratchIPhoneAppDelegate
 
 BOOL isRestarting = NO;
+BOOL isUnfocued = NO;
 
 @synthesize	 squeakProxy, presentationSpace, squeakVMIsReady, defaultSerialQueue;
 
@@ -59,13 +62,27 @@ BOOL isRestarting = NO;
 	[super application: application didFinishLaunchingWithOptions: launchOptions];
     
 	SUYLauncherViewController *launcherViewController;
-	if( UIUserInterfaceIdiomPad == UI_USER_INTERFACE_IDIOM() ) {
+	if(SUYUtils.isIPadIdiom) {
 		Class loginViewControlleriPadClass = NSClassFromString(@"SUYLauncherViewController");
 		launcherViewController = [[loginViewControlleriPadClass alloc] initWithNibName:@"LauncherViewController" bundle:[NSBundle mainBundle]];
 	} else {
 		LgWarn(@"iPad only!");
         return NO;
 	}
+    
+#if TARGET_OS_MACCATALYST
+    NSSet<UIScene*> *scenes = UIApplication.sharedApplication.connectedScenes;
+    for (UIScene* scene in scenes) {
+        UIWindowScene* winScene = ((UIWindowScene*)scene);
+        winScene.titlebar.titleVisibility = UITitlebarTitleVisibilityHidden;
+        winScene.titlebar.toolbar = nil;
+        float height = winScene.screen.bounds.size.height;
+        float width = (4 * height / 3) + 30;
+        winScene.sizeRestrictions.minimumSize = CGSizeMake(width, height);
+        //winScene.sizeRestrictions.maximumSize = CGSizeMake(width, height);
+    }
+#endif
+    
 	viewController = [[SUYNavigationController alloc] initWithRootViewController: launcherViewController];
 	[launcherViewController release];
 	
@@ -76,8 +93,13 @@ BOOL isRestarting = NO;
     _mailComposer = [[SUYMailComposer alloc] init];
     _mailComposer.viewController = self.viewController;
     
-    _sensorAccessor = [[SUYSensorAccessor alloc] init];
     _microbitAccessor = [[SUYMicrobitAccessor alloc] init];
+
+#if TARGET_OS_MACCATALYST
+    _sensorAccessor = [[SUYDummySensorAccessor alloc] init];
+#else
+    _sensorAccessor = [[SUYSensorAccessor alloc] init];
+#endif
     
    	[window makeKeyAndVisible];
     isRestarting = NO;
@@ -210,6 +232,14 @@ BOOL isRestarting = NO;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveSqueakVMReady) name:@"squeakVMReady" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveSqueakVMSpaceIsLow) name:@"squeakVMSpaceIsLow" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(errorMailReported) name:@"errorMailReported" object:nil];
+    
+    if(SUYUtils.isOnMac){
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowFocused:) name:@"NSWindowDidBecomeMainNotification" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowUnfocused:) name:@"NSWindowDidResignMainNotification" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowResized:) name:@"NSWindowDidResizeNotification" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deferRestoreWindow:) name:@"NSWindowDidChangeScreenNotification" object:nil];
+    }
+    
 }
 
 - (void)forgetNotifications {
@@ -235,6 +265,48 @@ BOOL isRestarting = NO;
 - (void) errorMailReported {
 	LgWarn(@"! errorMailReported !");
     [self enterRestart];
+}
+
+#pragma mark Callback for Mac
+- (void) windowFocused: (NSNotification *)notification {
+    if(isUnfocued == NO) return;
+    if([self deferRestoreWindow: notification]){
+        isUnfocued = NO;
+    }
+}
+- (void) windowUnfocused: (NSNotification *)notification {
+    if(isUnfocued == YES) return;
+    if([self deferRestoreWindow: notification]){
+        isUnfocued = YES;
+    }
+}
+- (BOOL) deferRestoreWindow: (NSNotification *)notification {
+    if(![self isScratchMainWindow: notification.object]) return NO;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 100* NSEC_PER_MSEC), dispatch_get_main_queue(), ^{
+        [self restoreDisplay];
+    });
+    return YES;
+}
+- (void) windowResized: (NSNotification *)notification {
+    if(![self isScratchMainWindow: notification.object]) return;
+    [self.presentationSpace fixLayoutOnWindowResizing];
+    [self restoreDisplay];
+}
+
+- (BOOL) isScratchMainWindow: (id) object {
+    if([object respondsToSelector:@selector(frame)]){
+        CGSize notifierSize = [object frame].size;
+        CGSize scratchScreenSize = SUYUtils.scratchScreenSize;
+        CGFloat defaultHeight = scratchScreenSize.height;
+        CGFloat defaultWidth = scratchScreenSize.width;
+        //LgInfo(@"%@ > %f %f : %f %f", [object className], defaultHeight, defaultWidth, notifierSize.height, notifierSize.width);
+        if(defaultHeight > notifierSize.height && defaultWidth > notifierSize.width
+           && ([[object className] hasPrefix: @"UINS"] == NO))
+        {
+            return NO;
+        }
+    }
+    return YES;
 }
 
 #pragma mark -
@@ -291,8 +363,7 @@ BOOL isRestarting = NO;
     }
     
     if([presentationSpace isViewModeBarHidden]){
-        UIAlertController *alert = [SUYUtils newInfoAlert: [NSString stringWithFormat: @"%@: %@", NSLocalizedString(title,nil), [resourcePath.lastPathComponent stringByDeletingPathExtension]]];
-        [self.viewController presentViewController:alert animated:YES completion:nil];
+        [SUYUtils alertInfo: [NSString stringWithFormat: @"%@: %@", NSLocalizedString(title,nil), [resourcePath.lastPathComponent stringByDeletingPathExtension]]];
     } else {
         [self openResource:resourcePath];
     }
@@ -347,8 +418,17 @@ BOOL isRestarting = NO;
 
 - (void)  becomeBackground{
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        if(squeakVMIsReady){[squeakProxy becomeBackground];}
+        if(squeakVMIsReady){
+            [squeakProxy restoreDisplay];
+            [squeakProxy becomeBackground];
+        }
     });
+}
+
+- (void) restoreDisplay{
+    if(squeakProxy){
+        [squeakProxy restoreDisplay];
+    }
 }
 
 - (void) restartVm {
@@ -387,6 +467,12 @@ BOOL isRestarting = NO;
     if(squeakProxy){
         [squeakProxy flushInputString: inputString];
     }
+}
+
+#pragma mark-
+#pragma mark ScratchAdapter - Testing
+- (int) catalystMode {
+    return SUYUtils.isOnMac ? 1 : 0;
 }
 
 #pragma mark -
@@ -444,9 +530,9 @@ BOOL isRestarting = NO;
     NSString *reset = NSLocalizedString(@"Reset",nil);
     NSString *email = NSLocalizedString(@"Email",nil);
     
-    UIAlertController *alert = [SUYUtils newAlert: massive title: cough];
+    SDCAlertController *alert = [SUYUtils newAlert: massive title: cough];
     
-    [alert addAction:[UIAlertAction actionWithTitle:reset style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+    [alert addAction:[[SDCAlertAction alloc] initWithTitle:reset style:UIAlertActionStyleDefault handler:^(SDCAlertAction *action) {
         if(isRestarting==NO){
             isRestarting = YES;
             [self enterRestart];
@@ -454,7 +540,7 @@ BOOL isRestarting = NO;
     }]];
     
     if ([SUYUtils canSendMail]){
-        [alert addAction:[UIAlertAction actionWithTitle:email style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {[_mailComposer reportErrorByEmail];}]];
+        [alert addAction:[[SDCAlertAction alloc] initWithTitle:email style:UIAlertActionStyleDefault handler:^(SDCAlertAction *action) {[_mailComposer reportErrorByEmail];}]];
     }
     
     [self.viewController presentViewController:alert animated:YES completion:nil];
@@ -519,6 +605,30 @@ BOOL isRestarting = NO;
 }
 
 #pragma mark -
+#pragma mark Mac Catalyst
+
+- (void)buildMenuWithBuilder:(id<UIMenuBuilder>)builder{
+    [super buildMenuWithBuilder: builder];
+    if(builder.system != [UIMenuSystem mainSystem]) return;
+    
+    NSString* versionStr = [self.squeakApplication.infoPlistInterfaceLogic fullVersionString];
+    UICommand* command = [UICommand commandWithTitle:versionStr image:nil action:@selector(restoreDisplay) propertyList:nil];
+    UIMenu* aboutMenu = [UIMenu menuWithTitle:(NSLocalizedString(@"Version",nil)) children: @[command]];
+    
+    [builder replaceMenuForIdentifier:(UIMenuAbout) withMenu:aboutMenu];
+    [builder removeMenuForIdentifier:(UIMenuServices)];
+    [builder removeMenuForIdentifier:(UIMenuFile)];
+    [builder removeMenuForIdentifier:(UIMenuEdit)];
+    [builder removeMenuForIdentifier:(UIMenuFormat)];
+}
+
+- (void) restoreDisplayIfNeeded {
+    if(SUYUtils.isOnMac){
+        [self restoreDisplay];
+    }
+}
+
+#pragma mark -
 #pragma mark Restart
 
 - (void) enterRestart {
@@ -528,7 +638,7 @@ BOOL isRestarting = NO;
             LgInfo(@"!! RequestRestart !!");
             [[NSNotificationCenter defaultCenter] postNotificationName: @"squeakVmWillReset" object:self];
             [_mailComposer abort];
-            [SUYUtils inform:(NSLocalizedString(@"Cleaning up memory...",nil)) duration:800 for:self];
+            [SUYUtils inform:(NSLocalizedString(@"Cleaning up memory...",nil)) duration:800];
             [self restartAfterDelay];
            }
     );
