@@ -16,6 +16,7 @@
 
 - (void) start;
 - (void) stop;
+- (BOOL) isRunning;
 
 + (SUYLocationManager*) soleInstance;
 

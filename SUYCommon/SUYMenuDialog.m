@@ -7,7 +7,7 @@
 
 #import "SUYMenuDialog.h"
 #import "sq.h"
-
+#import "SUYUtils.h"
 #import "SUYScratchAppDelegate.h"
 
 extern ScratchIPhoneAppDelegate *gDelegateApp;
@@ -20,8 +20,6 @@ extern struct	VirtualMachine* interpreterProxy;
 
 - (SUYMenuDialog *) initTitle: (NSString *) title message: (NSString *) message semaIndex: (NSInteger) si {
     self = [super init];
-   // self.actionsView = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(title, nil) delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
-    
     self.alertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(title, nil) message:nil preferredStyle:UIAlertControllerStyleAlert];
                             
     semaIndex = si;
@@ -40,6 +38,7 @@ extern struct	VirtualMachine* interpreterProxy;
     self.alertController.popoverPresentationController.sourceView = originator;
     self.alertController.popoverPresentationController.sourceRect = originator.frame;
     [gDelegateApp.viewController presentViewController:self.alertController animated:YES completion: ^{
+        [self restoreDisplayIfNeeded];
         UIView* backView = self.alertController.view.superview.subviews[1];
         backView.userInteractionEnabled = YES;
         [backView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget: self action: @selector(alertControllerBackgroundTapped)]];
@@ -74,6 +73,7 @@ extern struct	VirtualMachine* interpreterProxy;
     resultIndex = (int)buttonIndex;
     interpreterProxy->signalSemaphoreWithIndex((int)semaIndex);
     [[NSNotificationCenter defaultCenter] removeObserver: self];
+    [self restoreDisplayIfNeeded];
 }
 
 - (void)abort {
@@ -81,6 +81,10 @@ extern struct	VirtualMachine* interpreterProxy;
     [self.alertController dismissViewControllerAnimated:YES completion:nil];
     [[NSNotificationCenter defaultCenter] removeObserver: self];
     
+}
+
+- (void) restoreDisplayIfNeeded {
+    [gDelegateApp restoreDisplayIfNeeded];
 }
 
 @end

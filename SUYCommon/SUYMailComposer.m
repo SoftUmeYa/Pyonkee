@@ -10,6 +10,8 @@
 #import "SUYMailComposer.h"
 #import "SUYUtils.h"
 
+#import <SDCAlertView/SDCAlertView.h>
+
 @implementation SUYMailComposer
 
 BOOL isComposing = NO;
@@ -22,16 +24,16 @@ BOOL isForErrorReport = NO;
 		case MFMailComposeResultSaved: {
 			NSString *saved = NSLocalizedString(@"Saved",nil);
 			NSString *savedMsg = NSLocalizedString(@"SavedMsg",nil);
-            UIAlertController *alert = [SUYUtils newInfoAlert:savedMsg title:saved];
-            [self.viewController  dismissViewControllerAnimated:YES completion:NULL];
+            SDCAlertController *alert = [SUYUtils newInfoAlert:savedMsg title:saved];
+            [self.viewController dismissViewControllerAnimated:YES completion:NULL];
             [self.viewController presentViewController:alert animated:YES completion:nil];
  			break;
 		}
 		case MFMailComposeResultFailed: {
 			NSString *failed = NSLocalizedString(@"Failed",nil);
 			NSString *failedMsg = NSLocalizedString(@"FailedMsg",nil);
-            UIAlertController *alert = [SUYUtils newInfoAlert:failed title:failedMsg];
-            [self.viewController  dismissViewControllerAnimated:YES completion:NULL];
+            SDCAlertController *alert = [SUYUtils newInfoAlert:failed title:failedMsg];
+            [self.viewController dismissViewControllerAnimated:YES completion:NULL];
             [self.viewController presentViewController:alert animated:YES completion:nil];
 			break;
 		}
@@ -87,7 +89,7 @@ BOOL isForErrorReport = NO;
     NSData *data = [[NSData alloc] initWithContentsOfFile: projectPath];
 	[emailController addAttachmentData: data mimeType: @"application/octet-stream" fileName: projName];
     self.viewController.modalPresentationStyle = UIModalPresentationPageSheet;
-    [self.viewController presentViewController: emailController animated:YES completion:NULL];
+    [self.viewController presentViewController: emailController animated:YES completion:nil];
 }
 
 #pragma mark -

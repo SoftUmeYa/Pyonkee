@@ -5,7 +5,7 @@
 //  Created by Masashi Umezawa on 2020/03/16.
 //
 
-import ToastSwiftFramework
+import Toast
 import UIKit
 
 class SUYToast: NSObject {

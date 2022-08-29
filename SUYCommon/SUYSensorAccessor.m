@@ -10,6 +10,8 @@
 #import "SUYLocationManager.h"
 #import "SUYLightSensor.h"
 
+#import "SUYUtils.h"
+
 static double MaxSensorVal = 10.0;
 
 static inline double Degrees(double radians){
@@ -57,7 +59,7 @@ static inline double Percent(double numerator, double denominator)
 #pragma mark private
 - (double) degFromRad: (double) radians
 {
-    return DegFromRad(radians, self.currentStatusBarOrientation);
+    return DegFromRad(radians, self.currentInterfaceOrientation);
 }
 
 #pragma mark Initialization
@@ -84,6 +86,7 @@ static inline double Percent(double numerator, double denominator)
 
 - (void) start
 {
+    if([SUYUtils isOnMac]) return; // Currently, sensors are not working on Mac Catalyst
     [self performSelectorOnMainThread:@selector(startOnMainThread) withObject: nil waitUntilDone: NO];
 }
 
@@ -143,19 +146,24 @@ static inline double Percent(double numerator, double denominator)
 #pragma mark Testing
 - (BOOL) isRunning
 {
+    if([SUYUtils isOnMac]){
+        return NO; //[[SUYLightSensor soleInstance] isRunning];
+    }
     if(self.motionManager==nil){return NO;}
     return self.motionManager.isDeviceMotionActive;
 }
 
 - (BOOL) isPortrait
 {
-    UIInterfaceOrientation orientation = self.currentStatusBarOrientation;
+    if([SUYUtils isOnMac]) return NO;
+    UIInterfaceOrientation orientation = self.currentInterfaceOrientation;
     return UIInterfaceOrientationIsPortrait(orientation);
 }
 
 - (BOOL) isInverted
 {
-    return IsInverted(self.currentStatusBarOrientation);
+    if([SUYUtils isOnMac]) return NO;
+    return IsInverted(self.currentInterfaceOrientation);
 }
 
 #pragma mark Mode Accessing

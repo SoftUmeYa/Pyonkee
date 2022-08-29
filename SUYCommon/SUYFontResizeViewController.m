@@ -47,6 +47,7 @@ bool scriptsWereRunning = NO;
     if(fontScaleUpdated && scriptsWereRunning){
         [[self appDelegate] shoutGo];
     }
+    [[self appDelegate].presentationSpace fixSizeOfSubViewsIfNeeded];
 }
 
 - (void)didReceiveMemoryWarning

@@ -11,9 +11,12 @@
 
 #import "SUYAlertDialog.h"
 #import "sq.h"
+#import "SUYScratchAppDelegate.h"
 
+#import <SDCAlertView/SDCAlertView.h>
+
+extern ScratchIPhoneAppDelegate *gDelegateApp;
 extern struct	VirtualMachine* interpreterProxy;
-
 
 @interface SUYAlertDialog () {
     NSInteger yesIndex;
@@ -22,7 +25,7 @@ extern struct	VirtualMachine* interpreterProxy;
     NSInteger semaIndex;
 }
 
-@property (nonatomic) UIAlertView* alertView;
+@property (nonatomic) SDCAlertController* alertController;
 
 @property (nonatomic) NSString* yes;
 @property (nonatomic) NSString* no;
@@ -44,77 +47,85 @@ extern struct	VirtualMachine* interpreterProxy;
 }
 
 - (instancetype) initTitle: (NSString *) title message: (NSString *) message yes: (BOOL) yesFlag no: (BOOL) noFlag 
-						  okay: (BOOL) okFlag cancel: (BOOL) cancelFlag semaIndex: (NSInteger) si {
+                      okay: (BOOL) okFlag cancel: (BOOL) cancelFlag semaIndex: (NSInteger) si {
     self = [super init];
     [self commonInit];
-	self.alertView = [[UIAlertView alloc] initWithTitle: title message: message delegate: self cancelButtonTitle: (cancelFlag ? _cancel : nil) otherButtonTitles: nil];
-	yesIndex = yesFlag ? [self.alertView addButtonWithTitle: _yes] : -1;
-	noIndex = noFlag ? [self.alertView addButtonWithTitle: _no] : -1;
-	okIndex = okFlag ? [self.alertView addButtonWithTitle: _ok] : -1;
-	semaIndex = si;
-    [self.alertView show];
-	return self;
+    self.alertController = [[SDCAlertController alloc] initWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+    semaIndex = si;
+    
+    if(yesFlag){[self addButtonWithTitle:_yes resultIndex: YES];}
+    if(noFlag){[self addButtonWithTitle:_no resultIndex: NO];}
+    if(okFlag){[self addButtonWithTitle:_ok resultIndex: YES];}
+    if(cancelFlag){[self addCancelButton];}
+    
+    [self open];
+    
+    return self;
 }
 
 - (instancetype) initForRequestWithTitle: (NSString *) title message: (NSString *) message initialAnswer: (NSString *) initialAnswer cancel: (BOOL) cancelFlag semaIndex: (NSInteger) si {
-    NSString *cancel = NSLocalizedString(@"Cancel",nil);
     self = [super init];
     [self commonInit];
-    self.alertView = [[UIAlertView alloc] initWithTitle: title message: message delegate: self cancelButtonTitle: (cancelFlag ? cancel : nil) otherButtonTitles: nil];
-    self.alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
-    yesIndex = noIndex = -1;
-    self.alertView.cancelButtonIndex = 1;
-    UITextField *textField = [self.alertView textFieldAtIndex:0];
-    [textField setText:initialAnswer];
-    textField.delegate = self;
-    okIndex = [self.alertView addButtonWithTitle: _ok];
+    self.alertController = [[SDCAlertController alloc] initWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
     semaIndex = si;
-    [self.alertView show];
+    
+    [self.alertController addTextFieldWithHandler:^(UITextField *textField) {
+        textField.text = initialAnswer;
+    }];
+    SDCAlertAction * action = [[SDCAlertAction alloc] initWithTitle:_ok style:UIAlertActionStyleDefault handler:^(SDCAlertAction * ac) {
+        UITextField *textField = self.alertController.textFields.firstObject;
+        _answerString = textField.text;
+        [self clickedButtonAtIndex:YES];
+    }];
+    [self.alertController addAction:action];
+    if(cancelFlag){[self addCancelButton];}
+    
+    [self open];
+    
     return self;
+}
+
+#pragma mark - Opening
+
+- (void) open {
+    [gDelegateApp.viewController presentViewController:self.alertController animated:YES completion: ^{
+    }];
 }
 
 #pragma mark - Callback
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    
-    UITextField *textField;
-    if(self.alertView.alertViewStyle == UIAlertViewStylePlainTextInput){
-        textField = [self.alertView textFieldAtIndex:0];
-    }
-    
-    if(textField){
-        textField.delegate = nil;
-    }
-    self.alertView = nil;
-    
-	if (alertView.cancelButtonIndex == buttonIndex) {
-		_buttonPicked = -1;
-	}
-	if (yesIndex == buttonIndex) {
-		_buttonPicked = 1;
-	}
-	if (noIndex == buttonIndex) {
-		_buttonPicked = 0;
-	}
-	if (okIndex == buttonIndex) {
-		_buttonPicked = 1;
-        _answerString = [textField text];
-	}
-	interpreterProxy->signalSemaphoreWithIndex((int)semaIndex);
+- (void) addButtonWithTitle: (NSString *) buttonString resultIndex: (NSInteger) index{
+    SDCAlertAction * action = [[SDCAlertAction alloc] initWithTitle:buttonString style:SDCAlertActionStyleNormal
+                                                    handler:^(SDCAlertAction * ac) {
+        [self clickedButtonAtIndex:index];
+    }];
+    [self.alertController addAction:action];
+}
+
+- (void) addCancelButton {
+    SDCAlertAction * cancelAction = [[SDCAlertAction alloc] initWithTitle:_cancel style:SDCAlertActionStylePreferred
+                                                          handler:^(SDCAlertAction * ac) {
+        [self clickedButtonAtIndex:-1];}
+    ];
+    [self.alertController addAction:cancelAction];
+}
+
+- (void)clickedButtonAtIndex:(NSInteger)buttonIndex {
+    _buttonPicked = (int)buttonIndex;
+    interpreterProxy->signalSemaphoreWithIndex((int)semaIndex);
     [[NSNotificationCenter defaultCenter] removeObserver: self];
 }
 
 - (void)abort {
-    [self.alertView dismissWithClickedButtonIndex:self.alertView.cancelButtonIndex animated:NO];
+    [self clickedButtonAtIndex: -1];
+    [self.alertController dismissViewControllerAnimated:YES completion:nil];
     [[NSNotificationCenter defaultCenter] removeObserver: self];
-
+    
 }
 
-- (BOOL)textFieldShouldReturn:(UITextField *)alertTextField {
-    if(self.alertView){
-        [alertTextField resignFirstResponder];
-    }
-    return YES;
+- (void)alertControllerBackgroundTapped
+{
+    [self abort];
 }
 
 @end

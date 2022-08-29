@@ -20,18 +20,26 @@
 
 #import "SUYUtils.h"
 
+#import <SDCAlertView/SDCAlertView.h>
+
 @implementation SUYUtils
 
 #pragma mark Testing
 
-+ (BOOL) isIPad
++ (BOOL) isIPadIdiom
 {
-    return (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad);
+    return [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad;
 }
 + (BOOL) isRetina
 {
     LgInfo(@"isRetina: %f", [[UIScreen mainScreen] scale]);
     return ([UIScreen instancesRespondToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2.0);
+}
++ (BOOL) isOnMac
+{
+    BOOL isiOSAppOnMac = OVER_IOS14 && [[NSProcessInfo processInfo] isiOSAppOnMac];
+    BOOL isMacCatalyst = TARGET_OS_MACCATALYST;
+    return (isiOSAppOnMac || isMacCatalyst);
 }
 + (BOOL) canSendMail
 {
@@ -186,6 +194,16 @@
     return view.bounds.size;
 }
 
++ (UIInterfaceOrientation) interfaceOrientation {
+    if([self isOnMac]){
+        return UIInterfaceOrientationLandscapeLeft;
+    }
+    if(OVER_IOS13){
+        return [UIApplication sharedApplication].windows.firstObject.windowScene.interfaceOrientation;
+    }
+    return [[UIApplication sharedApplication] statusBarOrientation];
+}
+
 #pragma mark Defaults
 
 + (Class) squeakUIViewClass{
@@ -209,16 +227,18 @@
 {
     CGRect screenRect = [UIScreen mainScreen].bounds;
     CGSize screenSize = screenRect.size;
-    CGFloat height = screenSize.height;
+    CGFloat screenHeight = screenSize.height;
     
     if (OVER_IOS11) {
         UIWindow *window = UIApplication.sharedApplication.keyWindow;
-        if (@available(iOS 11.0, *)) {
-            CGFloat bottomPadding = window.safeAreaInsets.bottom;
-            height = height - (bottomPadding / 2);
+        CGFloat bottomPadding = window.safeAreaInsets.bottom;
+        screenHeight = screenHeight - bottomPadding;
+        if (TARGET_OS_MACCATALYST){
+            CGFloat windowHeight = window.bounds.size.height - bottomPadding;
+            return MAX(windowHeight, screenHeight);
         }
     }
-    return MIN(screenSize.width, height);
+    return MIN(screenSize.width, screenHeight);
 }
 
 + (NSString *)applicationSupportDirectory {
@@ -356,15 +376,15 @@
 
 #pragma mark Alert
 
-+ (void) inform:(NSString*)message duration:(int)msecs for:(id)dele {
++ (void) inform:(NSString*)message duration:(int)msecs {
     dispatch_async (
         dispatch_get_main_queue(),
         ^{
-            UIAlertView *alert = [[UIAlertView alloc]
-                                    initWithTitle:@"" message: message delegate: dele cancelButtonTitle:nil otherButtonTitles:nil];
-            [alert show];
+            SDCAlertController *alert = [[SDCAlertController alloc]
+                                    initWithTitle:message message: @"" preferredStyle:SDCAlertControllerStyleAlert];
+            [alert presentAnimated:NO completion:nil];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, msecs* NSEC_PER_MSEC), dispatch_get_main_queue(), ^{
-               [alert dismissWithClickedButtonIndex:0 animated:NO];
+                [alert dismissViewControllerAnimated:NO completion:nil];
             });
          }
     );
@@ -372,29 +392,24 @@
 
 + (void) alertWarning: (NSString*) msg
 {
-    [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Warning",nil)
-                                message:NSLocalizedString(msg,nil)
-                               delegate:nil
-                      cancelButtonTitle:NSLocalizedString(@"OK",nil)
-                      otherButtonTitles:nil] show];
+    SDCAlertController *alert = [self newAlert:NSLocalizedString(msg,nil) title: NSLocalizedString(@"Warning",nil)];
+    [alert addAction:[[SDCAlertAction alloc] initWithTitle:NSLocalizedString(@"OK",nil) style:SDCAlertActionStylePreferred handler:nil]];
+    [alert presentAnimated:NO completion:nil];
 }
 
-+ (UIAlertController*) newAlert:(NSString*)message title: (NSString*)title{
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
++ (void) alertInfo:(NSString*)message {
+    SDCAlertController *alert = [self newInfoAlert:message title:@""];
+    [alert presentAnimated:NO completion:nil];
+}
+
++ (SDCAlertController*) newAlert:(NSString*)message title: (NSString*)title{
+    SDCAlertController *alertController = [[SDCAlertController alloc] initWithTitle:title message:message preferredStyle:SDCAlertControllerStyleAlert];
     return alertController;
 }
 
-+ (UIAlertController*) newAlert:(NSString*)message {
-    return [self newAlert:message title: @""];
-}
-
-+ (UIAlertController*) newInfoAlert:(NSString*)message {
-    return [self newInfoAlert:message title:@""];
-}
-
-+ (UIAlertController*) newInfoAlert:(NSString*)message title: (NSString*)title {
-    UIAlertController *alert = [self newAlert:message title: title];
-    [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"OK",nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {}]];
++ (SDCAlertController*) newInfoAlert:(NSString*)message title: (NSString*)title {
+    SDCAlertController *alert = [self newAlert:message title: title];
+    [alert addAction:[[SDCAlertAction alloc] initWithTitle:NSLocalizedString(@"OK",nil) style:SDCAlertActionStylePreferred handler:nil]];
     return alert;
 }
 

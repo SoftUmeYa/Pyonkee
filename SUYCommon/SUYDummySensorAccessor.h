@@ -1,16 +1,15 @@
 //
-//  SUYSensorAccessor.h
-//  ScratchOnIPad
+//  SUYDummySensorAccessor.h
+//  Scratch
 //
-//  Created by Masashi UMEZAWA on 2015/06/05.
-//
+//  Created by 梅澤真史 on 2022/08/25.
 //
 
 #import <Foundation/Foundation.h>
-#import <CoreMotion/CoreMotion.h>
-#import <CoreLocation/CoreLocation.h>
 
-@interface SUYSensorAccessor : NSObject <CLLocationManagerDelegate>
+NS_ASSUME_NONNULL_BEGIN
+
+@interface SUYDummySensorAccessor : NSObject
 
 @property (nonatomic) UIInterfaceOrientation currentInterfaceOrientation;
 
@@ -42,3 +41,5 @@
 -(int) runningMode;
 
 @end
+
+NS_ASSUME_NONNULL_END
