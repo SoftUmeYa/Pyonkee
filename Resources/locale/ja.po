@@ -2269,3 +2269,25 @@ msgstr "mb:ボタン A"
 msgid "mb:buttonB"
 msgstr "mb:ボタン B"
 
+############################################
+# # micro:bit files
+############################################
+
+msgid "mb-Scratch3CompatBlocks"
+msgstr "mb-Scratch3互換ブロック"
+
+msgid "mb-Scratch3CompatBlocks.hex"
+msgstr "mb-Scratch3互換ブロック.hex"
+
+msgid "mb-RedBoard"
+msgstr "mb-赤ボード"
+
+msgid "mb-RedBoard.hex"
+msgstr "mb-赤ボード.hex"
+
+msgid "mb-RedBoardBME280"
+msgstr "mb-赤ボードBME280"
+
+msgid "mb-RedBoardBME280.hex"
+msgstr "mb-赤ボードBME280.hex"
+

@@ -16,11 +16,11 @@ h1 {
 .videoCell{margin-top: 32px; margin-left:0px; margin-right: 0px}
 .videoPlayer{
 	width: 100%;
-	height: 637px;
+	height: 100%;
 }
 
 .dialog-width-full {
-    width: 960px!important;
+    width: 90%!important;
  }
 
 .centered{text-align:center;}

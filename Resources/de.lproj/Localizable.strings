@@ -70,3 +70,6 @@
 "Release the connection" = "Lösen Sie die Verbindung";
 "Stop interacting with micro:bit" = "Interaktion mit micro:bit beenden";
 
+/*Pyonkee-mac*/
+
+"Version" = "Version";
