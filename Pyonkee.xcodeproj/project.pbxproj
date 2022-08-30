@@ -38,10 +38,10 @@
 		85397367265F774500F93F69 /* SUYMicrobitUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85397362265F774500F93F69 /* SUYMicrobitUtils.swift */; };
 		85397368265F774500F93F69 /* SUYMicrobitAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 85397364265F774500F93F69 /* SUYMicrobitAccessor.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		85397369265F774500F93F69 /* SUYMicrobitDevicesPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = 85397365265F774500F93F69 /* SUYMicrobitDevicesPopup.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		85397371265F775D00F93F69 /* SUYInternalMIDISynth.m in Sources */ = {isa = PBXBuildFile; fileRef = 8539736B265F775D00F93F69 /* SUYInternalMIDISynth.m */; };
-		85397372265F775D00F93F69 /* SUYMIDISynth.m in Sources */ = {isa = PBXBuildFile; fileRef = 8539736C265F775D00F93F69 /* SUYMIDISynth.m */; };
-		85397373265F775D00F93F69 /* SUYExternalMIDISynth.m in Sources */ = {isa = PBXBuildFile; fileRef = 8539736D265F775D00F93F69 /* SUYExternalMIDISynth.m */; };
-		85397379265F777800F93F69 /* SUYScratchPresentationSpace.m in Sources */ = {isa = PBXBuildFile; fileRef = 85397375265F777800F93F69 /* SUYScratchPresentationSpace.m */; };
+		85397371265F775D00F93F69 /* SUYInternalMIDISynth.m in Sources */ = {isa = PBXBuildFile; fileRef = 8539736B265F775D00F93F69 /* SUYInternalMIDISynth.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		85397372265F775D00F93F69 /* SUYMIDISynth.m in Sources */ = {isa = PBXBuildFile; fileRef = 8539736C265F775D00F93F69 /* SUYMIDISynth.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		85397373265F775D00F93F69 /* SUYExternalMIDISynth.m in Sources */ = {isa = PBXBuildFile; fileRef = 8539736D265F775D00F93F69 /* SUYExternalMIDISynth.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		85397379265F777800F93F69 /* SUYScratchPresentationSpace.m in Sources */ = {isa = PBXBuildFile; fileRef = 85397375265F777800F93F69 /* SUYScratchPresentationSpace.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		8539737A265F777800F93F69 /* SUYScratchAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 85397378265F777800F93F69 /* SUYScratchAppDelegate.m */; };
 		85397383265F780400F93F69 /* MicrobitSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8539737C265F780400F93F69 /* MicrobitSelector.swift */; };
 		85397384265F780400F93F69 /* MicrobitEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8539737D265F780400F93F69 /* MicrobitEnums.swift */; };
@@ -58,6 +58,11 @@
 		8541CA69190002450019163E /* LFCGzipUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 8541CA68190002450019163E /* LFCGzipUtility.m */; };
 		854F08E01B2A9C4C00E7A6A9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 854F08DF1B2A9C4C00E7A6A9 /* CoreLocation.framework */; };
 		854F08EC1B2B280000E7A6A9 /* SUYLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 854F08EB1B2B280000E7A6A9 /* SUYLocationManager.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		855077D928BE523E001F0C2A /* SUYUIButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 855077D728BE523E001F0C2A /* SUYUIButton.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		855077DC28BE5268001F0C2A /* SUYDummySensorAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 855077DB28BE5268001F0C2A /* SUYDummySensorAccessor.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		855077E228BE53FF001F0C2A /* SDCAlertView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 853EC49928BD0AA900D07404 /* SDCAlertView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		855077E428BE5424001F0C2A /* MIKMIDI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 853EC4A528BD0AB700D07404 /* MIKMIDI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		855077E928BE5991001F0C2A /* LoggerClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 855077E828BE5991001F0C2A /* LoggerClient.m */; };
 		855A8B321A871C2700F9F1C8 /* SUYNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 855A8B311A871C2700F9F1C8 /* SUYNavigationController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		8561D56619587F80008FDA45 /* GSRadioButtonSetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8561D56519587F80008FDA45 /* GSRadioButtonSetController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		8561D56D195887D0008FDA45 /* quarterMode-on.png in Resources */ = {isa = PBXBuildFile; fileRef = 8561D567195887D0008FDA45 /* quarterMode-on.png */; };
@@ -328,6 +333,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				855077E428BE5424001F0C2A /* MIKMIDI.framework in Embed Frameworks */,
+				855077E228BE53FF001F0C2A /* SDCAlertView.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -417,6 +424,14 @@
 		854F08DF1B2A9C4C00E7A6A9 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		854F08EA1B2B280000E7A6A9 /* SUYLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUYLocationManager.h; sourceTree = "<group>"; };
 		854F08EB1B2B280000E7A6A9 /* SUYLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUYLocationManager.m; sourceTree = "<group>"; };
+		855077D128BE520F001F0C2A /* Pyonkee-Mac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Pyonkee-Mac.entitlements"; sourceTree = "<group>"; };
+		855077D728BE523E001F0C2A /* SUYUIButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUYUIButton.m; sourceTree = "<group>"; };
+		855077D828BE523E001F0C2A /* SUYUIButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUYUIButton.h; sourceTree = "<group>"; };
+		855077DA28BE5268001F0C2A /* SUYDummySensorAccessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUYDummySensorAccessor.h; sourceTree = "<group>"; };
+		855077DB28BE5268001F0C2A /* SUYDummySensorAccessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUYDummySensorAccessor.m; sourceTree = "<group>"; };
+		855077E628BE5991001F0C2A /* LoggerClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoggerClient.h; sourceTree = "<group>"; };
+		855077E728BE5991001F0C2A /* LoggerCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoggerCommon.h; sourceTree = "<group>"; };
+		855077E828BE5991001F0C2A /* LoggerClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoggerClient.m; sourceTree = "<group>"; };
 		855A8B301A871C2700F9F1C8 /* SUYNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUYNavigationController.h; sourceTree = "<group>"; };
 		855A8B311A871C2700F9F1C8 /* SUYNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUYNavigationController.m; sourceTree = "<group>"; };
 		8561D56419587F80008FDA45 /* GSRadioButtonSetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSRadioButtonSetController.h; sourceTree = "<group>"; };
@@ -919,6 +934,7 @@
 			isa = PBXGroup;
 			children = (
 				85FD5BFE1E92314500B98DCB /* Pyonkee.entitlements */,
+				855077D128BE520F001F0C2A /* Pyonkee-Mac.entitlements */,
 				941D1C9A0E696FC7005B77B3 /* Entitlements.plist */,
 				9412CAB20E6C037B00DB8625 /* Settings.bundle */,
 				29B97315FDCFA39411CA2CEA /* Classes */,
@@ -1122,6 +1138,16 @@
 			path = LFCGzipUtility;
 			sourceTree = "<group>";
 		};
+		855077E528BE5991001F0C2A /* NSLogger */ = {
+			isa = PBXGroup;
+			children = (
+				855077E628BE5991001F0C2A /* LoggerClient.h */,
+				855077E728BE5991001F0C2A /* LoggerCommon.h */,
+				855077E828BE5991001F0C2A /* LoggerClient.m */,
+			);
+			path = NSLogger;
+			sourceTree = "<group>";
+		};
 		857B0680191BF1C000C8CCB1 /* backgrounds */ = {
 			isa = PBXGroup;
 			children = (
@@ -1146,6 +1172,7 @@
 			children = (
 				853EC49A28BD0AB700D07404 /* MIKMIDI.xcodeproj */,
 				853EC49428BD0AA900D07404 /* SDCAlertView.xcodeproj */,
+				855077E528BE5991001F0C2A /* NSLogger */,
 				8539737B265F77E100F93F69 /* microbit-swift */,
 				852668DF1A18BB2400C77BDA /* ImageEditor */,
 				85C4DC581958756000F48ACB /* GSRadioButtonSetController */,
@@ -1224,6 +1251,10 @@
 		85F8F78818F6856100948A68 /* SUYCommon */ = {
 			isa = PBXGroup;
 			children = (
+				855077DA28BE5268001F0C2A /* SUYDummySensorAccessor.h */,
+				855077DB28BE5268001F0C2A /* SUYDummySensorAccessor.m */,
+				855077D828BE523E001F0C2A /* SUYUIButton.h */,
+				855077D728BE523E001F0C2A /* SUYUIButton.m */,
 				858A5882198351480082F48E /* SUYAlertDialog.h */,
 				858A5883198351480082F48E /* SUYAlertDialog.m */,
 				85DD43BB18F3CB190030B27F /* SUYLauncherViewController.h */,
@@ -2431,7 +2462,8 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "APP_VERSION=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" $PRODUCT_SETTINGS_PATH)\n/usr/libexec/PlistBuddy -c \"Set :PreferenceSpecifiers:9:DefaultValue ${APP_VERSION}\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/Settings.bundle/Root.plist\"\n\nBUILD_NUMBER=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" $PRODUCT_SETTINGS_PATH)\n/usr/libexec/PlistBuddy -c \"Set :PreferenceSpecifiers:10:DefaultValue ${BUILD_NUMBER}\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/Settings.bundle/Root.plist\"\n\n";
+			shellScript = "
+";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -2496,6 +2528,7 @@
 				85EE048C1B37DA6700EA3F1F /* SUYLightSensor.m in Sources */,
 				94E65A3F0DDD053900358328 /* jcmainct.c in Sources */,
 				94E65A400DDD053900358328 /* jcmarker.c in Sources */,
+				855077D928BE523E001F0C2A /* SUYUIButton.m in Sources */,
 				94E65A410DDD053900358328 /* jcmaster.c in Sources */,
 				94E65A420DDD053900358328 /* jcomapi.c in Sources */,
 				94E65A430DDD053900358328 /* jcparam.c in Sources */,
@@ -2530,6 +2563,7 @@
 				85DBC50419546FB6000AC218 /* SUYFontResizeViewController.m in Sources */,
 				85397386265F780400F93F69 /* MicrobitDelegates.swift in Sources */,
 				94E65A560DDD053900358328 /* jdpostct.c in Sources */,
+				855077DC28BE5268001F0C2A /* SUYDummySensorAccessor.m in Sources */,
 				94E65A570DDD053900358328 /* jdsample.c in Sources */,
 				8528145C241FBD30000B7753 /* SUYToast.swift in Sources */,
 				852668E51A18BB2400C77BDA /* HFImageEditorFrameView.m in Sources */,
@@ -2606,6 +2640,7 @@
 				9484F8D410B0E04E0038BDC0 /* sqMacSecurity.c in Sources */,
 				9484F8DB10B0E09B0038BDC0 /* sqiPhoneScreenAndWindow.m in Sources */,
 				9484F8DC10B0E0C60038BDC0 /* sqSqueakIPhoneApplication+attributes.m in Sources */,
+				855077E928BE5991001F0C2A /* LoggerClient.m in Sources */,
 				9484F8DD10B0E0C70038BDC0 /* sqSqueakIPhoneApplication+events.m in Sources */,
 				85F1AB17213D31BE0087ABA9 /* SUYAudioFileConverter.m in Sources */,
 				9484F8DE10B0E0C90038BDC0 /* sqSqueakIPhoneApplication+imageReadWrite.m in Sources */,
@@ -2701,6 +2736,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = /usr/include/uuid;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.3;
+				MACOSX_DEPLOYMENT_TARGET = 12.3;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.softumeya.Pyonkee;
@@ -2718,10 +2754,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Pyonkee.entitlements;
+				"CODE_SIGN_ENTITLEMENTS[sdk=macosx*]" = "Pyonkee-Mac.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 0;
+				CURRENT_PROJECT_VERSION = 19;
 				DEVELOPMENT_TEAM = RXNQHKQR2N;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2750,12 +2787,13 @@
 					/usr/include/uuid,
 				);
 				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.3;
+				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.10;
+				MARKETING_VERSION = 2.24;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = (
 					"-finline-functions",
@@ -2767,7 +2805,7 @@
 				PRODUCT_NAME = Pyonkee;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "SUYCommon/Pyonkee-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 2;
@@ -2791,6 +2829,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = /usr/include/uuid;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.3;
+				MACOSX_DEPLOYMENT_TARGET = 12.3;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.softumeya.Pyonkee;
@@ -2809,10 +2848,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Pyonkee.entitlements;
+				"CODE_SIGN_ENTITLEMENTS[sdk=macosx*]" = "Pyonkee-Mac.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 0;
+				CURRENT_PROJECT_VERSION = 19;
 				DEVELOPMENT_TEAM = RXNQHKQR2N;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2836,13 +2876,14 @@
 					/usr/include/uuid,
 				);
 				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.3;
+				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.10;
-				ONLY_ACTIVE_ARCH = YES;
+				MARKETING_VERSION = 2.24;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = (
 					"-finline-functions",
 					"-fomit-frame-pointer",
@@ -2854,7 +2895,7 @@
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "SUYCommon/Pyonkee-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 2;
@@ -2873,7 +2914,7 @@
 				9480CD160E5C7D9300C32178 /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = Distribution;
 		};
 		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Pyonkee" */ = {
 			isa = XCConfigurationList;
@@ -2882,7 +2923,7 @@
 				9480CD150E5C7D9300C32178 /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = Distribution;
 		};
 /* End XCConfigurationList section */
 
