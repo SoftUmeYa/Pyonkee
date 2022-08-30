@@ -2737,7 +2737,7 @@
 				HEADER_SEARCH_PATHS = /usr/include/uuid;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.3;
 				MACOSX_DEPLOYMENT_TARGET = 12.3;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.softumeya.Pyonkee;
 				PRODUCT_NAME = Pyonkee;
@@ -2761,10 +2761,7 @@
 				CURRENT_PROJECT_VERSION = 19;
 				DEVELOPMENT_TEAM = RXNQHKQR2N;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 1;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2809,7 +2806,6 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "SUYCommon/Pyonkee-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 2;
-				VALID_ARCHS = "$(ARCHS_STANDARD)";
 			};
 			name = Debug;
 		};
@@ -2830,7 +2826,7 @@
 				HEADER_SEARCH_PATHS = /usr/include/uuid;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.3;
 				MACOSX_DEPLOYMENT_TARGET = 12.3;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.softumeya.Pyonkee;
 				PRODUCT_NAME = Pyonkee;
@@ -2855,10 +2851,7 @@
 				CURRENT_PROJECT_VERSION = 19;
 				DEVELOPMENT_TEAM = RXNQHKQR2N;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_OPTIMIZATION_LEVEL = 1;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = ScratchOnIPad_Prefix.pch;
@@ -2900,7 +2893,6 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
-				VALID_ARCHS = "$(ARCHS_STANDARD)";
 			};
 			name = Distribution;
 		};
