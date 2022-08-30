@@ -333,8 +333,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				855077E428BE5424001F0C2A /* MIKMIDI.framework in Embed Frameworks */,
 				855077E228BE53FF001F0C2A /* SDCAlertView.framework in Embed Frameworks */,
+				855077E428BE5424001F0C2A /* MIKMIDI.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2726,6 +2726,8 @@
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEVELOPMENT_TEAM = RXNQHKQR2N;
+				ENABLE_APP_SANDBOX = NO;
+				"ENABLE_APP_SANDBOX[sdk=macosx*]" = YES;
 				ENABLE_TESTABILITY = YES;
 				EXCLUDED_ARCHS = "";
 				GCC_C_LANGUAGE_STANDARD = c99;
@@ -2736,7 +2738,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = /usr/include/uuid;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.3;
-				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.softumeya.Pyonkee;
@@ -2760,6 +2762,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 19;
 				DEVELOPMENT_TEAM = RXNQHKQR2N;
+				ENABLE_APP_SANDBOX = YES;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -2790,6 +2793,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 2.24;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = (
@@ -2816,6 +2820,8 @@
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = RXNQHKQR2N;
+				ENABLE_APP_SANDBOX = NO;
+				"ENABLE_APP_SANDBOX[sdk=macosx*]" = YES;
 				EXCLUDED_ARCHS = "";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 1;
@@ -2825,7 +2831,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = /usr/include/uuid;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.3;
-				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.softumeya.Pyonkee;
@@ -2850,6 +2856,7 @@
 				COPY_PHASE_STRIP = YES;
 				CURRENT_PROJECT_VERSION = 19;
 				DEVELOPMENT_TEAM = RXNQHKQR2N;
+				ENABLE_APP_SANDBOX = YES;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_OPTIMIZATION_LEVEL = 1;
@@ -2875,6 +2882,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 2.24;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = (
