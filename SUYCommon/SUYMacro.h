@@ -4,7 +4,7 @@
 //
 //  Created by Masashi UMEZAWA on 2014/04/10.
 
-#import <NSLogger/LoggerClient.h>
+#import "LoggerClient.h"
 
 // NSLogger
 #ifdef SUY_DEBUG
@@ -62,4 +62,7 @@
 #define OVER_IOS10 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 10)
 #define OVER_IOS11 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 11)
 #define OVER_IOS13 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 13)
+#define OVER_IOS14 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 14)
+#define OVER_IOS15 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 15)
 
+#define BEFORE_IOS14 ([[[UIDevice currentDevice] systemVersion] floatValue] < 14)

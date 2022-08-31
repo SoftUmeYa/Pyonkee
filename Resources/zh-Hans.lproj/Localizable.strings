@@ -54,3 +54,7 @@
 "Disconnected" = "断线";
 "Release the connection" = "释放连接";
 "Stop interacting with micro:bit" = "停止与micro:bit互动";
+
+/*Pyonkee-mac*/
+
+"Version" = "版本";

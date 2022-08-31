@@ -42,7 +42,7 @@ such third-party acknowledgments.
 #import <Foundation/Foundation.h>
 #import "sqSqueakMainApplication.h"
 
-@interface sqSqueakAppDelegate : NSObject {
+@interface sqSqueakAppDelegate : UIResponder {
 	sqSqueakMainApplication *squeakApplication;
 	NSThread *squeakThread;
 	

@@ -59,8 +59,7 @@
             if(image){
                 [self.parent openCropper: image];
             } else {
-                UIAlertController *alert = [SUYUtils newInfoAlert: (NSLocalizedString(@"Cannot download",nil))];
-                [self presentViewController:alert animated:YES completion:nil];
+                [SUYUtils alertInfo: (NSLocalizedString(@"Cannot download",nil))];
             }
         });
     }];

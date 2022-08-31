@@ -9,9 +9,12 @@
 #import <Foundation/Foundation.h>
 #import <MessageUI/MFMailComposeViewController.h>
 
+#import <SDCAlertView/SDCAlertView.h>
+
 @interface SUYUtils : NSObject
-+ (BOOL) isIPad;
++ (BOOL) isIPadIdiom;
 + (BOOL) isRetina;
++ (BOOL) isOnMac;
 + (BOOL) canSendMail;
 + (UIImage *)upsideDownImage:(UIImage*)origImage;
 + (UIImage *)rotateRightImage:(UIImage*)origImage;
@@ -24,6 +27,7 @@
 + (CGSize) rootViewSizeOf: (UIView *)view;
 + (CGSize) scratchScreenSize;
 + (float) scratchScreenZoomScale;
++ (UIInterfaceOrientation) interfaceOrientation;
 + (Class) squeakUIViewClass;
 + (NSString *)applicationSupportDirectory;
 + (NSString *)tempDirectory;
@@ -33,12 +37,11 @@
 + (NSString *)currentCountry;
 + (CGFloat) landscapeScreenHeight;
 + (NSString *)currentLanguage;
-+ (void) inform:(NSString*)message duration:(int)seconds for:(id)dele;
++ (void) inform:(NSString*)message duration:(int)seconds;
 + (void) alertWarning: (NSString*) msg;
-+ (UIAlertController*) newAlert:(NSString*)message title: (NSString*)title;
-+ (UIAlertController*) newAlert:(NSString*)message;
-+ (UIAlertController*) newInfoAlert:(NSString*)message;
-+ (UIAlertController*) newInfoAlert:(NSString*)message title: (NSString*)title;
++ (void) alertInfo: (NSString*) msg;
++ (SDCAlertController*) newAlert:(NSString*)message title: (NSString*)title;
++ (SDCAlertController*) newInfoAlert:(NSString*)message title: (NSString*)title;
 + (void) printMemStats;
 + (NSArray*) supportedUtis;
 + (void) showCursor:(int)cursorCode;

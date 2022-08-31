@@ -69,3 +69,7 @@
 "Disconnected" = "Débranché";
 "Release the connection" = "Libérer la connexion";
 "Stop interacting with micro:bit" = "Arrêtez d'interagir avec micro:bit";
+
+/*Pyonkee-mac*/
+
+"Version" = "Version";

@@ -233,7 +233,10 @@
 #pragma mark - Handle Video Orientation
 
 - (AVCaptureVideoOrientation)currentVideoOrientationByUI {
-    UIInterfaceOrientation uiOrientation = [[UIApplication sharedApplication] statusBarOrientation];
+    if(SUYUtils.isOnMac){
+        return AVCaptureVideoOrientationPortrait;
+    }
+    UIInterfaceOrientation uiOrientation = SUYUtils.interfaceOrientation;
     if (uiOrientation == UIInterfaceOrientationLandscapeRight) {
         return AVCaptureVideoOrientationLandscapeRight;
     }
@@ -250,6 +253,9 @@
 }
 
 - (AVCaptureVideoOrientation)currentVideoOrientationByDevice {
+    if(SUYUtils.isOnMac){
+        return AVCaptureVideoOrientationPortrait;
+    }
 	UIDeviceOrientation deviceOrientation = [[UIDevice currentDevice] orientation];
 	if (deviceOrientation == UIDeviceOrientationLandscapeLeft) {
 		return AVCaptureVideoOrientationLandscapeRight;
@@ -263,7 +269,6 @@
     if(deviceOrientation == UIDeviceOrientationPortraitUpsideDown){
         return AVCaptureVideoOrientationPortraitUpsideDown;
     }
-    //return AVCaptureVideoOrientationLandscapeLeft;
     return [self currentVideoOrientationByUI];
 }
 
@@ -313,7 +318,7 @@
         LgInfo(@"**Upside down the image** %ld", (long)orient);
         savingImage = [SUYUtils upsideDownImage: image];
     }
-    if (UIDeviceOrientationIsPortrait(orient))
+    if (UIDeviceOrientationIsPortrait(orient) && SUYUtils.isOnMac == NO)
     {
         LgInfo(@"**Rotate the image** %ld", (long)orient);
         if(orient == AVCaptureVideoOrientationPortraitUpsideDown){

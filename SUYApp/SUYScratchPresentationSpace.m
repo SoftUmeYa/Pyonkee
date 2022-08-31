@@ -38,6 +38,8 @@ static const int kShiftAutoUpSeconds = 20;
     NSString* _lastExportResourcePath;
     NSInteger _exportResourceRetryCount;
     
+    CGFloat _formerScratchScreenZoomScale;
+    
     NSMutableArray* _keyCommands;
 }
 
@@ -71,8 +73,8 @@ uint memoryWarningCount;
     _useIme = NO;
     
     [self adjustConstraintsOnViewLoad];
-
-	self.textField.keyboardAppearance = UIKeyboardAppearanceAlert;
+    
+    self.textField.keyboardAppearance = UIKeyboardAppearanceAlert;
     self.softKeyboardField.hidden = YES;
 	 
 	[self.scrollView addSubview: gDelegateApp.mainView];
@@ -87,13 +89,19 @@ uint memoryWarningCount;
     self.scrollView.maximumZoomScale = 8;
     [self.scrollView flashScrollIndicators];
     
+    if(SUYUtils.isOnMac){
+        self.scrollView.scrollEnabled = NO;
+        self.padLockButton.hidden = YES;
+        //self.viewModeBar.hidden = YES;
+    }
+    
     _originalBackgroundColor = self.view.backgroundColor;
     _originalEditModeIndex = 1;
     
     warningMinHeapThreshold = [gDelegateApp squeakMaxHeapSize] * 0.70;
     memoryWarningCount = 0;
     
-    _formerOrientation = [[UIApplication sharedApplication] statusBarOrientation];
+    _formerOrientation = SUYUtils.interfaceOrientation;
     
 }
 
@@ -111,6 +119,10 @@ uint memoryWarningCount;
 
 - (void) viewDidAppear:(BOOL)animated {
 	[super viewDidAppear: animated];
+    if(SUYUtils.isOnMac){
+        self.scrollView.showsHorizontalScrollIndicator = NO;
+        self.scrollView.showsVerticalScrollIndicator = NO;
+    }
     if ([gDelegateApp restartCount] == 0) {
         [self firstViewDidAppear];
 	} else {
@@ -125,29 +137,29 @@ uint memoryWarningCount;
 
 #pragma mark Notifications
 - (void)listenNotifications {
-    
     NSNotificationCenter* notificationCenter = [NSNotificationCenter defaultCenter];
-    
+    if(!SUYUtils.isOnMac){
+        [notificationCenter addObserver:self selector:@selector(keyboardDidShowOrChange:)
+                                                     name:UIKeyboardDidShowNotification object:nil];
+        [notificationCenter addObserver:self selector:@selector(keyboardDeactivate:)
+                                                     name:UIKeyboardWillHideNotification object:nil];
+    }
     [notificationCenter addObserver:self selector:@selector(keyboardDidShowOrChange:)
-												 name:UITextInputCurrentInputModeDidChangeNotification object:nil];
-    [notificationCenter addObserver:self selector:@selector(keyboardDidShowOrChange:)
-                                                 name:UIKeyboardDidShowNotification object:nil];
+                                                 name:UITextInputCurrentInputModeDidChangeNotification object:nil];
     [notificationCenter addObserver:self selector:@selector(keyboardDeactivate:)
-                                                 name:UIKeyboardWillHideNotification object:nil];
-    [notificationCenter addObserver:self selector:@selector(keyboardDeactivate:)
-												 name:@"SqueakUIViewTouchesBegan" object:nil];
+                                                 name:@"SqueakUIViewTouchesBegan" object:nil];
     [notificationCenter addObserver:self selector:@selector(scratchDialogOpened:)
-												 name:@"ScratchDialogOpened" object:nil];
+                                                 name:@"ScratchDialogOpened" object:nil];
     [notificationCenter addObserver:self selector:@selector(scratchDialogClosed:)
-												 name:@"ScratchDialogClosed" object:nil];
+                                                 name:@"ScratchDialogClosed" object:nil];
     [notificationCenter addObserver:self selector:@selector(scratchProjectReloaded:)
-												 name:@"ScratchProjectReloaded" object:nil];
+                                                 name:@"ScratchProjectReloaded" object:nil];
 }
 
 - (void)forgetNotifications {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UITextInputCurrentInputModeDidChangeNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UITextInputCurrentInputModeDidChangeNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"SqueakUIViewTouchesBegan" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"ScratchDialogOpened" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"ScratchDialogClosed" object:nil];
@@ -161,7 +173,7 @@ uint memoryWarningCount;
 }
 
 - (void) restartedViewDidAppear{
-    [SUYUtils inform:(NSLocalizedString(@"Done!",nil)) duration:400 for:self];
+    [SUYUtils inform:(NSLocalizedString(@"Done!",nil)) duration:400];
     [[self appDelegate] openDefaultProject];
 }
 
@@ -177,10 +189,7 @@ uint memoryWarningCount;
 
 - (void)adjustConstraintsOnViewLoad {
     scrollViewHeightConstraint.constant = SUYUtils.landscapeScreenHeight;
-    
-    CGFloat ratio = SUYUtils.landscapeScreenHeight / SUYUtils.scratchScreenSize.height;
-    modeBarLeadingConstraint.constant = 350 * ratio;
-    modeBarWidthConstraint.constant = 150 * ratio;
+    [self fixModebarConstraints];
 }
 
 #pragma mark Rotation
@@ -193,8 +202,8 @@ uint memoryWarningCount;
     [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
         
     } completion:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
-        UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
-        [self appDelegate].sensorAccessor.currentStatusBarOrientation = orientation;
+        UIInterfaceOrientation orientation = SUYUtils.interfaceOrientation;
+        [self appDelegate].sensorAccessor.currentInterfaceOrientation = orientation;
     }];
 }
 
@@ -212,6 +221,9 @@ uint memoryWarningCount;
 //}
 
 -(void) viewDidLayoutSubviews{
+    if(SUYUtils.isOnMac){
+        [self fixLayoutOfSubViews];
+    }
     if([self isInPresentationMode]==NO){return;}
     [self fixLayoutByOrientation];
 }
@@ -221,7 +233,7 @@ uint memoryWarningCount;
     CGPoint offsetPoint = self.scrollView.contentOffset;
     CGSize sz = [SUYUtils scratchScreenSize];
     
-    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    UIInterfaceOrientation orientation = SUYUtils.interfaceOrientation;
     if(_formerOrientation != orientation){
         if(UIInterfaceOrientationIsPortrait(orientation) && UIInterfaceOrientationIsLandscape(_formerOrientation)){
             ratio = sz.height/sz.width;
@@ -249,7 +261,7 @@ uint memoryWarningCount;
     //MARK: NO-OP for now - forcing orientation is not good
     
 //    if([self isInPresentationMode]){
-//        UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+//        UIInterfaceOrientation orientation = SUYUtils.interfaceOrientation;
 //        if(UIInterfaceOrientationIsLandscape(orientation)==NO){
 //            NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationLandscapeLeft];
 //            [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
@@ -260,6 +272,47 @@ uint memoryWarningCount;
 //    }
 }
 
+#pragma mark - Layout for Mac
+
+-(void) fixLayoutOfSubViews {
+    if(self.presentedViewController){
+        [[self appDelegate] restoreDisplayIfNeeded];
+        if(self.fontScaleButton.selected == NO ){
+            [self fixSizeOfSubViewsIfNeeded];
+        }
+    }
+}
+
+#pragma mark - Resizing for Mac
+
+-(void)fixLayoutOnWindowResizing{
+    //LgInfo(@"-presentedViewController- %@", self.presentedViewController);
+    if(self.presentedViewController){
+        return;
+    }
+    [self fixSizeOfSubViewsIfNeeded];
+}
+
+- (void)fixSizeOfSubViewsIfNeeded {
+    if(!SUYUtils.isOnMac) return;
+    CGFloat scale = SUYUtils.scratchScreenZoomScale;
+    if(_formerScratchScreenZoomScale == scale) {
+        return;
+    }
+    scrollViewHeightConstraint.constant = SUYUtils.landscapeScreenHeight;
+    [self.scrollView setZoomScale: scale animated:YES];
+    self.scrollView.contentOffset = CGPointMake(0, 0);
+    [self fixModebarConstraints];
+    _formerScratchScreenZoomScale = scale;
+}
+
+#pragma mark - Fixing layout constraints
+
+-(void)fixModebarConstraints{
+    CGFloat ratio = SUYUtils.scratchScreenZoomScale;
+    modeBarLeadingConstraint.constant = 350 * ratio;
+    modeBarWidthConstraint.constant = 150 * ratio;
+}
 
 #pragma mark - UIPopoverPresentationControllerDelegate
 
@@ -316,7 +369,7 @@ uint memoryWarningCount;
 
 - (IBAction) openFontResizer:(id)sender {
     [SUYUtils hideCursor];
-    if(self.viewModeIndex == 2){return;}
+    if(self.isPresentationButtonOn){return;}
     
     self.fontScaleButton.selected = YES;
 	SUYFontResizeViewController *fontResizeController = [[SUYFontResizeViewController alloc] initWithNibName:@"SUYFontResizeViewController" bundle:[NSBundle mainBundle]];
@@ -381,15 +434,19 @@ uint memoryWarningCount;
 
 - (IBAction) keyboardActivate:(id)sender {
     [SUYUtils hideCursor];
-    if(!self.softKeyboardField.hidden){return;}
+    if(self.softKeyboardIsActivated){return;}
     self.softKeyboardField.hidden = NO;
     [softKeyboardField becomeFirstResponder];
+    if(SUYUtils.isOnMac){
+        _useIme = [self detectImeIsUsed];
+    }
 }
 
 - (IBAction) keyboardDeactivate: (id) sender{
-    if(self.softKeyboardField.hidden){return;}
+    if(!self.softKeyboardIsActivated){return;}
     self.softKeyboardField.hidden = YES;
     [softKeyboardField resignFirstResponder];
+    [self refocusIfNeeded];
 }
 
 - (IBAction) commandButtonUp:(id)sender {
@@ -490,17 +547,12 @@ uint memoryWarningCount;
     UIDocumentPickerViewController *picker = [[UIDocumentPickerViewController alloc] initWithDocumentTypes:[SUYUtils supportedUtis] inMode:UIDocumentPickerModeImport];
     picker.delegate = self;
     
-    if(OVER_IOS10){
-        return [self presentViewController:picker animated:NO completion:nil];
-    }
-    //FIXME: For iOS9 stability
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self presentViewController:picker animated:NO completion:nil];
-    });
+    return [self presentViewController:picker animated:NO completion:nil];
 }
 
 #pragma mark UIDocumentPickerDelegate
-- (void)documentPicker:(UIDocumentPickerViewController *)controller didPickDocumentAtURL:(NSURL *)url{
+- (void)documentPicker:(UIDocumentPickerViewController *)controller didPickDocumentsAtURLs:(NSArray <NSURL *>*)urls{
+    NSURL* url = urls[0];
     if(controller.documentPickerMode == UIDocumentPickerModeImport){
         NSLog(@"IMPORT");
         [[self appDelegate] openImporting:url];
@@ -512,7 +564,7 @@ uint memoryWarningCount;
                 [[NSFileManager defaultManager] removeItemAtPath:_lastExportResourcePath error:nil];
             }
         }
-        [SUYUtils inform:(NSLocalizedString(@"Done!",nil)) duration:400 for:self];
+        [SUYUtils inform:(NSLocalizedString(@"Done!",nil)) duration:400];
     }
 }
 
@@ -535,6 +587,11 @@ uint memoryWarningCount;
 - (BOOL)prefersStatusBarHidden
 {
     return YES;
+}
+
+- (BOOL)softKeyboardIsActivated
+{
+    return !self.softKeyboardField.hidden;
 }
 
 #pragma mark Scrolling
@@ -564,7 +621,8 @@ uint memoryWarningCount;
 -(BOOL)textFieldShouldReturn:(UITextField *) aTextField {
     if(aTextField == self.softKeyboardField){
         self.softKeyboardField.hidden = YES;
-        [self flushInputString: self.softKeyboardField.text];
+        [self flushInputString: aTextField.text];
+        [self refocusIfNeeded];
     }
     [aTextField resignFirstResponder];
     characterCounter = 0;
@@ -595,17 +653,10 @@ uint memoryWarningCount;
 - (void)keyboardDidShowOrChange:(NSNotification*)sender {
     LgInfo(@"keyboardDidChange");
     self.softKeyboardField.text = @"";
-    NSString *primLang = [self inputModePrimaryLanguage];
-    
-    if(
-       ([primLang rangeOfString:@"ja-"].location != NSNotFound) ||
-       ([primLang rangeOfString:@"ko-"].location != NSNotFound) ||
-       ([primLang rangeOfString:@"zh-"].location != NSNotFound)) {
-        LgInfo(@"ime mode = %@", primLang);
+    if([self detectImeIsUsed]) {
         self.softKeyboardField.autocorrectionType = UITextAutocorrectionTypeDefault;
         _useIme = YES;
     } else {
-        LgInfo(@"non ime = %@", primLang);
         self.softKeyboardField.autocorrectionType = UITextAutocorrectionTypeNo;
         _useIme = NO;
     }
@@ -653,6 +704,25 @@ uint memoryWarningCount;
     if(inputMode == nil){ return @"";}
     NSString *primLang = [inputMode primaryLanguage];
     return primLang;
+}
+
+- (BOOL)detectImeIsUsed {
+    NSString *primLang = [self inputModePrimaryLanguage];
+    LgInfo(@"ime mode = %@", primLang);
+    if(
+       ([primLang rangeOfString:@"ja-"].location != NSNotFound) ||
+       ([primLang rangeOfString:@"ko-"].location != NSNotFound) ||
+       ([primLang rangeOfString:@"zh-"].location != NSNotFound)) {
+           return YES;
+    }
+    return NO;
+ }
+
+- (void) refocusIfNeeded {
+    if(SUYUtils.isOnMac){
+        [self.textField becomeFirstResponder];
+        [self becomeFirstResponder];
+    }
 }
 
 #pragma mark Key Handling
@@ -789,7 +859,12 @@ uint memoryWarningCount;
 
 - (BOOL) isInPresentationMode
 {
-    return [self isViewModeBarHidden] && self.viewModeIndex == 2;
+    return [self isViewModeBarHidden] && self.isPresentationButtonOn;
+}
+
+- (BOOL) isPresentationButtonOn
+{
+    return self.viewModeIndex == 2;
 }
 
 #pragma mark Callback from Scratch
@@ -841,6 +916,9 @@ uint memoryWarningCount;
 
 - (NSArray *) keyCommands
 {
+    if(self.softKeyboardIsActivated) {
+        return @[];
+    }
     if(!_keyCommands){
         _keyCommands = [[NSMutableArray alloc] init];
         //arrow keys
@@ -858,22 +936,44 @@ uint memoryWarningCount;
         //space
         [self addKeyCommand:@" " modifierFlags:kNilOptions action:@selector(externalKeyBoardSpace:)
              overrideSystem:NO to: _keyCommands];
+        //backscape
+        if (OVER_IOS15) {
+            [self addKeyCommand:UIKeyInputDelete modifierFlags:kNilOptions action:@selector(externalKeyBoardBackspace:)
+                 overrideSystem:NO to: _keyCommands];
+        }
         //shift-only
         [self addKeyCommand:@"" modifierFlags:UIKeyModifierShift action:@selector(externalKeyBoardShift:)
              overrideSystem:NO to: _keyCommands];
         //cmd-only
         [self addKeyCommand:@"" modifierFlags:UIKeyModifierCommand action:@selector(externalKeyBoardCommand:)
              overrideSystem:NO to: _keyCommands];
+        
+        [self addAlphNumericKeyCommandsTo: _keyCommands];
     }
     return _keyCommands;
 }
 
 - (void) addKeyCommand: (NSString *)input modifierFlags:(UIKeyModifierFlags)modifierFlags action:(SEL)action overrideSystem:(BOOL) overrideSystem to:(NSMutableArray *) keyCommands {
     UIKeyCommand* command = [UIKeyCommand keyCommandWithInput:input modifierFlags:modifierFlags action:action];
-    if (@available(iOS 15.0, *)) {
+    if (OVER_IOS15) {
         command.wantsPriorityOverSystemBehavior = overrideSystem;
     }
     [keyCommands addObject: command];
+}
+
+- (void) addAlphNumericKeyCommandsTo: (NSMutableArray <UIKeyCommand *>*)keyCommands
+{
+    NSString * keys = @"abcdefghijklmnopqrstuvwxyz0123456789";
+    NSRange range = NSMakeRange(0, keys.length);
+    [keys enumerateSubstringsInRange:range
+                              options:NSStringEnumerationByComposedCharacterSequences
+                           usingBlock:^(NSString *keyString, NSRange substringRange,
+                                        NSRange enclosingRange, BOOL *stop)
+    {
+        [self addKeyCommand:keyString modifierFlags:kNilOptions action:@selector(externalKeyBoardAlphaNumeric:)
+             overrideSystem:NO to: keyCommands];
+    }];
+    
 }
 
 - (void) externalKeyBoardUpArrow: (UIKeyCommand *) keyCommand
@@ -903,8 +1003,8 @@ uint memoryWarningCount;
 - (void) externalKeyBoardEscape: (UIKeyCommand *) keyCommand
 {
     //Specific handling on presentation mode
-    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
-    if((self.viewModeIndex == 2)){
+    UIInterfaceOrientation orientation = SUYUtils.interfaceOrientation;
+    if((self.isPresentationButtonOn)){
         if((UIInterfaceOrientationIsPortrait(orientation))){
             return;
         } else {
@@ -937,6 +1037,19 @@ uint memoryWarningCount;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
         [self basicCommandButtonAutoUp:self];
     });
+}
+
+- (void) externalKeyBoardBackspace: (UIKeyCommand *) keyCommand
+{
+    unichar character = 8;
+    [self startRepeatKeyProcess: character for: self];
+    [self keyTouchUp:self];
+}
+
+- (void) externalKeyBoardAlphaNumeric: (UIKeyCommand *) keyCommand
+{
+    [self startRepeatKeyProcess: [keyCommand.input characterAtIndex:0] for: self];
+    [self keyTouchUp:self];
 }
 
 #pragma mark Releasing

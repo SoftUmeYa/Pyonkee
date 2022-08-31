@@ -11,7 +11,9 @@
 
 @end
 
-@implementation SUYLocationManager
+@implementation SUYLocationManager {
+    BOOL _isRunning;
+}
 
 #pragma mark - Accessing
 
@@ -57,11 +59,17 @@
 
 - (void) start
 {
+    _isRunning = YES;
     [self.locationManager startUpdatingHeading];
 }
 - (void) stop
 {
+    _isRunning = NO;
     [self.locationManager stopUpdatingHeading];
+}
+
+- (BOOL) isRunning {
+    return _isRunning;
 }
 
 #pragma mark - Initialization

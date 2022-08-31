@@ -46,7 +46,7 @@ NSString * ktimeOut_preferenceKey = @"timeOut_preference";
 NSString * kinboxMaxNumOfItems_preferenceKey = @"inboxMaxNumOfItems_preference";
 NSString * kuseVirtualMIDI_preferenceKey = @"useVirtualMIDI_preference";
 
- extern int gSqueakUseFileMappedMMAP;
+extern int gSqueakUseFileMappedMMAP;
 
 @implementation sqSqueakIPhoneInfoPlistInterface
 - (void) parseInfoPlist {
@@ -66,18 +66,14 @@ NSString * kuseVirtualMIDI_preferenceKey = @"useVirtualMIDI_preference";
     NSLog(@"*** spaceRepeats: %ul, ", self.spaceRepeats);
 //    NSLog(@"*** memorySize: %@, ", [NSNumber numberWithLong: self.memorySize]);
 //    NSLog(@"*** inboxMaxNumOfItems: %@, ", [NSNumber numberWithLong: self.inboxMaxNumOfItems]);
+//    NSLog(@"*** fullVersionString: %@, ", self.fullVersionString);
 
 }
 
 - (void) setupDefaultValues {
     // no default values have been set, create them here based on what's in our Settings bundle info
     //
-    NSString *pathStr = [[NSBundle mainBundle] bundlePath];
-    NSString *settingsBundlePath = [pathStr stringByAppendingPathComponent:@"Settings.bundle"];
-    NSString *finalPath = [settingsBundlePath stringByAppendingPathComponent:@"Root.plist"];
-    
-    NSDictionary *settingsDict = [NSDictionary dictionaryWithContentsOfFile:finalPath];
-    NSArray *prefSpecifierArray = [settingsDict objectForKey:@"PreferenceSpecifiers"];
+    NSArray *prefSpecifierArray = [self prefSpecifierArray];
     NSDictionary *prefItem;
     
     for (prefItem in prefSpecifierArray)    {
@@ -154,6 +150,21 @@ NSString * kuseVirtualMIDI_preferenceKey = @"useVirtualMIDI_preference";
     return [defaults boolForKey: kspaceRepeats_preference];
 }
 
+- (NSString*) fullVersionString {
+    NSBundle *bundle = [NSBundle mainBundle];
+    NSDictionary* infoDictionary = bundle.infoDictionary;
+    NSString* versionString = [infoDictionary valueForKey:@"CFBundleShortVersionString"];
+    NSString* buildString = [infoDictionary valueForKey:@"CFBundleVersion"];
+    return [NSString stringWithFormat: @"%@.%@",versionString,buildString];
+}
+
+- (NSArray*) prefSpecifierArray {
+    NSString *pathStr = [[NSBundle mainBundle] bundlePath];
+    NSString *settingsBundlePath = [pathStr stringByAppendingPathComponent:@"Settings.bundle"];
+    NSString *finalPath = [settingsBundlePath stringByAppendingPathComponent:@"Root.plist"];
+    NSDictionary *settingsDict = [NSDictionary dictionaryWithContentsOfFile:finalPath];
+    return [settingsDict objectForKey:@"PreferenceSpecifiers"];
+}
 
 #pragma mark - Accessing - Obsolete
 

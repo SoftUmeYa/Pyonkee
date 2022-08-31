@@ -72,3 +72,6 @@
 "Release the connection" = "接続を切る";
 "Stop interacting with micro:bit" = "micro:bit連携をやめる";
 
+/*Pyonkee-mac*/
+
+"Version" = "バージョン";

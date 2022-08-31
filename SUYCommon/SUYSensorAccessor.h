@@ -12,7 +12,7 @@
 
 @interface SUYSensorAccessor : NSObject <CLLocationManagerDelegate>
 
-@property (nonatomic) UIInterfaceOrientation currentStatusBarOrientation;
+@property (nonatomic) UIInterfaceOrientation currentInterfaceOrientation;
 
 @property (nonatomic,readonly)   double   accX;
 @property (nonatomic,readonly)   double   accY;

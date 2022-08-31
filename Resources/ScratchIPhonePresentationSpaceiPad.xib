@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="ipad12_9rounded" orientation="landscape" layout="fullscreen" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -45,9 +47,10 @@
             <connections>
                 <outlet property="view" destination="4" id="20"/>
             </connections>
+            <point key="canvasLocation" x="132" y="99"/>
         </viewController>
         <view contentMode="scaleToFill" id="1">
-            <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+            <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
                 <scrollView clipsSubviews="YES" clearsContextBeforeDrawing="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" canCancelContentTouches="NO" minimumZoomScale="0.5" maximumZoomScale="8" translatesAutoresizingMaskIntoConstraints="NO" id="4">
@@ -62,7 +65,7 @@
                     </connections>
                 </scrollView>
                 <view autoresizesSubviews="NO" opaque="NO" clearsContextBeforeDrawing="NO" alpha="0.69999999999999973" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="63" userLabel="left landscape toolbar">
-                    <rect key="frame" x="0.0" y="224" width="30" height="320"/>
+                    <rect key="frame" x="0.0" y="352" width="30" height="320"/>
                     <subviews>
                         <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="32" userLabel="down button">
                             <rect key="frame" x="-2" y="0.0" width="34" height="80"/>
@@ -146,7 +149,7 @@
                     </constraints>
                 </view>
                 <view autoresizesSubviews="NO" opaque="NO" clearsContextBeforeDrawing="NO" alpha="0.69999999999999973" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="61" userLabel="right landscape toolbar">
-                    <rect key="frame" x="994" y="224" width="30" height="320"/>
+                    <rect key="frame" x="1336" y="352" width="30" height="320"/>
                     <subviews>
                         <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="31" userLabel="up button">
                             <rect key="frame" x="-2" y="0.0" width="34" height="80"/>
@@ -229,8 +232,8 @@
                         <constraint firstAttribute="height" constant="320" id="hu3-7g-Saf"/>
                     </constraints>
                 </view>
-                <button opaque="NO" clearsContextBeforeDrawing="NO" alpha="0.79999999999999982" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="77" userLabel="toggle pinch button">
-                    <rect key="frame" x="0.0" y="732" width="32" height="32"/>
+                <button opaque="NO" clearsContextBeforeDrawing="NO" alpha="0.79999999999999982" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="77" userLabel="toggle pinch button" customClass="SUYUIButton">
+                    <rect key="frame" x="0.0" y="988" width="32" height="32"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="32" id="9EM-RN-dTy"/>
                         <constraint firstAttribute="height" constant="32" id="Vem-RT-bbq"/>
@@ -248,8 +251,8 @@
                         <action selector="operatePadLock:" destination="-1" eventType="touchUpInside" id="79"/>
                     </connections>
                 </button>
-                <button opaque="NO" clearsContextBeforeDrawing="NO" alpha="0.79999999999999982" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="24" userLabel="font scale button">
-                    <rect key="frame" x="992" y="732" width="32" height="32"/>
+                <button opaque="NO" clearsContextBeforeDrawing="NO" alpha="0.79999999999999982" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="24" userLabel="font scale button" customClass="SUYUIButton">
+                    <rect key="frame" x="1334" y="988" width="32" height="32"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="32" id="kV0-sx-NqA"/>
                         <constraint firstAttribute="height" constant="32" id="p9V-oH-NRb"/>
@@ -262,7 +265,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" alpha="0.79999999999999982" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g8x-gu-BpO" userLabel="right modifier">
-                    <rect key="frame" x="577" y="732" width="32" height="32"/>
+                    <rect key="frame" x="748" y="988" width="32" height="32"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="32" id="a9D-it-EFy"/>
                         <constraint firstAttribute="width" constant="32" id="xQ8-u9-hXl"/>
@@ -276,7 +279,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" alpha="0.79999999999999982" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZdR-vi-ukD" userLabel="left modifier">
-                    <rect key="frame" x="413" y="732" width="32" height="32"/>
+                    <rect key="frame" x="584" y="988" width="32" height="32"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="32" id="Rvt-b6-mYI"/>
                         <constraint firstAttribute="width" constant="32" id="v3o-xO-vGu"/>
@@ -292,7 +295,7 @@
                     </connections>
                 </button>
                 <textField opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" alpha="0.75" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="32" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="jsf-Lj-cQP" userLabel="softkey text field">
-                    <rect key="frame" x="237" y="306.5" width="550" height="40"/>
+                    <rect key="frame" x="408" y="417" width="550" height="40"/>
                     <color key="backgroundColor" systemColor="systemGray6Color"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="UHY-WQ-nhK"/>
@@ -306,7 +309,7 @@
                     </connections>
                 </textField>
                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZTb-6b-wCE" userLabel="presen exit button">
-                    <rect key="frame" x="30" y="3" width="32" height="32"/>
+                    <rect key="frame" x="45.5" y="9.5" width="32" height="32"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="ZTb-6b-wCE" secondAttribute="height" multiplier="1:1" id="TWY-Yf-8vt"/>
                         <constraint firstAttribute="width" constant="32" id="e6G-s3-inQ"/>
@@ -319,7 +322,7 @@
                     </connections>
                 </button>
                 <view autoresizesSubviews="NO" opaque="NO" alpha="0.80000000000000016" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="nBf-mh-npM" userLabel="keyboardButtons">
-                    <rect key="frame" x="469" y="732" width="84" height="32"/>
+                    <rect key="frame" x="640" y="988" width="84" height="32"/>
                     <subviews>
                         <button contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Er-PB-Agr" userLabel="softkey activate button">
                             <rect key="frame" x="62" y="0.0" width="24" height="32"/>
@@ -350,7 +353,7 @@
                     </constraints>
                 </view>
                 <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fbL-S6-5qG" userLabel="mode bar">
-                    <rect key="frame" x="862" y="6" width="150" height="34"/>
+                    <rect key="frame" x="1033" y="13.5" width="150" height="34"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EWv-YW-BN5" userLabel="quarterModeButton">
                             <rect key="frame" x="2" y="2" width="42" height="32"/>

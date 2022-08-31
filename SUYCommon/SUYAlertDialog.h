@@ -12,7 +12,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface SUYAlertDialog : NSObject <UIAlertViewDelegate, UITextFieldDelegate>
+@interface SUYAlertDialog : NSObject
 
 @property (nonatomic, readonly) NSInteger buttonPicked;
 @property (nonatomic, readonly) NSString* answerString;
