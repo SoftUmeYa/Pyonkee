@@ -30,16 +30,12 @@ Pyonkee was originally started as a fork of [John M McIntosh](https://www.smallt
 - iCloud based project/sprite/costume/sounds sharing
 - Touch scrolling support
 - Connectivity with micro:bit via Bluetooth LE
+- macOS support by Mac Catalyst
 
 ## How to build
 
-From version 2.3, [Carthage](https://github.com/Carthage/Carthage) is partly used for library management.
-Before building from Xcode, please install Carthage and run the command below:
-
-```carthage update --use-xcframeworks```
-
-You need to specify `--no-use-binaries` for MIKMIDI.
-```carthage update MIKMIDI --use-xcframeworks --no-use-binaries```
+From version 2.24, [Carthage](https://github.com/Carthage/Carthage) is no longer needed. Please delete the Carthage folder if it exists.
+Just open the Pyonkee.xcodeproj from Xcode, and build as usual.
 
 ### Note on iCloud feature
 
@@ -47,7 +43,7 @@ When attempting to build and run on a physical iPad (not the simulator), you wil
 
 The 'iCloud' feature is only available to users enrolled in Apple Developer Program. Please visit https://developer.apple.com/programs/ to enroll.
 
-To disable iCloud and allow the build to continue, change line 2257 of Pyonkee.xcodeproj/project.pbxproj from:
+To disable iCloud and allow the build to continue, change line 2309 of Pyonkee.xcodeproj/project.pbxproj from:
 
 ```
 com.apple.iCloud = {
@@ -93,6 +89,6 @@ We can also customize Pyonkee for your needs. Feel free to contact us.
 
 
 -----
-Copyright 2014-2021 SoftUmeYa, LLC
+Copyright 2014-2022 SoftUmeYa, LLC
 
 
