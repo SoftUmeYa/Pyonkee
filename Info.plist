@@ -181,6 +181,11 @@
 			<string>Any</string>
 		</dict>
 	</dict>
+	<key>NSBonjourServices</key>
+	<array>
+		<string>_Pyonkee._tcp</string>
+		<string>_Pyonkee._udp</string>
+	</array>
 	<key>UIFileSharingEnabled</key>
 	<true/>
 	<key>UIInterfaceOrientation</key>
