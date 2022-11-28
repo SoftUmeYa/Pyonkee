@@ -40,6 +40,14 @@
 		8537019519094F8100534905 /* LauncherViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8537019419094F8100534905 /* LauncherViewController.xib */; };
 		8537019719094FE100534905 /* MainWindowiPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8537019619094FE100534905 /* MainWindowiPad.xib */; };
 		8537019B1909524C00534905 /* ScratchIPhonePresentationSpaceiPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8537019A1909524C00534905 /* ScratchIPhonePresentationSpaceiPad.xib */; };
+		8539742128F902250034ADCF /* DropdownSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8539741A28F902250034ADCF /* DropdownSelector.swift */; };
+		8539742228F902250034ADCF /* BonjourPeer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8539741B28F902250034ADCF /* BonjourPeer.swift */; };
+		8539742328F902250034ADCF /* MeshUiUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8539741C28F902250034ADCF /* MeshUiUtils.swift */; };
+		8539742428F902250034ADCF /* MeshServerPartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8539741D28F902250034ADCF /* MeshServerPartView.swift */; };
+		8539742528F902250034ADCF /* MeshClientPartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8539741E28F902250034ADCF /* MeshClientPartView.swift */; };
+		8539742628F902250034ADCF /* MeshSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8539741F28F902250034ADCF /* MeshSettingsView.swift */; };
+		8539742728F902250034ADCF /* MeshTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8539742028F902250034ADCF /* MeshTabView.swift */; };
+		8539742928F905C90034ADCF /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8539742828F905C90034ADCF /* SwiftUI.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		853FF7B02334A36D006E4AEE /* splashx2.png in Resources */ = {isa = PBXBuildFile; fileRef = 853FF7AF2334A36D006E4AEE /* splashx2.png */; };
 		85404F152865714D0019A02A /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 85404F142865714D0019A02A /* Toast */; };
 		85404F1B28657CF80019A02A /* TouchVisualizer in Frameworks */ = {isa = PBXBuildFile; productRef = 85404F1A28657CF80019A02A /* TouchVisualizer */; };
@@ -65,6 +73,7 @@
 		857B067D191BE60200C8CCB1 /* RedFlag.png in Resources */ = {isa = PBXBuildFile; fileRef = 857B067C191BE60200C8CCB1 /* RedFlag.png */; };
 		857D36D5196AEF8E00155933 /* Media in Resources */ = {isa = PBXBuildFile; fileRef = 857D36D4196AEF8E00155933 /* Media */; };
 		8583A193195B1AA800CDB9BC /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 8583A192195B1AA800CDB9BC /* back.png */; };
+		8588198C290A62D000F4C024 /* MeshServiceAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8588198B290A62D000F4C024 /* MeshServiceAccessor.swift */; };
 		858A5884198351480082F48E /* SUYAlertDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 858A5883198351480082F48E /* SUYAlertDialog.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		858BC0221969AD10001BBF1A /* flat-space.png in Resources */ = {isa = PBXBuildFile; fileRef = 858BC0211969AD10001BBF1A /* flat-space.png */; };
 		8590A1F61A7DDE5A003CB56D /* flat-arrow-left.png in Resources */ = {isa = PBXBuildFile; fileRef = 8590A1F31A7DDE59003CB56D /* flat-arrow-left.png */; };
@@ -100,6 +109,7 @@
 		85CD4F9D1967047A00BAFADF /* kbd-left.png in Resources */ = {isa = PBXBuildFile; fileRef = 85CD4F9C1967047A00BAFADF /* kbd-left.png */; };
 		85CD4F9F1967049A00BAFADF /* kbd-right.png in Resources */ = {isa = PBXBuildFile; fileRef = 85CD4F9E1967049A00BAFADF /* kbd-right.png */; };
 		85CD4FA9196710C900BAFADF /* flat-cmd-active1.png in Resources */ = {isa = PBXBuildFile; fileRef = 85CD4FA3196710C900BAFADF /* flat-cmd-active1.png */; };
+		85CEF45428CA1F7600BC1C4D /* Bonjour in Frameworks */ = {isa = PBXBuildFile; productRef = 85CEF45328CA1F7600BC1C4D /* Bonjour */; };
 		85D17E5319907B2600A917EF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 85D17E5519907B2600A917EF /* InfoPlist.strings */; };
 		85D17E5B19907C5F00A917EF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 85D17E5D19907C5F00A917EF /* Localizable.strings */; };
 		85D183EB1E7BD2B20051B438 /* SUYMIDISynth.m in Sources */ = {isa = PBXBuildFile; fileRef = 85D183EA1E7BD2B20051B438 /* SUYMIDISynth.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
@@ -402,6 +412,14 @@
 		8537C8EB1AFF048100AAF473 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		8537C8EC1AFF049800AAF473 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		8537C8ED1AFF049800AAF473 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		8539741A28F902250034ADCF /* DropdownSelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropdownSelector.swift; sourceTree = "<group>"; };
+		8539741B28F902250034ADCF /* BonjourPeer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BonjourPeer.swift; sourceTree = "<group>"; };
+		8539741C28F902250034ADCF /* MeshUiUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeshUiUtils.swift; sourceTree = "<group>"; };
+		8539741D28F902250034ADCF /* MeshServerPartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeshServerPartView.swift; sourceTree = "<group>"; };
+		8539741E28F902250034ADCF /* MeshClientPartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeshClientPartView.swift; sourceTree = "<group>"; };
+		8539741F28F902250034ADCF /* MeshSettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeshSettingsView.swift; sourceTree = "<group>"; };
+		8539742028F902250034ADCF /* MeshTabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeshTabView.swift; sourceTree = "<group>"; };
+		8539742828F905C90034ADCF /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/System/iOSSupport/System/Library/Frameworks/SwiftUI.framework; sourceTree = DEVELOPER_DIR; };
 		853FF7AF2334A36D006E4AEE /* splashx2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = splashx2.png; path = Resources/images/backgrounds/splashx2.png; sourceTree = "<group>"; };
 		85406F961B17F3D200CBE22E /* SUYPhotoPicker.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SUYPhotoPicker.storyboard; path = Resources/SUYPhotoPicker.storyboard; sourceTree = "<group>"; };
 		85406F981B17F45100CBE22E /* SUYPhotoCropper.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SUYPhotoCropper.storyboard; path = Resources/SUYPhotoCropper.storyboard; sourceTree = "<group>"; };
@@ -435,6 +453,7 @@
 		857B067C191BE60200C8CCB1 /* RedFlag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = RedFlag.png; path = Resources/images/RedFlag.png; sourceTree = "<group>"; };
 		857D36D4196AEF8E00155933 /* Media */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Media; path = Resources/Media; sourceTree = "<group>"; };
 		8583A192195B1AA800CDB9BC /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = back.png; path = Resources/images/back.png; sourceTree = "<group>"; };
+		8588198B290A62D000F4C024 /* MeshServiceAccessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeshServiceAccessor.swift; sourceTree = "<group>"; };
 		858A5882198351480082F48E /* SUYAlertDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUYAlertDialog.h; sourceTree = "<group>"; };
 		858A5883198351480082F48E /* SUYAlertDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUYAlertDialog.m; sourceTree = "<group>"; };
 		858BC0211969AD10001BBF1A /* flat-space.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat-space.png"; sourceTree = "<group>"; };
@@ -860,9 +879,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8539742928F905C90034ADCF /* SwiftUI.framework in Frameworks */,
 				85404F152865714D0019A02A /* Toast in Frameworks */,
 				85EE04901B37E65900EA3F1F /* ImageIO.framework in Frameworks */,
 				85EE048E1B37E60200EA3F1F /* CoreMedia.framework in Frameworks */,
+				85CEF45428CA1F7600BC1C4D /* Bonjour in Frameworks */,
 				854F08E01B2A9C4C00E7A6A9 /* CoreLocation.framework in Frameworks */,
 				85B690011B21D3CA00D3DBBE /* CoreMotion.framework in Frameworks */,
 				85404F1B28657CF80019A02A /* TouchVisualizer in Frameworks */,
@@ -950,6 +971,7 @@
 		29B97315FDCFA39411CA2CEA /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				8539741928F902250034ADCF /* SUYMesh */,
 				85918D3019113E8600F9637A /* SUYScratchApp */,
 				85F8F78818F6856100948A68 /* SUYCommon */,
 				85D183E81E7BD1B50051B438 /* SUYSound */,
@@ -984,6 +1006,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8539742828F905C90034ADCF /* SwiftUI.framework */,
 				85EE048F1B37E65900EA3F1F /* ImageIO.framework */,
 				85EE048D1B37E60200EA3F1F /* CoreMedia.framework */,
 				854F08DF1B2A9C4C00E7A6A9 /* CoreLocation.framework */,
@@ -1059,6 +1082,21 @@
 				85161725196469AE00D4E258 /* newer */,
 			);
 			name = images;
+			sourceTree = "<group>";
+		};
+		8539741928F902250034ADCF /* SUYMesh */ = {
+			isa = PBXGroup;
+			children = (
+				8539741A28F902250034ADCF /* DropdownSelector.swift */,
+				8539741B28F902250034ADCF /* BonjourPeer.swift */,
+				8539741C28F902250034ADCF /* MeshUiUtils.swift */,
+				8588198B290A62D000F4C024 /* MeshServiceAccessor.swift */,
+				8539741D28F902250034ADCF /* MeshServerPartView.swift */,
+				8539741E28F902250034ADCF /* MeshClientPartView.swift */,
+				8539741F28F902250034ADCF /* MeshSettingsView.swift */,
+				8539742028F902250034ADCF /* MeshTabView.swift */,
+			);
+			path = SUYMesh;
 			sourceTree = "<group>";
 		};
 		8541CA66190002450019163E /* LFCGzipUtility */ = {
@@ -2281,6 +2319,7 @@
 			packageProductDependencies = (
 				85404F142865714D0019A02A /* Toast */,
 				85404F1A28657CF80019A02A /* TouchVisualizer */,
+				85CEF45328CA1F7600BC1C4D /* Bonjour */,
 			);
 			productName = SqueakNoOGLIPhone;
 			productReference = 1D6058910D05DD3D006BFB54 /* Pyonkee.app */;
@@ -2332,6 +2371,7 @@
 			packageReferences = (
 				85404F132865714D0019A02A /* XCRemoteSwiftPackageReference "Toast-Swift" */,
 				85404F1928657CF80019A02A /* XCRemoteSwiftPackageReference "TouchVisualizer" */,
+				85CEF45228CA1F7600BC1C4D /* XCRemoteSwiftPackageReference "Bonjour" */,
 			);
 			projectDirPath = "";
 			projectReferences = (
@@ -2546,6 +2586,7 @@
 				85918D2F19113DA000F9637A /* SUYInitializer.m in Sources */,
 				94E65A4C0DDD053900358328 /* jdcoefct.c in Sources */,
 				94E65A4D0DDD053900358328 /* jdcolor.c in Sources */,
+				8539742528F902250034ADCF /* MeshClientPartView.swift in Sources */,
 				8524CA4C23E26E3F00DF266F /* SUYTablePhotoPicker.m in Sources */,
 				859727C92610B99D009AD2BA /* MicrobitEnums.swift in Sources */,
 				94E65A4E0DDD053900358328 /* jddctmgr.c in Sources */,
@@ -2594,6 +2635,7 @@
 				94E65A6D0DDD053900358328 /* b3dRemap.c in Sources */,
 				94E65A6F0DDD053900358328 /* sqSoundCodecPluginBasicPrims.c in Sources */,
 				8561D56619587F80008FDA45 /* GSRadioButtonSetController.m in Sources */,
+				8588198C290A62D000F4C024 /* MeshServiceAccessor.swift in Sources */,
 				859727CC2610B99D009AD2BA /* MicrobitUtils.swift in Sources */,
 				859727C62610B99D009AD2BA /* Microbit.swift in Sources */,
 				94E65AEE0DDD053900358328 /* chartables.c in Sources */,
@@ -2648,6 +2690,7 @@
 				9484F8E010B0E0CE0038BDC0 /* sqSqueakiPhoneApplication+sound.m in Sources */,
 				859727C82610B99D009AD2BA /* MicrobitConstants.swift in Sources */,
 				8514FED71B1BFA91002E1781 /* SUYNetUtils.m in Sources */,
+				8539742128F902250034ADCF /* DropdownSelector.swift in Sources */,
 				85EDEF3126248F4500B195F5 /* SUYMicrobitDevicesPopup.m in Sources */,
 				9484F8E110B0E0CE0038BDC0 /* sqSqueakIPhoneApplication.m in Sources */,
 				9484F8E210B0E0D10038BDC0 /* sqSqueakIPhoneFileDirectoryInterface.m in Sources */,
@@ -2658,22 +2701,27 @@
 				85B227A3289AC0240033E8E8 /* SUYUIButton.m in Sources */,
 				9484F8E510B0E0F00038BDC0 /* SqueakNoOGLIPhoneAppDelegate.m in Sources */,
 				9484F8E610B0E0FD0038BDC0 /* SqueakUIController.m in Sources */,
+				8539742228F902250034ADCF /* BonjourPeer.swift in Sources */,
 				9484F8E710B0E0FE0038BDC0 /* SqueakUIView.m in Sources */,
 				9484F91210B0E25B0038BDC0 /* dummyFFI.c in Sources */,
 				9484F9AF10B13DA50038BDC0 /* sqMacHostWindow.c in Sources */,
 				94584F6410F020BD001401E7 /* ClipboardExtendedPlugin.c in Sources */,
 				945851F010F03E60001401E7 /* sqMacExtendedClipboard.m in Sources */,
+				8539742728F902250034ADCF /* MeshTabView.swift in Sources */,
 				9458525610F04339001401E7 /* sqSqueakIPhoneClipboardAPI.m in Sources */,
 				9458525C10F043EB001401E7 /* sqSqueakIPhoneApplication+clipboard.m in Sources */,
 				947EA9B211137F8300F06E21 /* ScratchPlugin.c in Sources */,
 				947EA9BA11137FBD00F06E21 /* osxScratchOps.m in Sources */,
 				947EA9BB11137FBD00F06E21 /* osxSerialPort2Ops.c in Sources */,
+				8539742428F902250034ADCF /* MeshServerPartView.swift in Sources */,
 				94581632112C6E0A00AD53FF /* sqScratchIPhoneApplication.m in Sources */,
 				94581653112C706400AD53FF /* sqSqueakOSXSoundCoreAudio.m in Sources */,
 				942FFE791142E24200BB5CF2 /* ScratchScrollingView.m in Sources */,
 				942FFEED1142F56E00BB5CF2 /* UnicodePlugin.c in Sources */,
+				8539742328F902250034ADCF /* MeshUiUtils.swift in Sources */,
 				942FFEEE1142F57100BB5CF2 /* UnicodeOps-osx.m in Sources */,
 				943FD87E11485CDF0070BC55 /* ScratchRepeatKeyMetaData.m in Sources */,
+				8539742628F902250034ADCF /* MeshSettingsView.swift in Sources */,
 				8516C7F1196F88AE00643850 /* SUYLauncherViewController.m in Sources */,
 				94A877E31149B598004C03C6 /* ScratchPresentationUITextField.m in Sources */,
 				94A88268123F5D2C0047813B /* SqueakUIViewCALayer.m in Sources */,
@@ -2744,6 +2792,7 @@
 				PRODUCT_NAME = Pyonkee;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
@@ -2759,7 +2808,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 19;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = RXNQHKQR2N;
 				ENABLE_APP_SANDBOX = NO;
 				"ENABLE_APP_SANDBOX[sdk=macosx*]" = YES;
@@ -2794,7 +2843,7 @@
 					"@executable_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 2.24;
+				MARKETING_VERSION = 2.25;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = (
 					"-finline-functions",
@@ -2836,6 +2885,7 @@
 				PRODUCT_NAME = Pyonkee;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
@@ -2851,7 +2901,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 19;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = RXNQHKQR2N;
 				ENABLE_APP_SANDBOX = NO;
 				"ENABLE_APP_SANDBOX[sdk=macosx*]" = YES;
@@ -2881,7 +2931,7 @@
 					"@executable_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 2.24;
+				MARKETING_VERSION = 2.25;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = (
 					"-finline-functions",
@@ -2943,6 +2993,14 @@
 				kind = branch;
 			};
 		};
+		85CEF45228CA1F7600BC1C4D /* XCRemoteSwiftPackageReference "Bonjour" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/eugenebokhan/Bonjour.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -2955,6 +3013,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 85404F1928657CF80019A02A /* XCRemoteSwiftPackageReference "TouchVisualizer" */;
 			productName = TouchVisualizer;
+		};
+		85CEF45328CA1F7600BC1C4D /* Bonjour */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 85CEF45228CA1F7600BC1C4D /* XCRemoteSwiftPackageReference "Bonjour" */;
+			productName = Bonjour;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
