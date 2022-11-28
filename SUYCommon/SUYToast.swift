@@ -11,13 +11,22 @@ import UIKit
 class SUYToast: NSObject {
     // MARK: - Toast
     
-    @objc public class func showToast(message:String, image: UIImage, title: String = "", duration: TimeInterval = 0.5) {
+    @objc public class func showToast(message:String, image: UIImage, title: String = "", duration: TimeInterval = 0.5, position: String = "center") {
         guard let view = UIApplication.shared.keyWindow?.rootViewController?.view else { return }
-        self.showToastOn(view: view, message: message, image: image, title: title, duration: duration)
+        self.showToastOn(view: view, message: message, image: image, title: title, duration: duration, position: position)
     }
     
-    @objc public class func showToastOn(view: UIView, message:String, image: UIImage, title: String, duration: TimeInterval) {
-        view.makeToast(message, duration: duration, position: .center, title: title, image: image, style: ToastManager.shared.style, completion: nil)
+    @objc public class func showToastOn(view: UIView, message:String, image: UIImage, title: String, duration: TimeInterval, position: String = "center") {
+        var pos: ToastPosition;
+        switch (position){
+        case "top":
+            pos = .top
+        case "bottom":
+            pos = .bottom
+        default:
+            pos = .center
+        }
+        view.makeToast(message, duration: duration, position: pos, title: title, image: image, style: ToastManager.shared.style, completion: nil)
     }
     
     @objc public class func showActivityToastOn(view: UIView) {

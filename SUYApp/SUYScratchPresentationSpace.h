@@ -91,6 +91,8 @@
 - (void) exportToCloud: (NSString *)resourcePath;
 - (void) importFromCloud;
 
+- (void) openMeshDialog;
+
 - (BOOL) isViewModeBarHidden;
 - (BOOL) isInPresentationMode;
 - (BOOL) isPresentationButtonOn;

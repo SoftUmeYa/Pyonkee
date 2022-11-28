@@ -299,9 +299,10 @@ BOOL isUnfocued = NO;
         CGSize scratchScreenSize = SUYUtils.scratchScreenSize;
         CGFloat defaultHeight = scratchScreenSize.height;
         CGFloat defaultWidth = scratchScreenSize.width;
-        //LgInfo(@"%@ > %f %f : %f %f", [object className], defaultHeight, defaultWidth, notifierSize.height, notifierSize.width);
+        NSString* className = NSStringFromClass([object class]);
+        //LgInfo(@"%@ > %f %f : %f %f", className, defaultHeight, defaultWidth, notifierSize.height, notifierSize.width);
         if(defaultHeight > notifierSize.height && defaultWidth > notifierSize.width
-           && ([[object className] hasPrefix: @"UINS"] == NO))
+           && ([className hasPrefix: @"UINS"] == NO))
         {
             return NO;
         }
@@ -469,12 +470,34 @@ BOOL isUnfocued = NO;
     }
 }
 
+- (BOOL) meshIsRunning {
+    int runFlag = [squeakProxy meshIsRunning];
+    return runFlag > 0;
+}
+- (void) meshJoin: (NSString *)inputString {
+    if(squeakProxy){
+        NSString* str = [inputString copy];
+        [squeakProxy meshJoin: str];
+    }
+}
+- (BOOL) meshJoined: (NSString *)inputString {
+    int result = [squeakProxy meshJoined: inputString];
+    return result > 0;
+}
+- (void) meshRun: (int) runOrNot {
+    if(squeakProxy){
+        [squeakProxy meshRun: runOrNot];
+    }
+}
+
 #pragma mark-
 #pragma mark ScratchAdapter - Testing
 - (int) catalystMode {
     return SUYUtils.isOnMac ? 1 : 0;
 }
-
+- (float) osVersion {
+    return SUYUtils.osVersion;
+}
 #pragma mark -
 #pragma mark Rotation
 - (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window{
@@ -583,6 +606,15 @@ BOOL isUnfocued = NO;
     );
 }
 
+#pragma mark Mesh
+- (void) openMeshDialog {
+    dispatch_async (
+        dispatch_get_main_queue(), ^{
+            [presentationSpace openMeshDialog];
+        }
+    );
+}
+
 #pragma mark Cursor
 - (void) showCursor:(int)cursorCode {
     //Hack for TouchVisualizer bug
@@ -624,7 +656,9 @@ BOOL isUnfocued = NO;
 
 - (void) restoreDisplayIfNeeded {
     if(SUYUtils.isOnMac){
-        [self restoreDisplay];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self restoreDisplay];
+        });
     }
 }
 

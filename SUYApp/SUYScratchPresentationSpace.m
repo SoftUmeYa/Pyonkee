@@ -154,6 +154,8 @@ uint memoryWarningCount;
                                                  name:@"ScratchDialogClosed" object:nil];
     [notificationCenter addObserver:self selector:@selector(scratchProjectReloaded:)
                                                  name:@"ScratchProjectReloaded" object:nil];
+    [notificationCenter addObserver:self selector:@selector(meshEnabledProjectLoaded:)
+                                                 name:@"MeshEnabledProjectLoaded" object:nil];
 }
 
 - (void)forgetNotifications {
@@ -164,6 +166,7 @@ uint memoryWarningCount;
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"ScratchDialogOpened" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"ScratchDialogClosed" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"ScratchProjectReloaded" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MeshEnabledProjectLoaded" object:nil];
 }
 
 
@@ -277,19 +280,12 @@ uint memoryWarningCount;
 -(void) fixLayoutOfSubViews {
     if(self.presentedViewController){
         [[self appDelegate] restoreDisplayIfNeeded];
-        if(self.fontScaleButton.selected == NO ){
-            [self fixSizeOfSubViewsIfNeeded];
-        }
     }
 }
 
 #pragma mark - Resizing for Mac
 
 -(void)fixLayoutOnWindowResizing{
-    //LgInfo(@"-presentedViewController- %@", self.presentedViewController);
-    if(self.presentedViewController){
-        return;
-    }
     [self fixSizeOfSubViewsIfNeeded];
 }
 
@@ -548,6 +544,19 @@ uint memoryWarningCount;
     picker.delegate = self;
     
     return [self presentViewController:picker animated:NO completion:nil];
+}
+
+- (void) openMeshDialog {
+    if (@available(iOS 14.0, *)) {
+        UIViewController *vc = [MeshUIViewFactory makeMeshUiViewControllerWithDismissHandler:^{
+            [[self presentedViewController] dismissViewControllerAnimated:YES completion:^{
+                [self fixSizeOfSubViewsIfNeeded];
+            }];
+        }];
+        vc.modalPresentationStyle = UIModalPresentationFormSheet;
+        vc.preferredContentSize = CGSizeMake(400, 295);
+        [self presentViewController:vc animated:YES completion:nil];
+    }
 }
 
 #pragma mark UIDocumentPickerDelegate
@@ -904,6 +913,18 @@ uint memoryWarningCount;
         dispatch_get_main_queue(),
         ^{
             [self changedViewModeIndex:[[self appDelegate] getViewModeIndex]];
+        }
+    );
+}
+
+-(void) meshEnabledProjectLoaded:(id)sender
+{
+    dispatch_async (
+        dispatch_get_main_queue(),
+        ^{
+            if (@available(iOS 13.0, *)) {
+                [MeshServiceAccessor meshEnabledProjectLoaded];
+            }
         }
     );
 }
