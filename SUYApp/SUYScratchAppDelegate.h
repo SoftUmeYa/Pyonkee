@@ -62,6 +62,12 @@
 - (void) restoreDisplay;
 - (void) restoreDisplayIfNeeded;
 - (int) catalystMode;
+- (float) osVersion;
+- (BOOL) meshIsRunning;
+- (void) meshJoin: (NSString *)inputString;
+- (BOOL) meshJoined: (NSString *)inputString;
+- (void) meshRun: (int) runOrNot;
+- (void) onMeshProject: (int) runOrNot;
 
 - (void) enterRestart;
 - (void) restartAfterDelay;
@@ -75,6 +81,7 @@
 - (void) airDropProject: (NSString *)projectPath;
 - (void) exportToCloud: (NSString *)resourcePath;
 - (void) importFromCloud;
+- (void) openMeshDialog;
 - (void) textMorphFocused: (NSString *)status;
 - (void) showCursor:(int)cursorCode;
 - (void) hideCursor;

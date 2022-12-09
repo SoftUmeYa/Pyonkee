@@ -58,3 +58,15 @@
 /*Pyonkee-mac*/
 
 "Version" = "版本";
+
+/*Pyonkee-mesh*/
+
+"Join Mesh" = "加入网";
+"Host Mesh" = "主机网";
+"Join" = "加入";
+"Leave" = "离开";
+"Start" = "开始";
+"Stop" = "停止";
+"Enter IP Address" = "输入IP地址";
+"IP Address:" = "IP地址:";
+"Cannot connect" = "无法连接";

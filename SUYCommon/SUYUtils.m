@@ -18,6 +18,8 @@
 #import "SUYAudioFileConverter.h"
 #import "Pyonkee-Swift.h"
 
+#import "SUYScratchAppDelegate.h"
+
 #import "SUYUtils.h"
 
 #import <SDCAlertView/SDCAlertView.h>
@@ -44,6 +46,10 @@
 + (BOOL) canSendMail
 {
     return [MFMailComposeViewController canSendMail];
+}
++ (float) osVersion
+{
+    return [[[UIDevice currentDevice] systemVersion] floatValue];
 }
 
 #pragma mark Actions
@@ -359,11 +365,11 @@
 #pragma mark Toast
 
 + (void) showToast: (NSString*) message image: (UIImage*) image title: (NSString*) title {
-    [SUYToast showToastWithMessage:message image:image title: title duration: 1];
+    [SUYToast showToastWithMessage:message image:image title: title duration: 1 position: @"center"];
 }
 
 + (void) showToastOn:(UIView*) view message:(NSString*) message image: (UIImage*) image title: (NSString*) title {
-    [SUYToast showToastOnView:view message:message image:image title: title duration: 1];
+    [SUYToast showToastOnView:view message:message image:image title: title duration: 1 position: @"center"];
 }
 
 + (void) showActivityToastOn:(UIView*) view{
@@ -411,6 +417,31 @@
     SDCAlertController *alert = [self newAlert:message title: title];
     [alert addAction:[[SDCAlertAction alloc] initWithTitle:NSLocalizedString(@"OK",nil) style:SDCAlertActionStylePreferred handler:nil]];
     return alert;
+}
+
+#pragma mark Mesh
+
++ (BOOL) meshIsRunning
+{
+    ScratchIPhoneAppDelegate* appDele = (ScratchIPhoneAppDelegate*)UIApplication.sharedApplication.delegate;
+    return [appDele meshIsRunning];
+}
++ (void) meshJoin: (NSString*) ipAddress
+{
+    ScratchIPhoneAppDelegate* appDele = (ScratchIPhoneAppDelegate*)UIApplication.sharedApplication.delegate;
+    [appDele meshJoin: ipAddress];
+}
++ (BOOL) meshJoined: (NSString*) ipAddress
+{
+    ScratchIPhoneAppDelegate* appDele = (ScratchIPhoneAppDelegate*)UIApplication.sharedApplication.delegate;
+    return [appDele meshJoined: ipAddress];
+}
++ (void) meshRun: (BOOL) startOrNot
+{
+    ScratchIPhoneAppDelegate* appDele = (ScratchIPhoneAppDelegate*)UIApplication.sharedApplication.delegate;
+    int mode = (startOrNot == YES) ? 1 : 0;
+    LgInfo(@"mode int: %d", mode);
+    [appDele meshRun: mode];
 }
 
 #pragma mark Stats

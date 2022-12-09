@@ -16,6 +16,7 @@
 + (BOOL) isRetina;
 + (BOOL) isOnMac;
 + (BOOL) canSendMail;
++ (float) osVersion;
 + (UIImage *)upsideDownImage:(UIImage*)origImage;
 + (UIImage *)rotateRightImage:(UIImage*)origImage;
 + (UIImage *)rotateLeftImage:(UIImage*)origImage;
@@ -52,5 +53,10 @@
 + (void) showActivityToastOn:(UIView*) view;
 + (void) hideActivityToastOn:(UIView*) view;
 + (NSString*)saveAiffFromPath: (NSString*) fromPath;
+
++ (BOOL) meshIsRunning;
++ (void) meshJoin: (NSString*) ipAddress;
++ (BOOL) meshJoined: (NSString*) ipAddress;
++ (void) meshRun: (BOOL) startOrNot;
 
 @end

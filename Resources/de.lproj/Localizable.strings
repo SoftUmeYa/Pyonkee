@@ -73,3 +73,15 @@
 /*Pyonkee-mac*/
 
 "Version" = "Version";
+
+/*Pyonkee-mesh*/
+
+"Join Mesh" = "Tritt Mesh-Netz bei";
+"Host Mesh" = "Stelle Mesh-Netz bereit";
+"Join" = "Verbinden";
+"Leave" = "Verlassen";
+"Start" = "Start";
+"Stop" = "Stopp";
+"Enter IP Address" = "Geben Sie die IP-Adresse ein";
+"IP Address:" = "IP-Adresse:";
+"Cannot connect" = "Kann nicht verbinden";
