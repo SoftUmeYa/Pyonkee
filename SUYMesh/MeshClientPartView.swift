@@ -109,6 +109,7 @@ struct MeshClientPartView: View {
                         }
                             .padding(.horizontal, 5)
                             .padding(.vertical, 12)
+                            .foregroundColor(isConnecting ? .gray : .blue)
                             .background(Color.buttonBackgroundColor)
                             .disabled(isConnecting)
                             .overlay(

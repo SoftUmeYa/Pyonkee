@@ -656,9 +656,7 @@ BOOL isUnfocued = NO;
 
 - (void) restoreDisplayIfNeeded {
     if(SUYUtils.isOnMac){
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self restoreDisplay];
-        });
+        [self restoreDisplay];
     }
 }
 

@@ -14,6 +14,11 @@ struct MeshSettingsView: View {
     @StateObject var client = MeshServiceAccessor.bonjourPeerClient()
     @StateObject var server = MeshServiceAccessor.bonjourPeerServer()
     
+    init(dismiss: @escaping () -> Void, client: BonjourPeer = MeshServiceAccessor.bonjourPeerClient(), server: BonjourPeer = MeshServiceAccessor.bonjourPeerServer()) {
+        self.dismiss = dismiss
+        MeshServiceAccessor.setup()
+    }
+    
     var body: some View {
         VStack {
             closeButton
@@ -46,6 +51,6 @@ struct MeshSettingsView: View {
 @available(iOS 14.0, *)
 struct MeshSettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        MeshSettingsView()
+        MeshSettingsView(dismiss: { })
     }
 }

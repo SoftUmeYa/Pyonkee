@@ -6,15 +6,20 @@
 //
 
 import Foundation
+import Network
 
 @available(iOS 13.0, *)
 class MeshServiceAccessor: NSObject {
     private static var isActivatedAsClient: Bool = false
     private static var isActivatedAsServer: Bool = false
-    
+    static var isNetReady: Bool = false
     static var connectedIpAddress: String = ""
     
-    private static var _bonjourPeerServer: BonjourPeer = BonjourPeer()
+    private static let netMonitor = newNetworkPathMonitor();
+    
+    private static let netMonitorQueue = DispatchQueue(label: "netMonitorQueue")
+    
+    private static let _bonjourPeerServer: BonjourPeer = BonjourPeer()
     
     static func bonjourPeerServer() -> BonjourPeer {
         return _bonjourPeerServer
@@ -23,6 +28,30 @@ class MeshServiceAccessor: NSObject {
         return BonjourPeer(isClient: true)
     }
 
+    //MARK: Setup
+    static func setup() {
+        if(netMonitor.pathUpdateHandler == nil) {
+            netMonitor.pathUpdateHandler = { path in
+                self.isNetReady = path.status == .satisfied
+                if(self.isNetReady == false){
+                    DispatchQueue.main.async {
+                        self.stopMeshIfActivated()
+                    }
+                }
+            }
+            netMonitor.start(queue: netMonitorQueue)
+        }
+    }
+    static func stopMeshIfActivated() {
+        if(self.isActivatedAsClient){
+            self.leaveMesh()
+            self.clearConnectedIpAddress()
+        }
+        if(self.isActivatedAsServer){
+            self.stopMesh()
+            _bonjourPeerServer.stop()
+        }
+    }
     
     //MARK: Testing
     static func isMeshRunning() -> Bool {
@@ -40,12 +69,18 @@ class MeshServiceAccessor: NSObject {
     
     //MARK: Client
     static func joinMesh(_ ipAddressString: String){
+        if(self.isNetReady == false) {
+            return;
+        }
         if(self.isActivatedAsServer){
             return
         }
         SUYUtils.meshJoin(ipAddressString)
     }
     static func isMeshMember(_ ipAddressString: String) -> Bool {
+        if(self.isNetReady == false) {
+            return false;
+        }
         if(self.isActivatedAsServer){
             return false
         }
@@ -64,6 +99,9 @@ class MeshServiceAccessor: NSObject {
     
     //MARK: Server
     static func startMesh() {
+        if(self.isNetReady == false) {
+            return;
+        }
         if(self.isActivatedAsClient){
             return;
         }
@@ -88,6 +126,8 @@ class MeshServiceAccessor: NSObject {
     
     //MARK: Basic
     static func runMesh(_ runOrNot: Bool) {
-        SUYUtils.meshRun(runOrNot)
+        DispatchQueue.main.async {
+            SUYUtils.meshRun(runOrNot)
+        }
     }
 }
