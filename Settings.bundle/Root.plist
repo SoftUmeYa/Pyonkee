@@ -90,7 +90,7 @@
 			<key>Type</key>
 			<string>PSTitleValueSpecifier</string>
 			<key>DefaultValue</key>
-			<string>2.25</string>
+			<string>2.26</string>
 			<key>Title</key>
 			<string>Version</string>
 			<key>Key</key>
@@ -100,7 +100,7 @@
 			<key>Type</key>
 			<string>PSTitleValueSpecifier</string>
 			<key>DefaultValue</key>
-			<string>0</string>
+			<string>1</string>
 			<key>Title</key>
 			<string>Build</string>
 			<key>Key</key>
