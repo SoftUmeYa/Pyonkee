@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Network
 import Bonjour
 
 @available(iOS 13.0, *)
@@ -13,7 +14,6 @@ class BonjourPeer: ObservableObject {
     var session: BonjourSession?
     var isClient: Bool
     @Published var serverPeerNames: [String]
-
     @Published var isRunning = false;
     
     init(isClient:Bool = false){
@@ -23,6 +23,7 @@ class BonjourPeer: ObservableObject {
     }
     
     func start(){
+        if(MeshServiceAccessor.isNetReady == false) {return}
         if(self.isRunning == true) {return}
         
         let conf = BonjourSession.Configuration(serviceType: "Pyonkee",
@@ -74,24 +75,9 @@ class BonjourPeer: ObservableObject {
     
     func getIpAddress() -> String {
         var address: String?
-        var ifaddr: UnsafeMutablePointer<ifaddrs>? = nil
-        if getifaddrs(&ifaddr) == 0 {
-            var ptr = ifaddr
-            while ptr != nil {
-                defer { ptr = ptr?.pointee.ifa_next }
-
-                guard let interface = ptr?.pointee else { return "" }
-                let addrFamily = interface.ifa_addr.pointee.sa_family
-                if addrFamily == UInt8(AF_INET) {
-                    let name: String = String(cString: (interface.ifa_name))
-                    if  name == "en0" || name == "en2" || name == "en3" || name == "en4" {
-                        var hostname = [CChar](repeating: 0, count: Int(NI_MAXHOST))
-                        getnameinfo(interface.ifa_addr, socklen_t((interface.ifa_addr.pointee.sa_len)), &hostname, socklen_t(hostname.count), nil, socklen_t(0), NI_NUMERICHOST)
-                        address = String(cString: hostname)
-                    }
-                }
-            }
-            freeifaddrs(ifaddr)
+        address = NWInterface.InterfaceType.wifi.ipv4
+        if (address == nil) {
+            address = NWInterface.InterfaceType.wiredEthernet.ipv4
         }
         return address ?? ""
     }
@@ -100,6 +86,9 @@ class BonjourPeer: ObservableObject {
     private func hexStringIPAddressFrom(_ ipAddressString:String) -> String {
         var hexStringIPAddress = ""
         let parts = ipAddressString.components(separatedBy: ".")
+        if(parts.count < 4) {
+            return ""
+        }
         for part in parts {
             let i = Int(part)
             hexStringIPAddress += String(format:"%02X", i!)

@@ -75,6 +75,7 @@ struct DropdownSelector: View {
             HStack {
                 TextField(placeholder, text: $textInputValue)
                     .font(.system(size: 14))
+                    .foregroundColor(Color.black)
                 Spacer()
                 Button(action: {
                     self.shouldShowDropdown.toggle()

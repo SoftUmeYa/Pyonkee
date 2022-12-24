@@ -12,6 +12,9 @@ struct MeshServerPartView: View {
     @StateObject var server: BonjourPeer
     
     private func getIpAddress() -> String {
+        if(MeshServiceAccessor.isNetReady == false){
+            return ""
+        }
         return server.getIpAddress()
     }
     private func toggleIsRunning(){
@@ -40,6 +43,7 @@ struct MeshServerPartView: View {
                     HStack{
                         Text("IP Address:")
                             .frame(maxWidth: .infinity, alignment: .leading)
+                            .foregroundColor(Color.black)
                         Text(self.getIpAddress())
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .foregroundColor(foregroundColorOfIpAddressPart)

@@ -85,9 +85,26 @@ struct MeshTabView: View {
             }
         }
         .onAppear{
-            UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18)], for: .normal)
-            UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18)], for: .selected)
-            UITabBar.appearance().isTranslucent = false
+            let bigFont = UIFont.systemFont(ofSize: 18)
+            let textAttributes = [NSAttributedString.Key.font: bigFont]
+            UITabBarItem.appearance().setTitleTextAttributes(textAttributes, for: .normal)
+            UITabBarItem.appearance().setTitleTextAttributes(textAttributes, for: .selected)
+            
+            let tabBarItemAppearance = UITabBarItemAppearance()
+            tabBarItemAppearance.normal.titleTextAttributes = textAttributes
+            tabBarItemAppearance.selected.titleTextAttributes = textAttributes
+            
+            let tabBarAppearance = UITabBarAppearance()
+            tabBarAppearance.inlineLayoutAppearance = tabBarItemAppearance
+            tabBarAppearance.stackedLayoutAppearance = tabBarItemAppearance
+            tabBarAppearance.compactInlineLayoutAppearance = tabBarItemAppearance
+            tabBarAppearance.backgroundColor =  UIColor(red: 212/255, green: 212/255, blue: 212/255, alpha: 1)
+            tabBarAppearance.shadowImage = UIImage(named: "mesh-divider")
+            UITabBar.appearance().standardAppearance = tabBarAppearance
+            if #available(iOS 15.0, *) {
+                UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
+            }
+            
             selectionIndex = (shouldDisableClientPart) ? 1 : 0
             fixedSelectionIndex = (shouldDisableServerPart) ? 0 : 1
         }
