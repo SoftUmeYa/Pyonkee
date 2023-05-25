@@ -40,6 +40,13 @@ Sept-02-08  1.03b1  setup useScrollingView
 
 #import "sqSqueakInfoPlistInterface.h"
 
+static NSString *const kspaceRepeats_preference = @"spaceRepeats_preference";
+static NSString *const kmemorySize_preference = @"memorySize_preference";
+static NSString *const ktimeOut_preference = @"timeOut_preference";
+static NSString *const kinboxMaxNumOfItems_preference = @"inboxMaxNumOfItems_preference";
+static NSString *const kuseVirtualMIDI_preference = @"useVirtualMIDI_preference";
+static NSString *const kuseSmalltalk_preference = @"useSmalltalk_preference";
+
 @interface sqSqueakIPhoneInfoPlistInterface : sqSqueakInfoPlistInterface 
 - (BOOL) imageIsWriteable;
 - (BOOL) useScrollingView;
@@ -48,5 +55,6 @@ Sept-02-08  1.03b1  setup useScrollingView
 - (BOOL) spaceRepeats;
 - (NSInteger) inboxMaxNumOfItems;
 - (BOOL) useVirtualMIDI;
+- (BOOL) useSmalltalk;
 - (NSString*) fullVersionString;
 @end

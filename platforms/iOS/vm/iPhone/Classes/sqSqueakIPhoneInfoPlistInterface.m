@@ -40,12 +40,6 @@ Sept-02-08  1.03b1  setup useScrollingView
 
 #import "sqSqueakIPhoneInfoPlistInterface.h"
 
-NSString * kspaceRepeats_preference = @"spaceRepeats_preference";
-NSString * kmemorySize_preferenceKey = @"memorySize_preference";
-NSString * ktimeOut_preferenceKey = @"timeOut_preference";
-NSString * kinboxMaxNumOfItems_preferenceKey = @"inboxMaxNumOfItems_preference";
-NSString * kuseVirtualMIDI_preferenceKey = @"useVirtualMIDI_preference";
-
 extern int gSqueakUseFileMappedMMAP;
 
 @implementation sqSqueakIPhoneInfoPlistInterface
@@ -59,7 +53,7 @@ extern int gSqueakUseFileMappedMMAP;
     self.SqueakUseFileMappedMMAP = gSqueakUseFileMappedMMAP;
     
     NSArray* allKeys = [[defaults dictionaryRepresentation] allKeys];
-    if([allKeys containsObject:kmemorySize_preferenceKey] == NO){
+    if([allKeys containsObject:kmemorySize_preference] == NO){
         [self setupDefaultValues];
     }
     
@@ -82,20 +76,20 @@ extern int gSqueakUseFileMappedMMAP;
 
         if(OVER_IOS13){
             NSNumber* adjustedDefaultValue;
-            if ([keyValueStr isEqualToString: kmemorySize_preferenceKey]) {
+            if ([keyValueStr isEqualToString: kmemorySize_preference]) {
                 adjustedDefaultValue = [self adjustedSliderValue: defaultValue min: 41943040.0 max: 419430400.0];
-                [defaults setObject: adjustedDefaultValue forKey:kmemorySize_preferenceKey];
+                [defaults setObject: adjustedDefaultValue forKey:kmemorySize_preference];
             }
-            if ([keyValueStr isEqualToString: kinboxMaxNumOfItems_preferenceKey]) {
+            if ([keyValueStr isEqualToString: kinboxMaxNumOfItems_preference]) {
                 adjustedDefaultValue = [self adjustedSliderValue: defaultValue min: 100.0 max: 1000.0];
-                [defaults setObject: adjustedDefaultValue forKey:kinboxMaxNumOfItems_preferenceKey];
+                [defaults setObject: adjustedDefaultValue forKey:kinboxMaxNumOfItems_preference];
             }
         } else {
-            if ([keyValueStr isEqualToString: kmemorySize_preferenceKey]) {
-                [defaults setObject: defaultValue forKey:kmemorySize_preferenceKey];
+            if ([keyValueStr isEqualToString: kmemorySize_preference]) {
+                [defaults setObject: defaultValue forKey:kmemorySize_preference];
             }
-            if ([keyValueStr isEqualToString: kinboxMaxNumOfItems_preferenceKey]) {
-                [defaults setObject: defaultValue forKey:kinboxMaxNumOfItems_preferenceKey];
+            if ([keyValueStr isEqualToString: kinboxMaxNumOfItems_preference]) {
+                [defaults setObject: defaultValue forKey:kinboxMaxNumOfItems_preference];
             }
         }
         
@@ -104,7 +98,9 @@ extern int gSqueakUseFileMappedMMAP;
         }
 
         //do nothing if default value is NO
-        if ([keyValueStr isEqualToString: kuseVirtualMIDI_preferenceKey]) {
+        if ([keyValueStr isEqualToString: kuseVirtualMIDI_preference]) {
+        }
+        if ([keyValueStr isEqualToString: kuseSmalltalk_preference]) {
         }
 
     }
@@ -125,7 +121,7 @@ extern int gSqueakUseFileMappedMMAP;
 #pragma mark - Accessing
 
 - (NSInteger) memorySize {
-    NSNumber* memSize = [defaults objectForKey: kmemorySize_preferenceKey];
+    NSNumber* memSize = [defaults objectForKey: kmemorySize_preference];
     if(memSize.doubleValue <= 1){ //For iOS13
         double memAppValue = [self adjustedAppValue: memSize.doubleValue min: 41943040.0 max: 419430400.0];
         return memAppValue;
@@ -134,7 +130,7 @@ extern int gSqueakUseFileMappedMMAP;
 }
 
 - (NSInteger) inboxMaxNumOfItems {
-    NSNumber* inboxSize = [defaults objectForKey:kinboxMaxNumOfItems_preferenceKey];
+    NSNumber* inboxSize = [defaults objectForKey:kinboxMaxNumOfItems_preference];
     if(inboxSize.doubleValue <= 1){ //For iOS13
         double inboxAppValue = [self adjustedAppValue: inboxSize.doubleValue min: 100.0 max: 1000.0];
         return inboxAppValue;
@@ -143,7 +139,11 @@ extern int gSqueakUseFileMappedMMAP;
 }
 
 - (BOOL) useVirtualMIDI {
-    return [defaults boolForKey: kuseVirtualMIDI_preferenceKey];
+    return [defaults boolForKey: kuseVirtualMIDI_preference];
+}
+
+- (BOOL) useSmalltalk {
+    return [defaults boolForKey: kuseSmalltalk_preference];
 }
 
 - (BOOL) spaceRepeats {
