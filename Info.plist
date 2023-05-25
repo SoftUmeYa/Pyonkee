@@ -36,7 +36,7 @@
 			<key>CFBundleTypeName</key>
 			<string>Scratch2 Project</string>
 			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
+			<string>Shell</string>
 			<key>LSHandlerRank</key>
 			<string>None</string>
 			<key>LSItemContentTypes</key>
@@ -48,7 +48,7 @@
 			<key>CFBundleTypeName</key>
 			<string>Scratch3 Project</string>
 			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
+			<string>Shell</string>
 			<key>LSHandlerRank</key>
 			<string>None</string>
 			<key>LSItemContentTypes</key>
@@ -61,6 +61,8 @@
 			<array/>
 			<key>CFBundleTypeName</key>
 			<string>Waveform audio</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
 			<key>LSHandlerRank</key>
 			<string>Alternate</string>
 			<key>LSItemContentTypes</key>
@@ -73,6 +75,8 @@
 			<array/>
 			<key>CFBundleTypeName</key>
 			<string>GIF image</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
 			<key>LSHandlerRank</key>
 			<string>Alternate</string>
 			<key>LSItemContentTypes</key>
@@ -85,6 +89,8 @@
 			<array/>
 			<key>CFBundleTypeName</key>
 			<string>PNG image</string>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
 			<key>LSHandlerRank</key>
 			<string>Alternate</string>
 			<key>LSItemContentTypes</key>
@@ -97,6 +103,8 @@
 			<array/>
 			<key>CFBundleTypeName</key>
 			<string>JPEG image</string>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
 			<key>LSHandlerRank</key>
 			<string>Alternate</string>
 			<key>LSItemContentTypes</key>
@@ -109,6 +117,8 @@
 			<array/>
 			<key>CFBundleTypeName</key>
 			<string>Windows bitmap image</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
 			<key>LSHandlerRank</key>
 			<string>Alternate</string>
 			<key>LSItemContentTypes</key>
@@ -121,6 +131,8 @@
 			<array/>
 			<key>CFBundleTypeName</key>
 			<string>MPEG-3 audio</string>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
 			<key>LSHandlerRank</key>
 			<string>Alternate</string>
 			<key>LSItemContentTypes</key>
