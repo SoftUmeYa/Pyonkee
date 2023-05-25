@@ -41,6 +41,8 @@ Some of this code was funded via a grant from the European Smalltalk User Group 
 	}
 	
 	- (void) recordCharEvent:(NSString *) unicodeString;
+    - (void) recordCharEvent:(NSString *) unicodeString modifiers: (unsigned int) modifiers autoKeyUp: (BOOL) autoKeyUp;
+    - (void) recordKeyUpEvent:(NSString *) unicodeString;
     - (void) preDrawThelayers;
 	- (void) drawThelayers;
 	- (void) drawImageUsingClip: (CGRect) clip;

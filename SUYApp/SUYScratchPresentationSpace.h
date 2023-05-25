@@ -19,6 +19,7 @@
 
   	NSInteger	characterCounter;
 	NSMutableDictionary *repeatKeyDict;
+    NSMutableDictionary *repeatExternalKeyDict;
 	
 }
 @property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
@@ -39,6 +40,8 @@
 @property (nonatomic, retain) IBOutlet GSRadioButtonSetController *radioButtonSetController;
 
 @property (nonatomic, retain) NSMutableDictionary *repeatKeyDict;
+@property (nonatomic, retain) NSMutableDictionary *repeatExternalKeyDict;
+
 @property (nonatomic, retain) UIView *landscapeToolBar;
 @property (nonatomic, retain) UIView *landscapeToolBar2;
 @property (nonatomic, retain) UIView *viewModeBar;
@@ -82,7 +85,7 @@
 - (IBAction) shiftButtonDown: (id) sender;
 
 - (void) postOpen;
-- (void) pushCharacter: (NSString*) string;
+- (void) pushCharacters: (NSString*) string;
 - (void) startRepeatKeyProcess: (unichar) character for: (id) sender;
 - (void) startRepeatKeyAction: (NSString*) string  for: (id) sender;
 - (int)  viewModeIndex;

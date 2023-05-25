@@ -44,7 +44,7 @@ static const int kShiftAutoUpSeconds = 20;
 }
 
 @synthesize scrollView,scrollViewController,fontScaleButton, radioButtonSetController,
-	textField,repeatKeyDict,
+	textField,repeatKeyDict,repeatExternalKeyDict,
     softKeyboardField, softKeyboardOnButton,
 	shoutGoLandscapeButton,stopAllLandscapeButton,landscapeToolBar,landscapeToolBar2,padLockButton,
     commandButton, shiftButton,
@@ -59,7 +59,8 @@ uint memoryWarningCount;
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-		repeatKeyDict = [[NSMutableDictionary alloc] init];
+        repeatKeyDict = [[NSMutableDictionary alloc] init];
+        repeatExternalKeyDict = [[NSMutableDictionary alloc] init];
 	}
     return self;
 }
@@ -83,9 +84,9 @@ uint memoryWarningCount;
     self.viewModeBar.layer.cornerRadius = 5;
     self.viewModeBar.layer.masksToBounds = YES;
     
-    _originalScrollerScale = [SUYUtils scratchScreenZoomScale];
+    _originalScrollerScale = SUYUtils.scratchScreenZoomScale;
     [self.scrollView setZoomScale: _originalScrollerScale animated: NO];
-    self.scrollView.minimumZoomScale = [SUYUtils scratchScreenZoomScale];
+    self.scrollView.minimumZoomScale = SUYUtils.scratchScreenZoomScale;
     self.scrollView.maximumZoomScale = 8;
     [self.scrollView flashScrollIndicators];
     
@@ -232,28 +233,30 @@ uint memoryWarningCount;
 }
 
 -(void)fixLayoutByOrientation{
-    CGFloat ratio = 1.0f;
     CGPoint offsetPoint = self.scrollView.contentOffset;
     CGSize sz = [SUYUtils scratchScreenSize];
     
     UIInterfaceOrientation orientation = SUYUtils.interfaceOrientation;
     if(_formerOrientation != orientation){
         if(UIInterfaceOrientationIsPortrait(orientation) && UIInterfaceOrientationIsLandscape(_formerOrientation)){
-            ratio = sz.height/sz.width;
-            scrollViewHeightConstraint.constant = [SUYUtils landscapeScreenHeight]*ratio;
-            _originalScrollerScale = _originalScrollerScale * ratio;
-            self.scrollView.minimumZoomScale = ratio;
+            CGFloat aspectRatio = sz.width/sz.height;
+            CGFloat newHeight = SUYUtils.landscapeScreenHeight / aspectRatio;
+            scrollViewHeightConstraint.constant = newHeight;
+            CGFloat realComputedScale = newHeight / SUYUtils.landscapeScreenHeight;
+            _originalScrollerScale = _originalScrollerScale * realComputedScale;
+            self.scrollView.minimumZoomScale = SUYUtils.scratchScreenZoomScale * realComputedScale;
             [self.scrollView setZoomScale: _originalScrollerScale animated:YES];
-            self.scrollView.contentOffset = CGPointMake(offsetPoint.x*ratio, offsetPoint.y*ratio);
+            self.scrollView.contentOffset = CGPointMake(offsetPoint.x * realComputedScale, offsetPoint.y * realComputedScale);
             self.presentationExitButton.hidden = YES;
         }
         else if(UIInterfaceOrientationIsLandscape(orientation) && UIInterfaceOrientationIsPortrait(_formerOrientation)) {
-            ratio = sz.width/sz.height;
-            scrollViewHeightConstraint.constant = [SUYUtils landscapeScreenHeight];
-            _originalScrollerScale = _originalScrollerScale * ratio;
-            self.scrollView.minimumZoomScale = [SUYUtils scratchScreenZoomScale];
+            CGFloat oldHeight = scrollViewHeightConstraint.constant;
+            CGFloat realComputedScale = SUYUtils.landscapeScreenHeight / oldHeight;
+            scrollViewHeightConstraint.constant = SUYUtils.landscapeScreenHeight;
+            _originalScrollerScale = _originalScrollerScale * realComputedScale;
+            self.scrollView.minimumZoomScale = SUYUtils.scratchScreenZoomScale;
             [self.scrollView setZoomScale: _originalScrollerScale animated:YES];
-            self.scrollView.contentOffset = CGPointMake(offsetPoint.x*ratio, offsetPoint.y*ratio);
+            self.scrollView.contentOffset = CGPointMake(offsetPoint.x * realComputedScale, offsetPoint.y * realComputedScale);
             self.presentationExitButton.hidden = NO;
         }
         _formerOrientation = orientation;
@@ -425,7 +428,8 @@ uint memoryWarningCount;
     dispatch_async (
          dispatch_get_main_queue(),
          ^{
-              [[self appDelegate] exitPresentationMode];
+             [[self appDelegate] exitPresentationMode];
+             [self ensureSupportedInterfaceOrientationsChecked];
           }
     );
 }
@@ -738,12 +742,15 @@ uint memoryWarningCount;
 
 #pragma mark Key Handling
 
-- (void) pushCharacter: (NSString*) string {
+- (void) pushCharacters: (NSString*) string {
 	[gDelegateApp.mainView recordCharEvent: string];
+}
+- (void) pushCharacters: (NSString*) string modifiers: (unsigned int) modifiers autoKeyUp: (BOOL) autoKeyUp {
+    [gDelegateApp.mainView recordCharEvent: string modifiers: modifiers autoKeyUp: autoKeyUp];
 }
 
 - (void)repeatKeyDoKey:(NSTimer*)theTimer {
-	[self pushCharacter: [[theTimer userInfo] string]];
+	[self pushCharacters: [[theTimer userInfo] string] modifiers: 0 autoKeyUp: NO];
 }
 
 - (void)repeatKeySecondPhase:(NSTimer*)theTimer {
@@ -782,7 +789,7 @@ uint memoryWarningCount;
 		unichar character = 32;
 		[self startRepeatKeyProcess: character for: sender];
 	} else {
-		[self pushCharacter: @" "];
+		[self pushCharacters: @" "];
 	}
 }
 
@@ -793,6 +800,7 @@ uint memoryWarningCount;
 		NSNumber *senderHash = [NSNumber numberWithUnsignedInteger:[sender hash]];
 		NSTimer *repeatKeyTimerInstance = [self.repeatKeyDict objectForKey: senderHash];
 		if (repeatKeyTimerInstance) {
+            [gDelegateApp.mainView recordKeyUpEvent: [repeatKeyTimerInstance.userInfo string]];
 			[repeatKeyTimerInstance invalidate];
 			[self.repeatKeyDict removeObjectForKey: senderHash];
 		}
@@ -800,13 +808,13 @@ uint memoryWarningCount;
 }
 
 - (IBAction) keyEnter: (id) sender {
-    [self pushCharacter: [NSString stringWithFormat:@"%c", 13]];
+    [self pushCharacters: [NSString stringWithFormat:@"%c", 13]];
 }
 
 
 - (void) startRepeatKeyProcess: (unichar) character for: (id) sender {
 	NSString *string = [[NSString alloc] initWithCharacters:&character length: 1];
-	[self pushCharacter: string];
+	[self pushCharacters: string];
 	[self startRepeatKeyAction: string for: sender];
 }
 
@@ -858,9 +866,9 @@ uint memoryWarningCount;
           dispatch_get_main_queue(),
            ^{
                [[self appDelegate] setViewModeIndex: selectedIndex];
+               [self ensureSupportedInterfaceOrientationsChecked];
             }
     );
-    
 }
 
 - (BOOL) isViewModeBarHidden
@@ -876,6 +884,18 @@ uint memoryWarningCount;
 - (BOOL) isPresentationButtonOn
 {
     return self.viewModeIndex == 2;
+}
+
+- (void) ensureSupportedInterfaceOrientationsChecked
+{
+    if(OVER_IOS16){
+        UIViewController *dummyViewController = [[UIViewController alloc] init];
+        [dummyViewController setModalPresentationStyle: UIModalPresentationCustom];
+        dummyViewController.view.frame = CGRectMake(0, 0, 1, 1);
+        dummyViewController.view.backgroundColor = [UIColor clearColor];
+        [self presentViewController:dummyViewController animated:NO completion:^{}];
+        [self dismissViewControllerAnimated:NO completion:nil];
+    }
 }
 
 #pragma mark Callback from Scratch
@@ -945,33 +965,49 @@ uint memoryWarningCount;
     if(!_keyCommands){
         _keyCommands = [[NSMutableArray alloc] init];
         //arrow keys
-        [self addKeyCommand:UIKeyInputUpArrow modifierFlags:kNilOptions action:@selector(externalKeyBoardUpArrow:)
+        [self addKeyCommand:UIKeyInputUpArrow modifierFlags:kNilOptions action:@selector(externalKeyboardUpArrow:)
              overrideSystem:YES to: _keyCommands];
-        [self addKeyCommand:UIKeyInputDownArrow modifierFlags:kNilOptions action:@selector(externalKeyBoardDownArrow:)
+        [self addKeyCommand:UIKeyInputDownArrow modifierFlags:kNilOptions action:@selector(externalKeyboardDownArrow:)
              overrideSystem:YES to: _keyCommands];
-        [self addKeyCommand:UIKeyInputLeftArrow modifierFlags:kNilOptions action:@selector(externalKeyBoardLeftArrow:)
+        [self addKeyCommand:UIKeyInputLeftArrow modifierFlags:kNilOptions action:@selector(externalKeyboardLeftArrow:)
              overrideSystem:YES to: _keyCommands];
-        [self addKeyCommand:UIKeyInputRightArrow modifierFlags:kNilOptions action:@selector(externalKeyBoardRightArrow:)
+        [self addKeyCommand:UIKeyInputRightArrow modifierFlags:kNilOptions action:@selector(externalKeyboardRightArrow:)
              overrideSystem:YES to: _keyCommands];
         //escape
-        [self addKeyCommand:UIKeyInputEscape modifierFlags:kNilOptions action:@selector(externalKeyBoardEscape:)
+        [self addKeyCommand:UIKeyInputEscape modifierFlags:kNilOptions action:@selector(externalKeyboardEscape:)
              overrideSystem:NO to: _keyCommands];
         //space
-        [self addKeyCommand:@" " modifierFlags:kNilOptions action:@selector(externalKeyBoardSpace:)
+        [self addKeyCommand:@" " modifierFlags:kNilOptions action:@selector(externalKeyboardSpace:)
              overrideSystem:NO to: _keyCommands];
         //backscape
         if (OVER_IOS15) {
-            [self addKeyCommand:UIKeyInputDelete modifierFlags:kNilOptions action:@selector(externalKeyBoardBackspace:)
+            [self addKeyCommand:UIKeyInputDelete modifierFlags:kNilOptions action:@selector(externalKeyboardBackspace:)
                  overrideSystem:NO to: _keyCommands];
         }
+        //enter
+        [self addKeyCommand:@"\r" modifierFlags:kNilOptions action:@selector(externalKeyboardGeneric:)
+             overrideSystem:NO to: _keyCommands];
+        //tab
+        [self addKeyCommand:@"\t" modifierFlags:kNilOptions action:@selector(externalKeyboardTab:)
+             overrideSystem:YES to: _keyCommands];
+        [self addKeyCommand:@" " modifierFlags:UIKeyModifierShift action:@selector(externalKeyboardTab:)
+             overrideSystem:NO to: _keyCommands];
+        
         //shift-only
-        [self addKeyCommand:@"" modifierFlags:UIKeyModifierShift action:@selector(externalKeyBoardShift:)
+        [self addKeyCommand:@"" modifierFlags:UIKeyModifierShift action:@selector(externalKeyboardShift:)
              overrideSystem:NO to: _keyCommands];
         //cmd-only
-        [self addKeyCommand:@"" modifierFlags:UIKeyModifierCommand action:@selector(externalKeyBoardCommand:)
+        [self addKeyCommand:@"" modifierFlags:UIKeyModifierCommand action:@selector(externalKeyboardCommand:)
              overrideSystem:NO to: _keyCommands];
         
         [self addAlphNumericKeyCommandsTo: _keyCommands];
+        
+        [self addSymbolKeyCommandsTo: _keyCommands];
+        
+        if([[self appDelegate] isOnDevelopment]){
+            [self addDevelopmentKeyCommandsTo: _keyCommands];
+        }
+        
     }
     return _keyCommands;
 }
@@ -986,44 +1022,86 @@ uint memoryWarningCount;
 
 - (void) addAlphNumericKeyCommandsTo: (NSMutableArray <UIKeyCommand *>*)keyCommands
 {
-    NSString * keys = @"abcdefghijklmnopqrstuvwxyz0123456789";
-    NSRange range = NSMakeRange(0, keys.length);
-    [keys enumerateSubstringsInRange:range
+    NSString * numericKeys = @"0123456789";
+    [numericKeys enumerateSubstringsInRange:NSMakeRange(0, numericKeys.length)
                               options:NSStringEnumerationByComposedCharacterSequences
                            usingBlock:^(NSString *keyString, NSRange substringRange,
                                         NSRange enclosingRange, BOOL *stop)
     {
-        [self addKeyCommand:keyString modifierFlags:kNilOptions action:@selector(externalKeyBoardAlphaNumeric:)
+        [self addKeyCommand:keyString modifierFlags:kNilOptions action:@selector(externalKeyboardGeneric:)
+             overrideSystem:NO to: keyCommands];
+    }];
+    
+    NSString * keys = @"abcdefghijklmnopqrstuvwxyz";
+    [keys enumerateSubstringsInRange:NSMakeRange(0, keys.length)
+                              options:NSStringEnumerationByComposedCharacterSequences
+                           usingBlock:^(NSString *keyString, NSRange substringRange,
+                                        NSRange enclosingRange, BOOL *stop)
+    {
+        [self addKeyCommand:keyString modifierFlags:kNilOptions action:@selector(externalKeyboardGeneric:)
+             overrideSystem:NO to: keyCommands];
+        [self addKeyCommand:[keyString uppercaseString] modifierFlags:UIKeyModifierShift action:@selector(externalKeyboardGeneric:)
              overrideSystem:NO to: keyCommands];
     }];
     
 }
 
-- (void) externalKeyBoardUpArrow: (UIKeyCommand *) keyCommand
+- (void) addSymbolKeyCommandsTo: (NSMutableArray <UIKeyCommand *>*)keyCommands
 {
-    [self keyUpArrow:self];
-    [self keyTouchUp:self];
+    NSString * numericKeys = @"!\"#$%&'()*+,-./:;<=>?@[]^_`{|}~";
+    [numericKeys enumerateSubstringsInRange:NSMakeRange(0, numericKeys.length)
+                              options:NSStringEnumerationByComposedCharacterSequences
+                           usingBlock:^(NSString *keyString, NSRange substringRange,
+                                        NSRange enclosingRange, BOOL *stop)
+    {
+        [self addKeyCommand:keyString modifierFlags:kNilOptions action:@selector(externalKeyboardGeneric:)
+             overrideSystem:NO to: keyCommands];
+    }];
+    
+    [self addKeyCommand: @"\\" modifierFlags:kNilOptions action:@selector(externalKeyboardGeneric:)
+         overrideSystem:NO to: _keyCommands];
 }
 
-- (void) externalKeyBoardDownArrow: (UIKeyCommand *) keyCommand
+- (void) addDevelopmentKeyCommandsTo: (NSMutableArray <UIKeyCommand *>*)keyCommands
 {
-    [self keyDownArrow:self];
-    [self keyTouchUp:self];
+    NSString * shortcutKeys = @"azxcvdpibs";
+    [shortcutKeys enumerateSubstringsInRange:NSMakeRange(0, shortcutKeys.length)
+                              options:NSStringEnumerationByComposedCharacterSequences
+                           usingBlock:^(NSString *keyString, NSRange substringRange,
+                                        NSRange enclosingRange, BOOL *stop)
+    {
+        [self addKeyCommand:keyString modifierFlags:UIKeyModifierCommand action:@selector(externalKeyboardKeyCommandPressed:)
+             overrideSystem:NO to: keyCommands];
+    }];
+    [self addKeyCommand: @"m" modifierFlags:UIKeyModifierCommand | UIKeyModifierShift action:@selector(externalKeyboardKeyCommandPressed:)
+         overrideSystem:YES to: _keyCommands];
 }
 
-- (void) externalKeyBoardLeftArrow: (UIKeyCommand *) keyCommand
+- (void) externalKeyboardUpArrow: (UIKeyCommand *) keyCommand
 {
-    [self keyLeftArrow:self];
-    [self keyTouchUp:self];
+    NSString *input = [NSString stringWithFormat:@"%C", (unichar)30];
+    [self externalKeyboardDownWithInput: input];
 }
 
-- (void) externalKeyBoardRightArrow: (UIKeyCommand *) keyCommand
+- (void) externalKeyboardDownArrow: (UIKeyCommand *) keyCommand
 {
-    [self keyRightArrow:self];
-    [self keyTouchUp:self];
+    NSString *input = [NSString stringWithFormat:@"%C", (unichar)31];
+    [self externalKeyboardDownWithInput: input];
 }
 
-- (void) externalKeyBoardEscape: (UIKeyCommand *) keyCommand
+- (void) externalKeyboardLeftArrow: (UIKeyCommand *) keyCommand
+{
+    NSString *input = [NSString stringWithFormat:@"%C", (unichar)28];
+    [self externalKeyboardDownWithInput: input];
+}
+
+- (void) externalKeyboardRightArrow: (UIKeyCommand *) keyCommand
+{
+    NSString *input = [NSString stringWithFormat:@"%C", (unichar)29];
+    [self externalKeyboardDownWithInput: input];
+}
+
+- (void) externalKeyboardEscape: (UIKeyCommand *) keyCommand
 {
     //Specific handling on presentation mode
     UIInterfaceOrientation orientation = SUYUtils.interfaceOrientation;
@@ -1040,13 +1118,19 @@ uint memoryWarningCount;
     [self keyTouchUp:self];
 }
 
-- (void) externalKeyBoardSpace: (UIKeyCommand *) keyCommand
+- (void) externalKeyboardTab: (UIKeyCommand *) keyCommand
 {
-    [self keySpace:self];
+    unichar character = 9;
+    [self startRepeatKeyProcess: character for: self];
     [self keyTouchUp:self];
 }
 
-- (void) externalKeyBoardShift: (UIKeyCommand *) keyCommand
+- (void) externalKeyboardSpace: (UIKeyCommand *) keyCommand
+{
+    [self externalKeyboardDown: keyCommand];
+}
+
+- (void) externalKeyboardShift: (UIKeyCommand *) keyCommand
 {
     [self shiftButtonDown:self];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
@@ -1054,7 +1138,7 @@ uint memoryWarningCount;
     });
 }
 
-- (void) externalKeyBoardCommand: (UIKeyCommand *) keyCommand
+- (void) externalKeyboardCommand: (UIKeyCommand *) keyCommand
 {
     [self commandButtonDown:self];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
@@ -1062,17 +1146,55 @@ uint memoryWarningCount;
     });
 }
 
-- (void) externalKeyBoardBackspace: (UIKeyCommand *) keyCommand
+- (void) externalKeyboardBackspace: (UIKeyCommand *) keyCommand
 {
     unichar character = 8;
     [self startRepeatKeyProcess: character for: self];
     [self keyTouchUp:self];
 }
 
-- (void) externalKeyBoardAlphaNumeric: (UIKeyCommand *) keyCommand
+#pragma mark Key handling helpers
+
+- (void) externalKeyboardDown: (UIKeyCommand *) keyCommand {
+    NSString* input = keyCommand.input;
+    [self externalKeyboardDownWithInput: input];
+}
+
+- (void) externalKeyboardDownWithInput: (NSString*) input
 {
-    [self startRepeatKeyProcess: [keyCommand.input characterAtIndex:0] for: self];
-    [self keyTouchUp:self];
+    float interval = 0.125;
+
+    NSDate* prevDate = [self.repeatExternalKeyDict objectForKey: input];
+    
+    NSDate *now = [NSDate date];
+    [self.repeatExternalKeyDict setObject: now forKey: input];
+    
+    float diff = [now timeIntervalSinceDate:prevDate];
+    if(!prevDate || (diff > interval*2)){
+        return [self pushCharacters: input modifiers: 0 autoKeyUp: YES];
+    }
+
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(externalKeyboardUpWithInput:) object:input];
+    [self performSelector:@selector(externalKeyboardUpWithInput:) withObject:input afterDelay: interval];
+    
+    [self pushCharacters: input modifiers: 0 autoKeyUp: NO];
+}
+
+- (void) externalKeyboardUpWithInput: (NSString *) inputString
+{
+    [self pushCharacters: inputString modifiers: 0 autoKeyUp: YES];
+    [self.repeatExternalKeyDict removeObjectForKey: inputString];
+}
+
+- (void) externalKeyboardGeneric: (UIKeyCommand *) keyCommand
+{
+    [self externalKeyboardDown: keyCommand];
+}
+
+- (void) externalKeyboardKeyCommandPressed: (UIKeyCommand *) keyCommand
+{
+    [self externalKeyboardCommand: keyCommand];
+    [self pushCharacters: keyCommand.input modifiers: CommandKeyBit autoKeyUp: YES];
 }
 
 #pragma mark Releasing

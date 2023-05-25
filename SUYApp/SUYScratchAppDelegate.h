@@ -53,8 +53,10 @@
 - (void) shiftKeyStateChanged:(BOOL)state;
 - (int)  getViewModeIndex;
 - (void) setViewModeIndex:(int)mode;
-- (void) setFontScaleIndex: (int)idx;
 - (int)  getFontScaleIndex;
+- (void) setFontScaleIndex: (int)idx;
+- (int)  getDevelopmentModeIndex;
+- (BOOL) isOnDevelopment;
 - (BOOL) scriptsAreRunning;
 - (void) pickPhoto: (NSString *)filePath;
 - (void) flushInputString: (NSString *)inputString;
@@ -67,7 +69,6 @@
 - (void) meshJoin: (NSString *)inputString;
 - (BOOL) meshJoined: (NSString *)inputString;
 - (void) meshRun: (int) runOrNot;
-- (void) onMeshProject: (int) runOrNot;
 
 - (void) enterRestart;
 - (void) restartAfterDelay;

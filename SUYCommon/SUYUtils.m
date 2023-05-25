@@ -233,7 +233,7 @@
 {
     CGRect screenRect = [UIScreen mainScreen].bounds;
     CGSize screenSize = screenRect.size;
-    CGFloat screenHeight = screenSize.height;
+    CGFloat screenHeight = MIN(screenSize.height, screenSize.width);
     
     if (OVER_IOS11) {
         UIWindow *window = UIApplication.sharedApplication.keyWindow;
@@ -244,7 +244,7 @@
             return MAX(windowHeight, screenHeight);
         }
     }
-    return MIN(screenSize.width, screenHeight);
+    return screenHeight;
 }
 
 + (NSString *)applicationSupportDirectory {
