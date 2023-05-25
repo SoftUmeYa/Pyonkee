@@ -80,14 +80,12 @@
 	}
 	
 	if (sourcesFileExists && !sourcesFileIsReadable) {
-		sourcesFileExists = 0;
+		sourcesFileExists = false;
 		removeOK = [dfm removeItemAtPath: documentsSourcesPath error: &error];
 	}
 	
 	if (!sourcesFileExists) {
-		NSString* bundleSourcesPath = [[NSBundle mainBundle] pathForResource:@"SqueakV2" ofType:@"sources"]; 
-//		NSString* bundleSourcesPath = [[NSBundle mainBundle] pathForResource:@"SqueakV39" ofType:@"sources"]; 
-//		NSString* bundleSourcesPath = [[NSBundle mainBundle] pathForResource:@"PharoV10" ofType:@"sources"]; 
+		NSString* bundleSourcesPath = [[NSBundle mainBundle] pathForResource:@"SqueakV2" ofType:@"sources"];
 		if (bundleSourcesPath) 
 			copyOk = [dfm createSymbolicLinkAtPath: documentsSourcesPath withDestinationPath: bundleSourcesPath error: &error];
 	}
@@ -98,14 +96,11 @@
 	} else {
 
 		NSString* bundleImagePath = [[NSBundle mainBundle] pathForResource:@"Scratch" ofType:@"image"]; 
-//		NSString* bundleImagePath = [[NSBundle mainBundle] pathForResource:@"iPhone" ofType:@"image"]; 
 		BOOL writeable = [(sqSqueakIPhoneInfoPlistInterface*)[self infoPlistInterfaceLogic] imageIsWriteable];
 		
 		if (writeable) {
 			NSString* documentsChangesPath = [documentsPath stringByAppendingPathComponent: @"Scratch.changes"];
-			NSString* bundleChangesPath = [[NSBundle mainBundle] pathForResource:@"Scratch" ofType:@"changes"]; 
-//			NSString* documentsChangesPath = [documentsPath stringByAppendingPathComponent: @"iPhone.changes"];
-//			NSString* bundleChangesPath = [[NSBundle mainBundle] pathForResource:@"iPhone" ofType:@"changes"]; 
+			NSString* bundleChangesPath = [[NSBundle mainBundle] pathForResource:@"Scratch" ofType:@"changes"];
 			
 			copyOk = [dfm copyItemAtPath: bundleImagePath toPath: documentsImagePath error: &error];
 			if (!copyOk) {
