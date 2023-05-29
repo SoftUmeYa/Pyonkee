@@ -35,7 +35,7 @@ Pyonkee was originally started as a fork of [John M McIntosh](https://www.smallt
 ## How to build
 
 Just open the Pyonkee.xcodeproj from Xcode, and build as usual.
-From Xcode 14.3 on, you need to manually set the deployment version setting in the MIKMIDI library to 11.0 before building Pyonkee. Please read the [issue](https://github.com/mixedinkey-opensource/MIKMIDI/issues/350).
+From Xcode 14.3 on, you need to manually set the minumum deployments version setting in the MIKMIDI library to 11.0 before building Pyonkee. Please read the [issue](https://github.com/mixedinkey-opensource/MIKMIDI/issues/350).
 
 ### Note on iCloud feature
 
