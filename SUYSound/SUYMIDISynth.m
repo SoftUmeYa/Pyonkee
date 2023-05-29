@@ -67,7 +67,7 @@ static SUYMIDISynth *soleInstance;
 #pragma mark - Testing
 - (BOOL) useExternal
 {
-    return [(sqSqueakIPhoneInfoPlistInterface*) gDelegateApp.squeakApplication.infoPlistInterfaceLogic useVirtualMIDI];;
+    return [(sqSqueakIPhoneInfoPlistInterface*) gDelegateApp.squeakApplication.infoPlistInterfaceLogic useVirtualMIDI];
 }
 
 #pragma mark - Initialization

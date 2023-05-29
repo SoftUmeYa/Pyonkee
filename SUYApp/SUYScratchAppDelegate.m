@@ -408,6 +408,10 @@ BOOL isUnfocued = NO;
     return [squeakProxy getViewModeIndex];
 }
 
+- (int)  getDevelopmentModeIndex{
+    return [squeakProxy getDevelopmentModeIndex];
+}
+
 - (void)  becomeActive{
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         if(squeakVMIsReady){[squeakProxy becomeActive];}
@@ -643,11 +647,12 @@ BOOL isUnfocued = NO;
     [super buildMenuWithBuilder: builder];
     if(builder.system != [UIMenuSystem mainSystem]) return;
     
-    NSString* versionStr = [self.squeakApplication.infoPlistInterfaceLogic fullVersionString];
+    NSString* versionStr = ((sqSqueakIPhoneInfoPlistInterface*)self.squeakApplication.infoPlistInterfaceLogic).fullVersionString;
     UICommand* command = [UICommand commandWithTitle:versionStr image:nil action:@selector(restoreDisplay) propertyList:nil];
     UIMenu* aboutMenu = [UIMenu menuWithTitle:(NSLocalizedString(@"Version",nil)) children: @[command]];
     
     [builder replaceMenuForIdentifier:(UIMenuAbout) withMenu:aboutMenu];
+    
     [builder removeMenuForIdentifier:(UIMenuServices)];
     [builder removeMenuForIdentifier:(UIMenuFile)];
     [builder removeMenuForIdentifier:(UIMenuEdit)];
@@ -658,6 +663,13 @@ BOOL isUnfocued = NO;
     if(SUYUtils.isOnMac){
         [self restoreDisplay];
     }
+}
+
+#pragma mark -
+#pragma mark Smalltalk Mode
+
+- (BOOL) isOnDevelopment {
+    return self.getDevelopmentModeIndex == 1;
 }
 
 #pragma mark -

@@ -64,8 +64,9 @@
     [self.videoImageOutput setSampleBufferDelegate:self queue:queue];
     [self.session addOutput:self.videoImageOutput];
     
-    
-    [self.session startRunning];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [self.session startRunning];
+    });
 }
 
 - (void) stop
@@ -101,7 +102,10 @@
 
 - (AVCaptureDevice *)selectCaptureDevice
 {
-    NSArray *videoDevices = [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo];
+    AVCaptureDeviceDiscoverySession *captureDeviceDiscoverySession = [AVCaptureDeviceDiscoverySession discoverySessionWithDeviceTypes:@[AVCaptureDeviceTypeBuiltInWideAngleCamera]
+                                          mediaType:AVMediaTypeVideo
+                                           position:AVCaptureDevicePositionFront];
+    NSArray *videoDevices = [captureDeviceDiscoverySession devices];
     AVCaptureDevice *captureDevice = nil;
     for (AVCaptureDevice *device in videoDevices)
     {

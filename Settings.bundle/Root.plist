@@ -38,7 +38,7 @@
 			<key>Key</key>
 			<string>memorySize_preference</string>
 			<key>DefaultValue</key>
-			<integer>125829120</integer>
+			<integer>167772160</integer>
 			<key>MinimumValue</key>
 			<integer>41943040</integer>
 			<key>MaximumValue</key>
@@ -90,7 +90,7 @@
 			<key>Type</key>
 			<string>PSTitleValueSpecifier</string>
 			<key>DefaultValue</key>
-			<string>2.26</string>
+			<string>2.27</string>
 			<key>Title</key>
 			<string>Version</string>
 			<key>Key</key>
@@ -100,7 +100,7 @@
 			<key>Type</key>
 			<string>PSTitleValueSpecifier</string>
 			<key>DefaultValue</key>
-			<string>1</string>
+			<string>7</string>
 			<key>Title</key>
 			<string>Build</string>
 			<key>Key</key>

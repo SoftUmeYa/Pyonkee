@@ -39,7 +39,7 @@
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations{
     LgInfo(@"LOC %@", locations);
-    CLAuthorizationStatus authStatus = CLLocationManager.authorizationStatus;
+    CLAuthorizationStatus authStatus = self.locationManager.authorizationStatus;
     if(authStatus == kCLAuthorizationStatusAuthorizedAlways || authStatus == kCLAuthorizationStatusAuthorizedWhenInUse){
         if(CLLocationManager.headingAvailable == YES){
             self.locationManager.delegate = self;
@@ -79,7 +79,7 @@
     _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     _locationManager.headingFilter = kCLHeadingFilterNone;
     
-    CLAuthorizationStatus authStatus = CLLocationManager.authorizationStatus;
+    CLAuthorizationStatus authStatus = self.locationManager.authorizationStatus;
     if(authStatus == kCLAuthorizationStatusNotDetermined){
         if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
             [self.locationManager requestWhenInUseAuthorization];
