@@ -34,8 +34,8 @@ Pyonkee was originally started as a fork of [John M McIntosh](https://www.smallt
 
 ## How to build
 
-From version 2.24, [Carthage](https://github.com/Carthage/Carthage) is no longer needed. Please delete the Carthage folder if it exists.
 Just open the Pyonkee.xcodeproj from Xcode, and build as usual.
+From Xcode 14.3 on, you need to manually set the deployment version setting in the MIKMIDI library to 11.0 before building Pyonkee. Please read the [issue](https://github.com/mixedinkey-opensource/MIKMIDI/issues/350).
 
 ### Note on iCloud feature
 
@@ -43,7 +43,7 @@ When attempting to build and run on a physical iPad (not the simulator), you wil
 
 The 'iCloud' feature is only available to users enrolled in Apple Developer Program. Please visit https://developer.apple.com/programs/ to enroll.
 
-To disable iCloud and allow the build to continue, change line 2309 of Pyonkee.xcodeproj/project.pbxproj from:
+To disable iCloud and allow the build to continue, change line 2348 of Pyonkee.xcodeproj/project.pbxproj from:
 
 ```
 com.apple.iCloud = {
@@ -60,6 +60,10 @@ com.apple.iCloud = {
 ```
 
 which will disable iCloud and allow the build to continue.
+
+## Developing Smalltalk part
+
+Please see the dedicated [doc](./doc/DevelopingSmalltalkImage.md). Smalltalk development tools can be used to customize the Pyonkee core.
 
 ## License
 
@@ -89,6 +93,6 @@ We can also customize Pyonkee for your needs. Feel free to contact us.
 
 
 -----
-Copyright 2014-2022 SoftUmeYa, LLC
+Copyright 2014-2023 SoftUmeYa, LLC
 
 
