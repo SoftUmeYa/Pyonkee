@@ -10,7 +10,7 @@ The procedure is as follows:
 
 ## Placing the Original Image-Related Files into the Local Pyonkee Document Folder
 
-On MacOS, you can find the "local" Pyonkee document folder in Finder (Note: this is not the Pyonkee folder on iCloud Drive).
+On MacOS, you can find the *local* Pyonkee document folder in Finder (Note: this is not the Pyonkee folder on iCloud Drive).
 
 ![](PyonkeeDocumentFolder.png)
 
@@ -40,3 +40,23 @@ Feel free to write code as you wish! You can find more information about Smallta
 ## Saving the Image
 
 You can save your customized image by selecting "Save Image in User Mode" from the File menu. This way, all your changes are preserved. Have fun with it!
+
+## Menus and shortcut keys
+
+Not all shortcuts are implemented. Currently you can use:
+
+| key | action |
+| --- | --- |
+| Command + click | open context menu |
+| Command + double click | open halo |
+| Command + a | select all |
+| Command + z | undo |
+| Command + x | cut |
+| Command + c | copy |
+| Command + v | paste |
+| Command + d | do it |
+| Command + p | print it |
+| Command + i | inspect it |
+| Command + b | browse it |
+| Command + s | accept |
+| Command + Shift + m | method definition |
