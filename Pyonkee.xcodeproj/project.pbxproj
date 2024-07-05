@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -2808,7 +2808,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = RXNQHKQR2N;
 				ENABLE_APP_SANDBOX = NO;
 				"ENABLE_APP_SANDBOX[sdk=macosx*]" = YES;
@@ -2843,7 +2843,7 @@
 					"@executable_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 2.27;
+				MARKETING_VERSION = 2.28;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = (
 					"-finline-functions",
@@ -2901,7 +2901,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = RXNQHKQR2N;
 				ENABLE_APP_SANDBOX = NO;
 				"ENABLE_APP_SANDBOX[sdk=macosx*]" = YES;
@@ -2931,7 +2931,7 @@
 					"@executable_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 2.27;
+				MARKETING_VERSION = 2.28;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = (
 					"-finline-functions",
