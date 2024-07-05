@@ -31,6 +31,7 @@ Pyonkee was originally started as a fork of [John M McIntosh](https://www.smallt
 - Touch scrolling support
 - Connectivity with micro:bit via Bluetooth LE
 - macOS support by Mac Catalyst
+- Emoji support
 
 ## How to build
 
