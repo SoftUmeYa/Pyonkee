@@ -77,11 +77,11 @@ int unicodeGetFontList(char *str, int strLength) {
         }
     }
 
-    int fontListStrLen = fontListStr.length;
+    unsigned long fontListStrLen = fontListStr.length;
     if(strLength < fontListStrLen) {return 0;}
     
     strncpy(str, fontListStr.UTF8String, fontListStrLen);
-    return fontListStrLen;
+    return (int) fontListStrLen;
 }
 
 /*	for (id setObject in <#setaccess#>)
@@ -156,30 +156,47 @@ void unicodeDrawString(char *utf8, int utf8Length, int *wPtr, int *hPtr, unsigne
 	//   thus, on big endian computers we convert to Squeak pixels by shifting right
 	
 	// fill the background
-	CGContextSetRGBFillColor(cgContext, g_bgBlue / 255.0, g_bgGreen / 255.0, g_bgRed / 255.0, 1);
-	CGContextFillRect(cgContext, CGRectMake(0, 0, w, h));
-	CGContextSetRGBFillColor(cgContext, g_fgBlue / 255.0, g_fgGreen / 255.0, g_fgRed / 255.0, 1);
+	CGContextSetRGBFillColor(cgContext, g_bgRed / 255.0, g_bgGreen / 255.0, g_bgBlue / 255.0, 1);
+    CGRect rect = CGRectMake(0, 0, w, h);
+	CGContextFillRect(cgContext, rect);
 	
 	// draw the text
-	
 	CGContextTranslateCTM(cgContext, 0.0, h);
 	CGContextScaleCTM(cgContext, 1.0, -1.0); //NOTE: NSString draws in UIKit referential i.e. renders upside-down compared to CGBitmapContext referential
 	UIGraphicsPushContext(cgContext);
-	[stringToDraw drawAtPoint:CGPointMake(0.0,0.0) withFont: gFontToUse];
-	UIGraphicsPopContext();	
-		
-	// map bg color pixels to transparent if so desired
-	if (g_bgTransparent) {
-		pixelPtr = bitmapPtr;
-		lastPtr = pixelPtr + pixelCount;
-		while (pixelPtr < lastPtr) {
-			if (*pixelPtr == g_bgRGB) *pixelPtr = 0;
-			pixelPtr++;
-		}
-	}
+    
+    // BGR for foreground text
+    UIColor *fgColor = [UIColor colorWithRed:g_fgBlue/255.0f
+                                     green:g_fgGreen/255.0f
+                                      blue:g_fgRed/255.0f
+                                     alpha:1.0f];
+    NSDictionary<NSAttributedStringKey, id> * attrs = @{NSFontAttributeName:gFontToUse, NSForegroundColorAttributeName:fgColor};
+    [stringToDraw drawAtPoint:CGPointMake(0.0,0.0) withAttributes: attrs];
+    
+	UIGraphicsPopContext();
+    
+    //swap R&B for background or emoji
+    size_t bytesPerRow = w * 4;
+    UInt8 *bytePtr = (UInt8 *)bitmapPtr;
+    for (int i = 0; i < bytesPerRow * h; i += 4){
+        UInt8 temp = bytePtr[i];
+        bytePtr[i] = bytePtr[i+2];
+        bytePtr[i+2] = temp;
+    }
+    
+    //map bg color pixels to transparent if so desired
+    if (g_bgTransparent) {
+        pixelPtr = bitmapPtr;
+        lastPtr = pixelPtr + pixelCount;
+        while (pixelPtr < lastPtr) {
+            if (*pixelPtr == g_bgRGB) *pixelPtr = 0;
+            pixelPtr++;
+        }
+    }
 	
 	CGContextRelease(cgContext);
 }
+
 
 int unicodeGetXRanges(char *utf8, int utf8Length, int *resultPtr, int resultLength) {
 	@autoreleasepool {
