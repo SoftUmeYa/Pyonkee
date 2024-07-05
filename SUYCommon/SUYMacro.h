@@ -66,4 +66,5 @@
 #define OVER_IOS15 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 15)
 #define OVER_IOS16 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 16)
 
+#define BEFORE_IOS13 ([[[UIDevice currentDevice] systemVersion] floatValue] < 13)
 #define BEFORE_IOS14 ([[[UIDevice currentDevice] systemVersion] floatValue] < 14)

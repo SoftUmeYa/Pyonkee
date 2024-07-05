@@ -20,7 +20,13 @@ extern struct	VirtualMachine* interpreterProxy;
 
 - (SUYMenuDialog *) initTitle: (NSString *) title message: (NSString *) message semaIndex: (NSInteger) si {
     self = [super init];
+    
+    #if (TARGET_OS_MACCATALYST)
+    // Temporary fix for incorrect menu layout in Sonoma
+    self.alertController = [UIAlertController alertControllerWithTitle:@"" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    #else
     self.alertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(title, nil) message:nil preferredStyle:UIAlertControllerStyleAlert];
+    #endif
                             
     semaIndex = si;
     resultIndex = -1;
