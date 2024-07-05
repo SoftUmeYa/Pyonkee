@@ -112,7 +112,7 @@ uint memoryWarningCount;
 	
 	self.scrollView.delaysContentTouches = self.padLockButton.selected;
     self.radioButtonSetController.selectedIndex = _originalEditModeIndex;
-    [self keyboardDidShowOrChange:nil];
+    [self setKeyboardProperties];
     [self listenNotifications];
     
 	[super viewWillAppear: animated];
@@ -140,12 +140,12 @@ uint memoryWarningCount;
 - (void)listenNotifications {
     NSNotificationCenter* notificationCenter = [NSNotificationCenter defaultCenter];
     if(!SUYUtils.isOnMac){
-        [notificationCenter addObserver:self selector:@selector(keyboardDidShowOrChange:)
+        [notificationCenter addObserver:self selector:@selector(keyboardDidShow:)
                                                      name:UIKeyboardDidShowNotification object:nil];
         [notificationCenter addObserver:self selector:@selector(keyboardDeactivate:)
                                                      name:UIKeyboardWillHideNotification object:nil];
     }
-    [notificationCenter addObserver:self selector:@selector(keyboardDidShowOrChange:)
+    [notificationCenter addObserver:self selector:@selector(keyboardDidChange:)
                                                  name:UITextInputCurrentInputModeDidChangeNotification object:nil];
     [notificationCenter addObserver:self selector:@selector(keyboardDeactivate:)
                                                  name:@"SqueakUIViewTouchesBegan" object:nil];
@@ -665,9 +665,16 @@ uint memoryWarningCount;
 
 #pragma mark TextEdit
 
-- (void)keyboardDidShowOrChange:(NSNotification*)sender {
-    LgInfo(@"keyboardDidChange");
+- (void)keyboardDidShow:(NSNotification*)sender {
     self.softKeyboardField.text = @"";
+    [self setKeyboardProperties];
+}
+
+- (void)keyboardDidChange:(NSNotification*)sender {
+    [self setKeyboardProperties];
+}
+
+- (void) setKeyboardProperties {
     if([self detectImeIsUsed]) {
         self.softKeyboardField.autocorrectionType = UITextAutocorrectionTypeDefault;
         _useIme = YES;
@@ -675,7 +682,7 @@ uint memoryWarningCount;
         self.softKeyboardField.autocorrectionType = UITextAutocorrectionTypeNo;
         _useIme = NO;
     }
- }
+}
 
 -(void)flushInputString:(NSString*) processedString {
     if(_useIme == NO) {return;}
@@ -811,7 +818,6 @@ uint memoryWarningCount;
     [self pushCharacters: [NSString stringWithFormat:@"%c", 13]];
 }
 
-
 - (void) startRepeatKeyProcess: (unichar) character for: (id) sender {
 	NSString *string = [[NSString alloc] initWithCharacters:&character length: 1];
 	[self pushCharacters: string];
@@ -836,6 +842,45 @@ uint memoryWarningCount;
 - (IBAction) keyRightArrow:(id)sender {
 	unichar character = 29;
 	[self startRepeatKeyProcess: character for: sender];
+}
+
+#pragma mark Physical Key Press Handing
+- (void)pressesBegan:(NSSet<UIPress *> *)presses withEvent:(UIPressesEvent *)event {
+    if (@available(iOS 13.4, *)) {
+        if([self hasCharactersIn: presses]) return [super pressesBegan:presses withEvent:event];
+        if ((event.modifierFlags & UIKeyModifierShift) == UIKeyModifierShift) {
+            return [self externalKeyboardShiftDown];
+        }
+        if ((event.modifierFlags & UIKeyModifierCommand) == UIKeyModifierCommand) {
+            return [self externalKeyboardCommandDown];
+        }
+    }
+    [super pressesBegan:presses withEvent:event];
+}
+
+- (void)pressesEnded:(NSSet<UIPress *> *)presses withEvent:(UIPressesEvent *)event {
+    if (@available(iOS 13.4, *)) {
+        if([self hasCharactersIn: presses]) return [super pressesBegan:presses withEvent:event];
+        UIPress * pres = presses.anyObject;
+        UIKeyboardHIDUsage keyCode = pres.key.keyCode;
+        if (keyCode == UIKeyboardHIDUsageKeyboardLeftShift || keyCode == UIKeyboardHIDUsageKeyboardRightShift) {
+            return [self externalKeyboardShiftUp];
+        }
+        if (keyCode == UIKeyboardHIDUsageKeyboardLeftGUI || keyCode == UIKeyboardHIDUsageKeyboardRightGUI) { //Command keys
+            return [self externalKeyboardCommandUp];
+        }
+    }
+    [super pressesEnded:presses withEvent:event];
+}
+
+- (BOOL) hasCharactersIn: (NSSet<UIPress *> *) presses
+{
+    NSSet<UIPress *> * charPresses = [presses objectsPassingTest:^(id obj, BOOL *stop){
+        UIPress *press = (UIPress *)obj;
+        BOOL hasCharacters = (press.key.characters.length >= 1);
+        return hasCharacters;
+    }];
+    return charPresses.count > 0;
 }
 
 #pragma mark View Mode
@@ -993,12 +1038,13 @@ uint memoryWarningCount;
         [self addKeyCommand:@" " modifierFlags:UIKeyModifierShift action:@selector(externalKeyboardTab:)
              overrideSystem:NO to: _keyCommands];
         
-        //shift-only
-        [self addKeyCommand:@"" modifierFlags:UIKeyModifierShift action:@selector(externalKeyboardShift:)
-             overrideSystem:NO to: _keyCommands];
-        //cmd-only
-        [self addKeyCommand:@"" modifierFlags:UIKeyModifierCommand action:@selector(externalKeyboardCommand:)
-             overrideSystem:NO to: _keyCommands];
+        //shift-only & cmd-only
+        if (BEFORE_IOS13) {
+            [self addKeyCommand:@"" modifierFlags:UIKeyModifierShift action:@selector(externalKeyboardShift:)
+                 overrideSystem:NO to: _keyCommands];
+            [self addKeyCommand:@"" modifierFlags:UIKeyModifierCommand action:@selector(externalKeyboardCommand:)
+                 overrideSystem:NO to: _keyCommands];
+        }
         
         [self addAlphNumericKeyCommandsTo: _keyCommands];
         
@@ -1130,6 +1176,36 @@ uint memoryWarningCount;
     [self externalKeyboardDown: keyCommand];
 }
 
+- (void) externalKeyboardBackspace: (UIKeyCommand *) keyCommand
+{
+    unichar character = 8;
+    [self startRepeatKeyProcess: character for: self];
+    [self keyTouchUp:self];
+}
+
+- (void) externalKeyboardShiftDown
+{
+    [SUYUtils hideCursor];
+    self.shiftButton.selected =  YES;
+    [[self appDelegate] shiftKeyStateChanged: YES];
+}
+- (void) externalKeyboardShiftUp
+{
+    [SUYUtils hideCursor];
+    self.shiftButton.selected =  NO;
+    [[self appDelegate] shiftKeyStateChanged: NO];
+}
+- (void) externalKeyboardCommandDown
+{
+    [self commandButtonDown:self];
+}
+- (void) externalKeyboardCommandUp
+{
+    [self basicCommandButtonAutoUp:self];
+}
+
+#pragma mark Shortcut keys - obsolete
+
 - (void) externalKeyboardShift: (UIKeyCommand *) keyCommand
 {
     [self shiftButtonDown:self];
@@ -1137,20 +1213,12 @@ uint memoryWarningCount;
         [self basicShiftButtonAutoUp:self];
     });
 }
-
 - (void) externalKeyboardCommand: (UIKeyCommand *) keyCommand
 {
     [self commandButtonDown:self];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
         [self basicCommandButtonAutoUp:self];
     });
-}
-
-- (void) externalKeyboardBackspace: (UIKeyCommand *) keyCommand
-{
-    unichar character = 8;
-    [self startRepeatKeyProcess: character for: self];
-    [self keyTouchUp:self];
 }
 
 #pragma mark Key handling helpers
@@ -1193,7 +1261,7 @@ uint memoryWarningCount;
 
 - (void) externalKeyboardKeyCommandPressed: (UIKeyCommand *) keyCommand
 {
-    [self externalKeyboardCommand: keyCommand];
+    [self externalKeyboardCommandDown];
     [self pushCharacters: keyCommand.input modifiers: CommandKeyBit autoKeyUp: YES];
 }
 
