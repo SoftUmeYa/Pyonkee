@@ -231,21 +231,34 @@ CGPoint endPos;
 }
 
 - (void) recordCharEvent:(NSString *) unicodeString modifiers: (unsigned int) modifiers autoKeyUp: (BOOL) autoKeyUp {
-    sqKeyboardEvent evt;
-    unichar unicode;
-    unsigned char macRomanCharacter;
-    NSInteger    i;
-    NSRange picker;
-    NSUInteger totaLength;
-    
-    evt.type = EventTypeKeyboard;
-    evt.timeStamp = (int) ioMSecs();
-    picker.location = 0;
-    picker.length = 1;
-    totaLength = [unicodeString length];
-    for (i=0;i < totaLength;i++) {
+    [self basicRecordCharEvent:autoKeyUp modifiers:modifiers unicodeString: [unicodeString precomposedStringWithCanonicalMapping]];
+    interpreterProxy->signalSemaphoreWithIndex(gDelegateApp.squeakApplication.inputSemaphoreIndex);
+}
+
+- (void) recordCharEvent:(NSString *) unicodeString {
+    [self recordCharEvent: unicodeString modifiers:0 autoKeyUp:YES];
+}
+
+#pragma mark Private
+
+- (void)basicRecordCharEvent:(BOOL)autoKeyUp modifiers:(unsigned int)modifiers unicodeString:(NSString *)unicodeString {
+    NSRange fullRange = NSMakeRange(0, [unicodeString length]);
+    [unicodeString enumerateSubstringsInRange:fullRange
+                          options:NSStringEnumerationByComposedCharacterSequences
+                       usingBlock:^(NSString *substring, NSRange substringRange,
+                                    NSRange enclosingRange, BOOL *stop)
+    {
+        sqKeyboardEvent evt;
+        unichar unicode;
+        unsigned char macRomanCharacter;
+        NSRange picker;
         
-        unicode = [unicodeString characterAtIndex: i];
+        evt.type = EventTypeKeyboard;
+        evt.timeStamp = (int) ioMSecs();
+        picker.location = 0;
+        picker.length = 1;
+        
+        unicode = [substring characterAtIndex: 0];
         NSString *lookupString = [[NSString alloc] initWithCharacters: &unicode length: 1];
         [lookupString getBytes: &macRomanCharacter maxLength: 1 usedLength: NULL encoding: NSMacOSRomanStringEncoding
                        options: 0 range: picker remainingRange: NULL];
@@ -259,7 +272,7 @@ CGPoint endPos;
         BOOL isUppercase = [[NSCharacterSet uppercaseLetterCharacterSet] characterIsMember: unicode];
         evt.modifiers = isUppercase ? ShiftKeyBit : modifiers;
         evt.charCode = [self figureOutKeyCode: unicode];
-
+        
         unsigned int keyCodeRemembered = evt.charCode;
         evt.utf32Code = 0;
         evt.reserved1 = 0;
@@ -276,9 +289,19 @@ CGPoint endPos;
             }
         }
         
-        evt.utf32Code = unicode;
+        int utf32Code = unicode;
+        if (substringRange.length >= 2) { //probably surrogate pair
+            uint16_t lower = [substring characterAtIndex: 1];
+            uint32_t code = [self utf32FromSurrogate:unicode lower:lower];
+            if (code != 0){
+                utf32Code = code; //detected surrogate pair
+            }
+        }
+        evt.utf32Code = utf32Code;
+        
         evt.timeStamp++;
         [self pushEventToQueue: (sqInputEvent *) &evt];
+        
         if (autoKeyUp) {
             evt.pressCode = EventKeyUp;
             evt.charCode = keyCodeRemembered;
@@ -286,17 +309,17 @@ CGPoint endPos;
             evt.timeStamp++;
             [self pushEventToQueue: (sqInputEvent *) &evt];
         }
+        
+    }];
+}
+
+- (uint32_t)utf32FromSurrogate:(uint16_t) higher lower: (uint16_t) lower {
+    if ((higher & 0xF800) != 0xD800 || (lower & 0xFC00) != 0xDC00) {
+        return 0; // invalid surrogate pair
     }
-    
-    interpreterProxy->signalSemaphoreWithIndex(gDelegateApp.squeakApplication.inputSemaphoreIndex);
-    
+    uint32_t codepoint = ((higher - 0xD800) << 10) + (lower - 0xDC00) + 0x10000;
+    return codepoint;
 }
-
-- (void) recordCharEvent:(NSString *) unicodeString {
-    [self recordCharEvent: unicodeString modifiers:0 autoKeyUp:YES];
-}
-
-#pragma mark Private
 
 - (void)prepareLongPressGestureRecognizer {
     // not used for now

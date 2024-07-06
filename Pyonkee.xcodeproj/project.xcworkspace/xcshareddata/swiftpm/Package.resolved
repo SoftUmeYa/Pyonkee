@@ -1,4 +1,5 @@
 {
+  "originHash" : "ca2ad4320489848b2ceaad1f3ffcb1de1334c184cd3fe77c6b74f29e5c62a934",
   "pins" : [
     {
       "identity" : "bonjour",
@@ -15,7 +16,7 @@
       "location" : "https://github.com/scalessec/Toast-Swift.git",
       "state" : {
         "branch" : "master",
-        "revision" : "0c9493eeacb102cc614da385cfaaf475379f4ab4"
+        "revision" : "d780ff8fe55659b4fddf1fbfaf930d967f35d9ea"
       }
     },
     {
@@ -28,5 +29,5 @@
       }
     }
   ],
-  "version" : 2
+  "version" : 3
 }

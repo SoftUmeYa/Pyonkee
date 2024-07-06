@@ -281,6 +281,7 @@ BOOL isUnfocued = NO;
     }
 }
 - (BOOL) deferRestoreWindow: (NSNotification *)notification {
+    if(!squeakVMIsReady) return NO;
     if(![self isScratchMainWindow: notification.object]) return NO;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 100* NSEC_PER_MSEC), dispatch_get_main_queue(), ^{
         [self restoreDisplay];
@@ -364,7 +365,11 @@ BOOL isUnfocued = NO;
     }
     
     if([presentationSpace isViewModeBarHidden]){
-        [SUYUtils alertInfo: [NSString stringWithFormat: @"%@: %@", NSLocalizedString(title,nil), [resourcePath.lastPathComponent stringByDeletingPathExtension]]];
+        NSData *data = [NSData dataWithContentsOfFile:resourcePath];
+        BOOL result = [data writeToFile:resourcePath atomically:YES];
+        if(result){
+            [SUYUtils alertInfo: [NSString stringWithFormat: @"%@: %@", NSLocalizedString(title,nil), [resourcePath.lastPathComponent stringByDeletingPathExtension]]];
+        }
     } else {
         [self openResource:resourcePath];
     }
