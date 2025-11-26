@@ -15,7 +15,7 @@
 
 #import <SDCAlertView/SDCAlertView.h>
 
-extern ScratchIPhoneAppDelegate *gDelegateApp;
+extern SUYScratchAppDelegate *gDelegateApp;
 extern struct	VirtualMachine* interpreterProxy;
 
 @interface SUYAlertDialog () {

@@ -153,7 +153,7 @@ void MyProviderReleaseData (
 	if (affectedR > width) affectedR = width;
 	if (affectedB > height) affectedB = height;
 	
-	if ((targetWindowBlock->handle == nil) || ((affectedR - affectedL) <= 0) || ((affectedB - affectedT) <= 0)){
+	if ((targetWindowBlock == nil) || (targetWindowBlock->handle == nil) || ((affectedR - affectedL) <= 0) || ((affectedB - affectedT) <= 0)){
 		return 0;
 	}
 	

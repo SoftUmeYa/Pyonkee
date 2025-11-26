@@ -423,22 +423,22 @@
 
 + (BOOL) meshIsRunning
 {
-    ScratchIPhoneAppDelegate* appDele = (ScratchIPhoneAppDelegate*)UIApplication.sharedApplication.delegate;
+    SUYScratchAppDelegate* appDele = (SUYScratchAppDelegate*)UIApplication.sharedApplication.delegate;
     return [appDele meshIsRunning];
 }
 + (void) meshJoin: (NSString*) ipAddress
 {
-    ScratchIPhoneAppDelegate* appDele = (ScratchIPhoneAppDelegate*)UIApplication.sharedApplication.delegate;
+    SUYScratchAppDelegate* appDele = (SUYScratchAppDelegate*)UIApplication.sharedApplication.delegate;
     [appDele meshJoin: ipAddress];
 }
 + (BOOL) meshJoined: (NSString*) ipAddress
 {
-    ScratchIPhoneAppDelegate* appDele = (ScratchIPhoneAppDelegate*)UIApplication.sharedApplication.delegate;
+    SUYScratchAppDelegate* appDele = (SUYScratchAppDelegate*)UIApplication.sharedApplication.delegate;
     return [appDele meshJoined: ipAddress];
 }
 + (void) meshRun: (BOOL) startOrNot
 {
-    ScratchIPhoneAppDelegate* appDele = (ScratchIPhoneAppDelegate*)UIApplication.sharedApplication.delegate;
+    SUYScratchAppDelegate* appDele = (SUYScratchAppDelegate*)UIApplication.sharedApplication.delegate;
     int mode = (startOrNot == YES) ? 1 : 0;
     LgInfo(@"mode int: %d", mode);
     [appDele meshRun: mode];

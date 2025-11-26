@@ -25,7 +25,6 @@
 
 #import <QuartzCore/QuartzCore.h>
 
-extern ScratchIPhoneAppDelegate *gDelegateApp;
 static const int kCommandAutoUpSeconds = 2;
 static const int kShiftAutoUpSeconds = 20;
 
@@ -77,9 +76,9 @@ uint memoryWarningCount;
     
     self.textField.keyboardAppearance = UIKeyboardAppearanceAlert;
     self.softKeyboardField.hidden = YES;
-	 
-	[self.scrollView addSubview: gDelegateApp.mainView];
-    self.scrollView.contentSize = gDelegateApp.mainView.bounds.size;
+    
+	[self.scrollView addSubview: self.appDelegate.mainView];
+    self.scrollView.contentSize = self.appDelegate.mainView.bounds.size;
     
     self.viewModeBar.layer.cornerRadius = 5;
     self.viewModeBar.layer.masksToBounds = YES;
@@ -99,7 +98,7 @@ uint memoryWarningCount;
     _originalBackgroundColor = self.view.backgroundColor;
     _originalEditModeIndex = 1;
     
-    warningMinHeapThreshold = [gDelegateApp squeakMaxHeapSize] * 0.70;
+    warningMinHeapThreshold = self.appDelegate.squeakMaxHeapSize * 0.70;
     memoryWarningCount = 0;
     
     _formerOrientation = SUYUtils.interfaceOrientation;
@@ -108,7 +107,7 @@ uint memoryWarningCount;
 
 - (void) viewWillAppear:(BOOL)animated {
 	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: NO];
-	[gDelegateApp.viewController setNavigationBarHidden: YES animated: YES];
+	[self.appDelegate.viewController setNavigationBarHidden: YES animated: YES];
 	
 	self.scrollView.delaysContentTouches = self.padLockButton.selected;
     self.radioButtonSetController.selectedIndex = _originalEditModeIndex;
@@ -124,7 +123,7 @@ uint memoryWarningCount;
         self.scrollView.showsHorizontalScrollIndicator = NO;
         self.scrollView.showsVerticalScrollIndicator = NO;
     }
-    if ([gDelegateApp restartCount] == 0) {
+    if (self.appDelegate.restartCount == 0) {
         [self firstViewDidAppear];
 	} else {
         [self restartedViewDidAppear];
@@ -172,6 +171,7 @@ uint memoryWarningCount;
 
 
 #pragma mark View Opening
+
 - (void) firstViewDidAppear{
     [[self appDelegate] openDefaultProject];
 }
@@ -185,7 +185,7 @@ uint memoryWarningCount;
     dispatch_async (
         dispatch_get_main_queue(),
         ^{
-            [gDelegateApp terminateActivityView];
+            [self.appDelegate terminateActivityView];
             [self fixOrientationIfNeeded];
         }
     );
@@ -593,9 +593,18 @@ uint memoryWarningCount;
     return (int)self.radioButtonSetController.selectedIndex;
 }
 
-- (ScratchIPhoneAppDelegate*) appDelegate{
-    return (ScratchIPhoneAppDelegate*) gDelegateApp;
+- (SUYScratchSceneDelegate *) sceneDelegate {
+    UIWindow *window = self.view.window;
+    UIScene *scene = window.windowScene;
+    return (SUYScratchSceneDelegate *)scene.delegate;
 }
+
+- (SUYScratchAppDelegate *)appDelegate
+{
+    SUYScratchAppDelegate *appDele = (SUYScratchAppDelegate*)[[UIApplication sharedApplication] delegate];
+    return appDele;
+}
+
 
 #pragma mark Testing
 
@@ -612,7 +621,7 @@ uint memoryWarningCount;
 #pragma mark Scrolling
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
 {
-    return gDelegateApp.mainView;
+    return self.appDelegate.mainView;
 }
 
 - (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(CGFloat)scale
@@ -690,7 +699,7 @@ uint memoryWarningCount;
     if(self.viewModeIndex==2){
         [[self appDelegate] flushInputString: processedString];
     }
-    [gDelegateApp.mainView recordCharEvent: processedString];
+    [self.sceneDelegate.mainView recordCharEvent: processedString];
 }
 
 - (BOOL)nonImeTextField:(UITextField *) aTextField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)rstr {
@@ -698,16 +707,16 @@ uint memoryWarningCount;
 	if ([rstr length] > 0 && [rstr characterAtIndex: 0] == (unichar) 10) {
 		[aTextField resignFirstResponder];
 		aTextField.text = @"";
-		[gDelegateApp.mainView recordCharEvent: rstr];
+		[self.sceneDelegate.mainView recordCharEvent: rstr];
 		return NO;
 	}
 	if ([rstr length] == 0) {
-		[gDelegateApp.mainView recordCharEvent: [NSString stringWithCharacters: &delete length: 1] ];
+		[self.sceneDelegate.mainView recordCharEvent: [NSString stringWithCharacters: &delete length: 1] ];
 	} else {
         if(range.length > 0){
             //[gDelegateApp.mainView recordCharEvent: rstr]; //TODO: fix previous text
         } else {
-            [gDelegateApp.mainView recordCharEvent: rstr];
+            [self.sceneDelegate.mainView recordCharEvent: rstr];
         }
 	}
     return NO;
@@ -750,10 +759,10 @@ uint memoryWarningCount;
 #pragma mark Key Handling
 
 - (void) pushCharacters: (NSString*) string {
-	[gDelegateApp.mainView recordCharEvent: string];
+	[self.sceneDelegate.mainView recordCharEvent: string];
 }
 - (void) pushCharacters: (NSString*) string modifiers: (unsigned int) modifiers autoKeyUp: (BOOL) autoKeyUp {
-    [gDelegateApp.mainView recordCharEvent: string modifiers: modifiers autoKeyUp: autoKeyUp];
+    [self.sceneDelegate.mainView recordCharEvent: string modifiers: modifiers autoKeyUp: autoKeyUp];
 }
 
 - (void)repeatKeyDoKey:(NSTimer*)theTimer {
@@ -791,7 +800,7 @@ uint memoryWarningCount;
         return;
     }
     
-	BOOL spaceRepeats = [(sqSqueakIPhoneInfoPlistInterface*) gDelegateApp.squeakApplication.infoPlistInterfaceLogic spaceRepeats];
+	BOOL spaceRepeats = [(sqSqueakIPhoneInfoPlistInterface*) self.appDelegate.squeakApplication.infoPlistInterfaceLogic spaceRepeats];
 	if (spaceRepeats) {
 		unichar character = 32;
 		[self startRepeatKeyProcess: character for: sender];
@@ -807,7 +816,7 @@ uint memoryWarningCount;
 		NSNumber *senderHash = [NSNumber numberWithUnsignedInteger:[sender hash]];
 		NSTimer *repeatKeyTimerInstance = [self.repeatKeyDict objectForKey: senderHash];
 		if (repeatKeyTimerInstance) {
-            [gDelegateApp.mainView recordKeyUpEvent: [repeatKeyTimerInstance.userInfo string]];
+            [self.sceneDelegate.mainView recordKeyUpEvent: [repeatKeyTimerInstance.userInfo string]];
 			[repeatKeyTimerInstance invalidate];
 			[self.repeatKeyDict removeObjectForKey: senderHash];
 		}
@@ -1277,23 +1286,22 @@ uint memoryWarningCount;
 
 - (void)didReceiveMemoryWarning {
     memoryWarningCount++;
-    
 	[super didReceiveMemoryWarning];
     
-    int bytesLeft = [gDelegateApp squeakMemoryBytesLeft];
+    int bytesLeft = self.appDelegate.squeakMemoryBytesLeft;
     LgInfo(@"  --- SqueakMemoryBytesLeft: %d", bytesLeft);
     LgInfo(@"  --- warningMinHeapThreshold: %d", warningMinHeapThreshold);
-    LgInfo(@"$$$ RestartCount:%d", [[self appDelegate] restartCount]);
+    LgInfo(@"$$$ RestartCount:%d", self.appDelegate.restartCount);
     
-    int minCount = 2 - [[self appDelegate] restartCount];
+    int minCount = 2 - self.appDelegate.restartCount;
     if(minCount <= 0){minCount = 1;}
     
     if(memoryWarningCount > minCount){
        LgInfo(@"$$$ - memoryWarningCount restart");
-       [[self appDelegate] restartVm];
+       [self.appDelegate restartVm];
     } else if(warningMinHeapThreshold > bytesLeft){
        LgInfo(@"$$$ - warningHeapThreshold restart");
-       [[self appDelegate] restartVm];
+       [self.appDelegate restartVm];
     } else {
         LgInfo(@"$$$ - ignored memory warning...");
     }

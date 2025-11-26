@@ -173,8 +173,6 @@
 	<string>for playing with mesh</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>for sensor blocks</string>
-	<key>NSMainNibFile~ipad</key>
-	<string>MainWindowiPad</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>for playing recorded sounds</string>
 	<key>NSMotionUsageDescription</key>
@@ -228,6 +226,23 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>UIApplicationSceneManifest</key>
+	<dict>
+		<key>UIApplicationSupportsMultipleScenes</key>
+		<false/>
+		<key>UISceneConfigurations</key>
+		<dict>
+			<key>UIWindowSceneSessionRoleApplication</key>
+			<array>
+				<dict>
+					<key>UISceneConfigurationName</key>
+					<string>Default Configuration</string>
+					<key>UISceneDelegateClassName</key>
+					<string>SUYScratchSceneDelegate</string>
+				</dict>
+			</array>
+		</dict>
+	</dict>
 	<key>UTExportedTypeDeclarations</key>
 	<array>
 		<dict>
@@ -314,5 +329,7 @@
 			</dict>
 		</dict>
 	</array>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 </dict>
 </plist>

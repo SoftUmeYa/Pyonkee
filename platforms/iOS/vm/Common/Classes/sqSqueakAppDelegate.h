@@ -58,4 +58,6 @@ such third-party acknowledgments.
 - (void) workerThreadStart;
 - (void) singleThreadStart;
 
+- (void) startSqueakThread;
+
 @end

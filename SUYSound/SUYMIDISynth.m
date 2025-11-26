@@ -27,7 +27,7 @@
     int lastProgNumChannel;
 }
 
-extern ScratchIPhoneAppDelegate *gDelegateApp;
+extern SUYScratchAppDelegate *gDelegateApp;
 static SUYMIDISynth *soleInstance;
 
 
