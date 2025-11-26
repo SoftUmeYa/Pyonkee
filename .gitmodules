@@ -1,6 +1,6 @@
 [submodule "Frameworks/MIKMIDI"]
 	path = Frameworks/MIKMIDI
-	url = https://github.com/mixedinkey-opensource/MIKMIDI.git
+	url = https://github.com/mumez/MIKMIDI.git
 [submodule "Frameworks/SDCAlertView"]
 	path = Frameworks/SDCAlertView
 	url = https://github.com/sberrevoets/SDCAlertView.git

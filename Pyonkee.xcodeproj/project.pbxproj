@@ -16,7 +16,6 @@
 		8516173F19646B4400D4E258 /* flat-shift.png in Resources */ = {isa = PBXBuildFile; fileRef = 8516173E19646B4400D4E258 /* flat-shift.png */; };
 		8516C7F1196F88AE00643850 /* SUYLauncherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8516C7F0196F88AE00643850 /* SUYLauncherViewController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		8516C7F6196F8BF000643850 /* SUYScratchPresentationSpace.m in Sources */ = {isa = PBXBuildFile; fileRef = 8516C7F3196F8BF000643850 /* SUYScratchPresentationSpace.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		8516C7F7196F8BF000643850 /* SUYScratchAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8516C7F4196F8BF000643850 /* SUYScratchAppDelegate.m */; };
 		85186B421961B593006301EB /* Help in Resources */ = {isa = PBXBuildFile; fileRef = 85186B411961B593006301EB /* Help */; };
 		851938081981FAB400EC4DFC /* cleaning.png in Resources */ = {isa = PBXBuildFile; fileRef = 851938061981FAB400EC4DFC /* cleaning.png */; };
 		851938091981FAB400EC4DFC /* loading.png in Resources */ = {isa = PBXBuildFile; fileRef = 851938071981FAB400EC4DFC /* loading.png */; };
@@ -54,6 +53,8 @@
 		85406F971B17F3D200CBE22E /* SUYPhotoPicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85406F961B17F3D200CBE22E /* SUYPhotoPicker.storyboard */; };
 		85406F9A1B17F45100CBE22E /* SUYPhotoCropper.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85406F981B17F45100CBE22E /* SUYPhotoCropper.storyboard */; };
 		8541CA69190002450019163E /* LFCGzipUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 8541CA68190002450019163E /* LFCGzipUtility.m */; };
+		854AF9BA2E9FD2E40064C71F /* SUYScratchSceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 854AF9B92E9FD2E40064C71F /* SUYScratchSceneDelegate.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		854AF9BD2E9FD32D0064C71F /* SUYScratchAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 854AF9BC2E9FD32D0064C71F /* SUYScratchAppDelegate.m */; };
 		854F08E01B2A9C4C00E7A6A9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 854F08DF1B2A9C4C00E7A6A9 /* CoreLocation.framework */; };
 		854F08EC1B2B280000E7A6A9 /* SUYLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 854F08EB1B2B280000E7A6A9 /* SUYLocationManager.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		855A8B321A871C2700F9F1C8 /* SUYNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 855A8B311A871C2700F9F1C8 /* SUYNavigationController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
@@ -369,8 +370,6 @@
 		8516C7F0196F88AE00643850 /* SUYLauncherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUYLauncherViewController.m; sourceTree = "<group>"; };
 		8516C7F2196F8BF000643850 /* SUYScratchPresentationSpace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SUYScratchPresentationSpace.h; path = SUYApp/SUYScratchPresentationSpace.h; sourceTree = "<group>"; };
 		8516C7F3196F8BF000643850 /* SUYScratchPresentationSpace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SUYScratchPresentationSpace.m; path = SUYApp/SUYScratchPresentationSpace.m; sourceTree = "<group>"; };
-		8516C7F4196F8BF000643850 /* SUYScratchAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SUYScratchAppDelegate.m; path = SUYApp/SUYScratchAppDelegate.m; sourceTree = "<group>"; };
-		8516C7F5196F8BF000643850 /* SUYScratchAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SUYScratchAppDelegate.h; path = SUYApp/SUYScratchAppDelegate.h; sourceTree = "<group>"; };
 		85186B411961B593006301EB /* Help */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Help; path = Resources/Help; sourceTree = "<group>"; };
 		851938061981FAB400EC4DFC /* cleaning.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cleaning.png; path = Resources/images/backgrounds/cleaning.png; sourceTree = "<group>"; };
 		851938071981FAB400EC4DFC /* loading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = loading.png; path = Resources/images/backgrounds/loading.png; sourceTree = "<group>"; };
@@ -426,6 +425,10 @@
 		8541CA67190002450019163E /* LFCGzipUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFCGzipUtility.h; sourceTree = "<group>"; };
 		8541CA68190002450019163E /* LFCGzipUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFCGzipUtility.m; sourceTree = "<group>"; };
 		85496CF328B5D35A00C43250 /* Pyonkee-Mac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Pyonkee-Mac.entitlements"; sourceTree = "<group>"; };
+		854AF9B82E9FD2E40064C71F /* SUYScratchSceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SUYScratchSceneDelegate.h; path = SUYApp/SUYScratchSceneDelegate.h; sourceTree = "<group>"; };
+		854AF9B92E9FD2E40064C71F /* SUYScratchSceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SUYScratchSceneDelegate.m; path = SUYApp/SUYScratchSceneDelegate.m; sourceTree = "<group>"; };
+		854AF9BB2E9FD32D0064C71F /* SUYScratchAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SUYScratchAppDelegate.h; path = SUYApp/SUYScratchAppDelegate.h; sourceTree = "<group>"; };
+		854AF9BC2E9FD32D0064C71F /* SUYScratchAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SUYScratchAppDelegate.m; path = SUYApp/SUYScratchAppDelegate.m; sourceTree = "<group>"; };
 		854F08DF1B2A9C4C00E7A6A9 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		854F08EA1B2B280000E7A6A9 /* SUYLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUYLocationManager.h; sourceTree = "<group>"; };
 		854F08EB1B2B280000E7A6A9 /* SUYLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUYLocationManager.m; sourceTree = "<group>"; };
@@ -1121,10 +1124,12 @@
 		85918D3019113E8600F9637A /* SUYScratchApp */ = {
 			isa = PBXGroup;
 			children = (
+				854AF9BB2E9FD32D0064C71F /* SUYScratchAppDelegate.h */,
+				854AF9BC2E9FD32D0064C71F /* SUYScratchAppDelegate.m */,
+				854AF9B82E9FD2E40064C71F /* SUYScratchSceneDelegate.h */,
+				854AF9B92E9FD2E40064C71F /* SUYScratchSceneDelegate.m */,
 				8516C7F2196F8BF000643850 /* SUYScratchPresentationSpace.h */,
 				8516C7F3196F8BF000643850 /* SUYScratchPresentationSpace.m */,
-				8516C7F5196F8BF000643850 /* SUYScratchAppDelegate.h */,
-				8516C7F4196F8BF000643850 /* SUYScratchAppDelegate.m */,
 			);
 			name = SUYScratchApp;
 			sourceTree = "<group>";
@@ -2513,7 +2518,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8516C7F7196F8BF000643850 /* SUYScratchAppDelegate.m in Sources */,
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				9424FF620DDCB1C7009912BF /* sqNamedPrims.c in Sources */,
 				9424FF6B0DDCB202009912BF /* sqMacV2Memory.c in Sources */,
@@ -2537,6 +2541,7 @@
 				94E659310DDD03FE00358328 /* JPEGReadWriter2Plugin.c in Sources */,
 				858A5884198351480082F48E /* SUYAlertDialog.m in Sources */,
 				859727CA2610B99D009AD2BA /* MicrobitDelegates.swift in Sources */,
+				854AF9BD2E9FD32D0064C71F /* SUYScratchAppDelegate.m in Sources */,
 				94E659320DDD03FE00358328 /* Klatt.c in Sources */,
 				94E659330DDD03FE00358328 /* LargeIntegers.c in Sources */,
 				94E659340DDD03FE00358328 /* Matrix2x3Plugin.c in Sources */,
@@ -2569,6 +2574,7 @@
 				85EE048C1B37DA6700EA3F1F /* SUYLightSensor.m in Sources */,
 				85213EF91E8B458A00A0E9AC /* SUYInternalMIDISynth.m in Sources */,
 				94E65A3F0DDD053900358328 /* jcmainct.c in Sources */,
+				854AF9BA2E9FD2E40064C71F /* SUYScratchSceneDelegate.m in Sources */,
 				94E65A400DDD053900358328 /* jcmarker.c in Sources */,
 				94E65A410DDD053900358328 /* jcmaster.c in Sources */,
 				94E65A420DDD053900358328 /* jcomapi.c in Sources */,
@@ -2785,7 +2791,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = /usr/include/uuid;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.softumeya.Pyonkee;
@@ -2808,7 +2814,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = RXNQHKQR2N;
 				ENABLE_APP_SANDBOX = NO;
 				"ENABLE_APP_SANDBOX[sdk=macosx*]" = YES;
@@ -2836,14 +2842,14 @@
 					/usr/include/uuid,
 				);
 				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 13;
 				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 2.28;
+				MARKETING_VERSION = 2.29;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = (
 					"-finline-functions",
@@ -2878,7 +2884,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = /usr/include/uuid;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.softumeya.Pyonkee;
@@ -2901,7 +2907,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = RXNQHKQR2N;
 				ENABLE_APP_SANDBOX = NO;
 				"ENABLE_APP_SANDBOX[sdk=macosx*]" = YES;
@@ -2924,14 +2930,14 @@
 					/usr/include/uuid,
 				);
 				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 13;
 				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 2.28;
+				MARKETING_VERSION = 2.29;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = (
 					"-finline-functions",

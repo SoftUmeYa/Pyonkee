@@ -16,6 +16,7 @@ UserInterfaceState.xcuserstate
 SqueakDebug.log
 scratchthumbs.db
 
-# Carthage
-Carthage/
+# AI
+spec/
+.serena/
 
