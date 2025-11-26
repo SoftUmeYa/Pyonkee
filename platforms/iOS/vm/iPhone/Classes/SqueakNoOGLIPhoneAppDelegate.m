@@ -68,7 +68,7 @@ SqueakNoOGLIPhoneAppDelegate *gDelegateApp;
 	scrollView = null;
 	application.idleTimerDisabled = YES;
 	
-	squeakApplication = [self newApplicationInstance];
+	self.squeakApplication = [self newApplicationInstance];
 	screenAndWindow =  [sqiPhoneScreenAndWindow new];
 	[self.squeakApplication setupEventQueue];
 	//[self singleThreadStart];

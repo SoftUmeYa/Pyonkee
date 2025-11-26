@@ -10,7 +10,7 @@
 #import "SUYUtils.h"
 #import "SUYScratchAppDelegate.h"
 
-extern ScratchIPhoneAppDelegate *gDelegateApp;
+extern SUYScratchAppDelegate *gDelegateApp;
 
 extern struct	VirtualMachine* interpreterProxy;
 

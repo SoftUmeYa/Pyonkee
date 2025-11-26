@@ -9,8 +9,7 @@
 #import "SUYLauncherViewController.h"
 #import "SUYScratchAppDelegate.h"
 #import "SUYInitializer.h"
-
-extern ScratchIPhoneAppDelegate *gDelegateApp;
+#import "SUYScratchSceneDelegate.h"
 
 @implementation SUYLauncherViewController
 
@@ -20,7 +19,7 @@ bool isEnabled = NO;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        squeakVMIsReady = NO;
+        uiThinksLoginButtonCouldBeEnabled = NO;
     }
 	return self;
 }
@@ -33,26 +32,25 @@ bool isEnabled = NO;
 }
 
 - (void) viewDidLoad {
-	[super viewDidLoad];	
+	[super viewDidLoad];
+    uiThinksLoginButtonCouldBeEnabled = YES;
 	NSString *waitString = NSLocalizedString(@"Loading...",nil);
 	[self.startButton setTitle: waitString forState:UIControlStateNormal];
     self.statusLabel.text = waitString;
+    self.startButton.hidden = YES;
+    self.statusLabel.hidden = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear: animated];
-	squeakVMIsReady = gDelegateApp.squeakVMIsReady;
-	if (squeakVMIsReady){
-		[self didReceiveSqueakVMReadyOnMainThread];
-	}
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveSqueakVMReady) name:@"squeakVMReady" object:nil];
-	self.startButton.enabled = uiThinksLoginButtonCouldBeEnabled = NO;
+	self.startButton.enabled = uiThinksLoginButtonCouldBeEnabled;
     [self selectLaunchImage];
 }
 
-- (void) viewDidAppear:(BOOL)animated {
-	[super viewDidAppear: animated];
-    uiThinksLoginButtonCouldBeEnabled = YES;
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear: animated];
+    [self startAutoOrManually];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -86,8 +84,7 @@ bool isEnabled = NO;
 }
 
 - (void)startPlaying {
-    [gDelegateApp turnActivityViewOn];
-    [gDelegateApp.viewController pushViewController: gDelegateApp.presentationSpace animated: YES];
+    [self.appDelegate.currentSceneDelegate startPlaying];
 }
 
 - (void) showCleaningImage {
@@ -99,45 +96,47 @@ bool isEnabled = NO;
 #pragma mark Callback
 
 - (void) didReceiveSqueakVMReadyOnMainThread {
-    self.startButton.enabled = squeakVMIsReady = YES;
-	NSString *playStr = NSLocalizedString(@"Play!",nil);
-	[self.startButton setTitle: playStr forState:UIControlStateNormal];
-    self.statusLabel.text = playStr;
-	isEnabled = uiThinksLoginButtonCouldBeEnabled && squeakVMIsReady;
-    
-    if(isEnabled){
-        dispatch_async (
-             dispatch_get_main_queue(),
-             ^{
-                 [self startPlaying];
-             }
-        );
-    } else {
-        self.startButton.hidden = NO;
-        self.statusLabel.hidden = YES;
-    }
-    
-    
+    self.statusLabel.text = NSLocalizedString(@"Play!",nil);
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self startPlaying];
+    });
 }
 
 - (void) didReceiveSqueakVMReady {
 	[self performSelectorOnMainThread:@selector(didReceiveSqueakVMReadyOnMainThread) withObject: nil waitUntilDone: NO];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    self.loadingImage = nil;
-    self.cleaningImage = nil;
-    
-}
-
 #pragma mark -
 #pragma mark Private
 - (void) selectLaunchImage {
-    if([gDelegateApp restartCount] > 0){
-        LgInfo(@"cleaning %u", [gDelegateApp restartCount]);
+    if([self.appDelegate restartCount] > 0){
+        LgInfo(@"cleaning %u", [self.appDelegate restartCount]);
         [self showCleaningImage];
     }
+}
+
+- (void)startAutoOrManually {
+    if (self.appDelegate.squeakVMIsReady){
+        [self startPlaying];
+    } else {
+//        Currently off
+//        [self activateStartButtonIfNeeded];
+    }
+}
+
+- (void) activateStartButtonIfNeeded {
+    [self.startButton setTitle: NSLocalizedString(@"Play!",nil) forState:UIControlStateNormal];
+    self.startButton.hidden = NO;
+    self.statusLabel.hidden = YES;
+}
+
+#pragma mark -
+#pragma mark Accessing
+
+- (SUYScratchAppDelegate *)appDelegate
+{
+    SUYScratchAppDelegate *appDele = (SUYScratchAppDelegate*)[[UIApplication sharedApplication] delegate];
+    return appDele;
 }
 
 @end

@@ -25,7 +25,7 @@
     BOOL avoidMirror;
     
     BOOL lightSensorStopped;
-    ScratchIPhoneAppDelegate *appDele;
+    SUYScratchAppDelegate *appDele;
 }
 
 @synthesize previewView, previewLayer, videoInput, stillImageOutput, clientMode, imagePickerButton, takePictureButton;
@@ -45,7 +45,7 @@
     isCaptureAuthorized = NO;
     shutterCount = 0;
     avoidMirror = NO;
-    appDele = (ScratchIPhoneAppDelegate*)[[UIApplication sharedApplication] delegate];
+    appDele = (SUYScratchAppDelegate*)[[UIApplication sharedApplication] delegate];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didRotate:) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
 }
 

@@ -34,7 +34,7 @@ bool scriptsWereRunning = NO;
 {
     [super viewDidLoad];
     
-    ScratchIPhoneAppDelegate *appDele = [self appDelegate];
+    SUYScratchAppDelegate *appDele = [self appDelegate];
     slider.value = [appDele getFontScaleIndex];
     scriptsWereRunning = [appDele scriptsAreRunning];
     [slider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
@@ -63,9 +63,9 @@ bool scriptsWereRunning = NO;
     fontScaleUpdated = YES;
 }
 
-- (ScratchIPhoneAppDelegate *)appDelegate
+- (SUYScratchAppDelegate *)appDelegate
 {
-    ScratchIPhoneAppDelegate *appDele = (ScratchIPhoneAppDelegate*)[[UIApplication sharedApplication] delegate];
+    SUYScratchAppDelegate *appDele = (SUYScratchAppDelegate*)[[UIApplication sharedApplication] delegate];
     return appDele;
 }
 

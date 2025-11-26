@@ -4,7 +4,7 @@
 //
 //  Created by Masashi UMEZAWA on 2014/07/26.
 //
-//  Extracted from ScratchIPhoneAppDelegate.m by John M McIntosh on 10-02-14.
+//  Extracted from SUYScratchAppDelegate.m by John M McIntosh on 10-02-14.
 //  Copyright 2010 Corporate Smalltalk Consulting Ltd. All rights reserved.
 
 #import "SUYMailComposer.h"
@@ -74,7 +74,10 @@ BOOL isForErrorReport = NO;
 
 
 - (void) mailProject: (NSString *)projectPath{
-    if (!([SUYUtils canSendMail])){return;}
+    if (!([SUYUtils canSendMail])){
+        LgInfo(@"----can not send mail-------");
+        return;
+    }
     if(isComposing == YES){[self abort];}
     isComposing = YES;
     isForErrorReport = NO;

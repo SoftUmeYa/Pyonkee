@@ -84,7 +84,7 @@
     NSString* filePath = [self saveImage:savingImage];
     
     if(filePath){
-        ScratchIPhoneAppDelegate *appDele = (ScratchIPhoneAppDelegate*)[[UIApplication sharedApplication] delegate];
+        SUYScratchAppDelegate *appDele = (SUYScratchAppDelegate*)[[UIApplication sharedApplication] delegate];
         [appDele pickPhoto: filePath];
     }
     [self close: nil];

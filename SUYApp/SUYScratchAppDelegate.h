@@ -3,7 +3,7 @@
 //  ScratchOnIPad
 //
 //  Created by Masashi UMEZAWA on 2014/06/20
-//  Modified, customized version of ScratchIPhoneAppDelegate.h
+//  Modified, customized version of SUYScratchAppDelegate.h
 //
 //  Originally Created by John M McIntosh on 10-02-14.
 //  Copyright 2010 Corporate Smalltalk Consulting Ltd. All rights reserved.
@@ -16,19 +16,21 @@
 #import "SUYMicrobitAccessor.h"
 #import	"squeakProxy.h"
 
+#import "SUYScratchSceneDelegate.h"
+
 #if (TARGET_OS_MACCATALYST)
 #import "SUYDummySensorAccessor.h"
 #else
 #import "SUYSensorAccessor.h"
 #endif
 
-@interface ScratchIPhoneAppDelegate : SqueakNoOGLIPhoneAppDelegate <UIMenuBuilder>{
+@interface SUYScratchAppDelegate : SqueakNoOGLIPhoneAppDelegate <UIMenuBuilder>{
 	
 }
 
 @property (nonatomic) BOOL squeakVMIsReady;
 @property (nonatomic, retain) SqueakProxy *squeakProxy;
-@property (nonatomic, retain) ScratchIPhonePresentationSpace* presentationSpace;
+@property (nonatomic, assign, readonly) ScratchIPhonePresentationSpace* presentationSpace;
 
 @property (nonatomic, retain) dispatch_queue_t defaultSerialQueue;
 @property (nonatomic, retain) SUYMailComposer *mailComposer;
@@ -42,6 +44,7 @@
 
 @property (nonatomic, copy) NSString* resourcePathOnLaunch;
 @property (nonatomic) NSUInteger resourseLoadedCount;
+@property (nonatomic, retain) SUYScratchSceneDelegate *currentSceneDelegate;
 
 - (void) openDefaultProject;
 - (void) openResource:(NSString*)projectPathName;
@@ -95,5 +98,14 @@
 - (uint) squeakMemoryBytesLeft;
 - (uint) squeakMaxHeapSize;
 - (uint) restartCount;
+
+- (void)invalidateSceneDelegateCache;
+- (void)becomeActive;
+- (void)becomeBackground;
+
+// Scene configuration
+- (UISceneConfiguration *)application:(UIApplication *)application
+configurationForConnectingSceneSession:(UISceneSession *)connectingSceneSession
+                              options:(UISceneConnectionOptions *)options;
 
 @end

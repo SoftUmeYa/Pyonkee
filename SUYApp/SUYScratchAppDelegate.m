@@ -3,7 +3,7 @@
 //  ScratchOnIPad
 //
 //  Created by Masashi UMEZAWA on 2014/06/20
-//  Modified, customized version of ScratchIPhoneAppDelegate.m
+//  Modified, customized version of SUYScratchAppDelegate.m
 //
 //  Originally Created by John M McIntosh on 10-02-14.
 //  Copyright 2010 Corporate Smalltalk Consulting Ltd. All rights reserved.
@@ -25,83 +25,30 @@
 
 static uint sRestartCount = 0;
 
-@implementation ScratchIPhoneAppDelegate
+@implementation SUYScratchAppDelegate
 
 BOOL isRestarting = NO;
-BOOL isUnfocued = NO;
 
-@synthesize	 squeakProxy, presentationSpace, squeakVMIsReady, defaultSerialQueue;
-
-- (void) makeMainWindowOnMainThread
-{
-	
-	//This is fired via a cross thread message send from logic that checks to see if the window exists in the squeak thread.
-	// Set up content view
-    
-	CGSize mainScreenSize = [SUYUtils scratchScreenSize];
-	mainView = [[[self whatRenderCanWeUse] alloc] initWithFrame: CGRectMake(0,0,mainScreenSize.width,mainScreenSize.height)];
-	self.mainView.clearsContextBeforeDrawing = NO;
-	self.mainView.autoresizesSubviews= NO;
-    
-    //LgInfo(@"self.mainView.frame.size.width %f x height %f",self.mainView.frame.size.width, self.mainView.frame.size.height);
-    [SUYUtils printMemStats];
-    
-	//Setup the scroll view which wraps the mainView
-	presentationSpace = [[ScratchIPhonePresentationSpace alloc] initWithNibName:@"ScratchIPhonePresentationSpaceiPad" bundle:[NSBundle mainBundle]];
-    
-    self.scrollView = presentationSpace.scrollView;
-	
-}
+@synthesize	 squeakProxy, squeakVMIsReady, defaultSerialQueue;
 
 - (BOOL)application: (UIApplication *)application didFinishLaunchingWithOptions: (NSDictionary*) launchOptions  {
-    
+
     self.resourseLoadedCount = 0;
-    if(defaultSerialQueue == nil){ defaultSerialQueue = dispatch_queue_create("ScratchIPhoneAppDelegate", DISPATCH_QUEUE_SERIAL);}
+    if(self.defaultSerialQueue == nil){ self.defaultSerialQueue = dispatch_queue_create("SUYScratchAppDelegate", DISPATCH_QUEUE_SERIAL);}
     
 	[self listenNotifications];
 	[super application: application didFinishLaunchingWithOptions: launchOptions];
     
-	SUYLauncherViewController *launcherViewController;
-	if(SUYUtils.isIPadIdiom) {
-		Class loginViewControlleriPadClass = NSClassFromString(@"SUYLauncherViewController");
-		launcherViewController = [[loginViewControlleriPadClass alloc] initWithNibName:@"LauncherViewController" bundle:[NSBundle mainBundle]];
-	} else {
-		LgWarn(@"iPad only!");
-        return NO;
-	}
+    self.mailComposer = [[SUYMailComposer alloc] init];
     
-#if TARGET_OS_MACCATALYST
-    NSSet<UIScene*> *scenes = UIApplication.sharedApplication.connectedScenes;
-    for (UIScene* scene in scenes) {
-        UIWindowScene* winScene = ((UIWindowScene*)scene);
-        winScene.titlebar.titleVisibility = UITitlebarTitleVisibilityHidden;
-        winScene.titlebar.toolbar = nil;
-        float height = winScene.screen.bounds.size.height;
-        float width = (4 * height / 3) + 30;
-        winScene.sizeRestrictions.minimumSize = CGSizeMake(width, height);
-        //winScene.sizeRestrictions.maximumSize = CGSizeMake(width, height);
-    }
-#endif
-    
-	viewController = [[SUYNavigationController alloc] initWithRootViewController: launcherViewController];
-	[launcherViewController release];
-	
-	self.viewController.navigationBarHidden = YES;
-    self.viewController.toolbarHidden = YES;
-    [self.window setRootViewController: viewController];
-  
-    _mailComposer = [[SUYMailComposer alloc] init];
-    _mailComposer.viewController = self.viewController;
-    
-    _microbitAccessor = [[SUYMicrobitAccessor alloc] init];
+    self.microbitAccessor = [[SUYMicrobitAccessor alloc] init];
 
 #if TARGET_OS_MACCATALYST
-    _sensorAccessor = [[SUYDummySensorAccessor alloc] init];
+    self.sensorAccessor = [[SUYDummySensorAccessor alloc] init];
 #else
-    _sensorAccessor = [[SUYSensorAccessor alloc] init];
+    self.sensorAccessor = [[SUYSensorAccessor alloc] init];
 #endif
-    
-   	[window makeKeyAndVisible];
+
     isRestarting = NO;
     
     [[SUYiCloudAccessor soleInstance] detectiCloud];
@@ -220,11 +167,7 @@ BOOL isUnfocued = NO;
 }
 
 
-#pragma mark Accessing
 
-- (sqSqueakMainApplication *)  newApplicationInstance {
-	return [sqScratchIPhoneApplication new];
-}
 
 
 #pragma mark Notifications
@@ -232,14 +175,8 @@ BOOL isUnfocued = NO;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveSqueakVMReady) name:@"squeakVMReady" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveSqueakVMSpaceIsLow) name:@"squeakVMSpaceIsLow" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(errorMailReported) name:@"errorMailReported" object:nil];
-    
-    if(SUYUtils.isOnMac){
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowFocused:) name:@"NSWindowDidBecomeMainNotification" object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowUnfocused:) name:@"NSWindowDidResignMainNotification" object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowResized:) name:@"NSWindowDidResizeNotification" object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deferRestoreWindow:) name:@"NSWindowDidChangeScreenNotification" object:nil];
-    }
-    
+
+    // Note: Mac Catalyst window notifications are now handled by SUYScratchSceneDelegate
 }
 
 - (void)forgetNotifications {
@@ -267,52 +204,60 @@ BOOL isUnfocued = NO;
     [self enterRestart];
 }
 
-#pragma mark Callback for Mac
-- (void) windowFocused: (NSNotification *)notification {
-    if(isUnfocued == NO) return;
-    if([self deferRestoreWindow: notification]){
-        isUnfocued = NO;
-    }
-}
-- (void) windowUnfocused: (NSNotification *)notification {
-    if(isUnfocued == YES) return;
-    if([self deferRestoreWindow: notification]){
-        isUnfocued = YES;
-    }
-}
-- (BOOL) deferRestoreWindow: (NSNotification *)notification {
-    if(!squeakVMIsReady) return NO;
-    if(![self isScratchMainWindow: notification.object]) return NO;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 100* NSEC_PER_MSEC), dispatch_get_main_queue(), ^{
-        [self restoreDisplay];
-    });
-    return YES;
-}
-- (void) windowResized: (NSNotification *)notification {
-    if(![self isScratchMainWindow: notification.object]) return;
-    [self.presentationSpace fixLayoutOnWindowResizing];
-    [self restoreDisplay];
+// Note: Mac Catalyst window notification handlers have been migrated to SUYScratchSceneDelegate
+
+#pragma mark -
+#pragma mark Accessing - Backward Compatibility
+
+//override to return ScheneDelegate's properties for backward-compatibility (will be removed after migration)
+
+- (UIWindow*) window {
+    return self.currentSceneDelegate.window;
 }
 
-- (BOOL) isScratchMainWindow: (id) object {
-    if([object respondsToSelector:@selector(frame)]){
-        CGSize notifierSize = [object frame].size;
-        CGSize scratchScreenSize = SUYUtils.scratchScreenSize;
-        CGFloat defaultHeight = scratchScreenSize.height;
-        CGFloat defaultWidth = scratchScreenSize.width;
-        NSString* className = NSStringFromClass([object class]);
-        //LgInfo(@"%@ > %f %f : %f %f", className, defaultHeight, defaultWidth, notifierSize.height, notifierSize.width);
-        if(defaultHeight > notifierSize.height && defaultWidth > notifierSize.width
-           && ([className hasPrefix: @"UINS"] == NO))
-        {
-            return NO;
-        }
-    }
-    return YES;
+- (SUYNavigationController*) viewController {
+    return self.currentSceneDelegate.viewController;
+}
+
+- (SqueakUIView*) mainView {
+    return self.currentSceneDelegate.mainView;
+}
+
+- (UIScrollView*) scrollView {
+    return self.currentSceneDelegate.scrollView;
+}
+
+- (sqiPhoneScreenAndWindow*) screenAndWindow {
+    if(!squeakVMIsReady) return super.screenAndWindow;
+    return self.currentSceneDelegate.screenAndWindow;
+}
+
+- (ScratchIPhonePresentationSpace*) presentationSpace {
+    return self.currentSceneDelegate.presentationSpace;
 }
 
 #pragma mark -
 #pragma mark Accessing
+
+- (void)setSqueakProxy:(id)proxy {
+    LgInfo(@"###setSqueakProxy###");
+    if (squeakProxy != proxy) {
+        [squeakProxy release];
+        squeakProxy = [proxy retain];
+    }
+}
+
+- (void)invalidateSceneDelegateCache {
+    @synchronized(self) {
+        [_currentSceneDelegate release];
+        _currentSceneDelegate = nil;
+    }
+}
+
+- (sqSqueakMainApplication *)  newApplicationInstance {
+    return [sqScratchIPhoneApplication new];
+}
+
 - (UIScrollView *)scratchPlayView
 {
     return self.presentationSpace.scrollView;
@@ -364,7 +309,7 @@ BOOL isUnfocued = NO;
         return;
     }
     
-    if([presentationSpace isViewModeBarHidden]){
+    if([self.presentationSpace isViewModeBarHidden]){
         NSData *data = [NSData dataWithContentsOfFile:resourcePath];
         BOOL result = [data writeToFile:resourcePath atomically:YES];
         if(result){
@@ -420,7 +365,7 @@ BOOL isUnfocued = NO;
 - (void)  becomeActive{
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         if(squeakVMIsReady){[squeakProxy becomeActive];}
-        dispatch_async(dispatch_get_main_queue(), ^{
+        dispatch_async(self.defaultSerialQueue, ^{
             [[SUYMIDISynth soleInstance] reset];
         });
     });
@@ -442,11 +387,9 @@ BOOL isUnfocued = NO;
 }
 
 - (void) restartVm {
-    @synchronized(self){
     if(isRestarting==YES){return;}
     isRestarting = YES;
     [squeakProxy restartVm];
-    }
 }
 
 - (void) setFontScaleIndex: (int)idx{
@@ -594,7 +537,7 @@ BOOL isUnfocued = NO;
 - (void)airDropProject: (NSString *)projectPath {
     dispatch_async (
         dispatch_get_main_queue(), ^{
-            [presentationSpace airDropProject: projectPath];
+            [self.presentationSpace airDropProject: projectPath];
         }
     );
 }
@@ -603,14 +546,14 @@ BOOL isUnfocued = NO;
 - (void)exportToCloud: (NSString *)resourcePath {
     dispatch_async (
         dispatch_get_main_queue(), ^{
-            [presentationSpace exportToCloud: resourcePath];
+            [self.presentationSpace exportToCloud: resourcePath];
         }
     );
 }
 - (void)importFromCloud {
     dispatch_async (
         dispatch_get_main_queue(), ^{
-            [presentationSpace importFromCloud];
+            [self.presentationSpace importFromCloud];
         }
     );
 }
@@ -619,7 +562,7 @@ BOOL isUnfocued = NO;
 - (void) openMeshDialog {
     dispatch_async (
         dispatch_get_main_queue(), ^{
-            [presentationSpace openMeshDialog];
+            [self.presentationSpace openMeshDialog];
         }
     );
 }
@@ -630,8 +573,8 @@ BOOL isUnfocued = NO;
     if([SUYUtils cursorEnabled]){return;}
     dispatch_async (
         dispatch_get_main_queue(), ^{
-            [presentationSpace.softKeyboardField becomeFirstResponder];
-            [presentationSpace.softKeyboardField resignFirstResponder];
+            [self.presentationSpace.softKeyboardField becomeFirstResponder];
+            [self.presentationSpace.softKeyboardField resignFirstResponder];
             [SUYUtils showCursor:cursorCode];
         }
     );
@@ -696,6 +639,7 @@ BOOL isUnfocued = NO;
 
 - (void) restartAfterDelay {
     [squeakProxy release];
+    self.squeakProxy  = nil;
 	[self.squeakThread cancel];
 	[self performSelector: @selector(restartGradually) withObject: nil afterDelay: 1.5];
 }
@@ -704,48 +648,48 @@ BOOL isUnfocued = NO;
 	while (![self.squeakThread isFinished]) {}
 	extern int sqMacMemoryFree();
 	sqMacMemoryFree();
-	self.squeakThread = nil;
-    
-    [UIView animateWithDuration:0.8
-                     animations:^{self.presentationSpace.view.alpha = 0.8;}
-                     completion:^(BOOL finished){ [self.presentationSpace.view removeFromSuperview];}];
-    
+	
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.8 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-	[viewController popToRootViewControllerAnimated: YES];
-    
-	self.mainView = nil;
-	self.scrollView = nil;
-        
-    self.mailComposer = nil;
-    self.sensorAccessor = nil;
-    self.microbitAccessor = nil;
-    
-	self.presentationSpace  = nil;
-	if (self.screenAndWindow.blip) {
-		[self.screenAndWindow.blip invalidate];
-		self.screenAndWindow.blip = nil;
-	}
-	self.screenAndWindow  = nil;
-	self.squeakVMIsReady = NO;
-    self.defaultSerialQueue = nil;
-    
-    [self forgetNotifications];
-        
-    [UIView animateWithDuration:0.2
-                         animations:^{viewController.view.alpha = 0.0;}
-                         completion:^(BOOL finished){ [viewController.view removeFromSuperview];}];
-    
+        [self.currentSceneDelegate restart];
+        self.squeakVMIsReady = NO;
+        self.defaultSerialQueue = nil;
+        [self forgetNotifications];
     });
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.2 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-        self.viewController = nil;
-        self.squeakProxy  = nil;
-        self.squeakApplication = nil;
-    });
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
         [self application: [UIApplication sharedApplication] didFinishLaunchingWithOptions: nil];
     });
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.8 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        [self startSqueakThread];
+    });
     sRestartCount++;
+}
+
+#pragma mark -
+#pragma mark Squeak Window Creation
+
+- (id) createPossibleWindow {
+    // createPossibleWindow should be called after scene-connect-to-session ended
+    SUYScratchSceneDelegate* sd = [self currentSceneDelegate];
+    LgInfo(@"!!##!! createPossibleWindow: %@", sd);
+    UIWindow* win = sd.window;
+    [sd setupSqueakMainView];
+    return win;
+}
+
+#pragma mark -
+#pragma mark Scene Configuration
+
+- (void) workerThreadStart {
+    // Override - now no-op
+    LgInfo(@"no-op: workerThreadStart");
+    if(SUYUtils.isOnMac){
+        [self startSqueakThread];
+    }
+}
+
+- (UISceneConfiguration *)application:(UIApplication *)application configurationForConnectingSceneSession:(UISceneSession *)connectingSceneSession options:(UISceneConnectionOptions *)options {
+    return [[UISceneConfiguration alloc] initWithName:@"Default Configuration" sessionRole:connectingSceneSession.role];
 }
 
 #pragma mark -
@@ -753,9 +697,9 @@ BOOL isUnfocued = NO;
 - (void)dealloc {
 	[super dealloc];
     [self forgetNotifications];
+    [_currentSceneDelegate release];
 	[squeakProxy release];
-	[presentationSpace release];
-    [defaultSerialQueue release];
+	[defaultSerialQueue release];
     [_mailComposer release];
     [_sensorAccessor release];
     [_microbitAccessor release];

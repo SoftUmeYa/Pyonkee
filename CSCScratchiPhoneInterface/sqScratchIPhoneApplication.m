@@ -12,7 +12,7 @@
 #import "SoundPlugin.h"
 #import "sqSqueakIPhoneInfoPlistInterface.h"
 
-extern ScratchIPhoneAppDelegate *gDelegateApp;
+extern SUYScratchAppDelegate *gDelegateApp;
 extern usqInt	gMaxHeapSize;
 
 @implementation sqScratchIPhoneApplication

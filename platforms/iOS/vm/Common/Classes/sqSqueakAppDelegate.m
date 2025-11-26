@@ -44,14 +44,14 @@ such third-party acknowledgments.
 @implementation sqSqueakAppDelegate
 @synthesize squeakApplication,squeakThread;
 
-- (void) makeMainWindow {
-	
+- (void) makeMainWindow {	
 	/*Beware creating a main window must be done on main thread it will not work from this interpreter squeak thread */
-	
+
+	// Wait for 50ms to ensure the scene is connected to the session and ready
+    dispatch_async(dispatch_get_main_queue(), ^{
+    
 	sqInt width,height;
 	windowDescriptorBlock *windowBlock;
-	
-	id createdWindow = [self createPossibleWindow];
 	
 	extern sqInt getSavedWindowSize(void); //This is VM Callback
 	extern sqInt setSavedWindowSize(sqInt value); //This is VM Callback
@@ -60,7 +60,10 @@ such third-party acknowledgments.
 	width  = ((unsigned) getSavedWindowSize()) >> 16;
 	height = getSavedWindowSize() & 0xFFFF;
 	windowBlock = AddWindowBlock();
-	windowBlock-> handle = createdWindow;
+    
+    id createdWindow = [self createPossibleWindow];
+    windowBlock-> handle = createdWindow;
+    
 	windowBlock->context = nil;
 	windowBlock->updateArea = CGRectZero;
 	width  = (usqInt) ioScreenSize() >> 16;
@@ -71,7 +74,8 @@ such third-party acknowledgments.
 	windowBlock->height = height; 	
 	extern sqInt getFullScreenFlag(void);
 	ioSetFullScreen(getFullScreenFlag());
-
+    
+    });
 }
 
 - (sqSqueakMainApplication *) newApplicationInstance {
@@ -87,15 +91,25 @@ such third-party acknowledgments.
 - (id) createPossibleWindow { return NULL;};
 
 - (void) workerThreadStart {
-	// Run the squeak process in a worker thread
-	squeakThread = [[NSThread alloc] initWithTarget: self.squeakApplication
-												 selector: @selector(runSqueak)
-												   object:nil];
+	// Override
+    [self startSqueakThread];
+}
+
+- (void) startSqueakThread {
+    
+    LgInfo(@"-------startSqueakThread------------");
+    // Run the squeak process in a worker thread
+    [self.squeakThread release];
+    self.squeakThread = nil;
+    self.squeakThread = [[NSThread alloc] initWithTarget: self.squeakApplication
+                                                 selector: @selector(runSqueak)
+                                                   object:nil];
+    [self.squeakThread retain];
 #if COGVM
-	[squeakThread setStackSize: [squeakThread stackSize]*4];
+    [squeakThread setStackSize: [squeakThread stackSize]*4];
 #endif
-	
-	[squeakThread start];
+    
+    [squeakThread start];
 }
 
 - (void) singleThreadStart {

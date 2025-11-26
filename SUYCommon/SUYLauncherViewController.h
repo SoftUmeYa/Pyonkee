@@ -8,7 +8,6 @@
 
 @interface SUYLauncherViewController : UIViewController {
 	
-	BOOL	squeakVMIsReady;
 	BOOL	uiThinksLoginButtonCouldBeEnabled;
 
 }
