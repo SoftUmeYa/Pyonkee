@@ -44,7 +44,7 @@ When attempting to build and run on a physical iPad (not the simulator), you wil
 
 The 'iCloud' feature is only available to users enrolled in Apple Developer Program. Please visit https://developer.apple.com/programs/ to enroll.
 
-To disable iCloud and allow the build to continue, change line 2348 of Pyonkee.xcodeproj/project.pbxproj from:
+To disable iCloud and allow the build to continue, change line 2354 of Pyonkee.xcodeproj/project.pbxproj from:
 
 ```
 com.apple.iCloud = {
