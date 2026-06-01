@@ -71,7 +71,7 @@
 		8574EBFF1F5D0FBB003F19BA /* SUYTouchCursor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8574EBFE1F5D0FBB003F19BA /* SUYTouchCursor.swift */; };
 		857B0679191BE1D600C8CCB1 /* leftArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 857B0678191BE1D600C8CCB1 /* leftArrow.png */; };
 		857B067B191BE1E000C8CCB1 /* rightArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 857B067A191BE1E000C8CCB1 /* rightArrow.png */; };
-		857B067D191BE60200C8CCB1 /* RedFlag.png in Resources */ = {isa = PBXBuildFile; fileRef = 857B067C191BE60200C8CCB1 /* RedFlag.png */; };
+		857B067D191BE60200C8CCB1 /* redFlag.png in Resources */ = {isa = PBXBuildFile; fileRef = 857B067C191BE60200C8CCB1 /* redFlag.png */; };
 		857D36D5196AEF8E00155933 /* Media in Resources */ = {isa = PBXBuildFile; fileRef = 857D36D4196AEF8E00155933 /* Media */; };
 		8583A193195B1AA800CDB9BC /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 8583A192195B1AA800CDB9BC /* back.png */; };
 		8588198C290A62D000F4C024 /* MeshServiceAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8588198B290A62D000F4C024 /* MeshServiceAccessor.swift */; };
@@ -172,7 +172,7 @@
 		945C95FF0E97084C00529DC1 /* aio.c in Sources */ = {isa = PBXBuildFile; fileRef = 94883B2A0E0C2A5E005A4738 /* aio.c */; };
 		9463943F0E95845000015851 /* squeakSUnitTester.m in Sources */ = {isa = PBXBuildFile; fileRef = 9463943E0E95845000015851 /* squeakSUnitTester.m */; };
 		94668585111E16870077E0DE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94C208F810AF7262002F4160 /* QuartzCore.framework */; };
-		94696B4111379B1F00E06BBF /* RedFlagLight.png in Resources */ = {isa = PBXBuildFile; fileRef = 94696B3F11379B1F00E06BBF /* RedFlagLight.png */; };
+		94696B4111379B1F00E06BBF /* redFlagLight.png in Resources */ = {isa = PBXBuildFile; fileRef = 94696B3F11379B1F00E06BBF /* redFlagLight.png */; };
 		94696B4211379B1F00E06BBF /* greenFlagLight.png in Resources */ = {isa = PBXBuildFile; fileRef = 94696B4011379B1F00E06BBF /* greenFlagLight.png */; };
 		9471D2730E04703B00703D45 /* sqSqueakScreenAndWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 9471D2720E04703B00703D45 /* sqSqueakScreenAndWindow.m */; };
 		9471D2E10E04743F00703D45 /* sqSqueakAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9471D2E00E04743F00703D45 /* sqSqueakAppDelegate.m */; };
@@ -453,7 +453,7 @@
 		8574EBFE1F5D0FBB003F19BA /* SUYTouchCursor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SUYTouchCursor.swift; sourceTree = "<group>"; };
 		857B0678191BE1D600C8CCB1 /* leftArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = leftArrow.png; path = Resources/images/leftArrow.png; sourceTree = "<group>"; };
 		857B067A191BE1E000C8CCB1 /* rightArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rightArrow.png; path = Resources/images/rightArrow.png; sourceTree = "<group>"; };
-		857B067C191BE60200C8CCB1 /* RedFlag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = RedFlag.png; path = Resources/images/RedFlag.png; sourceTree = "<group>"; };
+		857B067C191BE60200C8CCB1 /* redFlag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = redFlag.png; path = Resources/images/redFlag.png; sourceTree = "<group>"; };
 		857D36D4196AEF8E00155933 /* Media */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Media; path = Resources/Media; sourceTree = "<group>"; };
 		8583A192195B1AA800CDB9BC /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = back.png; path = Resources/images/back.png; sourceTree = "<group>"; };
 		8588198B290A62D000F4C024 /* MeshServiceAccessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeshServiceAccessor.swift; sourceTree = "<group>"; };
@@ -642,7 +642,7 @@
 		945BA55E11371A3200669C6C /* downArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = downArrow.png; path = Resources/images/downArrow.png; sourceTree = "<group>"; };
 		9463943D0E95845000015851 /* squeakSUnitTester.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = squeakSUnitTester.h; sourceTree = "<group>"; };
 		9463943E0E95845000015851 /* squeakSUnitTester.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = squeakSUnitTester.m; sourceTree = "<group>"; };
-		94696B3F11379B1F00E06BBF /* RedFlagLight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = RedFlagLight.png; path = Resources/images/RedFlagLight.png; sourceTree = "<group>"; };
+		94696B3F11379B1F00E06BBF /* redFlagLight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = redFlagLight.png; path = Resources/images/redFlagLight.png; sourceTree = "<group>"; };
 		94696B4011379B1F00E06BBF /* greenFlagLight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = greenFlagLight.png; path = Resources/images/greenFlagLight.png; sourceTree = "<group>"; };
 		946DA8D210C0C30D00F26F56 /* DropPlugin.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = DropPlugin.c; sourceTree = "<group>"; };
 		946DA8EF10C0C38600F26F56 /* DropPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropPlugin.h; sourceTree = "<group>"; };
@@ -1180,8 +1180,8 @@
 				857B067A191BE1E000C8CCB1 /* rightArrow.png */,
 				857B0678191BE1D600C8CCB1 /* leftArrow.png */,
 				945BA55E11371A3200669C6C /* downArrow.png */,
-				857B067C191BE60200C8CCB1 /* RedFlag.png */,
-				94696B3F11379B1F00E06BBF /* RedFlagLight.png */,
+				857B067C191BE60200C8CCB1 /* redFlag.png */,
+				94696B3F11379B1F00E06BBF /* redFlagLight.png */,
 				94696B4011379B1F00E06BBF /* greenFlagLight.png */,
 				94E3B931112BD2D500229B19 /* greenFlag.png */,
 				8583A192195B1AA800CDB9BC /* back.png */,
@@ -1203,7 +1203,7 @@
 				85B780CC28658C5000281972 /* LoggerClient.m */,
 			);
 			name = NSLogger;
-			path = thirdPartyClasses/NSLogger;
+			path = ThirdPartyClasses/NSLogger;
 			sourceTree = SOURCE_ROOT;
 		};
 		85C4DC581958756000F48ACB /* GSRadioButtonSetController */ = {
@@ -2469,10 +2469,10 @@
 				94E3B933112BD2D500229B19 /* greenFlag.png in Resources */,
 				945BA56011371A3200669C6C /* upArrow.png in Resources */,
 				945BA56111371A3200669C6C /* downArrow.png in Resources */,
-				94696B4111379B1F00E06BBF /* RedFlagLight.png in Resources */,
+				94696B4111379B1F00E06BBF /* redFlagLight.png in Resources */,
 				94696B4211379B1F00E06BBF /* greenFlagLight.png in Resources */,
 				8561D572195887D1008FDA45 /* quarterMode.png in Resources */,
-				857B067D191BE60200C8CCB1 /* RedFlag.png in Resources */,
+				857B067D191BE60200C8CCB1 /* redFlag.png in Resources */,
 				85B22FB21976602400A7E6E5 /* change-camera.png in Resources */,
 				85B381F019645C4500440D5E /* Images.xcassets in Resources */,
 				85186B421961B593006301EB /* Help in Resources */,
@@ -2814,7 +2814,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_TEAM = RXNQHKQR2N;
 				ENABLE_APP_SANDBOX = NO;
 				"ENABLE_APP_SANDBOX[sdk=macosx*]" = YES;
@@ -2849,7 +2849,7 @@
 					"@executable_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 2.29;
+				MARKETING_VERSION = 3.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = (
 					"-finline-functions",
@@ -2907,7 +2907,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_TEAM = RXNQHKQR2N;
 				ENABLE_APP_SANDBOX = NO;
 				"ENABLE_APP_SANDBOX[sdk=macosx*]" = YES;
@@ -2937,7 +2937,7 @@
 					"@executable_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 2.29;
+				MARKETING_VERSION = 3.0;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = (
 					"-finline-functions",

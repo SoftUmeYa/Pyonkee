@@ -77,7 +77,7 @@ extern int gSqueakUseFileMappedMMAP;
         if(OVER_IOS13){
             NSNumber* adjustedDefaultValue;
             if ([keyValueStr isEqualToString: kmemorySize_preference]) {
-                adjustedDefaultValue = [self adjustedSliderValue: defaultValue min: 41943040.0 max: 419430400.0];
+                adjustedDefaultValue = [self adjustedSliderValue: defaultValue min: 41943040.0 max: 838860800.0];
                 [defaults setObject: adjustedDefaultValue forKey:kmemorySize_preference];
             }
             if ([keyValueStr isEqualToString: kinboxMaxNumOfItems_preference]) {
@@ -123,7 +123,7 @@ extern int gSqueakUseFileMappedMMAP;
 - (NSInteger) memorySize {
     NSNumber* memSize = [defaults objectForKey: kmemorySize_preference];
     if(memSize.doubleValue <= 1){ //For iOS13
-        double memAppValue = [self adjustedAppValue: memSize.doubleValue min: 41943040.0 max: 419430400.0];
+        double memAppValue = [self adjustedAppValue: memSize.doubleValue min: 41943040.0 max: 838860800.0];
         return memAppValue;
     }
     return memSize.integerValue;
