@@ -2101,6 +2101,9 @@ msgstr "mikro:bit Status anzeigen"
 msgid "Microbit"
 msgstr "micro:bit"
 
+msgid "Clone"
+msgstr "Klon"
+
 ############################################
 # MESH
 ############################################
@@ -2200,3 +2203,18 @@ msgstr "mb:Schaltfläche A"
 msgid "mb:buttonB"
 msgstr "mb:Schaltfläche B"
 
+############################################
+# # clone support (Pyonkee)
+############################################
+
+msgid "when I start as a clone"
+msgstr "Wenn ich als Klon entstehe"
+
+msgid "create clone of %m"
+msgstr "erzeuge Klon von %m"
+
+msgid "create clone of myself"
+msgstr "erzeuge Klon von mir selbst"
+
+msgid "delete this clone"
+msgstr "lösche diesen Klon"

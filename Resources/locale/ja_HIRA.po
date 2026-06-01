@@ -2160,6 +2160,9 @@ msgstr "ピッケ"
 msgid "Microbit"
 msgstr "マイクロビット"
 
+msgid "Clone"
+msgstr "クローン"
+
 ############################################
 # PeKay folders
 ############################################
@@ -2296,3 +2299,19 @@ msgstr "mb-あかボードBME280"
 
 msgid "mb-RedBoardBME280.hex"
 msgstr "mb-あかボードBME280.hex"
+
+############################################
+# # clone support (Pyonkee)
+############################################
+
+msgid "when I start as a clone"
+msgstr "クローンされたとき"
+
+msgid "create clone of %m"
+msgstr "%m のクローンをつくる"
+
+msgid "create clone of myself"
+msgstr "じぶんじしんのクローンを作る"
+
+msgid "delete this clone"
+msgstr "このクローンをさくじょする"

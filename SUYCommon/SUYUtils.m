@@ -341,7 +341,7 @@
 }
 
 + (NSArray*) supportedUtis{
-    return @[@"com.softumeya.scratch-project",@"com.softumeya.scratch-sprite",
+    return @[@"com.softumeya.scratch-project",@"com.softumeya.pyonkee-project",@"com.softumeya.scratch-sprite",
              @"com.microsoft.waveform-audio",@"public.mp3",
              @"com.compuserve.gif",@"com.microsoft.bmp",@"public.png",@"public.jpeg",@"public.utf8-plain-text"];
 }

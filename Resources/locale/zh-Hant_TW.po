@@ -2031,6 +2031,9 @@ msgstr "顯示micro:bit狀態"
 msgid "Microbit"
 msgstr "micro:bit"
 
+msgid "Clone"
+msgstr "分身"
+
 ############################################
 # MESH
 ############################################
@@ -2129,3 +2132,19 @@ msgstr "mb:按鈕 A"
 
 msgid "mb:buttonB"
 msgstr "mb:按鈕 B"
+
+############################################
+# # clone support (Pyonkee)
+############################################
+
+msgid "when I start as a clone"
+msgstr "當分身產生"
+
+msgid "create clone of %m"
+msgstr "建立 %m 的分身"
+
+msgid "create clone of myself"
+msgstr "建立 自己的分身"
+
+msgid "delete this clone"
+msgstr "分身刪除"

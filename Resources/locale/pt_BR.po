@@ -2145,3 +2145,18 @@ msgstr "mb:botão A"
 msgid "mb:buttonB"
 msgstr "mb:botão B"
 
+############################################
+# # clone support (Pyonkee)
+############################################
+
+msgid "when I start as a clone"
+msgstr "quando eu começar como um clone"
+
+msgid "create clone of %m"
+msgstr "crie clone de %m"
+
+msgid "create clone of myself"
+msgstr "crie clone de este ator"
+
+msgid "delete this clone"
+msgstr "apague este clone"

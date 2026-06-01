@@ -22,6 +22,18 @@
 		</dict>
 		<dict>
 			<key>CFBundleTypeName</key>
+			<string>Pyonkee Project</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.softumeya.pyonkee-project</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeName</key>
 			<string>Scratch Sprite</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
@@ -272,6 +284,26 @@
 				<string>public.content</string>
 			</array>
 			<key>UTTypeDescription</key>
+			<string>Pyonkee Project</string>
+			<key>UTTypeIdentifier</key>
+			<string>com.softumeya.pyonkee-project</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>pyn</string>
+				</array>
+				<key>public.mime-type</key>
+				<string>application/x-scratch.pyn</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.data</string>
+				<string>public.content</string>
+			</array>
+			<key>UTTypeDescription</key>
 			<string>Scratch Sprite</string>
 			<key>UTTypeIdentifier</key>
 			<string>com.softumeya.scratch-sprite</string>
@@ -326,6 +358,26 @@
 				</array>
 				<key>public.mime-type</key>
 				<string>application/x.scratch.sb3</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.data</string>
+				<string>public.content</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Pyonkee Project</string>
+			<key>UTTypeIdentifier</key>
+			<string>com.softumeya.pyonkee-project</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>pyn</string>
+				</array>
+				<key>public.mime-type</key>
+				<string>application/x.scratch.pyn</string>
 			</dict>
 		</dict>
 	</array>
