@@ -28,7 +28,7 @@
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
-			<string>Memory: 40 to 400 MB</string>
+			<string>Memory: 40 to 800 MB</string>
 		</dict>
 		<dict>
 			<key>Type</key>
@@ -38,11 +38,11 @@
 			<key>Key</key>
 			<string>memorySize_preference</string>
 			<key>DefaultValue</key>
-			<integer>167772160</integer>
+			<integer>209715200</integer>
 			<key>MinimumValue</key>
 			<integer>41943040</integer>
 			<key>MaximumValue</key>
-			<integer>419430400</integer>
+			<integer>838860800</integer>
 		</dict>
 		<dict>
 			<key>Type</key>
@@ -90,7 +90,7 @@
 			<key>Type</key>
 			<string>PSTitleValueSpecifier</string>
 			<key>DefaultValue</key>
-			<string>2.29</string>
+			<string>3.0</string>
 			<key>Title</key>
 			<string>Version</string>
 			<key>Key</key>
@@ -100,7 +100,7 @@
 			<key>Type</key>
 			<string>PSTitleValueSpecifier</string>
 			<key>DefaultValue</key>
-			<string>8</string>
+			<string>12</string>
 			<key>Title</key>
 			<string>Build</string>
 			<key>Key</key>
