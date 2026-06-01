@@ -2063,6 +2063,9 @@ msgstr "显示micro:bit状态"
 msgid "Microbit"
 msgstr "micro:bit"
 
+msgid "Clone"
+msgstr "克隆体"
+
 ############################################
 # MESH
 ############################################
@@ -2161,3 +2164,19 @@ msgstr "mb:按钮 A"
 
 msgid "mb:buttonB"
 msgstr "mb:按钮 B"
+
+############################################
+# # clone support (Pyonkee)
+############################################
+
+msgid "when I start as a clone"
+msgstr "当作为克隆体启动时"
+
+msgid "create clone of %m"
+msgstr "克隆 %m"
+
+msgid "create clone of myself"
+msgstr "克隆 自己"
+
+msgid "delete this clone"
+msgstr "删除此克隆体"
