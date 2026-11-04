@@ -211,11 +211,11 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
-                            <state key="normal" image="RedFlag.png">
+                            <state key="normal" image="redFlag.png">
                                 <color key="titleColor" red="0.1960784314" green="0.30980392159999998" blue="0.52156862749999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="titleShadowColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
-                            <state key="selected" image="RedFlagLight.png"/>
+                            <state key="selected" image="redFlagLight.png"/>
                             <state key="highlighted">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
@@ -425,8 +425,8 @@
         </view>
     </objects>
     <resources>
-        <image name="RedFlag.png" width="28" height="23"/>
-        <image name="RedFlagLight.png" width="28" height="23"/>
+        <image name="redFlag.png" width="28" height="23"/>
+        <image name="redFlagLight.png" width="28" height="23"/>
         <image name="back.png" width="25.600000381469727" height="25.600000381469727"/>
         <image name="downArrow.png" width="44" height="15"/>
         <image name="flat-cmd-active1.png" width="32" height="32"/>

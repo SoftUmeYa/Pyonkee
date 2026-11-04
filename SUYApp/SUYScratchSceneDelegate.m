@@ -134,6 +134,17 @@
 
 - (void) startPlaying {
     LgInfo(@"startPlaying");
+#if TARGET_OS_MACCATALYST
+    if (_presentationSpace == nil) {
+        LgWarn(@"startPlaying: presentationSpace is not ready");
+        return;
+    }
+    // viewDidAppear and squeakVMReady can both trigger startPlaying on Mac
+    if ([self.viewController.viewControllers containsObject: _presentationSpace]) {
+        LgInfo(@"startPlaying: already pushed");
+        return;
+    }
+#endif
     [self.viewController pushViewController: _presentationSpace animated: YES];
 }
 
