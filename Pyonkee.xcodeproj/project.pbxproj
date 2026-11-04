@@ -37,7 +37,6 @@
 		853099BA197966190071CDBF /* flat-shift-active1.png in Resources */ = {isa = PBXBuildFile; fileRef = 853099B4197966190071CDBF /* flat-shift-active1.png */; };
 		853223B11EA0897B002D0450 /* SUYiCloudAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 853223B01EA0897B002D0450 /* SUYiCloudAccessor.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		8537019519094F8100534905 /* LauncherViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8537019419094F8100534905 /* LauncherViewController.xib */; };
-		8537019719094FE100534905 /* MainWindowiPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8537019619094FE100534905 /* MainWindowiPad.xib */; };
 		8537019B1909524C00534905 /* ScratchIPhonePresentationSpaceiPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8537019A1909524C00534905 /* ScratchIPhonePresentationSpaceiPad.xib */; };
 		8539742128F902250034ADCF /* DropdownSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8539741A28F902250034ADCF /* DropdownSelector.swift */; };
 		8539742228F902250034ADCF /* BonjourPeer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8539741B28F902250034ADCF /* BonjourPeer.swift */; };
@@ -405,7 +404,6 @@
 		853223AF1EA0897B002D0450 /* SUYiCloudAccessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUYiCloudAccessor.h; sourceTree = "<group>"; };
 		853223B01EA0897B002D0450 /* SUYiCloudAccessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUYiCloudAccessor.m; sourceTree = "<group>"; };
 		8537019419094F8100534905 /* LauncherViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LauncherViewController.xib; path = Resources/LauncherViewController.xib; sourceTree = "<group>"; };
-		8537019619094FE100534905 /* MainWindowiPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainWindowiPad.xib; path = Resources/MainWindowiPad.xib; sourceTree = "<group>"; };
 		8537019A1909524C00534905 /* ScratchIPhonePresentationSpaceiPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ScratchIPhonePresentationSpaceiPad.xib; path = Resources/ScratchIPhonePresentationSpaceiPad.xib; sourceTree = "<group>"; };
 		8537C8EA1AFF048100AAF473 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		8537C8EB1AFF048100AAF473 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
@@ -1266,7 +1264,6 @@
 				85406F961B17F3D200CBE22E /* SUYPhotoPicker.storyboard */,
 				852B9BFA19628FE500A9A389 /* SUYWebViewController.xib */,
 				85930B38193EEB8F00F878CA /* SUYCameraViewController.xib */,
-				8537019619094FE100534905 /* MainWindowiPad.xib */,
 				8537019A1909524C00534905 /* ScratchIPhonePresentationSpaceiPad.xib */,
 				8537019419094F8100534905 /* LauncherViewController.xib */,
 				85DBC4F919546187000AC218 /* SUYFontResizeViewController.xib */,
@@ -2485,7 +2482,6 @@
 				853099BA197966190071CDBF /* flat-shift-active1.png in Resources */,
 				85CD4F9F1967049A00BAFADF /* kbd-right.png in Resources */,
 				8516173F19646B4400D4E258 /* flat-shift.png in Resources */,
-				8537019719094FE100534905 /* MainWindowiPad.xib in Resources */,
 				853099B8197966190071CDBF /* fontScale.png in Resources */,
 				858BC0221969AD10001BBF1A /* flat-space.png in Resources */,
 				8537019519094F8100534905 /* LauncherViewController.xib in Resources */,
@@ -2814,7 +2810,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_TEAM = RXNQHKQR2N;
 				ENABLE_APP_SANDBOX = NO;
 				"ENABLE_APP_SANDBOX[sdk=macosx*]" = YES;
@@ -2907,7 +2903,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_TEAM = RXNQHKQR2N;
 				ENABLE_APP_SANDBOX = NO;
 				"ENABLE_APP_SANDBOX[sdk=macosx*]" = YES;

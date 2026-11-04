@@ -169,8 +169,6 @@
 	<string>for importing new photos</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>for sensor blocks</string>
-	<key>NSMainNibFile~ipad</key>
-	<string>MainWindowiPad</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>for playing recorded sounds</string>
 	<key>NSLocalNetworkUsageDescription</key>

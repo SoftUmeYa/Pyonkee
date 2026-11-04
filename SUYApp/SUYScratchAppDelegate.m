@@ -668,6 +668,23 @@ BOOL isRestarting = NO;
 #pragma mark -
 #pragma mark Squeak Window Creation
 
+#if TARGET_OS_MACCATALYST
+- (void) makeMainWindow {
+    // On Mac, the Squeak thread starts before the scene connects,
+    // so wait for the scene delegate before creating the main window
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (self.currentSceneDelegate == nil) {
+            LgInfo(@"makeMainWindow: waiting for scene delegate");
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.05 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self makeMainWindow];
+            });
+            return;
+        }
+        [super makeMainWindow];
+    });
+}
+#endif
+
 - (id) createPossibleWindow {
     // createPossibleWindow should be called after scene-connect-to-session ended
     SUYScratchSceneDelegate* sd = [self currentSceneDelegate];
